@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="TCC Biblioteca" default="build" basedir="." description="Este projeto faz parte da conclusão de curso.">
+    <target name="prepare">
+        <echo msg="Criando diretórios ......."/>
+        <mkdir dir="../versao"/>
+        <echo msg="Diretórios criados!"/>
+    </target>
+
+    <target name="test">
+        <phpunit haltonerror="true" haltonfailure="true" codecoverage="true" pharlocation="phpunit-5.3.4.phar" bootstrap="bootstrap/autoload.php">
+            <batchtest>
+                <fileset dir=".">
+                    <include name="*Test.php"/>
+                </fileset>
+            </batchtest>
+        </phpunit>
+    </target>
+
+    <target name="docs">
+        <phpdoc title="Phing Example" destdir="versao" output="HTML:Smarty:PHP"
+                linksource="true" quiet="true" sourcecode="true">
+            <fileset dir=".">
+                <include name="*.php"/>
+                <include name="app/Models/*.php"/>
+            </fileset>
+        </phpdoc>
+    </target>
+
+    <target name="check-code">
+        <phplint haltonfailure="true" description="Lint">
+            <fileset dir=".">
+                <include name="*.php"/>
+                <include name="app/Models/*.php"/>
+            </fileset>
+        </phplint>
+    </target>
+
+    <target name="build" depends="clean,prepare">
+        <echo msg="Building ....... 0%"/>
+        <echo msg="................ 20%"/>
+        <zip destfile="release.zip" basedir="."/>
+        <echo msg="............... 70%"/>
+        <move file="release.zip" todir="../versao"/>
+        <echo msg="................ 100%"/>
+        <echo msg="Finished !!!"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="../versao"/>
+    </target>
+</project>
