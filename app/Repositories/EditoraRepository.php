@@ -4,9 +4,8 @@ namespace App\Repositories;
 
 
 use App\Models\Editora;
-use App\Repositories\Contracts\IEditoraRepository;
 
-class EditoraRepository implements IEditoraRepository
+class EditoraRepository
 {
     protected $editora;
 

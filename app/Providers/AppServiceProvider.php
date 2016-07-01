@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repositories\IEditoraRepository;
+use App\Repositories\IPublicacaoRepository;
+use App\Repositories\EditoraRepository;
+use App\Repositories\PublicacaoRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,14 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            'App\Repositories\Contracts\IPublicacaoRepository',
-            'App\Repositories\PublicacaoRepository'
-        );
 
-        $this->app->bind(
-            'App\Repositories\Contracts\IEditoraRepository',
-            'App\Repositories\EditoraRepository'
-        );
     }
 }

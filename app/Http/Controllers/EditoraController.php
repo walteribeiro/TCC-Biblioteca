@@ -3,21 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EditoraRequest;
-use App\Repositories\Contracts\IEditoraRepository;
+use App\Repositories\EditoraRepository;
 use App\Http\Requests;
 
 class EditoraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     protected $repository;
 
-    public function __construct(IEditoraRepository $iEditoraRepository)
+    public function __construct(EditoraRepository $editoraRepository)
     {
-        $this->repository = $iEditoraRepository;
+        $this->repository = $editoraRepository;
     }
 
     public function index()
