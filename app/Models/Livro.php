@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+
 use Illuminate\Database\Eloquent\Model;
 
-class Livro extends Publicacao
+class Livro extends Model
 {
     protected $fillable = [
         'subtitulo','isbn','cdu','cdd','ano'
@@ -13,4 +14,6 @@ class Livro extends Publicacao
     public function publicacao(){
         return $this->belongsTo(Publicacao::class);
     }
+
+    public $timestamps = false;
 }

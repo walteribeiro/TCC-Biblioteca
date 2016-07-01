@@ -47,7 +47,7 @@ $factory->define(App\Models\Publicacao::class, function (Faker\Generator $faker)
         'titulo' => $faker->unique()->title,
         'edicao' => str_random(4),
         'origem' => str_random(6),
-        'editora' => factory(\App\Models\Editora::class)->create()->id
+        'editora_id' => factory(\App\Models\Editora::class)->create()->id
     ];
 });
 
@@ -63,6 +63,6 @@ $factory->define(App\Models\Livro::class, function (Faker\Generator $faker) {
         'cdd' => $faker->randomNumber(3),
         'cdu' => $faker->randomNumber(3),
         'ano' => $faker->year,
-        'autor' => factory(\App\Models\Autor::class)->create()->id
+        'autor_id' => factory(\App\Models\Autor::class)->create()->id
     ];
 });
