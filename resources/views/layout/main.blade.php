@@ -31,14 +31,14 @@
                     <div class="menu_section">
                         <h3>General</h3>
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> Publicações <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-book"></i> Publicações <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="index.html">Livros</a></li>
                                     <li><a href="index2.html">Revistas</a></li>
                                 </ul>
                             </li>
 
-                            <li><a><i class="fa fa-home"></i> Leitores <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-users"></i> Leitores <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="index.html">Alunos</a></li>
                                     <li><a href="index2.html">Funcionários</a></li>
@@ -46,7 +46,7 @@
                                 </ul>
                             </li>
 
-                            <li><a><i class="fa fa-home"></i> Gerenciamento <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-wrench"></i> Gerenciar <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="index.html">Emprestimos</a></li>
                                     <li><a href="index2.html">Reservas</a></li>
@@ -54,7 +54,7 @@
                                 </ul>
                             </li>
 
-                            <li><a><i class="fa fa-home"></i> Recursos <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-map"></i> Recursos <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="index.html">Mapas</a></li>
                                     <li><a href="index2.html">Salas</a></li>
