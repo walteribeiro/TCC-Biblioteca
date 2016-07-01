@@ -40,6 +40,11 @@ class EditoraRepository
 
     public function destroy($id)
     {
-        // TODO: Implement destroy() method.
+        return $this->editora->destroy([$id]);
+    }
+
+    public function findById($id)
+    {
+        return $this->editora->find($id);
     }
 }

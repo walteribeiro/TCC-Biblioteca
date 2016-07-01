@@ -35,12 +35,41 @@
         <h5 class="alert alert-info">Ainda não foram cadastradas editoras!</h5>
     @endif
 
+    <!-- Modal Exclusão -->
+        <div class="modal fade" id="exclusao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <form action="" method="post" id="formexcluir">
+                {{ method_field('delete') }}
+                {!! csrf_field() !!}
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Exclusão</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h4>Deseja excluir o registro ?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    <!-- Fim Modal Exclusão -->
+
 @endsection
 @section('scripts')
     <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('assets/js/dataTables.bootstrap.min.js')}}"></script>
 
     <script>
+        function abrirModal(id){
+            $('#formexcluir').attr("action", "editoras/remover/"+id);
+            $('#exclusao').modal()
+        }
+
         $(document).ready(function () {
             $('#editoras').DataTable({
                 "stateSave": true,

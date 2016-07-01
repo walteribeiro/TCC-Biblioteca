@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
+use App\Models\User;
 
 class EditoraRequest extends Request
 {
@@ -11,8 +11,9 @@ class EditoraRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(User $user)
     {
+        //dd($user->name);
         return true;
     }
 
@@ -24,7 +25,7 @@ class EditoraRequest extends Request
     public function rules()
     {
         return [
-            //
+            'nome' => 'required|min:5|max:255|unique:editoras'
         ];
     }
 }

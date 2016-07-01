@@ -2,22 +2,26 @@
 
 @section('conteudo')
 
-    <div class="col-md-8 col-md-offset-2">
+    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-8 col-lg-offset-2">Cadastro de Editora</h3>
 
-        <h1 align="center">Cadastro de Editoras</h1>
+    <form class="form-horizontal" action="{{ url('editoras/gravar') }}" method="post">
 
-        <form action="{{action('EditoraController@store')}}" method="post">
+        {!! csrf_field() !!}
 
-            {!! csrf_field() !!}
-
-            <div class="form-group">
-                <label>Nome</label>
-                <input type="text" name="nome" class="form-control">
+        <div class="form-group">
+            <div class="col-lg-8 col-lg-offset-2">
+                <label for="nome">Nome da Editora</label>
+                <input type="text" class="form-control" id="nome" name="nome"
+                       placeholder="Nome da Editora" autofocus>
             </div>
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary btn-block" value="Cadastrar">
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-3 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary"><em class="fa fa-save"></em> Gravar</button>
+                <a href="{{ url("editoras") }}" class="btn btn-default"><em class="fa fa-undo"></em> Voltar</a>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 
 @endsection
