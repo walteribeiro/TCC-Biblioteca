@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 
+use App\Repositories\Contracts\IPublicacaoRepository;
+
 class PublicacaoRepository implements IPublicacaoRepository
 {
 

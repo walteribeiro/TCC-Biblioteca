@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{asset('assets/css/green.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap-progressbar-3.3.4.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
+
+    @yield('header')
 </head>
 <body class="nav-md">
 <div class="container body">
@@ -151,6 +153,9 @@
 <script src="{{asset('assets/js/moment.min.js')}}"></script>
 <script src="{{asset('assets/js/daterangepicker.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
+
+@yield('scripts')
+
 </body>
 
 </html>

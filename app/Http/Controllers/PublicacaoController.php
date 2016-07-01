@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PublicacaoRequest;
-use App\Repositories\IPublicacaoRepository;
-use Illuminate\Http\Request;
-
+use App\Repositories\Contracts\IPublicacaoRepository;
 use App\Http\Requests;
 
 class PublicacaoController extends Controller

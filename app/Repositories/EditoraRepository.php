@@ -3,12 +3,21 @@
 namespace App\Repositories;
 
 
+use App\Models\Editora;
+use App\Repositories\Contracts\IEditoraRepository;
+
 class EditoraRepository implements IEditoraRepository
 {
+    protected $editora;
+
+    public function __construct(Editora $editora)
+    {
+        $this->editora = $editora;
+    }
 
     public function index()
     {
-        // TODO: Implement index() method.
+        return $this->editora->all();
     }
 
     public function show($id)

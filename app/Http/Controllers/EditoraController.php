@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EditoraRequest;
-use App\Repositories\IEditoraRepository;
-use Illuminate\Http\Request;
-
+use App\Repositories\Contracts\IEditoraRepository;
 use App\Http\Requests;
 
 class EditoraController extends Controller
@@ -22,9 +20,10 @@ class EditoraController extends Controller
         $this->repository = $iEditoraRepository;
     }
 
-        public function index()
+    public function index()
     {
-        //
+        $editoras = $this->repository->index();
+        return view('editora.index', compact('editoras'));
     }
 
     /**
@@ -40,7 +39,7 @@ class EditoraController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(EditoraRequest $editoraRequest)
@@ -51,7 +50,7 @@ class EditoraController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -62,7 +61,7 @@ class EditoraController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -73,19 +72,19 @@ class EditoraController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(EditoraRequest $editoraRequest, $id)
     {
-        $this->repository->update($editoraRequest,$id);
+        $this->repository->update($editoraRequest, $id);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
