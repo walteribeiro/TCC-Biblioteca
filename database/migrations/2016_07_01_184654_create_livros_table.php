@@ -20,6 +20,7 @@ class CreateLivrosTable extends Migration
             $table->string('cdd');
             $table->integer('ano');
             $table->unsignedBigInteger('publicacao_id')->index('publicacao_idx');
+            $table->unsignedBigInteger('autor_id')->index('autor_idx');
 
         });
     }

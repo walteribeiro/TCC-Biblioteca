@@ -5,7 +5,7 @@
 @endsection
 @section('conteudo')
 
-    <h3 class="page-header">Prioridades <a href="{{ url('editoras/novo') }}" class="btn btn-primary pull-right">Nova</a></h3>
+    <h3 class="page-header">Prioridades <a href="{{ route('editora.create') }}" class="btn btn-primary pull-right">Nova</a></h3>
 
     @if(isset($editoras) && count($editoras) > 0)
         <table id="editoras" class="table table-bordered table-hover">
@@ -22,7 +22,7 @@
                     <td>{{$e->id}}</td>
                     <td>{{$e->nome}}</td>
                     <td class="text-center">
-                        <a href="{{url('editoras/editar', $e->id)}}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('editora.edit', $e->id)}}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span></a>
                         <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$e->id}})">
                             <span class="glyphicon glyphicon-trash"></span></a>

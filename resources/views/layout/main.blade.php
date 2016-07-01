@@ -5,9 +5,6 @@
     <title>SGBR</title>
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/nprogress.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/green.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/bootstrap-progressbar-3.3.4.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 
     @yield('header')
@@ -145,9 +142,7 @@
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/js/fastclick.js')}}"></script>
-<script src="{{asset('assets/js/nprogress.js')}}"></script>
 <script src="{{asset('assets/js/gauge.min.js')}}"></script>
-<script src="{{asset('assets/js/bootstrap-progressbar.min.js')}}"></script>
 <script src="{{asset('assets/js/icheck.min.js')}}"></script>
 <script src="{{asset('assets/js/skycons.js')}}"></script>
 <script src="{{asset('assets/js/moment.min.js')}}"></script>

@@ -17,6 +17,7 @@ class ForeignKeyTable extends Migration
         });
         Schema::table('livros', function (Blueprint $table) {
             $table->foreign('publicacao_id', 'publicacao_1_fk')->references('id')->on('publicacoes')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('autor_id', 'autor_2_fk')->references('id')->on('autores')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 
@@ -35,6 +36,7 @@ class ForeignKeyTable extends Migration
         Schema::table('livros', function(Blueprint $table)
         {
             $table->dropForeign('publicacao_1_fk');
+            $table->dropForeign('autor_2_fk');
         });
 
         //

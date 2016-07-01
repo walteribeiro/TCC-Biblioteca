@@ -1,9 +1,9 @@
 <?php
 
-use App\Models\Editora;
+use App\Models\Autor;
 use Illuminate\Database\Seeder;
 
-class EditoraSeeder extends Seeder
+class AutorSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class EditoraSeeder extends Seeder
      */
     public function run()
     {
-        factory(Editora::class, 50)->create();
+        factory(Autor::class, 50)->create();
     }
 }
