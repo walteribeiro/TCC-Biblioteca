@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EditoraRequest;
+use App\Models\Editora;
 use App\Repositories\EditoraRepository;
 use App\Http\Requests;
 
@@ -29,7 +30,7 @@ class EditoraController extends Controller
      */
     public function create()
     {
-        //
+        return view('editora.create');
     }
 
     /**
@@ -41,6 +42,9 @@ class EditoraController extends Controller
     public function store(EditoraRequest $editoraRequest)
     {
         $this->repository->store($editoraRequest);
+
+        return redirect()
+            ->action('EditoraController@index');
     }
 
     /**
@@ -62,7 +66,10 @@ class EditoraController extends Controller
      */
     public function edit($id)
     {
-        //
+        $editora = Editora::find($id);
+
+        return view('editora.edit')
+            ->with('e', $editora);
     }
 
     /**
@@ -75,6 +82,8 @@ class EditoraController extends Controller
     public function update(EditoraRequest $editoraRequest, $id)
     {
         $this->repository->update($editoraRequest, $id);
+        return redirect()
+            ->action('EditoraController@index');
     }
 
     /**
