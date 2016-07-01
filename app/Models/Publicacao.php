@@ -15,4 +15,8 @@ class Publicacao extends Model
     public function livro(){
         return $this->hasOne(Livro::class);
     }
+
+    public function editora(){
+        return $this->belongsTo(Editora::class);
+    }
 }

@@ -14,7 +14,7 @@ class CreateLivrosTable extends Migration
     {
         Schema::create('livros', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('substitulo');
+            $table->string('subtitulo');
             $table->string('isbn');
             $table->string('cdu');
             $table->string('cdd');

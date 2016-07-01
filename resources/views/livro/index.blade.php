@@ -5,14 +5,17 @@
 @endsection
 @section('conteudo')
 
-    <h3 class="page-header">Prioridades <a href="{{ url('livros/novo') }}" class="btn btn-primary pull-right">Novo</a></h3>
+    <h3 class="page-header">Prioridades <a href="{{ route('livro.create') }}" class="btn btn-primary pull-right">Novo</a></h3>
 
     @if(isset($livros) && count($livros) > 0)
         <table id="livros" class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th>#</th>
-                <th>Nome</th>
+                <th>Código</th>
+                <th>Título</th>
+                <th>Subtitulo</th>
+                <th>Edição</th>
+                <th>Ano</th>
                 <th data-orderable="false">Opções</th>
             </tr>
             </thead>
@@ -20,11 +23,14 @@
             @foreach($livros as $l)
                 <tr>
                     <td>{{$l->id}}</td>
-                    <td>{{$l->nome}}</td>
+                    <td>{{$l->publicacao()->titulo}}</td>
+                    <td>{{$l->subtitulo}}</td>
+                    <td>{{$l->publicacao()->edicao}}</td>
+                    <td>{{$l->ano}}</td>
                     <td class="text-center">
-                        <a href="{{url('livros/editar', $e->id)}}" class="btn btn-sm btn-warning">
+                        <a href="{{route('livro.edit', $l->id)}}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$e->id}})">
+                        <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$l->id}})">
                             <span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
@@ -66,7 +72,7 @@
 
     <script>
         function abrirModal(id){
-            $('#formexcluir').attr("action", "livros/remover/"+id);
+            $('#formexcluir').attr("route", "livro.delete/"+id);
             $('#exclusao').modal()
         }
 

@@ -11,4 +11,8 @@ class Editora extends Model
     ];
     public $timestamps = false;
     //
+
+    public function publicacoes(){
+        return $this->hasMany(Publicacao::class);
+    }
 }

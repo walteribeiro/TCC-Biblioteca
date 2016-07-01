@@ -30,7 +30,7 @@
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-book"></i> Publicações <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="index.html">Livros</a></li>
+                                    <li><a href="{{route('livro.index')}}">Livros</a></li>
                                     <li><a href="index2.html">Revistas</a></li>
                                 </ul>
                             </li>

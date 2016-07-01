@@ -3,15 +3,19 @@
 namespace App\Repositories;
 
 
+use App\Http\Requests\LivroRequest;
 use App\Models\Livro;
+use App\Models\Publicacao;
 
 class LivroRepository
 {
     protected $livro;
+    protected $publicacao;
 
-    public function __construct(Livro $livro)
+    public function __construct(Livro $livro, Publicacao $publicacao)
     {
         $this->livro = $livro;
+        $this->publicacao = $publicacao;
     }
 
     public function index()
@@ -24,18 +28,52 @@ class LivroRepository
         // TODO: Implement show() method.
     }
 
-    public function store($data)
+    public function store(LivroRequest $livroRequest)
     {
-        // TODO: Implement store() method.
+        // Recebendo os atributos da classe pai pelo request
+        $this->publicacao->descricao = $livroRequest->input('descricao');
+        $this->publicacao->titulo = $livroRequest->input('titulo');
+        $this->publicacao->edicao = $livroRequest->input('edicao');
+        $this->publicacao->origem = $livroRequest->input('origem');
+        $this->publicacao->save();
+
+        $this->livro->subtitulo = $livroRequest->input('subtitulo');
+        $this->livro->isbn = $livroRequest->input('isbn');
+        $this->livro->cdu = $livroRequest->input('cdu');
+        $this->livro->cdd = $livroRequest->input('cdd');
+        $this->livro->ano = $livroRequest->input('ano');
+        $this->publicacao->livro()->save($this->livro);
+
     }
 
-    public function update($data, $id)
+    public function update(LivroRequest $livroRequest, $id)
     {
-        // TODO: Implement update() method.
+        $this->publicacao = $this->publicacao->find($id);
+
+        // Recebendo os atributos da classe pai pelo request
+        $this->publicacao->descricao = $livroRequest->input('descricao');
+        $this->publicacao->titulo = $livroRequest->input('titulo');
+        $this->publicacao->edicao = $livroRequest->input('edicao');
+        $this->publicacao->origem = $livroRequest->input('origem');
+        $this->publicacao->save();
+
+        $this->livro->subtitulo = $livroRequest->input('subtitulo');
+        $this->livro->isbn = $livroRequest->input('isbn');
+        $this->livro->cdu = $livroRequest->input('cdu');
+        $this->livro->cdd = $livroRequest->input('cdd');
+        $this->livro->ano = $livroRequest->input('ano');
+
+        $this->publicacao->livro()->save($this->livro);
     }
+
 
     public function destroy($id)
     {
-        // TODO: Implement destroy() method.
+        return $this->livro->destroy([$id]);
+    }
+
+    public function findById($id)
+    {
+        return $this->livro->find($id);
     }
 }
