@@ -26,3 +26,15 @@ Route::group(['prefix' => 'editoras'], function(){
     Route::delete('/remover/{id}', ['as'=>'editora.delete', 'uses'=>'EditoraController@destroy']);
 
 });
+
+Route::group(['prefix' => 'livros'], function(){
+
+    Route::get('/',                ['as'=>'livro.index',  'uses'=>'LivroController@index']);
+    Route::get('/novo',            ['as'=>'livro.create', 'uses'=>'LivroController@create']);
+    Route::post('/gravar',         ['as'=>'livro.store',  'uses'=>'LivroController@store']);
+    Route::get('/detalhes/{id}',   ['as'=>'livro.show',   'uses'=>'LivroController@show']);
+    Route::get('/editar/{id}',     ['as'=>'livro.edit',   'uses'=>'LivroController@edit']);
+    Route::put('/atualizar/{id}',  ['as'=>'livro.update', 'uses'=>'LivroController@update']);
+    Route::delete('/remover/{id}', ['as'=>'livro.delete', 'uses'=>'LivroController@destroy']);
+
+});

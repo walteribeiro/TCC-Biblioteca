@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PublicacaoRequest;
-use App\Repositories\Contracts\IPublicacaoRepository;
+use App\Http\Requests\LivroRequest;
+use App\Repositories\LivroRepository;
 use App\Http\Requests;
 
-class PublicacaoController extends Controller
+class LivroController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,15 +15,16 @@ class PublicacaoController extends Controller
      */
     protected $repository;
 
-    public function __construct(IPublicacaoRepository $iPublicacaoRepository)
+    public function __construct(LivroRepository $livroRepository)
     {
-        $this->repository = $iPublicacaoRepository;
+        $this->repository = $livroRepository;
 
     }
 
     public function index()
     {
-        $this->repository->index();
+        $livros = $this->repository->index();
+        return view('livro.index', compact('livros'));
     }
 
     /**
@@ -42,9 +43,9 @@ class PublicacaoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PublicacaoRequest $publicacaoRequest)
+    public function store(LivroRequest $livroRequest)
     {
-        $this->repository->store($publicacaoRequest);
+        $this->repository->store($livroRequest);
     }
 
     /**
@@ -76,9 +77,9 @@ class PublicacaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PublicacaoRequest $publicacaoRequest, $id)
+    public function update(LivroRequest $livroRequest, $id)
     {
-        $this->repository->update($publicacaoRequest,$id);
+        $this->repository->update($livroRequest,$id);
     }
 
     /**

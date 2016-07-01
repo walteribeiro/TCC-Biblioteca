@@ -3,12 +3,20 @@
 namespace App\Repositories;
 
 
-class PublicacaoRepository
+use App\Models\Livro;
+
+class LivroRepository
 {
+    protected $livro;
+
+    public function __construct(Livro $livro)
+    {
+        $this->livro = $livro;
+    }
 
     public function index()
     {
-        // TODO: Implement index() method.
+        $this->livro->all();
     }
 
     public function show($id)

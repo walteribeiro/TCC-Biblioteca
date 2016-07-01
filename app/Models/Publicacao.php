@@ -10,4 +10,8 @@ class Publicacao extends Model
         'descricao','titulo','edicao','origem'
     ];
     //
+
+    public function livro(){
+        return $this->hasOne(Livro::class);
+    }
 }

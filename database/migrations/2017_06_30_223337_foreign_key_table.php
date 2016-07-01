@@ -15,6 +15,9 @@ class ForeignKeyTable extends Migration
         Schema::table('publicacoes', function (Blueprint $table) {
             $table->foreign('editora_id', 'editora_1_fk')->references('id')->on('editoras')->onUpdate('cascade')->onDelete('restrict');
         });
+        Schema::table('livros', function (Blueprint $table) {
+            $table->foreign('publicacao_id', 'publicacao_1_fk')->references('id')->on('publicacoes')->onUpdate('cascade')->onDelete('cascade');
+        });
     }
 
     /**
@@ -28,6 +31,12 @@ class ForeignKeyTable extends Migration
         {
             $table->dropForeign('editora_1_fk');
         });
+
+        Schema::table('livros', function(Blueprint $table)
+        {
+            $table->dropForeign('publicacao_1_fk');
+        });
+
         //
     }
 }
