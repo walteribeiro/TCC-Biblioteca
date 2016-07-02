@@ -31,7 +31,9 @@
                             <li><a><i class="fa fa-book"></i> Publicações <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{route('livro.index')}}">Livros</a></li>
-                                    <li><a href="index2.html">Revistas</a></li>
+                                    <li><a href="{{route('revista.index')}}.html">Revistas</a></li>
+                                    <li><a href="{{route('editora.index')}}.html">Editoras</a></li>
+                                    <li><a href="{{route('autor.index')}}.html">Autores</a></li>
                                 </ul>
                             </li>
 

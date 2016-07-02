@@ -34,7 +34,8 @@ class LivroController extends Controller
      */
     public function create()
     {
-        //
+        $livros = $this->repository->create();
+        return view('livro.create', compact('livros'));
     }
 
     /**
@@ -67,7 +68,8 @@ class LivroController extends Controller
      */
     public function edit($id)
     {
-        //
+        $livro = $this->repository->findById($id);
+        return view('livro.edit', compact('livro'));
     }
 
     /**

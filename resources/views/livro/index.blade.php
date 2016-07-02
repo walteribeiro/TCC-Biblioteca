@@ -23,9 +23,9 @@
             @foreach($livros as $l)
                 <tr>
                     <td>{{$l->id}}</td>
-                    <td>{{$l->publicacao()->titulo}}</td>
+                    <td>{{$l->publicacao->titulo}}</td>
                     <td>{{$l->subtitulo}}</td>
-                    <td>{{$l->publicacao()->edicao}}</td>
+                    <td>{{$l->publicacao->edicao}}</td>
                     <td>{{$l->ano}}</td>
                     <td class="text-center">
                         <a href="{{route('livro.edit', $l->id)}}" class="btn btn-sm btn-warning">
