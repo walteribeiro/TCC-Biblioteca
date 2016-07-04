@@ -5,6 +5,9 @@
     <title>SGBR</title>
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/pnotify.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/pnotify.buttons.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/pnotify.nonblock.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 
     @yield('header')
@@ -31,33 +34,33 @@
                             <li><a><i class="fa fa-book"></i> Publicações <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{route('livro.index')}}">Livros</a></li>
-                                    <li><a href="{{route('revista.index')}}.html">Revistas</a></li>
-                                    <li><a href="{{route('editora.index')}}.html">Editoras</a></li>
-                                    <li><a href="{{route('autor.index')}}.html">Autores</a></li>
+                                    <li><a href="{{route('revista.index')}}">Revistas</a></li>
+                                    <li><a href="{{route('editora.index')}}">Editoras</a></li>
+                                    <li><a href="{{route('autor.index')}}">Autores</a></li>
                                 </ul>
                             </li>
 
                             <li><a><i class="fa fa-users"></i> Leitores <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="index.html">Alunos</a></li>
-                                    <li><a href="index2.html">Funcionários</a></li>
+                                    <li><a href="#">Alunos</a></li>
+                                    <li><a href="#">Funcionários</a></li>
                                     <li><a href="index3.html">Professores</a></li>
                                 </ul>
                             </li>
 
                             <li><a><i class="fa fa-wrench"></i> Gerenciar <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="index.html">Emprestimos</a></li>
-                                    <li><a href="index2.html">Reservas</a></li>
-                                    <li><a href="index2.html">Reservas de Recursos</a></li>
+                                    <li><a href="#">Emprestimos</a></li>
+                                    <li><a href="#">Reservas</a></li>
+                                    <li><a href="#">Reservas de Recursos</a></li>
                                 </ul>
                             </li>
 
                             <li><a><i class="fa fa-map"></i> Recursos <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="index.html">Mapas</a></li>
-                                    <li><a href="index2.html">Salas</a></li>
-                                    <li><a href="index2.html">Data Shows</a></li>
+                                    <li><a href="#">Mapas</a></li>
+                                    <li><a href="#">Salas</a></li>
+                                    <li><a href="#">Data Shows</a></li>
 
                                 </ul>
                             </li>
@@ -149,6 +152,9 @@
 <script src="{{asset('assets/js/skycons.js')}}"></script>
 <script src="{{asset('assets/js/moment.min.js')}}"></script>
 <script src="{{asset('assets/js/daterangepicker.js')}}"></script>
+<script src="{{asset('assets/js/pnotify.js')}}"></script>
+<script src="{{asset('assets/js/pnotify.buttons.js')}}"></script>
+<script src="{{asset('assets/js/pnotify.nonblock.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
 
 @yield('scripts')

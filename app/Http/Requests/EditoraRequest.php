@@ -11,6 +11,7 @@ class EditoraRequest extends Request
      *
      * @return bool
      */
+    protected $user;
     public function authorize(User $user)
     {
         //dd($user->name);
@@ -24,8 +25,28 @@ class EditoraRequest extends Request
      */
     public function rules()
     {
-        return [
-            'nome' => 'required|min:5|max:255|unique:editoras'
-        ];
+        switch($this->method())
+        {
+            case 'GET':
+            case 'DELETE':
+            {
+                return [];
+            }
+            case 'POST':
+            {
+                return [
+                    'nome' => 'required|min:5|max:255|unique:editoras'
+                ];
+            }
+            case 'PUT':
+            case 'PATCH':
+            {
+                return [
+                    'nome' => 'required|min:5|max:255|unique:editoras,nome,'.$this->id,
+                ];
+
+            }
+            default:break;
+        }
     }
 }

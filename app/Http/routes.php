@@ -51,18 +51,6 @@ Route::group(['prefix' => 'revistas'], function(){
 
 });
 
-Route::group(['prefix' => 'editoras'], function(){
-
-    Route::get('/',                ['as'=>'editora.index',  'uses'=>'EditoraController@index']);
-    Route::get('/novo',            ['as'=>'editora.create', 'uses'=>'EditoraController@create']);
-    Route::post('/gravar',         ['as'=>'editora.store',  'uses'=>'EditoraController@store']);
-    Route::get('/detalhes/{id}',   ['as'=>'editora.show',   'uses'=>'EditoraController@show']);
-    Route::get('/editar/{id}',     ['as'=>'editora.edit',   'uses'=>'EditoraController@edit']);
-    Route::put('/atualizar/{id}',  ['as'=>'editora.update', 'uses'=>'EditoraController@update']);
-    Route::delete('/remover/{id}', ['as'=>'editora.delete', 'uses'=>'EditoraController@destroy']);
-
-});
-
 Route::group(['prefix' => 'autores'], function(){
 
     Route::get('/',                ['as'=>'autor.index',  'uses'=>'AutorController@index']);

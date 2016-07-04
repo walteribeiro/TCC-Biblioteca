@@ -26,3 +26,6 @@
     </form>
 
 @endsection
+@section('scripts')
+    @include('layout.includes.validate-request')
+@endsection

@@ -61,6 +61,9 @@
 
 @endsection
 @section('scripts')
+
+    @include('layout.includes.return-request')
+
     <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('assets/js/dataTables.bootstrap.min.js')}}"></script>
 

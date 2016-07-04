@@ -27,15 +27,16 @@ class EditoraRepository
 
     public function store(EditoraRequest $editoraRequest)
     {
-        Editora::create($editoraRequest->all());
+        return $this->editora->create($editoraRequest->all());
     }
 
     public function update(EditoraRequest $editoraRequest, $id)
     {
-        $editora = Editora::find($id);
+        $editora = $this->editora->find($id);
         $editora->nome = $editoraRequest->input('nome');
-
         $editora->save();
+
+        return $editora;
     }
 
     public function destroy($id)
