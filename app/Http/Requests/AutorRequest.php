@@ -13,7 +13,7 @@ class AutorRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,30 @@ class AutorRequest extends Request
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        switch($this->method())
+        {
+            case 'POST':
+            {
+                return [
+                    'nome' => 'required|min:5|max:255|unique:autores',
+                    'sobrenome' => 'required|min:5|max:255'
+                ];
+            }
+
+            case 'PUT':
+            case 'PATCH':
+            {
+                return [
+                    'nome' => 'required|min:5|max:255|unique:autores,nome,'.$this->id,
+                    'sobrenome' => 'required|min:5|max:255'
+                ];
+
+            }
+
+            default:
+            {
+                return [];
+            }
+        }
     }
 }

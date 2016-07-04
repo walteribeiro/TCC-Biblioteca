@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-
 use App\Http\Requests\AutorRequest;
 use App\Models\Autor;
 
@@ -12,12 +11,12 @@ class AutorRepository
 
     public function __construct(Autor $autor)
     {
-        $this->editora = $autor;
+        $this->autor = $autor;
     }
 
     public function index()
     {
-        return $this->editora->all();
+        return $this->autor->all();
     }
 
     public function show($id)
@@ -27,24 +26,26 @@ class AutorRepository
 
     public function store(AutorRequest $autorRequest)
     {
-        Autor::create($autorRequest->all());
+        return $this->autor->create($autorRequest->all());
     }
 
     public function update(AutorRequest $autorRequest, $id)
     {
-        $autor = Autor::find($id);
+        $autor = $this->autor->find($id);
         $autor->nome = $autorRequest->input('nome');
-
+        $autor->sobrenome = $autorRequest->input('sobrenome');
         $autor->save();
+
+        return $autor;
     }
 
     public function destroy($id)
     {
-        return $this->editora->destroy([$id]);
+        return $this->autor->destroy([$id]);
     }
 
     public function findById($id)
     {
-        return $this->editora->find($id);
+        return $this->autor->find($id);
     }
 }

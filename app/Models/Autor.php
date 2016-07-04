@@ -8,6 +8,8 @@ class Autor extends Model
 {
     protected $table = 'autores';
 
+    protected $fillable = ['nome', 'sobrenome'];
+
     public $timestamps = false;
 
 }

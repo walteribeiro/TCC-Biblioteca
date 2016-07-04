@@ -5,26 +5,28 @@
 @endsection
 @section('conteudo')
 
-    <h3 class="page-header">Editoras <a href="{{ route('editora.create') }}" class="btn btn-primary pull-right">Nova</a></h3>
+    <h3 class="page-header">Autores <a href="{{ route('autor.create') }}" class="btn btn-primary pull-right">Novo</a></h3>
 
-    @if(isset($editoras) && count($editoras) > 0)
-        <table id="editoras" class="table table-bordered table-hover">
+    @if(isset($autores) && count($autores) > 0)
+        <table id="autores" class="table table-bordered table-hover">
             <thead>
             <tr>
                 <th>#</th>
                 <th>Nome</th>
+                <th>Sobrenome</th>
                 <th data-orderable="false">Opções</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($editoras as $e)
+            @foreach($autores as $a)
                 <tr>
-                    <td>{{$e->id}}</td>
-                    <td>{{$e->nome}}</td>
+                    <td>{{$a->id}}</td>
+                    <td>{{$a->nome}}</td>
+                    <td>{{$a->sobrenome}}</td>
                     <td class="text-center">
-                        <a href="{{ route('editora.edit', $e->id)}}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('autor.edit', $a->id)}}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$e->id}})">
+                        <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$a->id}})">
                             <span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
@@ -32,7 +34,7 @@
             </tbody>
         </table>
     @else
-        <h5 class="alert alert-info">Ainda não foram cadastradas editoras!</h5>
+        <h5 class="alert alert-info">Ainda não foram cadastradas autores!</h5>
     @endif
 
     <!-- Modal Exclusão -->
@@ -69,12 +71,12 @@
 
     <script>
         function abrirModal(id){
-            $('#formexcluir').attr("action", "editoras/remover/"+id);
+            $('#formexcluir').attr("action", "autores/remover/"+id);
             $('#exclusao').modal()
         }
 
         $(document).ready(function () {
-            $('#editoras').DataTable({
+            $('#autores').DataTable({
                 "stateSave": true,
                 "pagingType": "full_numbers",
                 "language": {

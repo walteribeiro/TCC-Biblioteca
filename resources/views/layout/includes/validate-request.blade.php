@@ -2,7 +2,7 @@
     <script>
         new PNotify({
             title: 'Erro!',
-            text: '@foreach($errors->all() as $e) {{ $e }} @endforeach',
+            text: '@foreach($errors->all() as $e) <li> {{ $e }} </li> @endforeach',
             type: 'error',
             styling: 'bootstrap3'
         });

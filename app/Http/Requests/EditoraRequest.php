@@ -27,11 +27,6 @@ class EditoraRequest extends Request
     {
         switch($this->method())
         {
-            case 'GET':
-            case 'DELETE':
-            {
-                return [];
-            }
             case 'POST':
             {
                 return [
@@ -46,7 +41,10 @@ class EditoraRequest extends Request
                 ];
 
             }
-            default:break;
+            default:
+            {
+                return [];
+            }
         }
     }
 }
