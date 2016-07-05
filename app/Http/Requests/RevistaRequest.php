@@ -23,8 +23,25 @@ class RevistaRequest extends Request
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        switch($this->method())
+        {
+            case 'POST':
+            {
+                return [
+
+                ];
+            }
+
+            case 'PUT':
+            case 'PATCH':
+            {
+
+            }
+
+            default:
+            {
+                return [];
+            }
+        }
     }
 }

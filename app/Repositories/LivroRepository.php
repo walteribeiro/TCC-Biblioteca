@@ -104,6 +104,6 @@ class LivroRepository
 
     public function findById($id)
     {
-        return $this->livro->find($id);
+        return $this->publicacao->find($id);
     }
 }

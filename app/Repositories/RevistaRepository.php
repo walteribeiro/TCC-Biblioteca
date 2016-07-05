@@ -91,6 +91,6 @@ class RevistaRepository
 
     public function findById($id)
     {
-        return $this->revista->find($id);
+        return $this->publicacao->find($id);
     }
 }

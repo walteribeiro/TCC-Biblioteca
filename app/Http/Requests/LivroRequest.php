@@ -23,8 +23,30 @@ class LivroRequest extends Request
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        switch($this->method())
+        {
+            case 'POST':
+            {
+                return [
+                    'titulo' => 'required|max:255',
+                    'subtitulo' => 'required|max:255',
+                    'edicao' => 'required|max:15',
+                    'ano' => 'required|size:4'
+                ];
+            }
+
+            case 'PUT':
+            case 'PATCH':
+            {
+                return [
+                ];
+
+            }
+
+            default:
+            {
+                return [];
+            }
+        }
     }
 }

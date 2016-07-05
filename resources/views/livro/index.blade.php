@@ -28,7 +28,7 @@
                     <td>{{$l->publicacao->edicao}}</td>
                     <td>{{$l->ano}}</td>
                     <td class="text-center">
-                        <a href="{{ route('livro.edit', $l->id)}}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('livro.edit', $l->publicacao->id)}}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span></a>
                         <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$l->publicacao->id}})">
                             <span class="glyphicon glyphicon-trash"></span></a>

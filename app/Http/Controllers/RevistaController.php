@@ -76,9 +76,9 @@ class RevistaController extends Controller
      */
     public function edit($id)
     {
-        $revista = $this->repository->findById($id);
+        $publicacao = $this->repository->findById($id);
         $listEditoras = $this->repository->edit();
-        return view('revista.edit', compact('revista', 'listEditoras'));
+        return view('revista.edit', compact('publicacao', 'listEditoras'));
     }
 
     /**

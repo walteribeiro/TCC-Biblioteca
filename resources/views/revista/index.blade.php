@@ -5,7 +5,7 @@
 @endsection
 @section('conteudo')
 
-    <h3 class="page-header">Prioridades <a href="{{ route('revista.create') }}" class="btn btn-primary pull-right">Novo</a></h3>
+    <h3 class="page-header">Revistas <a href="{{ route('revista.create') }}" class="btn btn-primary pull-right">Novo</a></h3>
 
     @if(isset($revistas) && count($revistas) > 0)
         <table id="revistas" class="table table-bordered table-hover">
@@ -26,7 +26,7 @@
                     <td>{{$l->publicacao->edicao}}</td>
                     <td>{{$l->categoria}}</td>
                     <td class="text-center">
-                        <a href="{{ route('revista.edit', $l->id)}}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('revista.edit', $l->publicacao->id)}}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span></a>
                         <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$l->publicacao->id}})">
                             <span class="glyphicon glyphicon-trash"></span></a>

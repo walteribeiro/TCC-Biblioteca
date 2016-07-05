@@ -12,7 +12,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                 <label for="titulo">Titulo</label>
                 <input type="text" class="form-control" id="titulo" name="titulo"
-                       placeholder="Titulo" autofocus>
+                       placeholder="Titulo" autofocus value="{{ old('titulo') }}">
             </div>
         </div>
 
@@ -20,7 +20,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                 <label for="subtitulo">Subtitulo</label>
                 <input type="text" class="form-control" id="subtitulo" name="subtitulo"
-                       placeholder="Subtitulo">
+                       placeholder="Subtitulo" value="{{ old('subtitulo') }}>
             </div>
         </div>
 
@@ -28,7 +28,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                 <label for="descricao">Descricao</label>
                 <input type="text" class="form-control" id="descricao" name="descricao"
-                       placeholder="Descricao">
+                       placeholder="Descricao" value="{{ old('descricao') }}>
             </div>
         </div>
         <div class="form-group">
@@ -57,7 +57,9 @@
                 <input type="text" class="form-control" id="edicao" name="edicao"
                        placeholder="Edicao">
             </div>
+        </div>
 
+        <div class="form-group">
             <div class="col-lg-8 col-lg-offset-2 col-sm-6">
                 <label for="origem">Origem</label>
                 <input type="text" class="form-control" id="origem" name="origem"
