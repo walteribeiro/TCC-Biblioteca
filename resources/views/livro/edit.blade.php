@@ -2,8 +2,7 @@
 
 @section('conteudo')
 
-    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-8 col-lg-offset-2 col-sm-12">Edição de
-        Livro</h3>
+    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-8 col-lg-offset-2 col-sm-12">Edição de Livro</h3>
 
     <form class="form-horizontal" action="{{ route('livro.update', $livro->id) }}" method="post">
 
@@ -37,7 +36,7 @@
             <div class="col-lg-4 col-lg-offset-2">
                 <label for="editora">Editora</label>
                 <select class="form-control" name="editora" id="editora">
-                    @foreach($livros['editoras'] as $e)
+                    @foreach($listAutoresEditoras['editoras'] as $e)
                         @if($e->id == $livro->publicacao->editora->id)
                             <option value="{{ $e->id }}" selected>{{ $e->nome }}</option>
                         @else
@@ -50,8 +49,8 @@
             <div class="col-lg-4">
                 <label for="autor">Autor</label>
                 <select class="form-control" name="autor" id="autor">
-                    @foreach($livros['autores'] as $a)
-                        @if($e->id == $livro->publicacao->editora->id)
+                    @foreach($listAutoresEditoras['autores'] as $a)
+                        @if($a->id == $livro->autor->id)
                             <option value="{{ $a->id }}" selected>{{ $a->nome." ".$a->sobrenome }}</option>
                         @else
                             <option value="{{ $a->id }}">{{ $a->nome." ".$a->sobrenome }}</option>

@@ -77,9 +77,8 @@ class LivroController extends Controller
     public function edit($id)
     {
         $livro = $this->repository->findById($id);
-        $livros = $this->repository->edit();
-        return view('livro.edit', compact('livro'), compact('livros'));
-
+        $listAutoresEditoras = $this->repository->edit();
+        return view('livro.edit', compact('livro', 'listAutoresEditoras'));
     }
 
     /**

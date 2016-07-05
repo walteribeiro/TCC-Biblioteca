@@ -12,4 +12,13 @@ class Autor extends Model
 
     public $timestamps = false;
 
+    /**
+     *  Relacionamento 1 x N com livro
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function livros()
+    {
+        return $this->hasMany(Livro::class);
+    }
+
 }

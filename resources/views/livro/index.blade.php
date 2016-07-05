@@ -22,7 +22,7 @@
             <tbody>
             @foreach($livros as $l)
                 <tr>
-                    <td>{{$l->id}}</td>
+                    <td>{{$l->publicacao->id}}</td>
                     <td>{{$l->publicacao->titulo}}</td>
                     <td>{{$l->subtitulo}}</td>
                     <td>{{$l->publicacao->edicao}}</td>
@@ -30,7 +30,7 @@
                     <td class="text-center">
                         <a href="{{ route('livro.edit', $l->id)}}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$l->id}})">
+                        <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$l->publicacao->id}})">
                             <span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
