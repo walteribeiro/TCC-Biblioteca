@@ -19,6 +19,9 @@ class ForeignKeyTable extends Migration
             $table->foreign('publicacao_id', 'publicacao_1_fk')->references('id')->on('publicacoes')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('autor_id', 'autor_2_fk')->references('id')->on('autores')->onUpdate('cascade')->onDelete('restrict');
         });
+        Schema::table('revistas', function (Blueprint $table) {
+            $table->foreign('publicacao_id', 'publicacao_2_fk')->references('id')->on('publicacoes')->onUpdate('cascade')->onDelete('cascade');
+        });
     }
 
     /**
@@ -37,6 +40,10 @@ class ForeignKeyTable extends Migration
         {
             $table->dropForeign('publicacao_1_fk');
             $table->dropForeign('autor_2_fk');
+        });
+        Schema::table('revistas', function(Blueprint $table)
+        {
+            $table->dropForeign('publicacao_2_fk');
         });
 
         //
