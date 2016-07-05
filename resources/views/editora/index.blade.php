@@ -35,7 +35,7 @@
         <h5 class="alert alert-info">Ainda não foram cadastradas editoras!</h5>
     @endif
 
-    <!-- Modal Exclusão -->
+            <!-- Modal Exclusão -->
         <div class="modal fade" id="exclusao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <form action="" method="post" id="formexcluir">
                 {{ method_field('delete') }}
@@ -57,7 +57,7 @@
                 </div>
             </form>
         </div>
-    <!-- Fim Modal Exclusão -->
+        <!-- Fim Modal Exclusão -->
 
 @endsection
 @section('scripts')

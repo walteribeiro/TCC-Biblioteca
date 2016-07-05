@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LivroRequest;
 use App\Repositories\LivroRepository;
 use App\Http\Requests;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Session;
 
 class LivroController extends Controller
 {
@@ -46,7 +48,13 @@ class LivroController extends Controller
      */
     public function store(LivroRequest $livroRequest)
     {
-        $this->repository->store($livroRequest);
+        $retorno = $this->repository->store($livroRequest);
+        if($retorno){
+            Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+            return redirect()->route('livro.index');
+        }
+        return redirect()->back();
+
     }
 
     /**
@@ -69,7 +77,9 @@ class LivroController extends Controller
     public function edit($id)
     {
         $livro = $this->repository->findById($id);
-        return view('livro.edit', compact('livro'));
+        $livros = $this->repository->edit();
+        return view('livro.edit', compact('livro'), compact('livros'));
+
     }
 
     /**
@@ -81,7 +91,12 @@ class LivroController extends Controller
      */
     public function update(LivroRequest $livroRequest, $id)
     {
-        $this->repository->update($livroRequest,$id);
+        $retorno = $this->repository->update($livroRequest,$id);
+        if($retorno){
+            Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
+            return redirect()->route('livro.index');
+        }
+        return redirect()->back();
     }
 
     /**
@@ -92,6 +107,13 @@ class LivroController extends Controller
      */
     public function destroy($id)
     {
-        $this->repository->destroy($id);
+        try{
+            $this->repository->destroy($id);
+            Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
+            return redirect()->route('livro.index');
+        }catch(QueryException $e){
+            Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
+            return redirect()->back();
+        }
     }
 }

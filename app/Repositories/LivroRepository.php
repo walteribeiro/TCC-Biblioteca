@@ -60,6 +60,15 @@ class LivroRepository
         $this->livro->autor_id = $livroRequest->input('autor');
         $this->publicacao->livro()->save($this->livro);
 
+        return $this->publicacao;
+
+    }
+
+    public function edit(){
+        return [
+            'autores'=> $this->autor->all(),
+            'editoras'=> $this->editora->all()
+        ];
     }
 
     public function update(LivroRequest $livroRequest, $id)
@@ -83,6 +92,8 @@ class LivroRepository
         $this->livro->autor_id = $livroRequest->input('autor_id');
 
         $this->publicacao->livro()->save($this->livro);
+
+        return $this->publicacao;
     }
 
 
@@ -94,5 +105,5 @@ class LivroRepository
     public function findById($id)
     {
         return $this->livro->find($id);
-    }
+      }
 }

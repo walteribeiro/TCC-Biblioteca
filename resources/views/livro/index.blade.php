@@ -28,7 +28,7 @@
                     <td>{{$l->publicacao->edicao}}</td>
                     <td>{{$l->ano}}</td>
                     <td class="text-center">
-                        <a href="{{route('livro.edit', $l->id)}}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('livro.edit', $l->id)}}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span></a>
                         <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$l->id}})">
                             <span class="glyphicon glyphicon-trash"></span></a>
@@ -38,7 +38,7 @@
             </tbody>
         </table>
     @else
-        <h5 class="alert alert-info">Ainda não foram cadastradas livros!</h5>
+        <h5 class="alert alert-info">Ainda não foram cadastrados livros!</h5>
         @endif
 
                 <!-- Modal Exclusão -->
@@ -67,12 +67,15 @@
 
 @endsection
 @section('scripts')
+
+    @include('layout.includes.return-request')
+
     <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('assets/js/dataTables.bootstrap.min.js')}}"></script>
 
     <script>
         function abrirModal(id){
-            $('#formexcluir').attr("route", "livro.delete/"+id);
+            $('#formexcluir').attr("action", "livros/remover/"+id);
             $('#exclusao').modal()
         }
 
