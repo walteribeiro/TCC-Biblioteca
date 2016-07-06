@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+
+Route::get('/',                ['as'=>'home.index',  'uses'=>'HomeController@index']);
 
 Route::group(['prefix' => 'editoras'], function(){
 
