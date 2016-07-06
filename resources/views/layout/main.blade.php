@@ -5,9 +5,9 @@
     <title>SGBR</title>
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/pnotify.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/pnotify.buttons.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/pnotify.nonblock.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/pnotify.custom.min.css')}}" media="all" type="text/css">
+    {{--<link rel="stylesheet" href="{{asset('assets/css/pnotify.buttons.css')}}">--}}
+    {{--<link rel="stylesheet" href="{{asset('assets/css/pnotify.nonblock.css')}}">--}}
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 
     @yield('header')
@@ -152,9 +152,9 @@
 <script src="{{asset('assets/js/skycons.js')}}"></script>
 <script src="{{asset('assets/js/moment.min.js')}}"></script>
 <script src="{{asset('assets/js/daterangepicker.js')}}"></script>
-<script src="{{asset('assets/js/pnotify.js')}}"></script>
-<script src="{{asset('assets/js/pnotify.buttons.js')}}"></script>
-<script src="{{asset('assets/js/pnotify.nonblock.js')}}"></script>
+<script src="{{asset('assets/js/pnotify.custom.min.js')}}"></script>
+{{--<script src="{{asset('assets/js/pnotify.buttons.js')}}"></script>--}}
+{{--<script src="{{asset('assets/js/pnotify.nonblock.js')}}"></script>--}}
 <script src="{{asset('assets/js/custom.js')}}"></script>
 
 @yield('scripts')

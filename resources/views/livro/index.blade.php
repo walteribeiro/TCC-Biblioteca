@@ -5,7 +5,7 @@
 @endsection
 @section('conteudo')
 
-    <h3 class="page-header">Prioridades <a href="{{ route('livro.create') }}" class="btn btn-primary pull-right">Novo</a></h3>
+    <h3 class="page-header">Livros <a href="{{ route('livro.create') }}" class="btn btn-primary pull-right">Novo</a></h3>
 
     @if(isset($livros) && count($livros) > 0)
         <table id="livros" class="table table-bordered table-hover">

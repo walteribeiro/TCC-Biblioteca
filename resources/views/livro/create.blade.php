@@ -20,7 +20,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                 <label for="subtitulo">Subtitulo</label>
                 <input type="text" class="form-control" id="subtitulo" name="subtitulo"
-                       placeholder="Subtitulo" value="{{ old('subtitulo') }}>
+                       placeholder="Subtitulo" value="{{ old('subtitulo') }}">
             </div>
         </div>
 
@@ -28,7 +28,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                 <label for="descricao">Descricao</label>
                 <input type="text" class="form-control" id="descricao" name="descricao"
-                       placeholder="Descricao" value="{{ old('descricao') }}>
+                       placeholder="Descricao" value="{{ old('descricao') }}">
             </div>
         </div>
         <div class="form-group">
@@ -55,7 +55,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-sm-6">
                 <label for="edicao">Edicao</label>
                 <input type="text" class="form-control" id="edicao" name="edicao"
-                       placeholder="Edicao">
+                       placeholder="Edicao" value="{{ old('edicao') }}">
             </div>
         </div>
 
@@ -63,7 +63,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-sm-6">
                 <label for="origem">Origem</label>
                 <input type="text" class="form-control" id="origem" name="origem"
-                       placeholder="Origem">
+                       placeholder="Origem" value="{{ old('origem') }}">
             </div>
         </div>
 
@@ -71,25 +71,25 @@
             <div class="col-lg-2 col-lg-offset-2">
                 <label for="isbn">ISBN</label>
                 <input type="text" class="form-control" id="isbn" name="isbn"
-                       placeholder="ISBN">
+                       placeholder="ISBN" value="{{ old('isbn') }}">
             </div>
 
             <div class="col-lg-2">
                 <label for="cdu">CDU</label>
                 <input type="text" class="form-control" id="cdu" name="cdu"
-                       placeholder="CDU">
+                       placeholder="CDU" value="{{ old('cdu') }}">
             </div>
 
             <div class="col-lg-2">
                 <label for="cdd">CDD</label>
                 <input type="text" class="form-control" id="cdd" name="cdd"
-                       placeholder="CDD">
+                       placeholder="CDD" value="{{ old('cdd') }}">
             </div>
 
             <div class="col-lg-2">
                 <label for="ano">Ano</label>
                 <input type="text" class="form-control" id="ano" name="ano"
-                       placeholder="Ano">
+                       placeholder="Ano" value="{{ old('ano') }}">
             </div>
 
         </div>
@@ -105,4 +105,12 @@
 @endsection
 @section('scripts')
     @include('layout.includes.validate-request')
+
+    <script src="{{ asset('assets/js/jquery.inputmask.bundle.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#ano').inputmask("99-9999999");
+        })
+    </script>
 @endsection

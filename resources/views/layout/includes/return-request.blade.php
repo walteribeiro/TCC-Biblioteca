@@ -1,6 +1,7 @@
 @if( !empty(Session::has('erro')) )
     <script>
         new PNotify({
+            delay: 500,
             title: 'Erro!',
             text: '{{Session::get('erro')}}',
             type: 'error',
