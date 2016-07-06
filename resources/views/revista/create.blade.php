@@ -13,7 +13,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                 <label for="titulo">Titulo</label>
                 <input type="text" class="form-control" id="titulo" name="titulo"
-                       placeholder="Titulo" autofocus>
+                       placeholder="Titulo" value="{{ old('titulo') }}" autofocus>
             </div>
         </div>
 
@@ -21,12 +21,12 @@
             <div class="col-lg-4 col-lg-offset-2">
                 <label for="referencia">Referência</label>
                 <input type="text" class="form-control" id="referencia" name="referencia"
-                       placeholder="Referência">
+                       placeholder="Referência" value="{{ old('referencia') }}">
             </div>
             <div class="col-lg-4">
                 <label for="categoria">Categoria</label>
                 <input type="text" class="form-control" id="categoria" name="categoria"
-                       placeholder="Categoria">
+                       placeholder="Categoria" value="{{ old('categoria') }}">
             </div>
 
         </div>
@@ -35,7 +35,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                 <label for="descricao">Descricao</label>
                 <input type="text" class="form-control" id="descricao" name="descricao"
-                       placeholder="Descricao">
+                       placeholder="Descricao" value="{{ old('descricao') }}">
             </div>
         </div>
 
@@ -51,7 +51,7 @@
                 <div class="col-lg-4">
                     <label for="edicao">Edicao</label>
                     <input type="text" class="form-control" id="edicao" name="edicao"
-                           placeholder="Edicao">
+                           placeholder="Edicao" value="{{ old('edicao') }}">
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-sm-6">
                 <label for="origem">Origem</label>
                 <input type="text" class="form-control" id="origem" name="origem"
-                       placeholder="Origem">
+                       placeholder="Origem" value="{{ old('origem') }}">
             </div>
         </div>
 
