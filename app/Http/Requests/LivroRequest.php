@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class LivroRequest extends Request
 {
     /**
@@ -23,10 +21,8 @@ class LivroRequest extends Request
      */
     public function rules()
     {
-        switch($this->method())
-        {
-            case 'POST':
-            {
+        switch ($this->method()) {
+            case 'POST': {
                 return [
                     'titulo' => 'required|max:255',
                     'subtitulo' => 'required|max:255',
@@ -36,8 +32,7 @@ class LivroRequest extends Request
             }
 
             case 'PUT':
-            case 'PATCH':
-            {
+            case 'PATCH': {
                 return [
                     'titulo' => 'required|max:255',
                     'subtitulo' => 'required|max:255',
@@ -47,8 +42,7 @@ class LivroRequest extends Request
 
             }
 
-            default:
-            {
+            default: {
                 return [];
             }
         }

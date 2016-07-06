@@ -1,13 +1,11 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>SGBR</title>
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/pnotify.custom.min.css')}}" media="all" type="text/css">
-    {{--<link rel="stylesheet" href="{{asset('assets/css/pnotify.buttons.css')}}">--}}
-    {{--<link rel="stylesheet" href="{{asset('assets/css/pnotify.nonblock.css')}}">--}}
+    <link rel="stylesheet" href="{{asset('assets/css/toastr.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 
     @yield('header')
@@ -18,12 +16,10 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="#" class="site_title"><i class="fa fa-graduation-cap"></i> <span>SGBR</span></a>
+                    <a href="{{ url('/') }}" class="site_title"><i class="fa fa-graduation-cap"></i> <span>SGBR</span></a>
                 </div>
 
                 <div class="clearfix"></div>
-
-
                 <br/>
 
                 <!-- sidebar menu -->
@@ -40,7 +36,7 @@
                                 </ul>
                             </li>
 
-                            <li><a><i class="fa fa-users"></i> Leitores <span class="fa fa-chevron-down"></span></a>
+                            <!-- li><a><i class="fa fa-users"></i> Leitores <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="#">Alunos</a></li>
                                     <li><a href="#">Funcionários</a></li>
@@ -61,17 +57,14 @@
                                     <li><a href="#">Mapas</a></li>
                                     <li><a href="#">Salas</a></li>
                                     <li><a href="#">Data Shows</a></li>
-
                                 </ul>
-                            </li>
+                            </li -->
                         </ul>
                     </div>
-
-
                 </div>
                 <!-- /sidebar menu -->
 
-                <!-- /menu footer buttons -->
+                <!-- /menu footer buttons
                 <div class="sidebar-footer hidden-small">
                     <a data-toggle="tooltip" data-placement="top" title="Settings">
                         <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -86,7 +79,7 @@
                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                     </a>
                 </div>
-                <!-- /menu footer buttons -->
+                 /menu footer buttons -->
             </div>
         </div>
 
@@ -105,7 +98,7 @@
                                 Bibliotecário
                                 <span class=" fa fa-angle-down"></span>
                             </a>
-                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                            <!-- ul class="dropdown-menu dropdown-usermenu pull-right">
                                 <li><a href="javascript:;"> Perfil</a></li>
                                 <li>
                                     <a href="javascript:;">
@@ -115,10 +108,8 @@
                                 </li>
                                 <li><a href="javascript:;">Help</a></li>
                                 <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                            </ul>
+                            </ul -->
                         </li>
-
-
                     </ul>
                 </nav>
             </div>
@@ -152,9 +143,7 @@
 <script src="{{asset('assets/js/skycons.js')}}"></script>
 <script src="{{asset('assets/js/moment.min.js')}}"></script>
 <script src="{{asset('assets/js/daterangepicker.js')}}"></script>
-<script src="{{asset('assets/js/pnotify.custom.min.js')}}"></script>
-{{--<script src="{{asset('assets/js/pnotify.buttons.js')}}"></script>--}}
-{{--<script src="{{asset('assets/js/pnotify.nonblock.js')}}"></script>--}}
+<script src="{{asset('assets/js/toastr.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
 
 @yield('scripts')

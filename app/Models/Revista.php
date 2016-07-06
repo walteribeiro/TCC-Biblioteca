@@ -16,7 +16,8 @@ class Revista extends Model
      *  Relacionamento 1 x 1 com publicação
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function publicacao(){
+    public function publicacao()
+    {
         return $this->belongsTo(Publicacao::class);
     }
 

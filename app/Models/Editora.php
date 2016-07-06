@@ -16,7 +16,8 @@ class Editora extends Model
      *  Relacionamento 1 x N com publicação
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function publicacoes(){
+    public function publicacoes()
+    {
         return $this->hasMany(Publicacao::class);
     }
 }

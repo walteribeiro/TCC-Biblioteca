@@ -12,6 +12,7 @@ class EditoraRequest extends Request
      * @return bool
      */
     protected $user;
+
     public function authorize(User $user)
     {
         //dd($user->name);
@@ -25,24 +26,20 @@ class EditoraRequest extends Request
      */
     public function rules()
     {
-        switch($this->method())
-        {
-            case 'POST':
-            {
+        switch ($this->method()) {
+            case 'POST': {
                 return [
                     'nome' => 'required|min:5|max:255|unique:editoras'
                 ];
             }
             case 'PUT':
-            case 'PATCH':
-            {
+            case 'PATCH': {
                 return [
-                    'nome' => 'required|min:5|max:255|unique:editoras,nome,'.$this->id,
+                    'nome' => 'required|min:5|max:255|unique:editoras,nome,' . $this->id,
                 ];
 
             }
-            default:
-            {
+            default: {
                 return [];
             }
         }

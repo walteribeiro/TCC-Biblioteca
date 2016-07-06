@@ -1,21 +1,16 @@
 @if( !empty(Session::has('erro')) )
     <script>
-        new PNotify({
-            delay: 500,
-            title: 'Erro!',
-            text: '{{Session::get('erro')}}',
-            type: 'error',
-            styling: 'bootstrap3'
-        });
+        var options = {
+            "closeButton": true
+        };
+        toastr.error('{{Session::get('erro')}}', 'Erro!', options);
     </script>
 @endif
 @if( !empty(Session::has('sucesso')) )
     <script>
-        new PNotify({
-            title: 'Sucesso!',
-            text: '{{Session::get('sucesso')}}',
-            type: 'success',
-            styling: 'bootstrap3'
-        });
+        var options = {
+            "closeButton": true
+        };
+        toastr.success('{{Session::get('sucesso')}}', 'Sucesso!', options);
     </script>
 @endif

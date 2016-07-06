@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class AutorRequest extends Request
 {
     /**
@@ -23,10 +21,8 @@ class AutorRequest extends Request
      */
     public function rules()
     {
-        switch($this->method())
-        {
-            case 'POST':
-            {
+        switch ($this->method()) {
+            case 'POST': {
                 return [
                     'nome' => 'required|min:5|max:255|unique:autores',
                     'sobrenome' => 'required|min:5|max:255'
@@ -34,17 +30,15 @@ class AutorRequest extends Request
             }
 
             case 'PUT':
-            case 'PATCH':
-            {
+            case 'PATCH': {
                 return [
-                    'nome' => 'required|min:5|max:255|unique:autores,nome,'.$this->id,
+                    'nome' => 'required|min:5|max:255|unique:autores,nome,' . $this->id,
                     'sobrenome' => 'required|min:5|max:255'
                 ];
 
             }
 
-            default:
-            {
+            default: {
                 return [];
             }
         }

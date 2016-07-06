@@ -14,7 +14,8 @@ class Publicacao extends Model
      *  Relacionamento 1 x 1 com livro
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function livro(){
+    public function livro()
+    {
         return $this->hasOne(Livro::class);
     }
 
@@ -22,7 +23,8 @@ class Publicacao extends Model
      *  Relacionamento 1 x 1 com revista
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function revista(){
+    public function revista()
+    {
         return $this->hasOne(Revista::class);
     }
 
@@ -30,7 +32,8 @@ class Publicacao extends Model
      *  Relacionamento 1 x N com editora
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function editora(){
+    public function editora()
+    {
         return $this->belongsTo(Editora::class);
     }
 }
