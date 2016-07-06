@@ -23,23 +23,27 @@ class RevistaRequest extends Request
      */
     public function rules()
     {
-        switch($this->method())
-        {
-            case 'POST':
-            {
+        switch ($this->method()) {
+            case 'POST': {
                 return [
-
+                    'titulo' => 'required|max:255',
+                    'referencia' => 'required|size:6',
+                    'edicao' => 'required|max:15',
+                    'categoria' => 'required|max:255'
                 ];
             }
 
             case 'PUT':
-            case 'PATCH':
-            {
-
+            case 'PATCH': {
+                return [
+                    'titulo' => 'required|max:255',
+                    'referencia' => 'required|size:6',
+                    'edicao' => 'required|max:15',
+                    'categoria' => 'required|max:255'
+                ];
             }
 
-            default:
-            {
+            default: {
                 return [];
             }
         }
