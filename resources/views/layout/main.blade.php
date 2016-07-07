@@ -30,10 +30,10 @@
                             </li>
                             <li><a><i class="fa fa-book"></i> Publicações <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
+                                    <li><a href="{{route('autor.index')}}">Autores</a></li>
+                                    <li><a href="{{route('editora.index')}}">Editoras</a></li>
                                     <li><a href="{{route('livro.index')}}">Livros</a></li>
                                     <li><a href="{{route('revista.index')}}">Revistas</a></li>
-                                    <li><a href="{{route('editora.index')}}">Editoras</a></li>
-                                    <li><a href="{{route('autor.index')}}">Autores</a></li>
                                 </ul>
                             </li>
 

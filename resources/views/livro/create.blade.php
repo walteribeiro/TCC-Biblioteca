@@ -35,9 +35,13 @@
             <div class="col-lg-4 col-lg-offset-2">
                 <label for="editora">Editora</label>
                 <select class="form-control" name="editora" id="editora">
-                    @foreach($livros['editoras'] as $e)
-                        <option value="{{ $e->id }}">{{ $e->nome }}</option>
-                    @endforeach
+                    @if(count($livros['editoras']) > 0)
+                        @foreach($livros['editoras'] as $e)
+                            <option value="{{ $e->id }}">{{ $e->nome }}</option>
+                        @endforeach
+                    @else
+                        <option value="" selected>Cadastre uma editora primeiro</option>
+                    @endif
                 </select>
             </div>
 
