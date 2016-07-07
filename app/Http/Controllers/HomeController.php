@@ -27,16 +27,11 @@ class HomeController extends Controller
 
     public function index()
     {
-        $livros=$this->livro->all()->count();
-        $revistas=$this->revista->all()->count();
-        $editoras=$this->editora->all()->count();
-        $autores=$this->autor->all()->count();
-        return view('welcome')
-            ->with('livros',$livros)
-            ->with('revistas',$revistas)
-            ->with('editoras',$editoras)
-            ->with('autores',$autores)
-            ;
+        $livros = $this->livro->all()->count();
+        $revistas = $this->revista->all()->count();
+        $editoras = $this->editora->all()->count();
+        $autores = $this->autor->all()->count();
+        return view('welcome', compact('livros', 'revistas', 'editoras', 'autores'));
     }
 
     /**

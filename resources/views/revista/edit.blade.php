@@ -67,7 +67,7 @@
         <br><br>
         <div class="form-group">
             <div class="col-lg-3 col-lg-offset-2">
-                <button type="submit" class="btn btn-primary"><em class="fa fa-save"></em> Salvar</button>
+                <button type="submit" class="btn btn-primary"><em class="fa fa-save"></em> Gravar</button>
                 <a href="{{ route('revista.index') }}" class="btn btn-default"><em class="fa fa-undo"></em> Voltar</a>
             </div>
         </div>

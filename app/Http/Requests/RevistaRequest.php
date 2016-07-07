@@ -27,7 +27,8 @@ class RevistaRequest extends Request
                     'titulo' => 'required|max:255',
                     'referencia' => 'required|size:6',
                     'edicao' => 'required|max:15',
-                    'categoria' => 'required|max:255'
+                    'categoria' => 'required|max:255',
+                    'editora' => 'required'
                 ];
             }
 
@@ -37,7 +38,8 @@ class RevistaRequest extends Request
                     'titulo' => 'required|max:255',
                     'referencia' => 'required|size:6',
                     'edicao' => 'required|max:15',
-                    'categoria' => 'required|max:255'
+                    'categoria' => 'required|max:255',
+                    'editora' => 'required'
                 ];
             }
 

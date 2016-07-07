@@ -44,9 +44,13 @@
             <div class="col-lg-4">
                 <label for="autor">Autor</label>
                 <select class="form-control" name="autor" id="autor">
-                    @foreach($livros['autores'] as $a)
-                        <option value="{{ $a->id }}">{{ $a->nome." ".$a->sobrenome }}</option>
-                    @endforeach
+                    @if(count($livros['autores']) > 0)
+                        @foreach($livros['autores'] as $a)
+                            <option value="{{ $a->id }}">{{ $a->nome." ".$a->sobrenome }}</option>
+                        @endforeach
+                    @else
+                        <option value="" selected>Cadastre um autor primeiro</option>
+                    @endif
                 </select>
             </div>
         </div>
@@ -105,12 +109,4 @@
 @endsection
 @section('scripts')
     @include('layout.includes.validate-request')
-
-    <script src="{{ asset('assets/js/jquery.inputmask.bundle.min.js') }}"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('#ano').inputmask("99-9999999");
-        })
-    </script>
 @endsection

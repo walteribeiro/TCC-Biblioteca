@@ -13,14 +13,14 @@ class ForeignKeyTable extends Migration
     public function up()
     {
         Schema::table('publicacoes', function (Blueprint $table) {
-            $table->foreign('editora_id', 'editora_1_fk')->references('id')->on('editoras')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('editora_id', 'publicacoes_1_fk')->references('id')->on('editoras')->onUpdate('cascade')->onDelete('restrict');
         });
         Schema::table('livros', function (Blueprint $table) {
-            $table->foreign('publicacao_id', 'publicacao_1_fk')->references('id')->on('publicacoes')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('autor_id', 'autor_2_fk')->references('id')->on('autores')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('publicacao_id', 'livros_1_fk')->references('id')->on('publicacoes')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('autor_id', 'livros_2_fk')->references('id')->on('autores')->onUpdate('cascade')->onDelete('restrict');
         });
         Schema::table('revistas', function (Blueprint $table) {
-            $table->foreign('publicacao_id', 'publicacao_2_fk')->references('id')->on('publicacoes')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('publicacao_id', 'revistas_1_fk')->references('id')->on('publicacoes')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -33,17 +33,17 @@ class ForeignKeyTable extends Migration
     {
         Schema::table('publicacoes', function(Blueprint $table)
         {
-            $table->dropForeign('editora_1_fk');
+            $table->dropForeign('publicacoes_1_fk');
         });
 
         Schema::table('livros', function(Blueprint $table)
         {
-            $table->dropForeign('publicacao_1_fk');
-            $table->dropForeign('autor_2_fk');
+            $table->dropForeign('livros_1_fk');
+            $table->dropForeign('livros_2_fk');
         });
         Schema::table('revistas', function(Blueprint $table)
         {
-            $table->dropForeign('publicacao_2_fk');
+            $table->dropForeign('revistas_1_fk');
         });
 
         //

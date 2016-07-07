@@ -12,10 +12,10 @@
             <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                 <label for="nome">Nome da Editora</label>
                 <input type="text" class="form-control" id="nome" name="nome"
-                       placeholder="Nome da Editora" autofocus>
+                       placeholder="Nome da Editora" autofocus value="{{ old('nome') }}">
             </div>
         </div>
-
+        <br><br>
         <div class="form-group">
             <div class="col-lg-3 col-lg-offset-2">
                 <button type="submit" class="btn btn-primary"><em class="fa fa-save"></em> Gravar</button>

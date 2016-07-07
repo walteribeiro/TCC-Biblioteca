@@ -13,7 +13,7 @@ class CreateRevistasTable extends Migration
     public function up()
     {
         Schema::create('revistas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('referencia');
             $table->string('categoria');
             $table->unsignedBigInteger('publicacao_id')->index('publicacao_idx');

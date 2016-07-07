@@ -27,7 +27,9 @@ class LivroRequest extends Request
                     'titulo' => 'required|max:255',
                     'subtitulo' => 'required|max:255',
                     'edicao' => 'required|max:15',
-                    'ano' => 'required|size:4'
+                    'ano' => 'required|size:4',
+                    'autor' => 'required',
+                    'editora' => 'required'
                 ];
             }
 
@@ -37,9 +39,10 @@ class LivroRequest extends Request
                     'titulo' => 'required|max:255',
                     'subtitulo' => 'required|max:255',
                     'edicao' => 'required|max:15',
-                    'ano' => 'required|size:4'
+                    'ano' => 'required|size:4',
+                    'autor' => 'required',
+                    'editora' => 'required'
                 ];
-
             }
 
             default: {

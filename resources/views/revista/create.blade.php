@@ -2,8 +2,7 @@
 
 @section('conteudo')
 
-    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-8 col-lg-offset-2 col-sm-12">Cadastro de
-        Revistas</h3>
+    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-8 col-lg-offset-2 col-sm-12">Cadastro de Revistas</h3>
 
     <form class="form-horizontal" action="{{ route('revista.store') }}" method="post">
 
@@ -43,9 +42,13 @@
             <div class="col-lg-4 col-lg-offset-2">
                 <label for="editora">Editora</label>
                 <select class="form-control" name="editora" id="editora">
-                    @foreach($revistas['editoras'] as $e)
-                        <option value="{{ $e->id }}">{{ $e->nome }}</option>
-                    @endforeach
+                    @if(count($revistas['editoras']) > 0)
+                        @foreach($revistas['editoras'] as $e)
+                            <option value="{{ $e->id }}">{{ $e->nome }}</option>
+                        @endforeach
+                    @else
+                        <option value="" selected>Cadastre uma editora primeiro</option>
+                    @endif
                 </select>
                 </div>
                 <div class="col-lg-4">

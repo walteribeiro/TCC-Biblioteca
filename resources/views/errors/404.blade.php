@@ -8,7 +8,7 @@
                 <h1 class="error-number">404</h1>
                 <h2>Desculpe , mas não foi possível encontrar esta página</h2>
                 <p>
-                    Esta página que você está procurando não existe <a href="#">Entrar em contato?</a>
+                    Esta página que você está procurando não existe entre em contato com o administrador
                 </p>
             </div>
         </div>

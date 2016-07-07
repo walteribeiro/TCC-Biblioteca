@@ -13,7 +13,7 @@ class CreateLivrosTable extends Migration
     public function up()
     {
         Schema::create('livros', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('subtitulo');
             $table->string('isbn');
             $table->string('cdu');

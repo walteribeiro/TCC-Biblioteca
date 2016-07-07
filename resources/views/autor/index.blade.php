@@ -34,7 +34,7 @@
             </tbody>
         </table>
     @else
-        <h5 class="alert alert-info">Ainda não foram cadastradas autores!</h5>
+        <h5 class="alert alert-info">Ainda não foram cadastrados autores!</h5>
     @endif
 
     <!-- Modal Exclusão -->

@@ -5,7 +5,7 @@
 @endsection
 @section('conteudo')
 
-    <h3 class="page-header">Editoras <a href="{{ route('editora.create') }}" class="btn btn-primary pull-right">Nova</a></h3>
+    <h3 class="page-header">Editoras <a href="{{ route('editora.create') }}" class="btn btn-primary pull-right">Novo</a></h3>
 
     @if(isset($editoras) && count($editoras) > 0)
         <table id="editoras" class="table table-bordered table-hover">
