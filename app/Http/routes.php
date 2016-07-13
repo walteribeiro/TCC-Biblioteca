@@ -49,3 +49,4 @@ Route::group(['prefix' => 'autores'], function(){
     Route::delete('/remover/{id}', ['as'=>'autor.delete', 'uses'=>'AutorController@destroy']);
 
 });
+Route::auth();

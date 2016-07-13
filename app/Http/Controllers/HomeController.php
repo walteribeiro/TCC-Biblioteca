@@ -23,6 +23,7 @@ class HomeController extends Controller
         $this->revista = $revista;
         $this->editora = $editora;
         $this->autor = $autor;
+        $this->middleware('auth');
     }
 
     public function index()
@@ -35,7 +36,8 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+    /**
+     * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
