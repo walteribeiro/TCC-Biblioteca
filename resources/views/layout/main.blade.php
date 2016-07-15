@@ -42,6 +42,12 @@
                                     <li><a href="{{ route('log-viewer::logs.list') }}"><i class="fa fa-eye"></i> Logs</a></li>
                                 </ul>
                             </li>
+                            <li><a><i class="fa fa-user"></i> Usuários <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ url('/register') }}">Registro</a></li>
+
+                                </ul>
+                            </li>
                             <!-- li><a><i class="fa fa-users"></i> Leitores <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="#">Alunos</a></li>
@@ -98,6 +104,7 @@
                     </div>
 
                     <ul class="nav navbar-nav navbar-right">
+                  @if(Auth::user())
                      <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -107,6 +114,7 @@
                                     <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                                 </ul>
                             </li>
+                        @endif
                             <!-- ul class="dropdown-menu dropdown-usermenu pull-right">
                                 <li><a href="javascript:;"> Perfil</a></li>
                                 <li>
