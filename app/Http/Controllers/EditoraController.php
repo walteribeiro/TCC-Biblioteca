@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EditoraRequest;
 use App\Repositories\EditoraRepository;
 use App\Http\Requests;
+use App\Repositories\Helpers\LogTrait;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
+use Psr\Log\LogLevel;
 
 class EditoraController extends Controller
 {
+    use LogTrait;
 
     protected $repository;
 
@@ -34,6 +37,7 @@ class EditoraController extends Controller
         $retorno = $this->repository->store($editoraRequest);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+            $this->gravarLog("Editora adicionada!", "informacao", ["Usuario" => "Walter", "Editora" => $retorno->nome]);
             return redirect()->route('editora.index');
         }
         return redirect()->back();
@@ -55,6 +59,7 @@ class EditoraController extends Controller
         $retorno = $this->repository->update($editoraRequest, $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
+            $this->gravarLog("Editora alterada!", "atencao", ["Usuario" => "Walter", "Editora" => $retorno->nome]);
             return redirect()->route('editora.index');
         }
         return redirect()->back();
@@ -65,6 +70,7 @@ class EditoraController extends Controller
         try{
             $this->repository->destroy($id);
             Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
+            $this->gravarLog("Editora excluída!", "alerta", ["Usuario" => "Walter"]);
             return redirect()->route('editora.index');
         }catch(QueryException $e){
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());

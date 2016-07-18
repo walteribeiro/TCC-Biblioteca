@@ -144,10 +144,10 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title">DELETE LOG FILE</h4>
+                        <h4 class="modal-title">EXLCUIR ARQUIVO DE LOG</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to <span class="label label-danger">DELETE</span> this log file <span class="label label-primary">{{ $log->date }}</span> ?</p>
+                        <p>Você tem certeza que deseja <span class="label label-danger">EXCLUIR</span> o arquivo <span class="label label-primary">{{ $log->date }}</span> ?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-default pull-left" data-dismiss="modal">Cancel</button>

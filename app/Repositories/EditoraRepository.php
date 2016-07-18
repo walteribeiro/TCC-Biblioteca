@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-
 use App\Http\Requests\EditoraRequest;
 use App\Models\Editora;
 

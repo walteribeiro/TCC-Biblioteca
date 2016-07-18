@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
+use App\User;
 
 class EditoraRequest extends Request
 {
