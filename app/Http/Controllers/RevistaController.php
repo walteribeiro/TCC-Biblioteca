@@ -16,6 +16,7 @@ class RevistaController extends Controller
     public function __construct(RevistaRepository $revistaRepository)
     {
         $this->repository = $revistaRepository;
+        $this->middleware('auth');
 
     }
 

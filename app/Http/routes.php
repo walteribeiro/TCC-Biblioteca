@@ -51,19 +51,20 @@ Route::group(['prefix' => 'autores'], function(){
 });
 
 
-//Route::post('/registerCustom','Auth\AuthController@registerCustom');
-
 // Authentication Routes...
 Route::get('login', 'Auth\AuthController@showLoginForm');
 Route::post('login', 'Auth\AuthController@login');
 Route::get('logout', 'Auth\AuthController@logout');
 
-// Registration Routes...
-Route::get('register', 'Auth\AuthController@showRegistrationForm');
-Route::post('registerCustom', 'Auth\AuthController@registerCustom');
+Route::group(['prefix' => 'registros'], function(){
 
-// Password Reset Routes...
-Route::get('password/reset/{token?}', 'Auth\PasswordController@showResetForm');
-Route::post('password/email', 'Auth\PasswordController@sendResetLinkEmail');
-Route::post('password/reset', 'Auth\PasswordController@reset');
+
+    Route::get('/',                ['as'=>'registro.index',  'uses'=>'Auth\AuthController@index']);
+    Route::get('/novo',            ['as'=>'registro.create', 'uses'=>'Auth\AuthController@showRegistrationForm']);
+    Route::post('/gravar',         ['as'=>'registro.store',  'uses'=>'Auth\AuthController@registerCustom']);
+    Route::get('/editar/{id}',     ['as'=>'registro.edit',   'uses'=>'Auth\AuthController@edit']);
+    Route::put('/atualizar/{id}',  ['as'=>'registro.update', 'uses'=>'Auth\AuthController@update']);
+    Route::delete('/remover/{id}', ['as'=>'registro.delete', 'uses'=>'Auth\AuthController@destroy']);
+
+});
 

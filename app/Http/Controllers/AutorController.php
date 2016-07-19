@@ -15,6 +15,7 @@ class AutorController extends Controller
     public function __construct(AutorRepository $autorRepository)
     {
         $this->repository = $autorRepository;
+        $this->middleware('auth');
     }
 
     public function index()

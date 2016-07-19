@@ -21,9 +21,9 @@
                 {!! csrf_field() !!}
                 <h1>EEAC</h1>
                 <div>
-                    <label class="pull-left" for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="email"
-                           value="{{ old('email') }}">
+                    <label class="pull-left" for="username">Nome de Usuário</label>
+                    <input type="text" id="username" class="form-control" name="username"
+                           value="{{ old('username') }}">
                 </div>
                 <div>
                     <label class="pull-left" for="password">Senha</label>

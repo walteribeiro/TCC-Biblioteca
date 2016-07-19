@@ -16,6 +16,7 @@ class LivroController extends Controller
     public function __construct(LivroRepository $livroRepository)
     {
         $this->repository = $livroRepository;
+        $this->middleware('auth');
 
     }
 

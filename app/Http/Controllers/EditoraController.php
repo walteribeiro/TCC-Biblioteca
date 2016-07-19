@@ -19,6 +19,7 @@ class EditoraController extends Controller
     public function __construct(EditoraRepository $editoraRepository)
     {
         $this->repository = $editoraRepository;
+        $this->middleware('auth');
     }
 
     public function index()
