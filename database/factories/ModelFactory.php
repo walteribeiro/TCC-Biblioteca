@@ -1,20 +1,6 @@
 <?php
 /*
 |--------------------------------------------------------------------------
-| Factory de Usuários
-|--------------------------------------------------------------------------
-*/
-$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'password' => bcrypt(str_random(10)),
-        'remember_token' => str_random(10),
-    ];
-});
-
-/*
-|--------------------------------------------------------------------------
 | Factory de Editoras
 |--------------------------------------------------------------------------
 */
@@ -64,5 +50,34 @@ $factory->define(App\Models\Livro::class, function (Faker\Generator $faker) {
         'cdu' => $faker->randomNumber(3),
         'ano' => $faker->year,
         'autor_id' => factory(\App\Models\Autor::class)->create()->id
+    ];
+});
+
+/*
+|--------------------------------------------------------------------------
+| Factory de Pessoas/Usuários
+|--------------------------------------------------------------------------
+*/
+$factory->define(App\User::class, function (Faker\Generator $faker) {
+    return [
+        'username' => $faker->userName,
+        'password' => bcrypt(str_random(10)),
+        'nome' => $faker->name,
+        'telefone' => $faker->phoneNumber,
+        'telefone2' => $faker->phoneNumber,
+        'email' => $faker->safeEmail,
+        'remember_token' => str_random(10),
+    ];
+});
+
+/*
+|--------------------------------------------------------------------------
+| Factory de Funcionários
+|--------------------------------------------------------------------------
+*/
+$factory->define(App\Models\Funcionario::class, function (Faker\Generator $faker) {
+    return [
+        'num_registro' => $faker->unique()->bankAccountNumber,
+        'tipo_funcionario' => random_int(0, 2),
     ];
 });

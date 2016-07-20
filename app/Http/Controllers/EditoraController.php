@@ -71,7 +71,7 @@ class EditoraController extends Controller
         try{
             $this->repository->destroy($id);
             Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
-            $this->gravarLog("Editora excluída!", "alerta", ["Usuario" => "Walter"]);
+            $this->gravarLog("Editora excluída!", "alerta");
             return redirect()->route('editora.index');
         }catch(QueryException $e){
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
