@@ -44,7 +44,7 @@
                             </li>
                             <li><a><i class="fa fa-user"></i> Usuários <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="{{ url('registros/novo') }}">Registro</a></li>
+                                    <li><a href="{{ url('funcionarios') }}">Funcionários</a></li>
 
                                 </ul>
                             </li>

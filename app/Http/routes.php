@@ -50,21 +50,21 @@ Route::group(['prefix' => 'autores'], function(){
 
 });
 
+Route::group(['prefix' => 'funcionarios'], function(){
+
+    Route::get('/',                ['as'=>'funcionario.index',  'uses'=>'FuncionarioController@index']);
+    Route::get('/novo',            ['as'=>'funcionario.create', 'uses'=>'FuncionarioController@create']);
+    Route::post('/gravar',         ['as'=>'funcionario.store',  'uses'=>'FuncionarioController@store']);
+    Route::get('/detalhes/{id}',   ['as'=>'funcionario.show',   'uses'=>'FuncionarioController@show']);
+    Route::get('/editar/{id}',     ['as'=>'funcionario.edit',   'uses'=>'FuncionarioController@edit']);
+    Route::put('/atualizar/{id}',  ['as'=>'funcionario.update', 'uses'=>'FuncionarioController@update']);
+    Route::delete('/remover/{id}', ['as'=>'funcionario.delete', 'uses'=>'FuncionarioController@destroy']);
+
+});
+
 
 // Authentication Routes...
 Route::get('login', 'Auth\AuthController@showLoginForm');
 Route::post('login', 'Auth\AuthController@login');
 Route::get('logout', 'Auth\AuthController@logout');
-
-Route::group(['prefix' => 'registros'], function(){
-
-
-    Route::get('/',                ['as'=>'registro.index',  'uses'=>'Auth\AuthController@index']);
-    Route::get('/novo',            ['as'=>'registro.create', 'uses'=>'Auth\AuthController@showRegistrationForm']);
-    Route::post('/gravar',         ['as'=>'registro.store',  'uses'=>'Auth\AuthController@registerCustom']);
-    Route::get('/editar/{id}',     ['as'=>'registro.edit',   'uses'=>'Auth\AuthController@edit']);
-    Route::put('/atualizar/{id}',  ['as'=>'registro.update', 'uses'=>'Auth\AuthController@update']);
-    Route::delete('/remover/{id}', ['as'=>'registro.delete', 'uses'=>'Auth\AuthController@destroy']);
-
-});
 
