@@ -36,16 +36,16 @@
                                     <li><a href="{{route('revista.index')}}">Revistas</a></li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-low-vision"></i> Transações <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="{{ route('log-viewer::dashboard') }}"><i class="fa fa-dashboard"></i> Sumarização</a></li>
-                                    <li><a href="{{ route('log-viewer::logs.list') }}"><i class="fa fa-eye"></i> Logs</a></li>
-                                </ul>
-                            </li>
                             <li><a><i class="fa fa-user"></i> Usuários <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{ url('funcionarios') }}">Funcionários</a></li>
 
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-low-vision"></i> Transações <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ route('log-viewer::dashboard') }}"><i class="fa fa-dashboard"></i> Sumarização</a></li>
+                                    <li><a href="{{ route('log-viewer::logs.list') }}"><i class="fa fa-eye"></i> Logs</a></li>
                                 </ul>
                             </li>
                             <!-- li><a><i class="fa fa-users"></i> Leitores <span class="fa fa-chevron-down"></span></a>
@@ -107,7 +107,7 @@
                   @if(Auth::user())
                      <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->nome }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">

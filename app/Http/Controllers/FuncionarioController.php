@@ -2,12 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FuncionarioRequest;
+use App\Repositories\FuncionarioRepository;
+use App\Repositories\Helpers\LogTrait;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Session;
 
 class FuncionarioController extends Controller
 {
+    use LogTrait;
+
+    protected $repository;
+
+    public function __construct(FuncionarioRepository $funcionarioRepository)
+    {
+        $this->repository = $funcionarioRepository;
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +28,8 @@ class FuncionarioController extends Controller
      */
     public function index()
     {
-        return view('funcionario.index');
+        $funcionarios = $this->repository->index();
+        return view('funcionario.index', compact('funcionarios'));
     }
 
     /**
@@ -34,9 +48,14 @@ class FuncionarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FuncionarioRequest $request)
     {
-        //
+        $retorno = $this->repository->store($request);
+        if($retorno){
+            Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+            return redirect()->route('funcionario.index');
+        }
+        return redirect()->back();
     }
 
     /**

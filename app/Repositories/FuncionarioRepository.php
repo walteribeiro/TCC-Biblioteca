@@ -41,8 +41,8 @@ class FuncionarioRepository
         $this->usuario->save();
 
         //Persistindo dados da request no funcionário
-        $this->funcionario->num_registro = $funcionarioRequest->input('subtelefone');
-        $this->funcionario->tipo_funcionario = $funcionarioRequest->input('isbn');
+        $this->funcionario->num_registro = $funcionarioRequest->input('numeroRegistro');
+        $this->funcionario->tipo_funcionario = $funcionarioRequest->input('tipoFuncionario');
         $this->usuario->funcionario()->save($this->funcionario);
 
         return $this->usuario;
