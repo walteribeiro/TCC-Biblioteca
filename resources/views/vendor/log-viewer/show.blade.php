@@ -13,14 +13,14 @@
         <div class="col-md-10">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Log info :
+                    Informações :
 
                     <div class="group-btns pull-right">
                         <a href="{{ route('log-viewer::logs.download', [$log->date]) }}" class="btn btn-xs btn-success">
                             <i class="fa fa-download"></i> DOWNLOAD
                         </a>
                         <a href="#delete-log-modal" class="btn btn-xs btn-danger" data-toggle="modal">
-                            <i class="fa fa-trash-o"></i> DELETE
+                            <i class="fa fa-trash-o"></i> EXCLUIR
                         </a>
                     </div>
                 </div>
@@ -28,25 +28,25 @@
                     <table class="table table-condensed">
                         <thead>
                             <tr>
-                                <td>File path :</td>
+                                <td>Caminho do arquivo :</td>
                                 <td colspan="5">{{ $log->getPath() }}</td>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Log entries : </td>
+                                <td>Ocorrências : </td>
                                 <td>
                                     <span class="label label-primary">{{ $entries->total() }}</span>
                                 </td>
-                                <td>Size :</td>
+                                <td>Tamanho :</td>
                                 <td>
                                     <span class="label label-primary">{{ $log->size() }}</span>
                                 </td>
-                                <td>Created at :</td>
+                                <td>Criado em :</td>
                                 <td>
                                     <span class="label label-primary">{{ $log->createdAt() }}</span>
                                 </td>
-                                <td>Updated at :</td>
+                                <td>Atualizado em :</td>
                                 <td>
                                     <span class="label label-primary">{{ $log->updatedAt() }}</span>
                                 </td>
@@ -62,7 +62,7 @@
                         {!! $entries->render() !!}
 
                         <span class="label label-info pull-right">
-                            Page {!! $entries->currentPage() !!} of {!! $entries->lastPage() !!}
+                            Página {!! $entries->currentPage() !!} de {!! $entries->lastPage() !!}
                         </span>
                     </div>
                 @endif
@@ -72,10 +72,10 @@
                         <thead>
                             <tr>
                                 <th>ENV</th>
-                                <th style="width: 120px;">Level</th>
-                                <th style="width: 65px;">Time</th>
-                                <th>Header</th>
-                                <th class="text-right">Actions</th>
+                                <th style="width: 120px;">Tipo</th>
+                                <th style="width: 65px;">Horário</th>
+                                <th>Mensagem</th>
+                                <th class="text-right">Opções</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -124,7 +124,7 @@
                         {!! $entries->render() !!}
 
                         <span class="label label-info pull-right">
-                            Page {!! $entries->currentPage() !!} of {!! $entries->lastPage() !!}
+                            Página {!! $entries->currentPage() !!} de {!! $entries->lastPage() !!}
                         </span>
                     </div>
                 @endif
@@ -150,8 +150,8 @@
                         <p>Você tem certeza que deseja <span class="label label-danger">EXCLUIR</span> o arquivo <span class="label label-primary">{{ $log->date }}</span> ?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-sm btn-default pull-left" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-sm btn-danger" data-loading-text="Loading&hellip;">DELETE FILE</button>
+                        <button type="button" class="btn btn-sm btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-sm btn-danger" data-loading-text="Loading&hellip;">EXCLUIR</button>
                     </div>
                 </div>
             </form>

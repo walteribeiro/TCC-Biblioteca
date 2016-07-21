@@ -20,7 +20,7 @@ class CreateFuncionariosTable extends Migration
          */
         Schema::create('funcionarios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('num_registro', 10);
+            $table->string('num_registro', 10)->unique()->nullable();
             $table->tinyInteger('tipo_funcionario')->default(0);
             $table->unsignedBigInteger('user_id')->index('user_idx');
         });

@@ -8,7 +8,6 @@ use App\Http\Requests;
 use App\Repositories\Helpers\LogTrait;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
-use Psr\Log\LogLevel;
 
 class EditoraController extends Controller
 {

@@ -20,12 +20,12 @@ class CreateUsersTable extends Migration
          */
         Schema::create('pessoas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('username')->unique();
-            $table->string('password');
+            $table->string('username')->unique()->nullable();
+            $table->string('password')->nullable();
             $table->string('nome');
             $table->string('telefone', 15);
             $table->string('telefone2', 15);
-            $table->string('email');
+            $table->string('email')->unique()->nullable();
             $table->boolean('ativo')->default(true);
             $table->tinyInteger('tipo_acesso')->default(2);
             $table->rememberToken();
