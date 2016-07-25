@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EditoraRequest;
 use App\Repositories\EditoraRepository;
 use App\Http\Requests;
-use App\Repositories\Helpers\LogTrait;
+use App\Traits\LogTrait;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
 

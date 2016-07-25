@@ -25,6 +25,9 @@ class ForeignKeyTable extends Migration
         Schema::table('funcionarios', function (Blueprint $table) {
             $table->foreign('user_id', 'users_1_fk')->references('id')->on('pessoas')->onUpdate('cascade')->onDelete('cascade');
         });
+        Schema::table('data_shows', function (Blueprint $table) {
+            $table->foreign('recurso_id', 'recurso_1_fk')->references('id')->on('recursos')->onUpdate('cascade')->onDelete('cascade');
+        });
     }
 
     /**
@@ -46,6 +49,9 @@ class ForeignKeyTable extends Migration
         });
         Schema::table('funcionarios', function (Blueprint $table) {
             $table->dropForeign('users_1_fk');
+        });
+        Schema::table('data_shows', function (Blueprint $table) {
+            $table->dropForeign('recurso_1_fk');
         });
     }
 }

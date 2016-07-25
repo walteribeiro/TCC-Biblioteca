@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FuncionarioRequest;
 use App\Repositories\FuncionarioRepository;
-use App\Repositories\Helpers\LogTrait;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -12,7 +11,6 @@ use Illuminate\Support\Facades\Session;
 
 class FuncionarioController extends Controller
 {
-    use LogTrait;
 
     protected $repository;
 
