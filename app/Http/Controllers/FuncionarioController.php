@@ -77,7 +77,8 @@ class FuncionarioController extends Controller
      */
     public function edit($id)
     {
-        return view('funcionario.edit');
+        $funcionario = $this->repository->findById($id);
+        return view('funcionario.edit', compact('funcionario'));
     }
 
     /**
@@ -87,9 +88,15 @@ class FuncionarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(FuncionarioRequest $funcionarioRequest, $id)
     {
-        //
+
+        $retorno = $this->repository->update($funcionarioRequest, $id);
+        if($retorno){
+            Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
+            return redirect()->route('funcionario.index');
+        }
+        return redirect()->back();
     }
 
     /**
@@ -100,6 +107,13 @@ class FuncionarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $this->repository->destroy($id);
+            Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
+            return redirect()->route('funcionario.index');
+        }catch(QueryException $e){
+            Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
+            return redirect()->back();
+        }
     }
 }

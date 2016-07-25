@@ -29,14 +29,15 @@ class FuncionarioRepository
 
     public function store(FuncionarioRequest $funcionarioRequest)
     {
+        $ativo = $funcionarioRequest->input('ativo');
         // Persistindo dados da request no usuário
         $this->usuario->username = $funcionarioRequest->input('username');
-        $this->usuario->password = bcrypt($funcionarioRequest->input('password'));
+        $this->usuario->password = bcrypt($funcionarioRequest->input('senha'));
         $this->usuario->nome = $funcionarioRequest->input('nome');
         $this->usuario->telefone = $funcionarioRequest->input('telefone');
         $this->usuario->telefone2 = $funcionarioRequest->input('telefone2');
         $this->usuario->email = $funcionarioRequest->input('email');
-        $this->usuario->ativo = $funcionarioRequest->input('ativo');
+        $this->usuario->ativo = ($ativo != null ?true:false);
         $this->usuario->tipo_acesso = 1; //Colaborador para todos tipos de Funcionários
         $this->usuario->save();
 
@@ -51,20 +52,21 @@ class FuncionarioRepository
     public function update(FuncionarioRequest $funcionarioRequest, $id)
     {
         $this->usuario = $this->usuario->find($id);
+        $ativo = $funcionarioRequest->input('ativo');
 
         // Atualizando dados da request no usuário
         $this->usuario->username = $funcionarioRequest->input('username');
-        $this->usuario->password = bcrypt($funcionarioRequest->input('password'));
+        $this->usuario->password = bcrypt($funcionarioRequest->input('senha'));
         $this->usuario->nome = $funcionarioRequest->input('nome');
         $this->usuario->telefone = $funcionarioRequest->input('telefone');
         $this->usuario->telefone2 = $funcionarioRequest->input('telefone2');
         $this->usuario->email = $funcionarioRequest->input('email');
-        $this->usuario->ativo = $funcionarioRequest->input('ativo');
+        $this->usuario->ativo = ($ativo != null ?true:false);
 
         //Atualizando dados da request no funcionario
         $this->usuario->funcionario()->update([
-            'num_registro' => $funcionarioRequest->input('num_registro'),
-            'tipo_funcionario' => $funcionarioRequest->input('tipo_funcionario')
+            'num_registro' => $funcionarioRequest->input('numeroRegistro'),
+            'tipo_funcionario' => $funcionarioRequest->input('tipoFuncionario')
         ]);
 
         $this->usuario->save();
@@ -79,6 +81,6 @@ class FuncionarioRepository
 
     public function findById($id)
     {
-        return $this->usuario->find($id);
+        return $this->funcionario->find($id);
     }
 }

@@ -59,7 +59,7 @@
                 <div class="col-lg-3 col-sm-2">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" id="ativo" name="ativo" aria-label="situacao">Funcionário Ativo
+                            <input type="checkbox" id="ativo" name="ativo" value="true" aria-label="situacao">Funcionário Ativo
                         </label>
                     </div>
                 </div>
@@ -69,12 +69,12 @@
         <div class="form-group">
             <div class="col-lg-4 col-lg-offset-2 col-sm-6">
                 <label for="senha">Senha</label>
-                <input type="text" class="form-control" id="senha" name="senha"
+                <input type="password" class="form-control" id="senha" name="senha"
                        placeholder="senha do funcionario">
             </div>
             <div class="col-lg-4 col-sm-6">
                 <label for="confirmarSenha">Confirmar Senha</label>
-                <input type="text" class="form-control" id="confirmarSenha" name="confirmarSenha"
+                <input type="password" class="form-control" id="senha_confirmation" name="senha_confirmation"
                        placeholder="senha do funcionario">
             </div>
         </div>

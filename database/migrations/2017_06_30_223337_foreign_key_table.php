@@ -23,7 +23,7 @@ class ForeignKeyTable extends Migration
             $table->foreign('publicacao_id', 'revistas_1_fk')->references('id')->on('publicacoes')->onUpdate('cascade')->onDelete('cascade');
         });
         Schema::table('funcionarios', function (Blueprint $table) {
-            $table->foreign('user_id', 'users_1_fk')->references('id')->on('pessoas')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('user_id', 'users_1_fk')->references('id')->on('pessoas')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

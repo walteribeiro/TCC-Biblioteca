@@ -5,7 +5,8 @@
 @endsection
 @section('conteudo')
 
-    <h3 class="page-header">Funcionarios <a href="{{ route('funcionario.create') }}" class="btn btn-primary pull-right">Novo</a></h3>
+    <h3 class="page-header">Funcionarios <a href="{{ route('funcionario.create') }}" class="btn btn-primary pull-right">Novo</a>
+    </h3>
 
     @if(isset($funcionarios) && count($funcionarios) > 0)
         <table id="funcionarios" class="table table-bordered table-hover">
@@ -26,11 +27,17 @@
                     <td>{{$f->user->nome}}</td>
                     <td>{{$f->user->telefone}}</td>
                     <td>{{$f->user->email}}</td>
-                    <td>{{$f->user->ativo}}</td>
+                    <td>
+                        @if($f->user->ativo==1)
+                            Ativo
+                        @else
+                            Inativo
+                        @endif
+                    </td>
                     <td class="text-center">
                         <a href="{{ route('funcionario.edit', $f->id)}}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$f->id}})">
+                        <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$f->user->id}})">
                             <span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
@@ -49,7 +56,8 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="myModalLabel">Exclusão</h4>
                         </div>
                         <div class="modal-body">
@@ -74,8 +82,8 @@
     <script src="{{asset('assets/js/dataTables.bootstrap.min.js')}}"></script>
 
     <script>
-        function abrirModal(id){
-            $('#formexcluir').attr("action", "funcionarios/remover/"+id);
+        function abrirModal(id) {
+            $('#formexcluir').attr("action", "funcionarios/remover/" + id);
             $('#exclusao').modal()
         }
 
