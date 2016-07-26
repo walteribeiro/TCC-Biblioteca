@@ -10,7 +10,7 @@ class DataShow extends Model
 
     protected $fillable = ['marca, codigo'];
 
-    protected $timestamps = false;
+    public $timestamps = false;
 
     public function recurso()
     {

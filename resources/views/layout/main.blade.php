@@ -36,6 +36,13 @@
                                     <li><a href="{{route('revista.index')}}">Revistas</a></li>
                                 </ul>
                             </li>
+                            <li><a><i class="fa fa-map"></i> Recursos <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="{{ route('data-show.index') }}">Data Shows</a></li>
+                                    {{--<li><a href="{{route('mapa.index')}}">Mapas</a></li>--}}
+                                    {{--<li><a href="{{route('sala.index')}}">Salas</a></li>--}}
+                                </ul>
+                            </li>
                             <li><a><i class="fa fa-user"></i> Usuários <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{ url('funcionarios') }}">Funcionários</a></li>
