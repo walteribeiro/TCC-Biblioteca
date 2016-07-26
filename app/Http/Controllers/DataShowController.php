@@ -2,85 +2,76 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\Http\Requests\DataShowRequest;
+use App\Repositories\DataShowRepository;
 use App\Http\Requests;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Session;
 
 class DataShowController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    protected $repository;
+
+    public function __construct(DataShowRepository $dataShowRepository)
+    {
+        $this->repository = $dataShowRepository;
+        $this->middleware('auth');
+
+    }
+
     public function index()
     {
-        //
+        $dataShows = $this->repository->index();
+        return view('data-show.index', compact('dataShows'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('data-show.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(DataShowRequest $dataShowRequest)
     {
-        //
+        $retorno = $this->repository->store($dataShowRequest);
+        if($retorno){
+            Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+            return redirect()->route('data-show.index');
+        }
+        return redirect()->back();
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $this->repository->show($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $recurso = $this->repository->findById($id);
+        return view('data-show.edit', compact('recurso'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(DataShowRequest $dataShowRequest, $id)
     {
-        //
+        $retorno = $this->repository->update($dataShowRequest,$id);
+        if($retorno){
+            Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
+            return redirect()->route('data-show.index');
+        }
+        return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        try{
+            $this->repository->destroy($id);
+            Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
+            return redirect()->route('data-show.index');
+        }catch(QueryException $e){
+            Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
+            return redirect()->back();
+        }
     }
 }

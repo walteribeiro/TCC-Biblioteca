@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class DataShowRequest extends Request
 {
     /**
@@ -13,7 +11,7 @@ class DataShowRequest extends Request
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +21,27 @@ class DataShowRequest extends Request
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        switch ($this->method()) {
+            case 'POST': {
+                return [
+                    'descricao' => 'required|max:255',
+                    'marca' => 'max:255',
+                    'codigo' => 'required|max:15'
+                ];
+            }
+
+            case 'PUT':
+            case 'PATCH': {
+                return [
+                    'descricao' => 'required|max:255',
+                    'marca' => 'max:255',
+                    'codigo' => 'required|max:15'
+                ];
+            }
+
+            default: {
+                return [];
+            }
+        }
     }
 }

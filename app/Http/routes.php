@@ -62,6 +62,18 @@ Route::group(['prefix' => 'funcionarios'], function(){
 
 });
 
+Route::group(['prefix' => 'data-shows'], function(){
+
+    Route::get('/',                ['as'=>'data-show.index',  'uses'=>'DataShowController@index']);
+    Route::get('/novo',            ['as'=>'data-show.create', 'uses'=>'DataShowController@create']);
+    Route::post('/gravar',         ['as'=>'data-show.store',  'uses'=>'DataShowController@store']);
+    Route::get('/detalhes/{id}',   ['as'=>'data-show.show',   'uses'=>'DataShowController@show']);
+    Route::get('/editar/{id}',     ['as'=>'data-show.edit',   'uses'=>'DataShowController@edit']);
+    Route::put('/atualizar/{id}',  ['as'=>'data-show.update', 'uses'=>'DataShowController@update']);
+    Route::delete('/remover/{id}', ['as'=>'data-show.delete', 'uses'=>'DataShowController@destroy']);
+
+});
+
 
 // Authentication Routes...
 Route::get('login', 'Auth\AuthController@showLoginForm');
