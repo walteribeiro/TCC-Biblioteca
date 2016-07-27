@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Http\Requests\AutorRequest;
 use App\Models\Autor;
 
 class AutorRepository
@@ -24,16 +23,16 @@ class AutorRepository
         // TODO: Implement show() method.
     }
 
-    public function store(AutorRequest $autorRequest)
+    public function store($data)
     {
-        return $this->autor->create($autorRequest->all());
+        return $this->autor->create($data);
     }
 
-    public function update(AutorRequest $autorRequest, $id)
+    public function update($data, $id)
     {
         $autor = $this->autor->find($id);
-        $autor->nome = $autorRequest->input('nome');
-        $autor->sobrenome = $autorRequest->input('sobrenome');
+        $autor->nome = $data['nome'];
+        $autor->sobrenome = $data['sobrenome'];
         $autor->save();
 
         return $autor;

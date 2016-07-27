@@ -26,7 +26,7 @@
                     <td class="text-center">
                         <a href="{{ route('autor.edit', $a->id)}}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$a->id}})">
+                        <a href="#modal" class="btn btn-sm btn-danger" data-delete="{{ $a->nome }}" data-id="{{ $a->id }}">
                             <span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
@@ -38,7 +38,7 @@
     @endif
 
     <!-- Modal Exclusão -->
-        <div class="modal fade" id="exclusao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="delete-log-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <form action="" method="post" id="formexcluir">
                 {{ method_field('delete') }}
                 {!! csrf_field() !!}
@@ -49,7 +49,7 @@
                             <h4 class="modal-title" id="myModalLabel">Exclusão</h4>
                         </div>
                         <div class="modal-body">
-                            <h4>Deseja excluir o registro ?</h4>
+                            <h5></h5>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -70,10 +70,22 @@
     <script src="{{asset('assets/js/dataTables.bootstrap.min.js')}}"></script>
 
     <script>
-        function abrirModal(id){
-            $('#formexcluir').attr("action", "autores/remover/"+id);
-            $('#exclusao').modal()
-        }
+        $(function () {
+            var deleteLogModal = $('div#delete-log-modal');
+
+            $("a[href='#modal']").click(function(event) {
+                event.preventDefault();
+                var id = $(this).data('id');
+                var nome = $(this).data('delete');
+
+                deleteLogModal.find('.modal-body h5').html(
+                        'Você tem certeza que deseja <span class="label label-danger">EXCLUIR</span> o autor <br><br><span class="label label-primary">' + nome.toUpperCase() + '</span> ?'
+                );
+
+                $('#formexcluir').attr("action", "autores/remover/"+id);
+                deleteLogModal.modal('show');
+            });
+        });
 
         $(document).ready(function () {
             $('#autores').DataTable({

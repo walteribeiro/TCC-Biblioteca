@@ -15,7 +15,6 @@ class AutorController extends Controller
     public function __construct(AutorRepository $autorRepository)
     {
         $this->repository = $autorRepository;
-        $this->middleware('auth');
     }
 
     public function index()
@@ -31,7 +30,7 @@ class AutorController extends Controller
 
     public function store(AutorRequest $autorRequest)
     {
-        $retorno = $this->repository->store($autorRequest);
+        $retorno = $this->repository->store($autorRequest->all());
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
             return redirect()->route('autor.index');
@@ -41,7 +40,7 @@ class AutorController extends Controller
 
     public function show($id)
     {
-        $this->repository->show($id);
+        //TODO refazer após implementar no repository
     }
 
     public function edit($id)
@@ -52,7 +51,7 @@ class AutorController extends Controller
 
     public function update(AutorRequest $autorRequest, $id)
     {
-        $retorno = $this->repository->update($autorRequest, $id);
+        $retorno = $this->repository->update($autorRequest->all(), $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
             return redirect()->route('autor.index');

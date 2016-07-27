@@ -22,7 +22,7 @@
                 <h1>EEAC</h1>
                 <div>
                     <label class="pull-left" for="username">Nome de Usuário</label>
-                    <input type="text" id="username" class="form-control" name="username"
+                    <input type="text" id="username" class="form-control" name="username" autofocus
                            value="{{ old('username') }}">
                 </div>
                 <div>
@@ -35,19 +35,26 @@
                     </button>
 
                 </div>
-                <br><br>
-                @if (isset($errors) && count($errors) > 0)
-                    @foreach($errors->all() as $e)
-                        <span class="help-block">
-                            <strong>{{ $e }}</strong>
-                        </span>
-                    @endforeach
-                @endif
-
+                <br>
                 <div class="separator"></div>
             </form>
         </section>
     </div>
 </div>
+
+<script src="{{asset('assets/js/jquery.min.js')}}"></script>
+<script src="{{asset('assets/js/toastr.js')}}"></script>
+
+@if( isset($errors) && count($errors) > 0)
+    <script type="text/javascript">
+
+        var options = {
+            "closeButton": true,
+            "positionClass": "toast-top-center",
+        };
+        toastr.error('@foreach($errors->all() as $e) <li> {{ $e }} </li> @endforeach', 'Erro!', options);
+    </script>
+@endif
+
 </body>
 </html>

@@ -2,10 +2,6 @@
 
 namespace App\Repositories;
 
-
-use App\Http\Requests\DataShowRequest;
-use App\Models\Autor;
-use App\Models\Editora;
 use App\Models\DataShow;
 use App\Models\Recurso;
 
@@ -30,40 +26,31 @@ class DataShowRepository
         // TODO: Implement show() method.
     }
 
-    public function create(){
-
-    }
-
-    public function store(DataShowRequest $dataShowRequest)
+    public function store($data)
     {
         // Persistindo dados da request no recurso
-        $this->recurso->descricao = $dataShowRequest->input('descricao');
+        $this->recurso->descricao = $data['descricao'];
         $this->recurso->save();
 
         //Persistindo dados da request no dataShow
-        $this->dataShow->marca = $dataShowRequest->input('marca');
-        $this->dataShow->codigo = $dataShowRequest->input('codigo');
+        $this->dataShow->marca = $data['marca'];
+        $this->dataShow->codigo = $data['codigo'];
         $this->recurso->dataShow()->save($this->dataShow);
 
         return $this->recurso;
-
     }
 
-    public function edit(){
-
-    }
-
-    public function update(DataShowRequest $dataShowRequest, $id)
+    public function update($data, $id)
     {
         $this->recurso = $this->recurso->find($id);
 
         // Atualizando dados da request no recurso
-        $this->recurso->descricao = $dataShowRequest->input('descricao');
+        $this->recurso->descricao = $data['descricao'];
 
         //Atualizando dados da request no dataShow
         $this->recurso->dataShow()->update([
-            'marca' => $dataShowRequest->input('marca'),
-            'codigo' => $dataShowRequest->input('codigo'),
+            'marca' => $data['marca'],
+            'codigo' => $data['codigo']
         ]);
 
         $this->recurso->save();
@@ -78,6 +65,6 @@ class DataShowRepository
 
     public function findById($id)
     {
-        return $this->recurso->find($id);
+        return $this->dataShow->find($id);
     }
 }

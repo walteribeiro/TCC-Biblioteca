@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Http\Requests\EditoraRequest;
 use App\Models\Editora;
 
 class EditoraRepository
@@ -24,15 +23,15 @@ class EditoraRepository
         // TODO: Implement show() method.
     }
 
-    public function store(EditoraRequest $editoraRequest)
+    public function store($data)
     {
-        return $this->editora->create($editoraRequest->all());
+        return $this->editora->create($data);
     }
 
-    public function update(EditoraRequest $editoraRequest, $id)
+    public function update($data, $id)
     {
         $editora = $this->editora->find($id);
-        $editora->nome = $editoraRequest->input('nome');
+        $editora->nome = $data['nome'];
         $editora->save();
 
         return $editora;

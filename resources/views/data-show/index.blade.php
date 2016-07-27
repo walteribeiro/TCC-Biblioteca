@@ -28,7 +28,7 @@
                     <td class="text-center">
                         <a href="{{ route('data-show.edit', $d->id)}}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$d->recurso->id}})">
+                        <a href="#modal" class="btn btn-sm btn-danger" data-delete="{{ $d->recurso->descricao }}" data-code="{{ $d->codigo }}" data-id="{{ $d->id }}">
                             <span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
@@ -40,7 +40,7 @@
         @endif
 
                 <!-- Modal Exclusão -->
-        <div class="modal fade" id="exclusao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="delete-log-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <form action="" method="post" id="formexcluir">
                 {{ method_field('delete') }}
                 {!! csrf_field() !!}
@@ -51,7 +51,7 @@
                             <h4 class="modal-title" id="myModalLabel">Exclusão</h4>
                         </div>
                         <div class="modal-body">
-                            <h4>Deseja excluir o registro ?</h4>
+                            <h5></h5>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -72,10 +72,23 @@
     <script src="{{asset('assets/js/dataTables.bootstrap.min.js')}}"></script>
 
     <script>
-        function abrirModal(id){
-            $('#formexcluir').attr("action", "data-shows/remover/"+id);
-            $('#exclusao').modal()
-        }
+        $(function () {
+            var deleteLogModal = $('div#delete-log-modal');
+
+            $("a[href='#modal']").click(function(event) {
+                event.preventDefault();
+                var id = $(this).data('id');
+                var descricao = $(this).data('delete');
+                var codigo = $(this).data('code');
+
+                deleteLogModal.find('.modal-body h5').html(
+                        'Você tem certeza que deseja <span class="label label-danger">EXCLUIR</span> o data show <br><br><span class="label label-primary">' + codigo + ' - ' + descricao.toUpperCase() + '</span> ?'
+                );
+
+                $('#formexcluir').attr("action", "data-shows/remover/"+id);
+                deleteLogModal.modal('show');
+            });
+        });
 
         $(document).ready(function () {
             $('#data-shows').DataTable({

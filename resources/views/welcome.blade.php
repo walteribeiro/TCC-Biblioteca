@@ -6,30 +6,28 @@
 
     <!-- top tiles -->
     <div class="row tile_count">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="col-md-2 col-md-offset-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-book"></i> Total de Livros</span>
-                <div class="count blue">{{$livros}}</div>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-book"></i> Total de Revistas</span>
-                <div class="count blue">{{$revistas}}</div>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-users"></i> Total de Autores</span>
-                <div class="count blue">{{$autores}}</div>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-users"></i> Total de Editoras</span>
-                <div class="count blue">{{$editoras}}</div>
-            </div>
+        <div class="col-md-2 col-sm-3 col-xs-6 col-md-offset-2 tile_stats_count">
+            <span class="count_top"><i class="fa fa-book"></i> Total de Livros</span>
+            <div class="count blue">{{$livros}}</div>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-book"></i> Total de Revistas</span>
+            <div class="count blue">{{$revistas}}</div>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-users"></i> Total de Autores</span>
+            <div class="count blue">{{$autores}}</div>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-6 tile_stats_count">
+            <span class="count_top"><i class="fa fa-users"></i> Total de Editoras</span>
+            <div class="count blue">{{$editoras}}</div>
         </div>
     </div>
     <!-- /top tiles -->
 
     <br>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2 col-sm-4 col-xs-12">
+        <div class="col-md-8 col-md-offset-2 col-sm-10 col-xs-12 col-sm-offset-1">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Atividades Recentes</h2>

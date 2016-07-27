@@ -111,8 +111,8 @@
                     </div>
 
                     <ul class="nav navbar-nav navbar-right">
-                  @if(Auth::user())
-                     <li class="dropdown">
+                        @if(Auth::check())
+                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->nome }} <span class="caret"></span>
                                 </a>
@@ -121,8 +121,8 @@
                                     <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                                 </ul>
                             </li>
-                        @endif
-                            <!-- ul class="dropdown-menu dropdown-usermenu pull-right">
+                            @endif
+                                    <!-- ul class="dropdown-menu dropdown-usermenu pull-right">
                                 <li><a href="javascript:;"> Perfil</a></li>
                                 <li>
                                     <a href="javascript:;">

@@ -102,7 +102,7 @@ return [
     |
     */
     'attributes'           => [
-        'email'    => 'email',
+        'username' => 'nome de usuário',
         'password' => 'senha',
     ],
 ];

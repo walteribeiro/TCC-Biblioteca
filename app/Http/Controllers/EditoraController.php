@@ -18,7 +18,6 @@ class EditoraController extends Controller
     public function __construct(EditoraRepository $editoraRepository)
     {
         $this->repository = $editoraRepository;
-        $this->middleware('auth');
     }
 
     public function index()
@@ -34,7 +33,7 @@ class EditoraController extends Controller
 
     public function store(EditoraRequest $editoraRequest)
     {
-        $retorno = $this->repository->store($editoraRequest);
+        $retorno = $this->repository->store($editoraRequest->all());
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
             $this->gravarLog("Editora adicionada!", "informacao", ["Usuario" => "Walter", "Editora" => $retorno->nome]);
@@ -45,7 +44,7 @@ class EditoraController extends Controller
 
     public function show($id)
     {
-        $this->repository->show($id);
+        //TODO refazer após implementar no repository
     }
 
     public function edit($id)
@@ -56,7 +55,7 @@ class EditoraController extends Controller
 
     public function update(EditoraRequest $editoraRequest, $id)
     {
-        $retorno = $this->repository->update($editoraRequest, $id);
+        $retorno = $this->repository->update($editoraRequest->all(), $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
             $this->gravarLog("Editora alterada!", "atencao", ["Usuario" => "Walter", "Editora" => $retorno->nome]);
