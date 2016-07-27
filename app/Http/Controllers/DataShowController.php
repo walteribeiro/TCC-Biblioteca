@@ -16,8 +16,6 @@ class DataShowController extends Controller
     public function __construct(DataShowRepository $dataShowRepository)
     {
         $this->repository = $dataShowRepository;
-        $this->middleware('auth');
-
     }
 
     public function index()
@@ -33,7 +31,7 @@ class DataShowController extends Controller
 
     public function store(DataShowRequest $dataShowRequest)
     {
-        $retorno = $this->repository->store($dataShowRequest);
+        $retorno = $this->repository->store($dataShowRequest->all());
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
             return redirect()->route('data-show.index');
@@ -44,18 +42,18 @@ class DataShowController extends Controller
 
     public function show($id)
     {
-        $this->repository->show($id);
+        //TODO refazer após implementar no repository
     }
 
     public function edit($id)
     {
-        $recurso = $this->repository->findById($id);
-        return view('data-show.edit', compact('recurso'));
+        $dataShow = $this->repository->findById($id);
+        return view('data-show.edit', compact('dataShow'));
     }
 
     public function update(DataShowRequest $dataShowRequest, $id)
     {
-        $retorno = $this->repository->update($dataShowRequest,$id);
+        $retorno = $this->repository->update($dataShowRequest->all() ,$id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
             return redirect()->route('data-show.index');
