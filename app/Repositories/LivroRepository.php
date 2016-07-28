@@ -2,8 +2,6 @@
 
 namespace App\Repositories;
 
-
-use App\Http\Requests\LivroRequest;
 use App\Models\Autor;
 use App\Models\Editora;
 use App\Models\Livro;
@@ -41,27 +39,26 @@ class LivroRepository
         ];
     }
 
-    public function store(LivroRequest $livroRequest)
+    public function store($data)
     {
         // Persistindo dados da request na publicação
-        $this->publicacao->descricao = $livroRequest->input('descricao');
-        $this->publicacao->titulo = $livroRequest->input('titulo');
-        $this->publicacao->edicao = $livroRequest->input('edicao');
-        $this->publicacao->origem = $livroRequest->input('origem');
-        $this->publicacao->editora_id = $livroRequest->input('editora');
+        $this->publicacao->descricao = $data['descricao'];
+        $this->publicacao->titulo = $data['titulo'];
+        $this->publicacao->edicao = $data['edicao'];
+        $this->publicacao->origem = $data['origem'];
+        $this->publicacao->editora_id = $data['editora'];
         $this->publicacao->save();
 
         //Persistindo dados da request no livro
-        $this->livro->subtitulo = $livroRequest->input('subtitulo');
-        $this->livro->isbn = $livroRequest->input('isbn');
-        $this->livro->cdu = $livroRequest->input('cdu');
-        $this->livro->cdd = $livroRequest->input('cdd');
-        $this->livro->ano = $livroRequest->input('ano');
-        $this->livro->autor_id = $livroRequest->input('autor');
+        $this->livro->subtitulo = $data['subtitulo'];
+        $this->livro->isbn = $data['isbn'];
+        $this->livro->cdu = $data['cdu'];
+        $this->livro->cdd = $data['cdd'];
+        $this->livro->ano = $data['ano'];
+        $this->livro->autor_id = $data['autor'];
         $this->publicacao->livro()->save($this->livro);
 
         return $this->publicacao;
-
     }
 
     public function edit(){
@@ -71,25 +68,25 @@ class LivroRepository
         ];
     }
 
-    public function update(LivroRequest $livroRequest, $id)
+    public function update($data, $id)
     {
         $this->publicacao = $this->publicacao->find($id);
 
         // Atualizando dados da request na publicação
-        $this->publicacao->descricao = $livroRequest->input('descricao');
-        $this->publicacao->titulo = $livroRequest->input('titulo');
-        $this->publicacao->edicao = $livroRequest->input('edicao');
-        $this->publicacao->origem = $livroRequest->input('origem');
-        $this->publicacao->editora_id = $livroRequest->input('editora');
+        $this->publicacao->descricao = $data['descricao'];
+        $this->publicacao->titulo = $data['titulo'];
+        $this->publicacao->edicao = $data['edicao'];
+        $this->publicacao->origem = $data['origem'];
+        $this->publicacao->editora_id = $data['editora'];
 
         //Atualizando dados da request no livro
         $this->publicacao->livro()->update([
-            'subtitulo' => $livroRequest->input('subtitulo'),
-            'isbn' => $livroRequest->input('isbn'),
-            'cdu' => $livroRequest->input('cdu'),
-            'cdd' => $livroRequest->input('cdd'),
-            'ano' => $livroRequest->input('ano'),
-            'autor_id' => $livroRequest->input('autor'),
+            'subtitulo' => $data['subtitulo'],
+            'isbn' => $data['isbn'],
+            'cdu' => $data['cdu'],
+            'cdd' => $data['cdd'],
+            'ano' => $data['ano'],
+            'autor_id' => $data['autor']
         ]);
 
         $this->publicacao->save();
@@ -104,6 +101,6 @@ class LivroRepository
 
     public function findById($id)
     {
-        return $this->publicacao->find($id);
+        return $this->livro->find($id);
     }
 }

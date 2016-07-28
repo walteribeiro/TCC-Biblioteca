@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Autor;
-use App\Repositories\Helpers\LogTrait;
+use App\Traits\LogTrait;
 use Illuminate\Database\Seeder;
 
 class AutorSeeder extends Seeder
@@ -15,7 +15,7 @@ class AutorSeeder extends Seeder
     public function run()
     {
         factory(Autor::class, 150)->create()->each(function($u){
-            $this->gravarLog("Teste de carga", "debug", ['autor.nome' => $u->nome, 'autor.sobrenome' => $u->sobrenome]);
+            $this->gravarLog("Teste de carga", "debug", ['autor.nome' => $u->nome]);
         });
     }
 }

@@ -16,8 +16,6 @@ class LivroController extends Controller
     public function __construct(LivroRepository $livroRepository)
     {
         $this->repository = $livroRepository;
-        $this->middleware('auth');
-
     }
 
     public function index()
@@ -34,30 +32,29 @@ class LivroController extends Controller
 
     public function store(LivroRequest $livroRequest)
     {
-        $retorno = $this->repository->store($livroRequest);
+        $retorno = $this->repository->store($livroRequest->all());
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
             return redirect()->route('livro.index');
         }
         return redirect()->back();
-
     }
 
     public function show($id)
     {
-        $this->repository->show($id);
+        //TODO refazer após implementar no repository
     }
 
     public function edit($id)
     {
-        $publicacao = $this->repository->findById($id);
+        $livro = $this->repository->findById($id);
         $listAutoresEditoras = $this->repository->edit();
-        return view('livro.edit', compact('publicacao', 'listAutoresEditoras'));
+        return view('livro.edit', compact('livro', 'listAutoresEditoras'));
     }
 
     public function update(LivroRequest $livroRequest, $id)
     {
-        $retorno = $this->repository->update($livroRequest,$id);
+        $retorno = $this->repository->update($livroRequest->all(), $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
             return redirect()->route('livro.index');

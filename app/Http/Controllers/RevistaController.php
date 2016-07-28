@@ -16,8 +16,6 @@ class RevistaController extends Controller
     public function __construct(RevistaRepository $revistaRepository)
     {
         $this->repository = $revistaRepository;
-        $this->middleware('auth');
-
     }
 
     public function index()
@@ -34,13 +32,12 @@ class RevistaController extends Controller
 
     public function store(RevistaRequest $revistaRequest)
     {
-        $retorno = $this->repository->store($revistaRequest);
+        $retorno = $this->repository->store($revistaRequest->all());
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
             return redirect()->route('revista.index');
         }
         return redirect()->back();
-
     }
 
     public function show($id)
@@ -50,14 +47,14 @@ class RevistaController extends Controller
 
     public function edit($id)
     {
-        $publicacao = $this->repository->findById($id);
+        $revista = $this->repository->findById($id);
         $listEditoras = $this->repository->edit();
-        return view('revista.edit', compact('publicacao', 'listEditoras'));
+        return view('revista.edit', compact('revista', 'listEditoras'));
     }
 
     public function update(RevistaRequest $revistaRequest, $id)
     {
-        $retorno = $this->repository->update($revistaRequest,$id);
+        $retorno = $this->repository->update($revistaRequest->all(), $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
             return redirect()->route('revista.index');

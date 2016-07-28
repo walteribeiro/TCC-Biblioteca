@@ -2,8 +2,6 @@
 
 namespace App\Repositories;
 
-
-use App\Http\Requests\RevistaRequest;
 use App\Models\Editora;
 use App\Models\Revista;
 use App\Models\Publicacao;
@@ -37,19 +35,19 @@ class RevistaRepository
         ];
     }
 
-    public function store(RevistaRequest $revistaRequest)
+    public function store($data)
     {
         // Persistindo dados da request na publicação
-        $this->publicacao->descricao = $revistaRequest->input('descricao');
-        $this->publicacao->titulo = $revistaRequest->input('titulo');
-        $this->publicacao->edicao = $revistaRequest->input('edicao');
-        $this->publicacao->origem = $revistaRequest->input('origem');
-        $this->publicacao->editora_id = $revistaRequest->input('editora');
+        $this->publicacao->descricao = $data['descricao'];
+        $this->publicacao->titulo = $data['titulo'];
+        $this->publicacao->edicao = $data['edicao'];
+        $this->publicacao->origem = $data['origem'];
+        $this->publicacao->editora_id = $data['editora'];
         $this->publicacao->save();
 
         //Persistindo dados da request no revista
-        $this->revista->referencia = $revistaRequest->input('referencia');
-        $this->revista->categoria = $revistaRequest->input('categoria');
+        $this->revista->referencia = $data['referencia'];
+        $this->revista->categoria = $data['categoria'];
         $this->publicacao->revista()->save($this->revista);
 
         return $this->publicacao;
@@ -62,21 +60,21 @@ class RevistaRepository
         ];
     }
 
-    public function update(RevistaRequest $revistaRequest, $id)
+    public function update($data, $id)
     {
         $this->publicacao = $this->publicacao->find($id);
 
         // Atualizando dados da request na publicação
-        $this->publicacao->descricao = $revistaRequest->input('descricao');
-        $this->publicacao->titulo = $revistaRequest->input('titulo');
-        $this->publicacao->edicao = $revistaRequest->input('edicao');
-        $this->publicacao->origem = $revistaRequest->input('origem');
-        $this->publicacao->editora_id = $revistaRequest->input('editora');
+        $this->publicacao->descricao = $data['descricao'];
+        $this->publicacao->titulo = $data['titulo'];
+        $this->publicacao->edicao = $data['edicao'];
+        $this->publicacao->origem = $data['origem'];
+        $this->publicacao->editora_id = $data['editora'];
 
         //Atualizando dados da request no revista
         $this->publicacao->revista()->update([
-            'referencia' => $revistaRequest->input('referencia'),
-            'categoria' => $revistaRequest->input('categoria'),
+            'referencia' => $data['referencia'],
+            'categoria' => $data['categoria']
         ]);
 
         $this->publicacao->save();
@@ -91,6 +89,6 @@ class RevistaRepository
 
     public function findById($id)
     {
-        return $this->publicacao->find($id);
+        return $this->revista->find($id);
     }
 }

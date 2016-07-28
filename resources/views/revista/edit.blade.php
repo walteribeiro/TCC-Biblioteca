@@ -2,47 +2,55 @@
 
 @section('conteudo')
 
-    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-8 col-lg-offset-2 col-sm-12">Edição de Revista</h3>
+    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-6 col-lg-offset-3 col-sm-12">Edição de revista</h3>
 
-    <form class="form-horizontal" action="{{ route('revista.update', $publicacao->id) }}" method="post">
+    <form class="form-horizontal" action="{{ route('revista.update', $revista->publicacao->id) }}" method="post">
 
         {{ method_field('put') }}
         {!! csrf_field() !!}
 
         <div class="form-group">
-            <div class="col-lg-8 col-lg-offset-2 col-sm-12">
+            <div class="col-lg-6 col-lg-offset-3 col-sm-12">
                 <label for="titulo">Titulo</label>
                 <input type="text" class="form-control" id="titulo" name="titulo"
-                       placeholder="Titulo" autofocus value="{{ $publicacao->titulo }}">
+                       placeholder="Titulo" autofocus value="{{ $revista->publicacao->titulo }}">
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-lg-4 col-lg-offset-2">
+            <div class="col-lg-1 col-lg-offset-3">
                 <label for="referencia">Referência</label>
                 <input type="text" class="form-control" id="referencia" name="referencia"
-                       placeholder="Referência"  value="{{ $publicacao->revista->referencia }}">
+                       placeholder="Referência"  value="{{ $revista->referencia }}">
             </div>
-            <div class="col-lg-4">
+
+            <div class="col-lg-3">
                 <label for="categoria">Categoria</label>
                 <input type="text" class="form-control" id="categoria" name="categoria"
-                       placeholder="Categoria" value="{{ $publicacao->revista->categoria }}">
+                       placeholder="Categoria" value="{{ $revista->categoria }}">
+            </div>
+
+            <div class="col-lg-2 col-sm-6">
+                <label for="origem">Origem</label>
+                <input type="text" class="form-control" id="origem" name="origem"
+                       placeholder="Origem" value="{{ $revista->origem }}">
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-lg-8 col-lg-offset-2 col-sm-12">
+            <div class="col-lg-6 col-lg-offset-3 col-sm-12">
                 <label for="descricao">Descricao</label>
                 <input type="text" class="form-control" id="descricao" name="descricao"
-                       placeholder="Descricao" value="{{ $publicacao->descricao }}">
+                       placeholder="Descricao" value="{{ $revista->publicacao->descricao }}">
             </div>
         </div>
+
         <div class="form-group">
-            <div class="col-lg-4 col-lg-offset-2">
+            <div class="col-lg-3 col-lg-offset-3">
                 <label for="editora">Editora</label>
                 <select class="form-control" name="editora" id="editora">
                     @foreach($listEditoras['editoras'] as $e)
-                        @if($e->id == $publicacao->editora->id)
+                        @if($e->id == $revista->publicacao->editora->id)
                             <option value="{{ $e->id }}" selected>{{ $e->nome }}</option>
                         @else
                             <option value="{{ $e->id }}">{{ $e->nome }}</option>
@@ -51,22 +59,15 @@
                 </select>
             </div>
 
-            <div class="col-lg-4">
-                <label for="edicao">Edicao</label>
+            <div class="col-lg-3">
+                <label for="edicao">Edição</label>
                 <input type="text" class="form-control" id="edicao" name="edicao"
-                       placeholder="Edicao" value="{{ $publicacao->edicao }}">
+                       placeholder="Edição" value="{{ $revista->publicacao->edicao }}">
             </div>
         </div>
+        <br>
         <div class="form-group">
-            <div class="col-lg-8 col-lg-offset-2 col-sm-6">
-                <label for="origem">Origem</label>
-                <input type="text" class="form-control" id="origem" name="origem"
-                       placeholder="Origem" value="{{ $publicacao->origem }}">
-            </div>
-        </div>
-        <br><br>
-        <div class="form-group">
-            <div class="col-lg-3 col-lg-offset-2">
+            <div class="col-lg-3 col-lg-offset-3">
                 <button type="submit" class="btn btn-primary"><em class="fa fa-save"></em> Gravar</button>
                 <a href="{{ route('revista.index') }}" class="btn btn-default"><em class="fa fa-undo"></em> Voltar</a>
             </div>

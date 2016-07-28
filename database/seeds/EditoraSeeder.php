@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Editora;
-use App\Repositories\Helpers\LogTrait;
+use App\Traits\LogTrait;
 use Illuminate\Database\Seeder;
 
 class EditoraSeeder extends Seeder
