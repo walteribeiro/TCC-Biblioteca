@@ -45,8 +45,7 @@ trait LogTrait
     private function verificarArquivo()
     {
         if (!file_exists(storage_path("logs/laravel-".date('Y-m-d').".log"))){
-            $level = $this->getLevel("default");
-            $this->dispararMensagem("Início do arquivo", $level);
+            $this->dispararMensagem("Início do arquivo", LogLevel::NOTICE);
         }
     }
 

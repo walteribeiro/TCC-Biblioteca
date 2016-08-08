@@ -44,7 +44,7 @@ class FuncionarioRequest extends Request
                     'telefone' => 'required|min:10|max:15',
                     'telefone2' => 'min:10|max:15',
                     'email' => 'min:10|max:255|unique:pessoas,email, ' . $this->id,
-                    'numeroRegistro' => 'required|max:10|unique:funcionarios,id,user_id',
+                    'numeroRegistro' => 'max:10|unique:funcionarios,id,user_id',
                     'tipoFuncionario' => 'required',
                 ];
             }

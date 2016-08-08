@@ -6,9 +6,10 @@
 @section('conteudo')
     <h3 class="page-header">Dashboard</h3>
 
+    @if(isset($percents) && count($percents) > 0)
     <div class="row">
         <div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
-            <canvas id="stats-doughnut-chart"></canvas>
+            <log-graph url="/TCC/TCC-Biblioteca/public/chart/sumarizacao"></log-graph>
         </div>
         <div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
             <section class="box-body">
@@ -36,26 +37,11 @@
             </section>
         </div>
     </div>
+    @else
+        <h5 class="alert alert-info">Ainda não foram encontradas transações!</h5>
+    @endif
 @endsection
 
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.1/moment-with-locales.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.15.35/js/bootstrap-datetimepicker.min.js"></script>
-    <script>
-        Chart.defaults.global.responsive      = true;
-        Chart.defaults.global.scaleFontFamily = "'Source Sans Pro'";
-        Chart.defaults.global.animationEasing = "easeOutQuart";
-    </script>
-
-    <script>
-        $(function() {
-            var data = {!! $reports !!};
-
-            new Chart($('#stats-doughnut-chart')[0].getContext('2d'))
-                .Doughnut(data, {
-                    animationEasing : "easeOutQuart"
-                });
-        });
-    </script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 @endsection

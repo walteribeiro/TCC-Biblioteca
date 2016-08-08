@@ -16,6 +16,7 @@
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Email</th>
+                <th>Função</th>
                 <th>Situação</th>
                 <th data-orderable="false">Opções</th>
             </tr>
@@ -28,7 +29,16 @@
                     <td>{{$f->user->telefone}}</td>
                     <td>{{$f->user->email}}</td>
                     <td>
-                        @if($f->user->ativo==1)
+                        @if($f->tipo_funcionario == 0)
+                            Geral
+                        @elseif($f->tipo_funcionario == 1)
+                            Professor
+                        @else
+                            Bibliotecário
+                        @endif
+                    </td>
+                    <td>
+                        @if($f->user->ativo == 1)
                             Ativo
                         @else
                             Inativo
@@ -37,7 +47,7 @@
                     <td class="text-center">
                         <a href="{{ route('funcionario.edit', $f->id)}}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="#" class="btn btn-sm btn-danger" onclick="abrirModal({{$f->user->id}})">
+                        <a href="#modal" class="btn btn-sm btn-danger" data-delete="{{ $f->user->nome }}" data-id="{{ $f->user->id }}">
                             <span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
@@ -49,7 +59,7 @@
         @endif
 
                 <!-- Modal Exclusão -->
-        <div class="modal fade" id="exclusao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="delete-log-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
             <form action="" method="post" id="formexcluir">
                 {{ method_field('delete') }}
                 {!! csrf_field() !!}
@@ -61,7 +71,7 @@
                             <h4 class="modal-title" id="myModalLabel">Exclusão</h4>
                         </div>
                         <div class="modal-body">
-                            <h4>Deseja excluir o registro ?</h4>
+                            <h5></h5>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -82,10 +92,22 @@
     <script src="{{asset('assets/js/dataTables.bootstrap.min.js')}}"></script>
 
     <script>
-        function abrirModal(id) {
-            $('#formexcluir').attr("action", "funcionarios/remover/" + id);
-            $('#exclusao').modal()
-        }
+        $(function () {
+            var deleteLogModal = $('div#delete-log-modal');
+
+            $("a[href='#modal']").click(function(event) {
+                event.preventDefault();
+                var id = $(this).data('id');
+                var nome = $(this).data('delete');
+
+                deleteLogModal.find('.modal-body h5').html(
+                        'Você tem certeza que deseja <span class="label label-danger">EXCLUIR</span> o funcionário <br><br><span class="label label-primary">' + nome.toUpperCase() + '</span> ?'
+                );
+
+                $('#formexcluir').attr("action", "funcionarios/remover/"+id);
+                deleteLogModal.modal('show');
+            });
+        });
 
         $(document).ready(function () {
             $('#funcionarios').DataTable({

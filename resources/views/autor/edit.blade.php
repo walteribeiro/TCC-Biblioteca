@@ -11,16 +11,16 @@
 
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
-                <label for="nome">Nome do Autor</label>
+                <label for="nome">Nome do autor</label>
                 <input type="text" class="form-control" id="nome" name="nome"
-                       placeholder="Nome do Autor" autofocus value="{{ $autor->nome }}">
+                       placeholder="Nome do autor" autofocus value="{{ $autor->nome }}">
             </div>
         </div>
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
-                <label for="sobrenome">Sobrenome do Autor</label>
+                <label for="sobrenome">Sobrenome do autor</label>
                 <input type="text" class="form-control" id="sobrenome" name="sobrenome"
-                       placeholder="Sobrenome do Autor" autofocus value="{{ $autor->sobrenome }}">
+                       placeholder="Sobrenome do autor" autofocus value="{{ $autor->sobrenome }}">
             </div>
         </div>
         <br>

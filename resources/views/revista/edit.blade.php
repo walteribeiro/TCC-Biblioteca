@@ -39,9 +39,9 @@
 
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
-                <label for="descricao">Descricao</label>
+                <label for="descricao">Descrição</label>
                 <input type="text" class="form-control" id="descricao" name="descricao"
-                       placeholder="Descricao" value="{{ $revista->publicacao->descricao }}">
+                       placeholder="Descrição" value="{{ $revista->publicacao->descricao }}">
             </div>
         </div>
 

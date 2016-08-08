@@ -11,9 +11,9 @@
 
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
-                <label for="nome">Nome da Editora</label>
+                <label for="nome">Nome da editora</label>
                 <input type="text" class="form-control" id="nome" name="nome"
-                       placeholder="Nome da Editora" autofocus value="{{ $editora->nome }}">
+                       placeholder="Nome da editora" autofocus value="{{ $editora->nome }}">
             </div>
         </div>
         <br>

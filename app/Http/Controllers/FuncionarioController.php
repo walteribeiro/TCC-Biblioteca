@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Session;
 
 class FuncionarioController extends Controller
 {
-
     protected $repository;
 
     public function __construct(FuncionarioRepository $funcionarioRepository)
@@ -19,33 +18,18 @@ class FuncionarioController extends Controller
         $this->repository = $funcionarioRepository;
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $funcionarios = $this->repository->index();
         return view('funcionario.index', compact('funcionarios'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('funcionario.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(FuncionarioRequest $request)
     {
         $retorno = $this->repository->store($request);
@@ -56,36 +40,17 @@ class FuncionarioController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        //TODO refazer após implementar no repository
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $funcionario = $this->repository->findById($id);
         return view('funcionario.edit', compact('funcionario'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(FuncionarioRequest $funcionarioRequest, $id)
     {
 
@@ -97,12 +62,6 @@ class FuncionarioController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         try{
