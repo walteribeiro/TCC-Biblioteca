@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDataShowsTable extends Migration
+class CreateMapasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateDataShowsTable extends Migration
      */
     public function up()
     {
-        Schema::create('data_shows', function (Blueprint $table) {
+        Schema::create('mapas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('marca')->nullable();
-            $table->integer('codigo')->unique();
-            $table->unsignedBigInteger('recurso_id')->index('recurso_1_idx');
+            $table->integer('numero');
+            $table->string('titulo', 60);
+            $table->unsignedBigInteger('recurso_id')->index('recurso_2_idx');
         });
     }
 
@@ -27,6 +27,6 @@ class CreateDataShowsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('data_shows');
+        Schema::drop('mapas');
     }
 }

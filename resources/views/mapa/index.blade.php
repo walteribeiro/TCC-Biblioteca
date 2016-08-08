@@ -5,30 +5,30 @@
 @endsection
 @section('conteudo')
 
-    <h3 class="page-header">Data Shows <a href="{{ route('data-show.create') }}" class="btn btn-primary pull-right">Novo</a></h3>
+    <h3 class="page-header">Mapas <a href="{{ route('mapa.create') }}" class="btn btn-primary pull-right">Novo</a></h3>
 
-    @if(isset($dataShows) && count($dataShows) > 0)
+    @if(isset($mapas) && count($mapas) > 0)
         <table id="data-shows" class="table table-bordered table-hover">
             <thead>
             <tr>
                 <th>#</th>
                 <th>Descrição</th>
-                <th>Marca</th>
-                <th>Código</th>
+                <th>Número</th>
+                <th>Título</th>
                 <th data-orderable="false">Opções</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($dataShows as $d)
+            @foreach($mapas as $m)
                 <tr>
-                    <td>{{$d->id}}</td>
-                    <td>{{$d->recurso->descricao}}</td>
-                    <td>{{$d->marca}}</td>
-                    <td>{{$d->codigo}}</td>
+                    <td>{{$m->id}}</td>
+                    <td>{{$m->recurso->descricao}}</td>
+                    <td>{{$m->numero}}</td>
+                    <td>{{$m->titulo}}</td>
                     <td class="text-center">
-                        <a href="{{ route('data-show.edit', $d->id)}}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('mapa.edit', $m->id)}}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="#modal" class="btn btn-sm btn-danger" data-delete="{{ $d->recurso->descricao }}" data-code="{{ $d->codigo }}" data-id="{{ $d->recurso->id }}">
+                        <a href="#modal" class="btn btn-sm btn-danger" data-delete="{{ $m->recurso->descricao }}" data-id="{{ $m->recurso->id }}">
                             <span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
@@ -36,7 +36,7 @@
             </tbody>
         </table>
     @else
-        <h5 class="alert alert-info">Ainda não foram cadastrados data shows!</h5>
+        <h5 class="alert alert-info">Ainda não foram cadastrados mapas!</h5>
         @endif
 
                 <!-- Modal Exclusão -->
@@ -79,13 +79,12 @@
                 event.preventDefault();
                 var id = $(this).data('id');
                 var descricao = $(this).data('delete');
-                var codigo = $(this).data('code');
 
                 deleteLogModal.find('.modal-body h5').html(
-                        'Você tem certeza que deseja <span class="label label-danger">EXCLUIR</span> o data show <br><br><span class="label label-primary">' + codigo + ' - ' + descricao.toUpperCase() + '</span> ?'
+                        'Você tem certeza que deseja <span class="label label-danger">EXCLUIR</span> o mapa <br><br><span class="label label-primary">' + descricao.toUpperCase() + '</span> ?'
                 );
 
-                $('#formexcluir').attr("action", "data-shows/remover/"+id);
+                $('#formexcluir').attr("action", "mapas/remover/"+id);
                 deleteLogModal.modal('show');
             });
         });

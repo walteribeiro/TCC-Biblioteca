@@ -75,6 +75,30 @@ Route::get('/',                    ['as'=>'home.index',  'uses'=>'HomeController
         Route::delete('/remover/{id}', ['as'=>'data-show.delete', 'uses'=>'DataShowController@destroy']);
 
     });
+
+    Route::group(['prefix' => 'mapas'], function(){
+
+        Route::get('/',                ['as'=>'mapa.index',  'uses'=>'MapaController@index']);
+        Route::get('/novo',            ['as'=>'mapa.create', 'uses'=>'MapaController@create']);
+        Route::post('/gravar',         ['as'=>'mapa.store',  'uses'=>'MapaController@store']);
+        Route::get('/detalhes/{id}',   ['as'=>'mapa.show',   'uses'=>'MapaController@show']);
+        Route::get('/editar/{id}',     ['as'=>'mapa.edit',   'uses'=>'MapaController@edit']);
+        Route::put('/atualizar/{id}',  ['as'=>'mapa.update', 'uses'=>'MapaController@update']);
+        Route::delete('/remover/{id}', ['as'=>'mapa.delete', 'uses'=>'MapaController@destroy']);
+
+    });
+
+    Route::group(['prefix' => 'salas'], function(){
+
+        Route::get('/',                ['as'=>'sala.index',  'uses'=>'SalaController@index']);
+        Route::get('/novo',            ['as'=>'sala.create', 'uses'=>'SalaController@create']);
+        Route::post('/gravar',         ['as'=>'sala.store',  'uses'=>'SalaController@store']);
+        Route::get('/detalhes/{id}',   ['as'=>'sala.show',   'uses'=>'SalaController@show']);
+        Route::get('/editar/{id}',     ['as'=>'sala.edit',   'uses'=>'SalaController@edit']);
+        Route::put('/atualizar/{id}',  ['as'=>'sala.update', 'uses'=>'SalaController@update']);
+        Route::delete('/remover/{id}', ['as'=>'sala.delete', 'uses'=>'SalaController@destroy']);
+
+    });
 });
 
 // Authentication Routes...
@@ -82,3 +106,9 @@ Route::get('login', 'Auth\AuthController@showLoginForm');
 Route::post('login', 'Auth\AuthController@login');
 Route::get('logout', 'Auth\AuthController@logout');
 
+// API Gráficos
+Route::group(['prefix' => 'chart'], function(){
+
+    Route::get('/sumarizacao', ['as'=>'chart.sumarizacao', 'uses'=>'ApiGraphController@sumarizarLogs']);
+
+});

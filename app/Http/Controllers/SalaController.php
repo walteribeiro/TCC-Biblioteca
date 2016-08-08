@@ -2,39 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DataShowRequest;
-use App\Repositories\DataShowRepository;
+use App\Http\Requests\SalaRequest;
+use App\Repositories\SalaRepository;
 use App\Http\Requests;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
 
-class DataShowController extends Controller
+class SalaController extends Controller
 {
-
     protected $repository;
 
-    public function __construct(DataShowRepository $dataShowRepository)
+    public function __construct(SalaRepository $salaRepository)
     {
-        $this->repository = $dataShowRepository;
+        $this->repository = $salaRepository;
     }
 
     public function index()
     {
-        $dataShows = $this->repository->index();
-        return view('data-show.index', compact('dataShows'));
+        $salas = $this->repository->index();
+        return view('sala.index', compact('salas'));
     }
 
     public function create()
     {
-        return view('data-show.create');
+        return view('sala.create');
     }
 
-    public function store(DataShowRequest $dataShowRequest)
+    public function store(SalaRequest $salaRequest)
     {
-        $retorno = $this->repository->store($dataShowRequest->all());
+        $retorno = $this->repository->store($salaRequest->all());
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
-            return redirect()->route('data-show.index');
+            return redirect()->route('sala.index');
         }
         return redirect()->back();
     }
@@ -46,16 +45,16 @@ class DataShowController extends Controller
 
     public function edit($id)
     {
-        $dataShow = $this->repository->findById($id);
-        return view('data-show.edit', compact('dataShow'));
+        $sala = $this->repository->findById($id);
+        return view('sala.edit', compact('sala'));
     }
 
-    public function update(DataShowRequest $dataShowRequest, $id)
+    public function update(SalaRequest $salaRequest, $id)
     {
-        $retorno = $this->repository->update($dataShowRequest->all() ,$id);
+        $retorno = $this->repository->update($salaRequest->all() ,$id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
-            return redirect()->route('data-show.index');
+            return redirect()->route('sala.index');
         }
         return redirect()->back();
     }
@@ -65,7 +64,7 @@ class DataShowController extends Controller
         try{
             $this->repository->destroy($id);
             Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
-            return redirect()->route('data-show.index');
+            return redirect()->route('sala.index');
         }catch(QueryException $e){
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
             return redirect()->back();

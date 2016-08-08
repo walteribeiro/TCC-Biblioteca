@@ -107,12 +107,35 @@ $factory->define(App\Models\Recurso::class, function (Faker\Generator $faker) {
 
 /*
 |--------------------------------------------------------------------------
-| Factory de Livros
+| Factory de Data Shows
 |--------------------------------------------------------------------------
 */
 $factory->define(App\Models\DataShow::class, function (Faker\Generator $faker) {
     return [
         'marca' => $faker->companySuffix,
         'codigo' => $faker->unique()->randomNumber(7),
+    ];
+});
+
+/*
+|--------------------------------------------------------------------------
+| Factory de Mapas
+|--------------------------------------------------------------------------
+*/
+$factory->define(App\Models\Mapa::class, function (Faker\Generator $faker) {
+    return [
+        'numero' => $faker->numberBetween(10, 60),
+        'titulo' => $faker->title,
+    ];
+});
+
+/*
+|--------------------------------------------------------------------------
+| Factory de Salas
+|--------------------------------------------------------------------------
+*/
+$factory->define(App\Models\Sala::class, function (Faker\Generator $faker) {
+    return [
+        'tipo' => $faker->numberBetween(0, 3),
     ];
 });
