@@ -16,7 +16,7 @@ class CreateRevistasTable extends Migration
             $table->bigIncrements('id');
             $table->string('referencia');
             $table->string('categoria');
-            $table->unsignedBigInteger('publicacao_id')->index('publicacao_idx');
+            $table->unsignedBigInteger('publicacao_id')->index('publicacao_idx1');
         });
     }
 

@@ -54,7 +54,7 @@ trait LogTrait
      */
     private function excluirArquivo(){
         $dataAtual = new \DateTime(date('Y-m-d'));
-        $arquivos = array_diff(scandir(storage_path("logs")), array('..', '.', '.gitignore'));
+        $arquivos = array_diff(scandir(storage_path("logs")), array('..', '.', '.gitignore', 'laravel.log'));
 
         foreach ($arquivos as $key => $value)
         {
