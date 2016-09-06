@@ -18,11 +18,11 @@
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
                 <label for="recurso">Selecione o professor</label>
-                <select class="js-states form-control js-example-basic-multiple" name="reservaRecurso" id="reservaRecurso">
+                <select class="js-states form-control js-example-basic-multiple" name="funcionario" id="funcionario">
                     <optgroup label="Professor">
                     @if(count($reservaRecurso['funcionarios']) > 0)
                         @foreach($reservaRecurso['funcionarios'] as $r)
-                            <option value="{{ $r->id }}">{{ $r->nome }}</option>
+                            <option value="{{ $r->id }}">{{ $r->user->nome }}</option>
                         @endforeach
                     @else
                         <option value="" selected>Cadastre um Funcionário Primeiro</option>
@@ -35,7 +35,7 @@
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
                 <label for="recurso">Selecione o recurso</label>
-              <select class="js-states form-control js-example-basic-multiple" name="reservaRecurso" id="reservaRecurso">
+              <select class="js-states form-control js-example-basic-multiple" name="recurso" id="recurso">
                     <optgroup label="Recursos">
                         @if(count($reservaRecurso['recursos']) > 0)
                             @foreach($reservaRecurso['recursos'] as $r)
@@ -49,10 +49,20 @@
             </div>
         </div>
 
+
+        <div class="form-group">
+            <div class="col-lg-6 col-lg-offset-3 col-sm-12">
+                <label for="dataReserva">Selecione a data da reserva</label>
+            </div>
+            <div class="col-lg-6 col-lg-offset-3 col-sm-12">
+                <input class="form-control date" type="date" id="data_reserva" name="data_reserva">
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
                 <label for="recurso">Selecione o horário</label>
-                <select class="js-states form-control js-example-basic-multiple" multiple="multiple">
+                <select class="js-states form-control js-example-basic-multiple" multiple="multiple" name="aula" id="aula">
                     <optgroup label="Manhã">
                         <option value="1">1 M</option>
                         <option value="2">2 M</option>
