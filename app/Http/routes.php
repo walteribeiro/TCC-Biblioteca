@@ -101,6 +101,18 @@ Route::get('/',                    ['as'=>'home.index',  'uses'=>'HomeController
     });
 });
 
+Route::group(['prefix' => 'reserva-recurso'], function(){
+
+    Route::get('/',                ['as'=>'reserva-recurso.index',  'uses'=>'ReservaRecursoController@index']);
+    Route::get('/novo',            ['as'=>'reserva-recurso.create', 'uses'=>'ReservaRecursoController@create']);
+    Route::post('/gravar',         ['as'=>'reserva-recurso.store',  'uses'=>'ReservaRecursoController@store']);
+    Route::get('/detalhes/{id}',   ['as'=>'reserva-recurso.show',   'uses'=>'ReservaRecursoController@show']);
+    Route::get('/editar/{id}',     ['as'=>'reserva-recurso.edit',   'uses'=>'ReservaRecursoController@edit']);
+    Route::put('/atualizar/{id}',  ['as'=>'reserva-recurso.update', 'uses'=>'ReservaRecursoController@update']);
+    Route::delete('/remover/{id}', ['as'=>'reserva-recurso.delete', 'uses'=>'ReservaRecursoController@destroy']);
+
+});
+
 // Authentication Routes...
 Route::get('login', 'Auth\AuthController@showLoginForm');
 Route::post('login', 'Auth\AuthController@login');

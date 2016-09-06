@@ -164,7 +164,6 @@
 <script src="{{asset('assets/js/fastclick.js')}}"></script>
 <script src="{{asset('assets/js/toastr.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
-
 @yield('scripts')
 
 </body>

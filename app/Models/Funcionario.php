@@ -17,4 +17,8 @@ class Funcionario extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function reservaRecurso(){
+      return $this->hasMany(ReservaRecurso::class);
+    }
 }

@@ -24,4 +24,8 @@ class Recurso extends Model
     {
         return $this->hasOne(Sala::class);
     }
+
+    public function reservaRecurso(){
+        return $this->hasMany(ReservaRecurso::class);
+    }
 }

@@ -34,6 +34,10 @@ class ForeignKeyTable extends Migration
         Schema::table('salas', function (Blueprint $table) {
             $table->foreign('recurso_id', 'salas_1_fk')->references('id')->on('recursos')->onUpdate('cascade')->onDelete('cascade');
         });
+        Schema::table('reserva_recursos', function (Blueprint $table) {
+            $table->foreign('funcionario_id', 'reserva_recursos_1_fk')->references('id')->on('funcionarios')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('recurso_id', 'reserva_recursos_2_fk')->references('id')->on('recursos')->onUpdate('cascade')->onDelete('restrict');
+        });
     }
 
     /**
@@ -64,6 +68,10 @@ class ForeignKeyTable extends Migration
         });
         Schema::table('salas', function (Blueprint $table) {
             $table->dropForeign('salas_1_fk');
+        });
+        Schema::table('reserva_recursos', function (Blueprint $table) {
+            $table->dropForeign('reserva_recursos_1_fk');
+            $table->dropForeign('reserva_recursos_2_fk');
         });
     }
 }
