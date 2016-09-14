@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ReservaRecursoRequest;
 use App\Repositories\ReservaRecursoRepository;
+use Faker\Provider\DateTime;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -22,7 +23,13 @@ class ReservaRecursoController extends Controller
     public function index()
     {
         $reservaRecurso = $this->repository->index();
+        //dd($reservaRecurso);
         return view('reserva-recurso.index', compact('reservaRecurso'));
+    }
+
+    public function getdata()
+    {
+        return $this->repository->getData();
     }
 
 
@@ -39,7 +46,7 @@ class ReservaRecursoController extends Controller
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
             return redirect()->route('reserva-recurso.index');
         }
-        return redirect()->back();
+        return json_encode($reservaRecursoRequest->all());
     }
 
     public function show($id)

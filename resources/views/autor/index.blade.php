@@ -24,6 +24,11 @@
                     <td>{{$a->nome}}</td>
                     <td>{{$a->sobrenome}}</td>
                     <td class="text-center">
+                        <a href="#show" class="btn btn-sm btn-success"
+                           data-nome="{{ $a->nome }}"
+                           data-sobrenome="{{ $a->sobrenome }}">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
                         <a href="{{ route('autor.edit', $a->id)}}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span></a>
                         <a href="#modal" class="btn btn-sm btn-danger" data-delete="{{ $a->nome }}" data-id="{{ $a->id }}">
@@ -61,6 +66,8 @@
         </div>
     <!-- Fim Modal Exclusão -->
 
+    @include('layout.show-modal')
+
 @endsection
 @section('scripts')
 
@@ -84,6 +91,22 @@
 
                 $('#formexcluir').attr("action", "autores/remover/"+id);
                 deleteLogModal.modal('show');
+            });
+        });
+
+        $(function (){
+            var showModal = $('div#show-modal');
+
+            $("a[href='#show']").click(function(event) {
+                event.preventDefault();
+                var nome = $(this).data('nome');
+                var sobrenome = $(this).data('sobrenome');
+
+                showModal.find('.modal-body').html(
+                        'Autor: ' + nome.toUpperCase() + ' ' + sobrenome.toUpperCase()
+                );
+
+                showModal.modal('show');
             });
         });
 

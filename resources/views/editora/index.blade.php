@@ -22,6 +22,10 @@
                     <td>{{$e->id}}</td>
                     <td>{{$e->nome}}</td>
                     <td class="text-center">
+                        <a href="#show"
+                           data-nome="{{ $e->nome }}" class="btn btn-sm btn-success">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
                         <a href="{{ route('editora.edit', $e->id)}}" class="btn btn-sm btn-warning">
                             <span class="glyphicon glyphicon-pencil"></span></a>
                         <a href="#modal" class="btn btn-sm btn-danger" data-delete="{{ $e->nome }}" data-id="{{ $e->id }}">
@@ -59,6 +63,8 @@
         </div>
         <!-- Fim Modal Exclusão -->
 
+    @include('layout.show-modal')
+
 @endsection
 @section('scripts')
 
@@ -85,7 +91,22 @@
             });
         });
 
-        $(document).ready(function () {
+        $(function (){
+            var showModal = $('div#show-modal');
+
+            $("a[href='#show']").click(function(event) {
+                event.preventDefault();
+                var nome = $(this).data('nome');
+
+                showModal.find('.modal-body').html(
+                        'Editora: ' + nome.toUpperCase()
+                );
+
+                showModal.modal('show');
+            });
+        });
+
+        $(function () {
             $('#editoras').DataTable({
                 "stateSave": true,
                 "pagingType": "full_numbers",

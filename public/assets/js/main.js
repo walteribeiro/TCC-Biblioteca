@@ -26167,7 +26167,7 @@ var _chart2 = _interopRequireDefault(_chart);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-    template: '<div>' + '<canvas v-el:canvas></canvas>' + '</div>',
+    template: '<div class="col-lg-10 col-lg-offset-1">' + '<canvas v-el:canvas></canvas>' + '</div>',
 
     props: {
         url: {}
@@ -26195,11 +26195,12 @@ exports.default = {
             return this.$http.get(this.url);
         },
         render: function render(data) {
+            console.log(data);
             console.log(Object.keys(data).map(function (key) {
                 return data[key];
             }));
             var conteudo = {
-                labels: [Object.keys(data)],
+                //                labels: [Object.keys(data)],
                 datasets: [{
                     label: "Alerta",
                     backgroundColor: "rgba(255,99,132,0.2)",

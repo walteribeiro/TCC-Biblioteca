@@ -36,7 +36,7 @@ class EditoraController extends Controller
         $retorno = $this->repository->store($editoraRequest->all());
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
-            $this->gravarLog("Editora adicionada!", "informacao", ["Usuario" => "Walter", "Editora" => $retorno->nome]);
+            $this->gravarLog("Editora adicionada!", "informacao", ["Editora" => $retorno->nome]);
             return redirect()->route('editora.index');
         }
         return redirect()->back();
@@ -58,7 +58,7 @@ class EditoraController extends Controller
         $retorno = $this->repository->update($editoraRequest->all(), $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
-            $this->gravarLog("Editora alterada!", "atencao", ["Usuario" => "Walter", "Editora" => $retorno->nome]);
+            $this->gravarLog("Editora alterada!", "atencao", ["Editora" => $retorno->nome]);
             return redirect()->route('editora.index');
         }
         return redirect()->back();

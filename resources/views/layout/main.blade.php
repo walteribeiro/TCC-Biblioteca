@@ -5,10 +5,11 @@
     <title>SGBR</title>
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/nprogress.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/toastr.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 
     @yield('header')
+    <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
 </head>
 <body class="nav-md">
 <div class="container body">
@@ -43,41 +44,28 @@
                                     <li><a href="{{ route('sala.index') }}">Salas</a></li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-user"></i> Usuários <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="{{ url('funcionarios') }}">Funcionários</a></li>
-
-                                </ul>
+                            @if(Auth::user()->tipo_acesso == 0)
+                                <li><a><i class="fa fa-user"></i> Usuários <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ url('funcionarios') }}">Funcionários</a></li>
+                                    </ul>
                             </li>
+
                             <li><a><i class="fa fa-low-vision"></i> Transações <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="{{ route('log-viewer::dashboard') }}"><i class="fa fa-dashboard"></i> Sumarização</a></li>
                                     <li><a href="{{ route('log-viewer::logs.list') }}"><i class="fa fa-eye"></i> Logs</a></li>
                                 </ul>
                             </li>
-                            <!-- li><a><i class="fa fa-users"></i> Leitores <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="#">Alunos</a></li>
-                                    <li><a href="#">Funcionários</a></li>
-                                    <li><a href="index3.html">Professores</a></li>
-                                </ul>
-                            </li>
+                            @endif
 
                             <li><a><i class="fa fa-wrench"></i> Gerenciar <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="#">Emprestimos</a></li>
-                                    <li><a href="#">Reservas</a></li>
-                                    <li><a href="#">Reservas de Recursos</a></li>
+                                    {{--<li><a href="#">Emprestimos</a></li>--}}
+                                    {{--<li><a href="#">Reservas</a></li>--}}
+                                    <li><a href="{{ route('reserva-recurso.index') }}">Reservas de Recursos</a></li>
                                 </ul>
                             </li>
-
-                            <li><a><i class="fa fa-map"></i> Recursos <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="#">Mapas</a></li>
-                                    <li><a href="#">Salas</a></li>
-                                    <li><a href="#">Data Shows</a></li>
-                                </ul>
-                            </li -->
                         </ul>
                     </div>
                 </div>
@@ -118,7 +106,10 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Sair do sistema</a></li>
+                                    <li>
+                                        <a data-toggle="modal" data-target="#change-user-modal" ><i class="fa fa-btn fa-refresh"></i> Mudar de usuário</a>
+                                    </li>
                                 </ul>
                             </li>
                             @endif
@@ -156,16 +147,21 @@
             <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
+
+        @include('layout.modal-change-user')
     </div>
 </div>
 
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/js/fastclick.js')}}"></script>
+<script src="{{asset('assets/js/nprogress.js')}}"></script>
 <script src="{{asset('assets/js/toastr.js')}}"></script>
-<script src="{{asset('assets/js/custom.js')}}"></script>
+
+@include('layout.includes.validate-request')
+
 @yield('scripts')
 
+<script src="{{asset('assets/js/custom.js')}}"></script>
 </body>
-
 </html>

@@ -104,23 +104,24 @@ Route::get('/',                    ['as'=>'home.index',  'uses'=>'HomeController
         Route::delete('/remover/{id}', ['as'=>'sala.delete', 'uses'=>'SalaController@destroy']);
 
     });
-});
 
-Route::group(['prefix' => 'reserva-recurso'], function(){
+    Route::group(['prefix' => 'reserva-recurso'], function(){
 
-    Route::get('/',                ['as'=>'reserva-recurso.index',  'uses'=>'ReservaRecursoController@index']);
-    Route::get('/novo',            ['as'=>'reserva-recurso.create', 'uses'=>'ReservaRecursoController@create']);
-    Route::post('/gravar',         ['as'=>'reserva-recurso.store',  'uses'=>'ReservaRecursoController@store']);
-    Route::get('/detalhes/{id}',   ['as'=>'reserva-recurso.show',   'uses'=>'ReservaRecursoController@show']);
-    Route::get('/editar/{id}',     ['as'=>'reserva-recurso.edit',   'uses'=>'ReservaRecursoController@edit']);
-    Route::put('/atualizar/{id}',  ['as'=>'reserva-recurso.update', 'uses'=>'ReservaRecursoController@update']);
-    Route::delete('/remover/{id}', ['as'=>'reserva-recurso.delete', 'uses'=>'ReservaRecursoController@destroy']);
+        Route::get('/',                ['as'=>'reserva-recurso.index',  'uses'=>'ReservaRecursoController@index']);
+        Route::get('/eventos',         ['as'=>'reserva-recurso.data',   'uses'=>'ReservaRecursoController@getData']);
+        Route::get('/novo',            ['as'=>'reserva-recurso.create', 'uses'=>'ReservaRecursoController@create']);
+        Route::post('/gravar',         ['as'=>'reserva-recurso.store',  'uses'=>'ReservaRecursoController@store']);
+        Route::get('/detalhes/{id}',   ['as'=>'reserva-recurso.show',   'uses'=>'ReservaRecursoController@show']);
+        Route::get('/editar/{id}',     ['as'=>'reserva-recurso.edit',   'uses'=>'ReservaRecursoController@edit']);
+        Route::put('/atualizar/{id}',  ['as'=>'reserva-recurso.update', 'uses'=>'ReservaRecursoController@update']);
+        Route::delete('/remover/{id}', ['as'=>'reserva-recurso.delete', 'uses'=>'ReservaRecursoController@destroy']);
 
+    });
 });
 
 // Authentication Routes...
 Route::get('login', 'Auth\AuthController@showLoginForm');
-Route::post('login', 'Auth\AuthController@login');
+Route::post('login', 'Auth\AuthController@loginCustom');
 Route::get('logout', 'Auth\AuthController@logout');
 
 // API Gráficos

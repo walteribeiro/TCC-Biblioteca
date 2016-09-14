@@ -1,7 +1,7 @@
 import Chart from 'chart.js';
 
 export default{
-    template: '<div>' +
+    template: '<div class="col-lg-10 col-lg-offset-1">' +
                 '<canvas v-el:canvas></canvas>' +
               '</div>',
 
@@ -31,6 +31,7 @@ export default{
         },
 
         render(data){
+            console.log(data);
             console.log(Object.keys(data).map(key => data[key]));
             var conteudo = {
                 labels: [Object.keys(data)],

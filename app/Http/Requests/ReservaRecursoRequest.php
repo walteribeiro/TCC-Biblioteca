@@ -3,11 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Models\ReservaRecurso;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Validator;
-
 
 class ReservaRecursoRequest extends Request
 {
@@ -26,11 +21,29 @@ class ReservaRecursoRequest extends Request
      *
      * @return array
      */
-
     public function rules()
     {
+        switch ($this->method()) {
+            case 'POST': {
+                return [
+                    'recurso' => 'required',
+                    'funcionario' => 'required'
+                ];
+            }
 
+            case 'PUT':
+            case 'PATCH': {
+                return [
 
+                ];
+            }
+
+            default: {
+                return [];
+            }
+        }
+
+        /*
         Validator::extend('composite_unique', function ($attribute, $value, $parameters, $validator) {
 
             // remove first parameter and assume it is the table name
@@ -66,6 +79,6 @@ class ReservaRecursoRequest extends Request
             default: {
                 return [];
             }
-        }
+        }*/
     }
 }

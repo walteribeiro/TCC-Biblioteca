@@ -28,10 +28,28 @@
                     <td>{{$l->publicacao->edicao}}</td>
                     <td>{{$l->ano}}</td>
                     <td class="text-center">
+                        <a href="#show" class="btn btn-sm btn-success"
+                           data-titulo="{{ $l->publicacao->titulo }}"
+                           data-subtitulo="{{ $l->subtitulo }}"
+                           data-descricao="{{ $l->publicacao->descricao }}"
+                           data-editora="{{ $l->publicacao->editora->nome }}"
+                           data-autor="{{ $l->autor->nome }}"
+                           data-edicao="{{ $l->publicacao->edicao }}"
+                           data-origem="{{ $l->publicacao->origem }}"
+                           data-ano="{{ $l->ano }}"
+                           data-isbn="{{ $l->isbn }}"
+                           data-cdu="{{ $l->cdu }}"
+                           data-cdd="{{ $l->cdd }}">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </a>
                         <a href="{{ route('livro.edit', $l->id)}}" class="btn btn-sm btn-warning">
-                            <span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="#modal" class="btn btn-sm btn-danger" data-delete="{{ $l->publicacao->titulo }}" data-code="{{ $l->subtitulo }}" data-id="{{ $l->publicacao->id }}">
-                            <span class="glyphicon glyphicon-trash"></span></a>
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                        <a href="#modal" class="btn btn-sm btn-danger"
+                           data-delete="{{ $l->publicacao->titulo }}" data-code="{{ $l->subtitulo }}"
+                           data-id="{{ $l->publicacao->id }}">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
                     </td>
                 </tr>
             @endforeach
@@ -65,6 +83,8 @@
         </div>
         <!-- Fim Modal Exclusão -->
 
+    @include('layout.show-modal')
+
 @endsection
 @section('scripts')
 
@@ -89,6 +109,68 @@
 
                 $('#formexcluir').attr("action", "livros/remover/"+id);
                 deleteLogModal.modal('show');
+            });
+        });
+
+        $(function (){
+            var showModal = $('div#show-modal');
+
+            $("a[href='#show']").click(function(event) {
+                event.preventDefault();
+                var titulo = $(this).data('titulo');
+                var subtitulo = $(this).data('subtitulo');
+                var descricao = $(this).data('descricao');
+                var editora = $(this).data('editora');
+                var autor = $(this).data('autor');
+                var edicao = $(this).data('edicao');
+                var origem = $(this).data('origem');
+                var ano = $(this).data('ano');
+                var isbn = $(this).data('isbn');
+                var cdu = $(this).data('cdu');
+                var cdd = $(this).data('cdd');
+
+                showModal.find('.modal-body').html(
+                        '<div class="row">' +
+                        '<div class="col-md-2">Título:</div>' +
+                        '<div class="col-md-10"><p>'+ titulo + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Subtitulo:</div>' +
+                        '<div class="col-md-10"><p>'+ subtitulo + '</p></div>' +
+                        '</div>' +
+                        '<div class="row">' +
+                        '<div class="col-md-2">Descrição:</div>' +
+                        '<div class="col-md-10"><p>'+ descricao + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Editora:</div>' +
+                        '<div class="col-md-10"><p>'+ editora + '</p></div>' +
+                        '</div>' +
+                        '<div class="row">' +
+                        '<div class="col-md-2">Autor:</div>' +
+                        '<div class="col-md-10"><p>'+ autor + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Edição:</div>' +
+                        '<div class="col-md-10"><p>'+ edicao + '</p></div>' +
+                        '</div>' +
+                        '<div class="row">' +
+                        '<div class="col-md-2">Origem:</div>' +
+                        '<div class="col-md-2"><p>'+ origem + '</p></div>' +
+                        '<div class="col-md-1">Ano:</div>' +
+                        '<div class="col-md-2"><p>'+ ano + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">ISBN:</div>' +
+                        '<div class="col-md-2"><p>'+ isbn + '</p></div>' +
+                        '<div class="col-md-1">CDU:</div>' +
+                        '<div class="col-md-2"><p>'+ cdu + '</p></div>' +
+                        '<div class="col-md-1">CDD:</div>' +
+                        '<div class="col-md-2"><p>'+ cdd + '</p></div>' +
+                        '</div>'
+                );
+
+                showModal.modal('show');
             });
         });
 

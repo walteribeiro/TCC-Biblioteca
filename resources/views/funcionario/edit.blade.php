@@ -116,7 +116,6 @@
 
 @endsection
 @section('scripts')
-    @include('layout.includes.validate-request')
     <script src="{{ asset("assets/js/switchery.min.js")}}"></script>
     <script src="{{ asset("assets/js/jquery.inputmask.bundle.min.js")}}"></script>
     <script>

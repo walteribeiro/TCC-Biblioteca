@@ -59,9 +59,9 @@
             </div>
 
             <div class="col-lg-3">
-                <label for="edicao">Edicão</label>
+                <label for="edicao">Edição</label>
                 <input type="text" class="form-control" id="edicao" name="edicao"
-                       placeholder="Edicão" value="{{ old('edicao') }}">
+                       placeholder="Edição" value="{{ old('edicao') }}">
             </div>
         </div>
         <br>
@@ -73,7 +73,4 @@
         </div>
     </form>
 
-@endsection
-@section('scripts')
-    @include('layout.includes.validate-request')
 @endsection
