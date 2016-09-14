@@ -14,10 +14,11 @@ class CreateReservaRecursosTable extends Migration
     {
         Schema::create('reserva_recursos', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('data_reserva');
-            $table->string('aula');
+            $table->date('data_reserva');
+            $table->integer('aula');
             $table->unsignedBigInteger('funcionario_id')->index('funcionario_idx');
             $table->unsignedBigInteger('recurso_id')->index('recurso_idx');
+            $table->unique(['data_reserva','aula']);
             $table->timestamps();
         });
     }

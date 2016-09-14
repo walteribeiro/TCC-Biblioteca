@@ -62,7 +62,7 @@
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
                 <label for="recurso">Selecione o horário</label>
-                <select class="js-states form-control js-example-basic-multiple" multiple="multiple" name="aula" id="aula">
+                <select class="js-states form-control js-example-basic-multiple" name="aula[]" id="aula">
                     <optgroup label="Manhã">
                         <option value="1">1 M</option>
                         <option value="2">2 M</option>
@@ -101,6 +101,7 @@
     </form>
 @endsection
 @section('scripts')
+    @include('layout.includes.validate-request')
 
     <script src="{{asset('assets/js/select2.full.min.js')}}"></script>
     <script src="{{asset('assets/js/pt-BR.js')}}"></script>

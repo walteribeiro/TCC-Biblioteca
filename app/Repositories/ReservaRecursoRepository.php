@@ -30,29 +30,35 @@ class ReservaRecursoRepository
         // TODO: Implement show() method.
     }
 
-    public function create(){
+    public function create()
+    {
         return [
-            'funcionarios'=> $this->funcionario->all(),
-            'recursos'=> $this->recurso->all()
+            'funcionarios' => $this->funcionario->where('tipo_funcionario', 1)->get(),
+            'recursos' => $this->recurso->all()
         ];
     }
 
     public function store($data)
     {
         //Persistindo dados da request no reservaRecurso
-        $this->reservaRecurso->data_reserva = $data['data_reserva'];
-        $this->reservaRecurso->aula = $data['aula'];
-        $this->reservaRecurso->funcionario_id = $data['funcionario'];
-        $this->reservaRecurso->recurso_id = $data['recurso'];
-        $this->reservaRecurso->save();
+        $aulas = $data['aula'];
+        foreach ($aulas as $key => $value) {
 
+            $this->reservaRecurso = new ReservaRecurso();
+            $this->reservaRecurso->data_reserva = $data['data_reserva'];
+            $this->reservaRecurso->aula = $value;
+            $this->reservaRecurso->funcionario_id = $data['funcionario'];
+            $this->reservaRecurso->recurso_id = $data['recurso'];
+            $this->reservaRecurso->save();
+        }
         return $this->reservaRecurso;
     }
 
-    public function edit(){
+    public function edit()
+    {
         return [
-            'funcionarios'=> $this->funcionario->all(),
-            'recursos'=> $this->recurso->all()
+            'funcionarios' => $this->funcionario->all(),
+            'recursos' => $this->recurso->all()
         ];
     }
 

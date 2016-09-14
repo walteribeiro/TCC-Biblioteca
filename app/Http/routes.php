@@ -1,5 +1,10 @@
 <?php
 
+
+Event::listen('illuminate.query', function($query){
+    var_dump($query);
+});
+
 Route::group(['middleware' => ['auth']], function(){
 
 Route::get('/',                    ['as'=>'home.index',  'uses'=>'HomeController@index']);
