@@ -40,7 +40,7 @@ class ReservaRecursoRepository
 
             $e = array();
             $e['id'] = $value['id'];
-            $e['title'] = $value->funcionario->user->nome . " - " . $this->getAula($value->aula);
+            $e['title'] = $value->recurso->descricao . " - " . $this->getAula($value->aula);
             $e['start'] = $value['data_reserva'];
             $e['end'] = $value['data_reserva'];
 

@@ -62,6 +62,7 @@
                     right: 'month,basicWeek,basicDay'
                 },
 
+                defaultView: 'basicWeek',
                 editable: true,
                 eventLimit: true,
                 selectable: true,
