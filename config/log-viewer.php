@@ -35,7 +35,7 @@ return [
         'attributes' => [
             'prefix'     => 'dashboard-logs',
 
-            'middleware' => 'web',
+            'middleware' => null,
         ],
     ],
 
@@ -67,7 +67,7 @@ return [
      | ------------------------------------------------------------------------------------------------
      */
     'menu'  => [
-        'filter-route'  => 'log-viewer::logs.filter',
+        'filter-route'  => 'log.filter',
 
         'icons-enabled' => true,
     ],

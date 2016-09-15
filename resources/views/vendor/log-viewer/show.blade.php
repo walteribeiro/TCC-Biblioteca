@@ -4,7 +4,7 @@
     @include('log-viewer::_template.style')
 @endsection
 @section('conteudo')
-    <h3 class="page-header">Log [{{ $log->date }}] <a href="{{ route('log-viewer::logs.list') }}" class="btn btn-default pull-right">Voltar</a></h3>
+    <h3 class="page-header">Log [{{ $log->date }}] <a href="{{ route('log.list') }}" class="btn btn-default pull-right">Voltar</a></h3>
 
     <div class="row">
         <div class="col-md-2">
@@ -16,7 +16,7 @@
                     Informações :
 
                     <div class="group-btns pull-right">
-                        <a href="{{ route('log-viewer::logs.download', [$log->date]) }}" class="btn btn-xs btn-success">
+                        <a href="{{ route('log.download', [$log->date]) }}" class="btn btn-xs btn-success">
                             <i class="fa fa-download"></i> DOWNLOAD
                         </a>
                         <a href="#delete-log-modal" class="btn btn-xs btn-danger" data-toggle="modal">
@@ -135,7 +135,7 @@
     {{-- DELETE MODAL --}}
     <div id="delete-log-modal" class="modal fade">
         <div class="modal-dialog">
-            <form id="delete-log-form" action="{{ route('log-viewer::logs.delete') }}" method="POST">
+            <form id="delete-log-form" action="{{ route('log.delete') }}" method="POST">
                 <input type="hidden" name="_method" value="DELETE">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="date" value="{{ $log->date }}">
@@ -179,7 +179,7 @@
                         submitBtn.button('reset');
                         if (data.result === 'success') {
                             deleteLogModal.modal('hide');
-                            location.replace("{{ route('log-viewer::logs.list') }}");
+                            location.replace("{{ route('log.list') }}");
                         }
                         else {
                             alert('OOPS ! This is a lack of coffee exception !')

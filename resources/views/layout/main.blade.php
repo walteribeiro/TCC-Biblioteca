@@ -54,8 +54,8 @@
 
                                     <li><a><i class="fa fa-low-vision"></i> Transações <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="{{ route('log-viewer::dashboard') }}"><i class="fa fa-dashboard"></i> Sumarização</a></li>
-                                            <li><a href="{{ route('log-viewer::logs.list') }}"><i class="fa fa-eye"></i> Logs</a></li>
+                                            <li><a href="{{ route('log.index') }}"><i class="fa fa-dashboard"></i> Sumarização</a></li>
+                                            <li><a href="{{ route('log.list') }}"><i class="fa fa-eye"></i> Logs</a></li>
                                         </ul>
                                     </li>
                                 @endif
