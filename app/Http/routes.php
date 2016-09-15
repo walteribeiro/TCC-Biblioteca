@@ -125,8 +125,6 @@ Route::get('/',                    ['as'=>'home.index',  'uses'=>'HomeController
         Route::get('/{date}',          ['as'=>'log.show',      'uses'=>'LogController@show']);
         Route::get('/download/{date}', ['as'=>'log.download',  'uses'=>'LogController@download']);
         Route::get('/{date}/{level}',  ['as'=>'log.filter',    'uses'=>'LogController@showByLevel']);
-
-
         Route::delete('/delete',       ['as'=>'log.delete',    'uses'=>'LogController@delete']);
     });
 });
