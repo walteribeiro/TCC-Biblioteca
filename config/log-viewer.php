@@ -35,7 +35,7 @@ return [
         'attributes' => [
             'prefix'     => 'dashboard-logs',
 
-            'middleware' => null,
+            'middleware' => 'web',
         ],
     ],
 

@@ -62,6 +62,8 @@
                     right: 'month,basicWeek,basicDay'
                 },
 
+                hiddenDays: [0, 6],
+
                 defaultView: 'basicWeek',
                 editable: true,
                 eventLimit: true,
