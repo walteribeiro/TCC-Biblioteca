@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Aluno;
 use App\Models\Funcionario;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -16,5 +17,10 @@ class User extends Authenticatable
     public function funcionario()
     {
         return $this->hasOne(Funcionario::class);
+    }
+
+    public function aluno()
+    {
+        return $this->hasOne(Aluno::class);
     }
 }

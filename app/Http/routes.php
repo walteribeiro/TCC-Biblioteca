@@ -69,6 +69,19 @@ Route::get('/',                    ['as'=>'home.index',  'uses'=>'HomeController
 
     });
 
+    Route::group(['prefix' => 'alunos'], function(){
+
+        Route::get('/',                ['as'=>'aluno.index',  'uses'=>'AlunoController@index']);
+        Route::get('/novo',            ['as'=>'aluno.create', 'uses'=>'AlunoController@create']);
+        Route::post('/gravar',         ['as'=>'aluno.store',  'uses'=>'AlunoController@store']);
+        Route::get('/detalhes/{id}',   ['as'=>'aluno.show',   'uses'=>'AlunoController@show']);
+        Route::get('/editar/{id}',     ['as'=>'aluno.edit',   'uses'=>'AlunoController@edit']);
+        Route::put('/atualizar/{id}',  ['as'=>'aluno.update', 'uses'=>'AlunoController@update']);
+        Route::delete('/remover/{id}', ['as'=>'aluno.delete', 'uses'=>'AlunoController@destroy']);
+
+    });
+
+
     Route::group(['prefix' => 'data-shows'], function(){
 
         Route::get('/',                ['as'=>'data-show.index',  'uses'=>'DataShowController@index']);
@@ -115,6 +128,19 @@ Route::get('/',                    ['as'=>'home.index',  'uses'=>'HomeController
         Route::get('/editar/{id}',     ['as'=>'reserva-recurso.edit',   'uses'=>'ReservaRecursoController@edit']);
         Route::put('/atualizar/{id}',  ['as'=>'reserva-recurso.update', 'uses'=>'ReservaRecursoController@update']);
         Route::delete('/remover/{id}', ['as'=>'reserva-recurso.delete', 'uses'=>'ReservaRecursoController@destroy']);
+
+    });
+
+    Route::group(['prefix' => 'turmas'], function(){
+
+        Route::get('/',                ['as'=>'turma.index',  'uses'=>'TurmaController@index']);
+        Route::get('/eventos',         ['as'=>'turma.data',   'uses'=>'TurmaController@getData']);
+        Route::get('/novo',            ['as'=>'turma.create', 'uses'=>'TurmaController@create']);
+        Route::post('/gravar',         ['as'=>'turma.store',  'uses'=>'TurmaController@store']);
+        Route::get('/detalhes/{id}',   ['as'=>'turma.show',   'uses'=>'TurmaController@show']);
+        Route::get('/editar/{id}',     ['as'=>'turma.edit',   'uses'=>'TurmaController@edit']);
+        Route::put('/atualizar/{id}',  ['as'=>'turma.update', 'uses'=>'TurmaController@update']);
+        Route::delete('/remover/{id}', ['as'=>'turma.delete', 'uses'=>'TurmaController@destroy']);
 
     });
 

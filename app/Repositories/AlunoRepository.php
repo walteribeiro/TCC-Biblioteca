@@ -2,23 +2,23 @@
 
 namespace App\Repositories;
 
-use App\Models\Funcionario;
+use App\Models\Aluno;
 use App\User;
 
-class FuncionarioRepository
+class AlunoRepository
 {
-    protected $funcionario;
+    protected $aluno;
     protected $usuario;
 
-    public function __construct(Funcionario $funcionario, User $usuario)
+    public function __construct(Aluno $aluno, User $usuario)
     {
-        $this->funcionario = $funcionario;
+        $this->aluno = $aluno;
         $this->usuario = $usuario;
     }
 
     public function index()
     {
-        return $this->funcionario->all();
+        return $this->aluno->all();
     }
 
     public function show($id)
@@ -31,6 +31,7 @@ class FuncionarioRepository
         $ativo = $data->input('ativo');
 
         // Persistindo dados da request no usuário
+
         if ($data['username'] == '') {
             $this->usuario->username = null;
         } else {
@@ -46,9 +47,9 @@ class FuncionarioRepository
         $this->usuario->save();
 
         //Persistindo dados da request no funcionário
-        $this->funcionario->num_registro = $data['numeroRegistro'];
-        $this->funcionario->tipo_funcionario = $data['tipoFuncionario'];
-        $this->usuario->funcionario()->save($this->funcionario);
+        $this->aluno->matricula = $data['matricula'];
+        $this->aluno->turma = $data['turma'];
+        $this->usuario->aluno()->save($this->aluno);
 
         return $this->usuario;
     }
@@ -69,12 +70,12 @@ class FuncionarioRepository
         $this->usuario->telefone = $data['telefone'];
         $this->usuario->telefone2 = $data['telefone2'];
         $this->usuario->email = $data['email'];
-        $this->usuario->ativo = ($ativo != null ?true:false);
+        $this->usuario->ativo = ($ativo != null ? true : false);
 
-        //Atualizando dados da request no funcionario
-        $this->usuario->funcionario()->update([
-            'num_registro' => $data['numeroRegistro'],
-            'tipo_funcionario' => $data['tipoFuncionario']
+        //Atualizando dados da request no aluno
+        $this->usuario->aluno()->update([
+            'matricula' => $data['matricula'],
+            'turma' => $data['turma']
         ]);
 
         $this->usuario->save();
@@ -89,6 +90,6 @@ class FuncionarioRepository
 
     public function findById($id)
     {
-        return $this->funcionario->find($id);
+        return $this->aluno->find($id);
     }
 }

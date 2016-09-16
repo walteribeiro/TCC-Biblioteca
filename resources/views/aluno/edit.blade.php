@@ -12,22 +12,27 @@
 @endsection
 @section('conteudo')
 
-    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-6 col-lg-offset-3 col-sm-12">Cadastro de funcionário</h3>
+    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-6 col-lg-offset-3 col-sm-12">Edição de aluno</h3>
 
-    <form class="form-horizontal" action="{{ route('funcionario.store') }}" method="post">
+    <form class="form-horizontal" action="{{ route('aluno.update', $aluno->user->id) }}" method="post">
 
+        {{ method_field('put') }}
         {!! csrf_field() !!}
 
         <div class="form-group">
             <div class="col-lg-5 col-lg-offset-3 col-sm-12">
-                <label for="nome">Nome do funcionário</label>
+                <label for="nome">Nome do aluno</label>
                 <input type="text" class="form-control" id="nome" name="nome"
-                       placeholder="Nome do funcionário" autofocus value="{{ old('nome') }}">
+                       placeholder="Nome do aluno" autofocus value="{{ $aluno->user->nome }}">
             </div>
 
             <div class="col-lg-2 col-sm-2">
                 <label>
-                    <input type="checkbox" class="switch" checked value="true" name="ativo" id="ativo"/> Ativo
+                    @if($aluno->user->ativo == 1)
+                        <input type="checkbox" class="switch" checked value="true" name="ativo" id="ativo"/> Ativo
+                    @else
+                        <input type="checkbox" class="switch" value="false" name="ativo" id="ativo"/> Ativo
+                    @endif
                 </label>
             </div>
         </div>
@@ -36,19 +41,19 @@
             <div class="col-lg-2 col-lg-offset-3 col-sm-6">
                 <label for="telefone">Telefone</label>
                 <input type="text" class="form-control" id="telefone" name="telefone"
-                       placeholder="Telefone" value="{{ old('telefone') }}" data-inputmask="'mask': '(99) 99999-9999'">
+                       placeholder="Telefone" value="{{ $aluno->user->telefone }}" data-inputmask="'mask': '(99) 9999-9999'">
             </div>
 
             <div class="col-lg-2 col-sm-6">
                 <label for="telefone2">Telefone 2</label>
                 <input type="text" class="form-control" id="telefone2" name="telefone2"
-                       placeholder="Telefone 2" value="{{ old('telefone2') }}" data-inputmask="'mask': '(99) 99999-9999'">
+                       placeholder="Telefone 2" value="{{ $aluno->user->telefone2 }}" data-inputmask="'mask': '(99) 99999-9999'">
             </div>
 
             <div class="col-lg-2 col-sm-6">
-                <label for="numRegistro">Nº registro</label>
-                <input type="text" class="form-control" id="numeroRegistro" name="numeroRegistro"
-                       placeholder="Nº registro" value="{{ old('numeroRegistro') }}">
+                <label for="matricula">Matrícula</label>
+                <input type="text" class="form-control" id="matricula" name="matricula"
+                       placeholder="Matricula" value="{{ $aluno->matricula }}">
             </div>
         </div>
 
@@ -56,24 +61,22 @@
             <div class="col-lg-4 col-lg-offset-3 col-sm-6">
                 <label for="email">Email</label>
                 <input type="text" class="form-control" id="email" name="email"
-                       placeholder="Email" value="{{ old('email') }}">
+                       placeholder="Email" value="{{ $aluno->user->email }}">
             </div>
 
-            <div class="col-lg-2 col-sm-6">
-                <label for="tipoFuncionario">Tipo de funcionário</label>
-                <select class="form-control" name="tipoFuncionario" id="tipoFuncionario">
-                    <option value="0">Geral</option>
-                    <option value="1">Professor</option>
-                    <option value="2">Bibliotecário</option>
-                </select>
+            <div class="form-group">
+                <div class="col-lg-2 col-sm-6">
+                    <label for="turma">Turma</label>
+                    <input type="text" class="form-control" id="turma" name="turma"
+                           placeholder="Turma" value="{{ $aluno->turma }}">
+                </div>
             </div>
-        </div>
 
         <div class="form-group">
             <div class="col-lg-2 col-lg-offset-3 col-sm-6">
                 <label for="usuario">Nome de usuário</label>
                 <input type="text" class="form-control" id="username" name="username"
-                       placeholder="Nome de usuário" value="{{ old('username') }}">
+                       placeholder="Nome de usuário" value="{{ $aluno->user->username }}">
             </div>
 
             <div class="col-lg-2 col-sm-6">
@@ -83,16 +86,17 @@
             </div>
 
             <div class="col-lg-2 col-sm-6">
-                <label for="confirmarSenha">Confirmar senha</label>
+                <label for="confirmarSenha">Confirmar Senha</label>
                 <input type="password" class="form-control" id="senha_confirmation" name="senha_confirmation"
-                       placeholder="Confirmar senha">
+                       placeholder="Confirma senha">
             </div>
         </div>
+
         <br>
         <div class="form-group">
             <div class="col-lg-3 col-lg-offset-3">
                 <button type="submit" class="btn btn-primary"><em class="fa fa-save"></em> Gravar</button>
-                <a href="{{ route('funcionario.index') }}" class="btn btn-default"><em class="fa fa-undo"></em>
+                <a href="{{ route('aluno.index') }}" class="btn btn-default"><em class="fa fa-undo"></em>
                     Voltar</a>
             </div>
         </div>
