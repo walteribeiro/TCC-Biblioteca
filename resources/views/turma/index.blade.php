@@ -94,11 +94,11 @@
             $("a[href='#modal']").click(function(event) {
                 event.preventDefault();
                 var id = $(this).data('id');
-                var descricao = $(this).data('delete');
-                var subtitulo = $(this).data('code');
+                var serie = $(this).data('delete');
+                var letra_turma = $(this).data('delete');
 
                 deleteLogModal.find('.modal-body h5').html(
-                        'Você tem certeza que deseja <span class="label label-danger">EXCLUIR</span> a turma <br><br><span class="label label-primary">' + descricao.toUpperCase() + ' - ' + subtitulo.toUpperCase() + '</span> ?'
+                        'Você tem certeza que deseja <span class="label label-danger">EXCLUIR</span> a turma <br><br><span class="label label-primary">' + serie + ' - ' + letra_turma + '</span> ?'
                 );
 
                 $('#formexcluir').attr("action", "turmas/remover/"+id);

@@ -47,7 +47,7 @@ class TurmaRepository
             'letra_turma' => $data['letraTurma'],
         ]);
 
-        $this->turma->turma->save();
+        $this->turma->save();
 
         return $this->turma;
     }
