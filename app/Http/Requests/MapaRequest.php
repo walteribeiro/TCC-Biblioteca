@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class MapaRequest extends Request
 {
     public function authorize()
@@ -27,7 +25,7 @@ class MapaRequest extends Request
                 return [
                     'descricao' => 'required|max:255',
                     'titulo' => 'max:255',
-                    'numero' => 'required|max:15|unique:mapas,numero,'. $this->id
+                    'numero' => 'required|max:15|unique:mapas,id,recurso_id'
                 ];
             }
 

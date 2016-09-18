@@ -2,7 +2,7 @@
 
 @section('conteudo')
 
-    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-6 col-lg-offset-3 col-sm-12">Edição de autor</h3>
+    <h3 class="col-lg-6 col-lg-offset-3 col-sm-12 crud-title">Edição de autor</h3>
 
     <form class="form-horizontal" action="{{ route('autor.update', $autor->id) }}" method="post">
 
@@ -11,14 +11,14 @@
 
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
-                <label for="nome">Nome do autor</label>
+                <label for="nome">Nome</label>
                 <input type="text" class="form-control" id="nome" name="nome"
                        placeholder="Nome do autor" autofocus value="{{ $autor->nome }}">
             </div>
         </div>
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
-                <label for="sobrenome">Sobrenome do autor</label>
+                <label for="sobrenome">Sobrenome</label>
                 <input type="text" class="form-control" id="sobrenome" name="sobrenome"
                        placeholder="Sobrenome do autor" autofocus value="{{ $autor->sobrenome }}">
             </div>

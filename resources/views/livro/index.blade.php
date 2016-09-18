@@ -5,7 +5,11 @@
 @endsection
 @section('conteudo')
 
-    <h3 class="page-header">Livros <a href="{{ route('livro.create') }}" class="btn btn-primary pull-right">Novo</a></h3>
+    <h3 class="page-header">Livros
+        <a href="{{ route('livro.create') }}" class="btn btn-primary pull-right">
+            <em class="fa fa-plus"></em> Novo
+        </a>
+    </h3>
 
     @if(isset($livros) && count($livros) > 0)
         <table id="livros" class="table table-bordered table-hover">
@@ -40,15 +44,16 @@
                            data-isbn="{{ $l->isbn }}"
                            data-cdu="{{ $l->cdu }}"
                            data-cdd="{{ $l->cdd }}">
-                            <span class="glyphicon glyphicon-search"></span>
+                            <em class="fa fa-search"></em> Visualizar
                         </a>
                         <a href="{{ route('livro.edit', $l->id)}}" class="btn btn-sm btn-warning">
-                            <span class="glyphicon glyphicon-pencil"></span>
+                            <em class="fa fa-pencil"></em> Alterar
                         </a>
                         <a href="#modal" class="btn btn-sm btn-danger"
-                           data-delete="{{ $l->publicacao->titulo }}" data-code="{{ $l->subtitulo }}"
+                           data-delete="{{ $l->publicacao->titulo }}"
+                           data-code="{{ $l->subtitulo }}"
                            data-id="{{ $l->publicacao->id }}">
-                            <span class="glyphicon glyphicon-trash"></span>
+                            <em class="fa fa-trash-o"></em> Excluir
                         </a>
                     </td>
                 </tr>
@@ -59,29 +64,7 @@
         <h5 class="alert alert-info">Ainda não foram cadastrados livros!</h5>
         @endif
 
-                <!-- Modal Exclusão -->
-        <div class="modal fade" id="delete-log-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <form action="" method="post" id="formexcluir">
-                {{ method_field('delete') }}
-                {!! csrf_field() !!}
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Exclusão</h4>
-                        </div>
-                        <div class="modal-body">
-                            <h5></h5>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Confirmar</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <!-- Fim Modal Exclusão -->
+    @include('layout.delete-modal')
 
     @include('layout.show-modal')
 
@@ -95,16 +78,16 @@
 
     <script>
         $(function () {
-            var deleteLogModal = $('div#delete-log-modal');
+            var deleteLogModal = $('div#delete-modal');
 
             $("a[href='#modal']").click(function(event) {
                 event.preventDefault();
                 var id = $(this).data('id');
-                var descricao = $(this).data('delete');
+                var titulo = $(this).data('delete');
                 var subtitulo = $(this).data('code');
 
-                deleteLogModal.find('.modal-body h5').html(
-                        'Você tem certeza que deseja <span class="label label-danger">EXCLUIR</span> o livro <br><br><span class="label label-primary">' + descricao.toUpperCase() + ' - ' + subtitulo.toUpperCase() + '</span> ?'
+                deleteLogModal.find('.modal-body p').html(
+                        'Você tem certeza que deseja excluir o livro ' + titulo.toUpperCase() + ' - ' + subtitulo.toUpperCase() + ' ?'
                 );
 
                 $('#formexcluir').attr("action", "livros/remover/"+id);
@@ -174,7 +157,7 @@
             });
         });
 
-        $(document).ready(function () {
+        $(function () {
             $('#livros').DataTable({
                 "stateSave": true,
                 "pagingType": "full_numbers",
@@ -185,7 +168,7 @@
                     "sInfoFiltered": "(Filtrados de _MAX_ registros)",
                     "sInfoPostFix": "",
                     "sInfoThousands": ".",
-                    "sLengthMenu": "_MENU_  resultados por página",
+                    "sLengthMenu": "_MENU_  Resultados por página",
                     "sLoadingRecords": "Carregando...",
                     "sProcessing": "Processando...",
                     "sZeroRecords": "Nenhum registro encontrado",

@@ -29,7 +29,7 @@ class ReservaRecursoRepository
     }
 
     /**
-     * Essa função é chamada via Ajax na view para efetuar o carregamento dos eventos no calendário
+     * Essa função é chamada via $.Ajax na view para efetuar o carregamento em background das reservas no calendário
      * @return string
      */
     public function getData()
@@ -40,9 +40,12 @@ class ReservaRecursoRepository
 
             $e = array();
             $e['id'] = $value['id'];
-            $e['title'] = $value->recurso->descricao . " - " . $this->getAula($value->aula);
+            $e['title'] = $value->recurso->descricao . " - " . $this->getAula($value['aula']);
             $e['start'] = $value['data_reserva'];
             $e['end'] = $value['data_reserva'];
+            $e['professor'] = $value['funcionario_id'];
+            $e['recurso'] = $value['recurso_id'];
+            $e['aula'] = $value['aula'];
 
             array_push($retorno, $e);
         }
@@ -83,19 +86,15 @@ class ReservaRecursoRepository
         ];
     }
 
-    public function update($data, $id)
+    public function update($data)
     {
-        $this->reservaRecurso = $this->reservaRecurso->find($id);
-
+        $this->reservaRecurso = $this->reservaRecurso->find($data['id']);
 
         //Atualizando dados da request no reservaRecurso
-        $this->reservaRecurso->update([
-            'data_reserva' => $data['data_reserva'],
-            'aula' => $data['aula'],
-            'funcionario_id' => $data['funcionario'],
-            'recurso_id' => $data['recurso'],
-        ]);
-
+        $this->reservaRecurso->data_reserva = $data['start'];
+        $this->reservaRecurso->aula = $data['aula'];
+        $this->reservaRecurso->funcionario_id = $data['funcionario'];
+        $this->reservaRecurso->recurso_id = $data['recurso'];
         $this->reservaRecurso->save();
 
         return $this->reservaRecurso;

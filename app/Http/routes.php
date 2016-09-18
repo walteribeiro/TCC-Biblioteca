@@ -1,13 +1,8 @@
 <?php
 
-
-Event::listen('illuminate.query', function($query){
-    var_dump($query);
-});
-
 Route::group(['middleware' => ['auth']], function(){
 
-Route::get('/',                    ['as'=>'home.index',  'uses'=>'HomeController@index']);
+Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeController@index']);
 
     Route::group(['prefix' => 'editoras'], function(){
 
@@ -122,11 +117,8 @@ Route::get('/',                    ['as'=>'home.index',  'uses'=>'HomeController
 
         Route::get('/',                ['as'=>'reserva-recurso.index',  'uses'=>'ReservaRecursoController@index']);
         Route::get('/eventos',         ['as'=>'reserva-recurso.data',   'uses'=>'ReservaRecursoController@getData']);
-        Route::get('/novo',            ['as'=>'reserva-recurso.create', 'uses'=>'ReservaRecursoController@create']);
         Route::post('/gravar',         ['as'=>'reserva-recurso.store',  'uses'=>'ReservaRecursoController@store']);
-        Route::get('/detalhes/{id}',   ['as'=>'reserva-recurso.show',   'uses'=>'ReservaRecursoController@show']);
-        Route::get('/editar/{id}',     ['as'=>'reserva-recurso.edit',   'uses'=>'ReservaRecursoController@edit']);
-        Route::put('/atualizar/{id}',  ['as'=>'reserva-recurso.update', 'uses'=>'ReservaRecursoController@update']);
+        Route::post('/atualizar',      ['as'=>'reserva-recurso.update', 'uses'=>'ReservaRecursoController@update']);
         Route::delete('/remover/{id}', ['as'=>'reserva-recurso.delete', 'uses'=>'ReservaRecursoController@destroy']);
 
     });

@@ -2,15 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\User;
-
 class EditoraRequest extends Request
 {
-    protected $user;
-
-    public function authorize(User $user)
+    public function authorize()
     {
-        //dd($user->name);
         return true;
     }
 

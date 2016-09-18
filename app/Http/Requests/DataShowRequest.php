@@ -25,7 +25,7 @@ class DataShowRequest extends Request
                 return [
                     'descricao' => 'required|max:255',
                     'marca' => 'max:255',
-                    'codigo' => 'required|max:15|unique:data_shows,codigo,'. $this->id
+                    'codigo' => 'required|max:15|unique:data_shows,id,recurso_id'
                 ];
             }
 

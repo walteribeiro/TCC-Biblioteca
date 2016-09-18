@@ -2,7 +2,7 @@
 
 @section('conteudo')
 
-    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-6 col-lg-offset-3 col-sm-12">Edição de revista</h3>
+    <h3 class="col-lg-6 col-lg-offset-3 col-sm-12 crud-title">Edição de revista</h3>
 
     <form class="form-horizontal" action="{{ route('revista.update', $revista->publicacao->id) }}" method="post">
 

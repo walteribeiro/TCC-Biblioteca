@@ -4124,5 +4124,9 @@ ul.notifications {
 .dropzone {
   min-height: 300px;
   border: 1px solid #e5e5e5; }
-
 /** /Dropzone.js **/
+
+.crud-title {
+  border-bottom:2px solid silver;
+  margin-bottom:10px
+}

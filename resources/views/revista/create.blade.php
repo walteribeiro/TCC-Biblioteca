@@ -2,7 +2,7 @@
 
 @section('conteudo')
 
-    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-6 col-lg-offset-3 col-sm-12">Cadastro de revista</h3>
+    <h3 class="col-lg-6 col-lg-offset-3 col-sm-12 crud-title">Cadastro de revista</h3>
 
     <form class="form-horizontal" action="{{ route('revista.store') }}" method="post">
 

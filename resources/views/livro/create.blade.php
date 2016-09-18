@@ -2,7 +2,7 @@
 
 @section('conteudo')
 
-    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-6 col-lg-offset-3 col-sm-12">Cadastro de livro</h3>
+    <h3 class="col-lg-6 col-lg-offset-3 col-sm-12 crud-title">Cadastro de livro</h3>
 
     <form class="form-horizontal" action="{{ route('livro.store') }}" method="post">
 
@@ -38,7 +38,7 @@
                 <select class="form-control" name="editora" id="editora">
                     @if(count($livros['editoras']) > 0)
                         @foreach($livros['editoras'] as $e)
-                            <option value="{{ $e->id }}">{{ $e->nome }}</option>
+                            <option value="{{ $e->id }}" @if ( old('editora') == $e->id) selected="selected" @endif>{{ $e->nome }}</option>
                         @endforeach
                     @else
                         <option value="" selected>Cadastre uma editora primeiro</option>
@@ -51,7 +51,7 @@
                 <select class="form-control" name="autor" id="autor">
                     @if(count($livros['autores']) > 0)
                         @foreach($livros['autores'] as $a)
-                            <option value="{{ $a->id }}">{{ $a->nome." ".$a->sobrenome }}</option>
+                            <option value="{{ $a->id }}" @if ( old('autor') == $a->id) selected="selected" @endif>{{ $a->nome." ".$a->sobrenome }}</option>
                         @endforeach
                     @else
                         <option value="" selected>Cadastre um autor primeiro</option>

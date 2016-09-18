@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReservaRecursoRequest;
 use App\Repositories\ReservaRecursoRepository;
 use Faker\Provider\DateTime;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -23,7 +24,6 @@ class ReservaRecursoController extends Controller
     public function index()
     {
         $reservaRecurso = $this->repository->index();
-        //dd($reservaRecurso);
         return view('reserva-recurso.index', compact('reservaRecurso'));
     }
 
@@ -32,43 +32,28 @@ class ReservaRecursoController extends Controller
         return $this->repository->getData();
     }
 
-
-    public function create()
-    {
-        $reservaRecurso = $this->repository->create();
-        return view('reserva-recurso.create', compact('reservaRecurso'));
-    }
-
     public function store(ReservaRecursoRequest $reservaRecursoRequest)
     {
         $retorno = $this->repository->store($reservaRecursoRequest->all());
         if($retorno){
-            Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
-            return redirect()->route('reserva-recurso.index');
+            return json_encode($retorno);
         }
-        return json_encode($reservaRecursoRequest->all());
+        return response()->json([
+            'tipo' => self::getTipoErro(),
+            'mensagem' => self::getMsgErroReferenciamento()
+        ], 400);
     }
 
-    public function show($id)
+    public function update(ReservaRecursoRequest $reservaRecursoRequest)
     {
-        //TODO refazer após implementar no repository
-    }
-
-    public function edit($id)
-    {
-        $reservaRecurso = $this->repository->findById($id);
-        $listFuncionariosRecursos = $this->repository->edit();
-        return view('reserva-recurso.edit', compact('reservaRecurso', 'listFuncionariosRecursos'));
-    }
-
-    public function update(ReservaRecursoRequest $reservaRecursoRequest, $id)
-    {
-        $retorno = $this->repository->update($reservaRecursoRequest->all(), $id);
+        $retorno = $this->repository->update($reservaRecursoRequest->all());
         if($retorno){
-            Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
-            return redirect()->route('reserva-recurso.index');
+            return json_encode($retorno);
         }
-        return redirect()->back();
+        return response()->json([
+            'tipo' => self::getTipoErro(),
+            'mensagem' => self::getMsgErroReferenciamento()
+        ], 400);
     }
 
     public function destroy($id)
@@ -76,10 +61,15 @@ class ReservaRecursoController extends Controller
         try{
             $this->repository->destroy($id);
             Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
-            return redirect()->route('reserva-recurso.index');
+            return response()->json([
+                'tipo' => self::getTipoSucesso(),
+                'mensagem' => self::getMsgExclusao()
+            ]);
         }catch(QueryException $e){
-            Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
-            return redirect()->back();
+            return response()->json([
+                'tipo' => self::getTipoErro(),
+                'mensagem' => self::getMsgErroReferenciamento()
+            ], 400);
         }
     }
 }

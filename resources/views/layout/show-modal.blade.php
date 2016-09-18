@@ -1,4 +1,4 @@
-<div class="modal fade" id="show-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
+<div class="modal fade" id="show-modal" role="dialog" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,7 +9,8 @@
             <div class="modal-body">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Voltar</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    <em class="fa fa-undo"></em> Voltar</button>
             </div>
         </div>
     </div>

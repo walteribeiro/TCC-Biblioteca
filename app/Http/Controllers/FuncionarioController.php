@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\FuncionarioRequest;
+use App\Models\Funcionario;
 use App\Repositories\FuncionarioRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 
 class FuncionarioController extends Controller
@@ -21,6 +23,15 @@ class FuncionarioController extends Controller
 
     public function index()
     {
+        //auth()->loginUsingId(7);
+
+        $this->authorize('show', new Funcionario());
+
+        if(Gate::denies('show', new Funcionario())){
+
+            return redirect('/');
+        }
+
         $funcionarios = $this->repository->index();
         return view('funcionario.index', compact('funcionarios'));
     }

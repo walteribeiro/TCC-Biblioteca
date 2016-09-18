@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\User;
+
 class FuncionarioRequest extends Request
 {
     /**
@@ -9,8 +11,14 @@ class FuncionarioRequest extends Request
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(User $user)
     {
+        dd($user);
+        if(isset($user)){
+            if($user->tipo_acesso != 0){
+                return false;
+            }
+        }
         return true;
     }
 

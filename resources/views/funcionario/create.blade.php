@@ -12,7 +12,7 @@
 @endsection
 @section('conteudo')
 
-    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-6 col-lg-offset-3 col-sm-12">Cadastro de funcionário</h3>
+    <h3 class="col-lg-6 col-lg-offset-3 col-sm-12 crud-title">Cadastro de funcionário</h3>
 
     <form class="form-horizontal" action="{{ route('funcionario.store') }}" method="post">
 
@@ -20,7 +20,7 @@
 
         <div class="form-group">
             <div class="col-lg-5 col-lg-offset-3 col-sm-12">
-                <label for="nome">Nome do funcionário</label>
+                <label for="nome">Nome</label>
                 <input type="text" class="form-control" id="nome" name="nome"
                        placeholder="Nome do funcionário" autofocus value="{{ old('nome') }}">
             </div>
@@ -40,9 +40,9 @@
             </div>
 
             <div class="col-lg-2 col-sm-6">
-                <label for="telefone2">Telefone 2</label>
+                <label for="telefone2">Celular</label>
                 <input type="text" class="form-control" id="telefone2" name="telefone2"
-                       placeholder="Telefone 2" value="{{ old('telefone2') }}" data-inputmask="'mask': '(99) 99999-9999'">
+                       placeholder="Celular" value="{{ old('telefone2') }}" data-inputmask="'mask': '(99) 99999-9999'">
             </div>
 
             <div class="col-lg-2 col-sm-6">
@@ -103,7 +103,7 @@
     <script src="{{ asset("assets/js/switchery.min.js")}}"></script>
     <script src="{{ asset("assets/js/jquery.inputmask.bundle.min.js")}}"></script>
     <script>
-        $(document).ready(function () {
+        $(function () {
 
             $(":input").inputmask();
 

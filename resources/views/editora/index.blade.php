@@ -5,7 +5,11 @@
 @endsection
 @section('conteudo')
 
-    <h3 class="page-header">Editoras <a href="{{ route('editora.create') }}" class="btn btn-primary pull-right">Novo</a></h3>
+    <h3 class="page-header">Editoras
+        <a href="{{ route('editora.create') }}" class="btn btn-primary pull-right">
+            <em class="fa fa-plus"></em> Novo
+        </a>
+    </h3>
 
     @if(isset($editoras) && count($editoras) > 0)
         <table id="editoras" class="table table-bordered table-hover">
@@ -22,14 +26,18 @@
                     <td>{{$e->id}}</td>
                     <td>{{$e->nome}}</td>
                     <td class="text-center">
-                        <a href="#show"
-                           data-nome="{{ $e->nome }}" class="btn btn-sm btn-success">
-                            <span class="glyphicon glyphicon-search"></span>
+                        <a href="#show" class="btn btn-sm btn-success"
+                           data-nome="{{ $e->nome }}">
+                            <em class="fa fa-search"></em> Visualizar
                         </a>
                         <a href="{{ route('editora.edit', $e->id)}}" class="btn btn-sm btn-warning">
-                            <span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="#modal" class="btn btn-sm btn-danger" data-delete="{{ $e->nome }}" data-id="{{ $e->id }}">
-                            <span class="glyphicon glyphicon-trash"></span></a>
+                            <em class="fa fa-pencil"></em> Alterar
+                        </a>
+                        <a href="#modal" class="btn btn-sm btn-danger"
+                           data-delete="{{ $e->nome }}"
+                           data-id="{{ $e->id }}">
+                            <em class="fa fa-trash-o"></em> Excluir
+                        </a>
                     </td>
                 </tr>
             @endforeach
@@ -39,29 +47,7 @@
         <h5 class="alert alert-info">Ainda não foram cadastradas editoras!</h5>
     @endif
 
-            <!-- Modal Exclusão -->
-        <div class="modal fade" id="delete-log-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <form action="" method="post" id="formexcluir">
-                {{ method_field('delete') }}
-                {!! csrf_field() !!}
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Exclusão</h4>
-                        </div>
-                        <div class="modal-body">
-                            <h5></h5>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Confirmar</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <!-- Fim Modal Exclusão -->
+    @include('layout.delete-modal')
 
     @include('layout.show-modal')
 
@@ -75,15 +61,15 @@
 
     <script>
         $(function () {
-            var deleteLogModal = $('div#delete-log-modal');
+            var deleteLogModal = $('div#delete-modal');
 
             $("a[href='#modal']").click(function(event) {
                 event.preventDefault();
                 var id = $(this).data('id');
                 var nome = $(this).data('delete');
 
-                deleteLogModal.find('.modal-body h5').html(
-                        'Você tem certeza que deseja <span class="label label-danger">EXCLUIR</span> a editora <br><br><span class="label label-primary">' + nome.toUpperCase() + '</span> ?'
+                deleteLogModal.find('.modal-body p').html(
+                        'Você tem certeza que deseja excluir a editora ' + nome.toUpperCase() + ' ?'
                 );
 
                 $('#formexcluir').attr("action", "editoras/remover/"+id);
@@ -117,7 +103,7 @@
                     "sInfoFiltered": "(Filtrados de _MAX_ registros)",
                     "sInfoPostFix": "",
                     "sInfoThousands": ".",
-                    "sLengthMenu": "_MENU_  resultados por página",
+                    "sLengthMenu": "_MENU_  Resultados por página",
                     "sLoadingRecords": "Carregando...",
                     "sProcessing": "Processando...",
                     "sZeroRecords": "Nenhum registro encontrado",

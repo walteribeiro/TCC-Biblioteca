@@ -41,9 +41,14 @@
                 <div class="x_content">
                     <div class="dashboard-widget-content">
 
-                        <ul class="list-unstyled timeline widget">
+                        <ul class="list-unstyled timeline">
                             <li>
                                 <div class="block">
+                                    <div class="tags">
+                                        <p class="tag">
+                                            <span>07/08/2016</span>
+                                        </p>
+                                    </div>
                                     <div class="block_content">
                                         <h2 class="title">
                                             <a>Adição do módulo de autenticação</a>
@@ -51,9 +56,12 @@
                                         <div class="byline">
                                             <span>07/08/2016</span> por <a>Walter Ribeiro</a>
                                         </div>
-                                        <p class="excerpt">Módulo de autenticação adicionado para testes, é necessário que o usuário
-                                            se autentique para acessar o sistema e realizar as alterações de acordo com seu nível
-                                            de permissão. Caso o usuário deixe de utilizar o sistema o mesmo deve sair para que o
+                                        <p class="excerpt">Módulo de autenticação adicionado para testes, é necessário
+                                            que o usuário
+                                            se autentique para acessar o sistema e realizar as alterações de acordo com
+                                            seu nível
+                                            de permissão. Caso o usuário deixe de utilizar o sistema o mesmo deve sair
+                                            para que o
                                             próximo usuário possa acessar com seu nome de usuário e senha.
                                         </p>
                                     </div>
@@ -61,6 +69,11 @@
                             </li>
                             <li>
                                 <div class="block">
+                                    <div class="tags">
+                                        <p class="tag">
+                                            <span>07/08/2016</span>
+                                        </p>
+                                    </div>
                                     <div class="block_content">
                                         <h2 class="title">
                                             <a>Adição do módulo de mapas</a>
