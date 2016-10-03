@@ -89,7 +89,7 @@
                 var sobrenome = $(this).data('sobrenome');
 
                 showModal.find('.modal-body').html(
-                        'Autor: ' + nome.toUpperCase() + ' ' + sobrenome.toUpperCase()
+                        'Nome: ' + nome + ' ' + sobrenome
                 );
 
                 showModal.modal('show');

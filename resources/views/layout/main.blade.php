@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>SGBR</title>
+    <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABILAAASCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABLAAAA2QAAANkAAABLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACUAAACzAAAA/wAAAP8AAAD/AAAA/wAAALMAAAAlAAAAAAAAAHkAAAA2AAAAAAAAAAAAAAAAAAAAAAAAAHsAAAD3AAAA/wAAAPMAAAD/AAAA/wAAAPUAAAD/AAAA9wAAAHsAAACYAAAAOwAAAAAAAAAAAAAAAAAAAAMAAADyAAAAxwAAAMQAAAD1AAAA/wAAAP8AAAD1AAAAxgAAAMgAAADyAAAAmwAAADsAAAAAAAAAAAAAAAAAAAABAAAAeAAAANkAAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADZAAAAeQAAAHEAAAA2AAAAAAAAAAAAAAAkAAAAsgAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAACyAAAAJAAAAAAAAAARAAAA2QAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAANkAAAARAAAAAAAAAAcAAABpAAAA4QAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA4QAAAGkAAAAHAAAAAAAAAAAAAAAAAAAAAAAAAAgAAABqAAAA4gAAAP8AAAD/AAAA/wAAAP8AAADiAAAAagAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcAAABrAAAA4QAAAOEAAABrAAAABwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAD+fwAA+BkAAPAJAADAAQAAwAEAAMABAACAAQAAAAAAAIABAADgBwAA+B8AAP5/AAD//wAA//8AAA==" rel="icon" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/nprogress.css')}}">
@@ -17,7 +18,9 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="{{ route('home.index') }}" class="site_title"><i class="fa fa-graduation-cap"></i> <span>SGBR</span></a>
+                    <a href="{{ route('home.index') }}" class="site_title">
+                        &nbsp;<img alt="logotipo" src="{{asset('assets/img/cap.png')}}"/> &nbsp;<span>SGBR</span>
+                    </a>
                 </div>
                 <div class="clearfix"></div>
                 <br/>
@@ -48,8 +51,9 @@
                                 @if(Auth::user()->tipo_acesso == 0)
                                     <li><a><i class="fa fa-user"></i> Usuários <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="{{ route('funcionario.index') }}">Funcionários</a></li>
                                             <li><a href="{{ route('aluno.index') }}">Alunos</a></li>
+                                            <li><a href="{{ route('turma.index') }}">Turmas</a></li>
+                                            <li><a href="{{ route('funcionario.index') }}">Funcionários</a></li>
                                         </ul>
                                     </li>
 
@@ -69,6 +73,11 @@
                                     </ul>
                                 </li>
                             @endif
+                                <li><a><i class="fa fa-file-pdf-o"></i> Relatórios <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ route('reserva-recurso.index') }}">Alunos Novos</a></li>
+                                    </ul>
+                                </li>
                         </ul>
                     </div>
                 </div>

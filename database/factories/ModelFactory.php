@@ -96,6 +96,17 @@ $factory->define(App\Models\Funcionario::class, function (Faker\Generator $faker
 
 /*
 |--------------------------------------------------------------------------
+| Factory de Alunos
+|--------------------------------------------------------------------------
+*/
+$factory->define(App\Models\Aluno::class, function (Faker\Generator $faker) {
+    return [
+        'matricula' => $faker->unique()->randomNumber(6),
+    ];
+});
+
+/*
+|--------------------------------------------------------------------------
 | Factory de Recursos
 |--------------------------------------------------------------------------
 */
@@ -137,5 +148,17 @@ $factory->define(App\Models\Mapa::class, function (Faker\Generator $faker) {
 $factory->define(App\Models\Sala::class, function (Faker\Generator $faker) {
     return [
         'tipo' => $faker->numberBetween(0, 3),
+    ];
+});
+
+/*
+|--------------------------------------------------------------------------
+| Factory de Reserva de Recurso
+|--------------------------------------------------------------------------
+*/
+$factory->define(App\Models\ReservaRecurso::class, function (Faker\Generator $faker) {
+    return [
+        'data_reserva' => $faker->numberBetween(0, 3),
+        'aula' => $faker->numberBetween(0, 3),
     ];
 });

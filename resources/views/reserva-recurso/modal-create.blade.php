@@ -23,7 +23,7 @@
                                     name="funcionario" id="funcionario" autofocus>
                                 @if(count($reservaRecurso['funcionarios']) > 0)
                                     @foreach($reservaRecurso['funcionarios'] as $r)
-                                        <option value="{{ $r->id }}">{{ $r->user->nome }}</option>
+                                        <option value="{{ $r->user_id }}">{{ $r->user->nome }}</option>
                                     @endforeach
                                 @else
                                     <option value="" selected>Cadastre um Professor Primeiro</option>

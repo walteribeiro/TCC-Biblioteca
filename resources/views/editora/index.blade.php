@@ -85,7 +85,7 @@
                 var nome = $(this).data('nome');
 
                 showModal.find('.modal-body').html(
-                        'Editora: ' + nome.toUpperCase()
+                        'Nome: ' + nome.toUpperCase()
                 );
 
                 showModal.modal('show');

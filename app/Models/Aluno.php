@@ -9,7 +9,9 @@ class Aluno extends Model
 {
     protected $table = 'alunos';
 
-    protected $fillable = ['matricula', 'turma'];
+    public $primaryKey = 'user_id';
+
+    protected $fillable = ['matricula'];
 
     public $timestamps = false;
 
@@ -17,5 +19,9 @@ class Aluno extends Model
     {
         return $this->belongsTo(User::class);
     }
-    //
+
+    public function turmas()
+    {
+        return $this->belongsToMany(Turma::class, 'alunos_turmas');
+    }
 }

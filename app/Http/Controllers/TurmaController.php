@@ -26,6 +26,36 @@ class TurmaController extends Controller
         return view('turma.index', compact('turmas'));
     }
 
+    public function vinculo($id)
+    {
+        $turma = $this->repository->findById($id);
+        $alunos = $this->repository->getAlunos();
+        //dd($alunos);
+
+        return view('turma.vinculo', compact('turma', 'alunos'));
+    }
+
+    public function vincular(TurmaRequest $turmaRequest)
+    {
+        //dd($turmaRequest->all());
+        $gravouAlunos = $this->repository->vincular($turmaRequest->all());
+
+        //dd($gravouAlunos);
+
+        if(!empty($gravouAlunos['attached'])){
+            return redirect()->route('turma.index');
+        }
+        return redirect()->back();
+    }
+
+    public function vinculados($id)
+    {
+        $turma = $this->repository->findById($id);
+
+        //dd($turma->alunos());
+        return view('turma.show', compact('turma'));
+    }
+
     public function create()
     {
         return view('turma.create');
@@ -36,7 +66,7 @@ class TurmaController extends Controller
         $retorno = $this->repository->store($turmaRequest->all());
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
-            $this->gravarLog("Turma adicionada!", "informacao", ["Turma" => $retorno->nome]);
+            $this->gravarLog("Turma adicionada!", "informacao", ["Turma" => $retorno->serie]);
             return redirect()->route('turma.index');
         }
         return redirect()->back();
@@ -75,5 +105,24 @@ class TurmaController extends Controller
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
             return redirect()->back();
         }
+    }
+
+    public function destroyVinculo(TurmaRequest $turmaRequest, $id)
+    {
+        //dd($turmaRequest->all());
+        $turma = $this->repository->findById($id);
+        $idsAlunos = $turmaRequest->input('ids');
+
+        $arrayIds = explode(',', $idsAlunos);
+
+        $retorno = $turma->alunos()->detach($arrayIds);
+
+        return redirect()->route('turma.index');
+    }
+
+    private function brokenIds($ids)
+    {
+
+
     }
 }

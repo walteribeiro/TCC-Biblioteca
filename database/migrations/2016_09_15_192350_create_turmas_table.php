@@ -13,7 +13,7 @@ class CreateTurmasTable extends Migration
     public function up()
     {
         Schema::create('turmas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('serie');
             $table->string('turno');
             $table->string('ensino');

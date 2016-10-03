@@ -2,15 +2,18 @@
 
 namespace App\Repositories;
 
+use App\Models\Aluno;
 use App\Models\Turma;
 
 class TurmaRepository
 {
     protected $turma;
+    protected $aluno;
 
-    public function __construct(Turma $turma)
+    public function __construct(Turma $turma, Aluno $aluno)
     {
         $this->turma = $turma;
+        $this->aluno = $aluno;
     }
 
     public function index()
@@ -52,6 +55,16 @@ class TurmaRepository
         return $this->turma;
     }
 
+    public function vincular($data)
+    {
+        $alunos_id = $data['aluno'];
+        $turma_id = $data['id_turma'];
+
+        $turma = $this->turma->find($turma_id);
+
+        return $turma->alunos()->sync($alunos_id, false);
+    }
+
     public function destroy($id)
     {
         return $this->turma->destroy([$id]);
@@ -60,5 +73,10 @@ class TurmaRepository
     public function findById($id)
     {
         return $this->turma->find($id);
+    }
+
+    public function getAlunos()
+    {
+        return $this->aluno->all();
     }
 }

@@ -32,7 +32,11 @@
                     <td class="text-center">
                         <a href="#show" class="btn btn-sm btn-success"
                            data-titulo="{{ $l->publicacao->titulo }}"
+                           data-referencia="{{ $l->referencia }}"
                            data-categoria="{{ $l->categoria }}"
+                           data-origem="{{ $l->publicacao->origem }}"
+                           data-descricao="{{ $l->publicacao->descricao }}"
+                           data-editora="{{ $l->publicacao->editora->nome }}"
                            data-edicao="{{ $l->publicacao->edicao }}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
@@ -71,10 +75,10 @@
             $("a[href='#modal']").click(function(event) {
                 event.preventDefault();
                 var id = $(this).data('id');
-                var descricao = $(this).data('delete');
+                var titulo = $(this).data('delete');
 
                 deleteLogModal.find('.modal-body p').html(
-                        'Você tem certeza que deseja excluir a revista ' + descricao.toUpperCase() + ' ?'
+                        'Você tem certeza que deseja excluir a revista ' + titulo.toUpperCase() + ' ?'
                 );
 
                 $('#formexcluir').attr("action", "revistas/remover/"+id);
@@ -88,11 +92,44 @@
             $("a[href='#show']").click(function(event) {
                 event.preventDefault();
                 var titulo = $(this).data('titulo');
+                var referencia = $(this).data('referencia');
                 var categoria = $(this).data('categoria');
+                var origem = $(this).data('origem');
+                var descricao = $(this).data('descricao');
+                var editora = $(this).data('editora');
                 var edicao = $(this).data('edicao');
 
+                console.log(origem);
+
                 showModal.find('.modal-body').html(
-                        'Título: ' + titulo.toUpperCase()
+                        '<div class="row">' +
+                        '<div class="col-md-2">Título:</div>' +
+                        '<div class="col-md-10"><p>'+ titulo + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Referência:</div>' +
+                        '<div class="col-md-10"><p>'+ referencia + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Categoria:</div>' +
+                        '<div class="col-md-10"><p>'+ categoria + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Origem:</div>' +
+                        '<div class="col-md-10"><p>'+ (origem == "" ? "&nbsp;" : origem) + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Descrição:</div>' +
+                        '<div class="col-md-10"><p>'+ descricao + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Editora:</div>' +
+                        '<div class="col-md-10"><p>'+ editora + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Edição:</div>' +
+                        '<div class="col-md-10"><p>'+ edicao + '</p></div>' +
+                        '</div>'
                 );
 
                 showModal.modal('show');

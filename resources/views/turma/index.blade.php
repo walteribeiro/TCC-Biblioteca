@@ -5,7 +5,12 @@
 @endsection
 @section('conteudo')
 
-    <h3 class="page-header">Turmas <a href="{{ route('turma.create') }}" class="btn btn-primary pull-right">Novo</a></h3>
+    <h3 class="page-header">Turmas
+        <a href="{{ route('turma.create') }}" class="btn btn-primary pull-right">
+            <em class="fa fa-plus"></em> Novo
+        </a>
+    </h3>
+
     @if(isset($turmas) && count($turmas) > 0)
         <table id="turmas" class="table table-bordered table-hover">
             <thead>
@@ -20,7 +25,6 @@
             </thead>
             <tbody>
             @foreach($turmas as $t)
-
                 <tr>
                     <td>{{$t->serie}}</td>
                     <td>{{$t->letra_turma}}</td>
@@ -28,21 +32,29 @@
                     <td>{{$t->ano}}</td>
                     <td>{{$t->ensino}}</td>
                     <td class="text-center">
+                        <a href="{{ route('turma.vinculo', $t->id) }}" class="btn btn-sm btn-dark">
+                            <em class="fa fa-file-text-o"></em> Vincular
+                        </a>
+                        <a href="{{ route('turma.aluno', $t->id) }}" class="btn btn-sm btn-primary">
+                            <em class="fa fa-graduation-cap"></em> Alunos <em class="badge">{{ $t->alunos->count() }}</em>
+                        </a>
                         <a href="#show" class="btn btn-sm btn-success"
                            data-serie="{{ $t->serie }}"
                            data-letra_turma="{{ $t->letra_turma }}"
                            data-turno="{{ $t->turno }}"
                            data-ano="{{ $t->ano }}"
                            data-ensino="{{ $t->ensino }}">
-                            <span class="glyphicon glyphicon-search"></span>
+                            <em class="fa fa-search"></em> Visualizar
                         </a>
                         <a href="{{ route('turma.edit', $t->id)}}" class="btn btn-sm btn-warning">
-                            <span class="glyphicon glyphicon-pencil"></span>
+                            <em class="fa fa-pencil"></em> Alterar
                         </a>
                         <a href="#modal" class="btn btn-sm btn-danger"
-                           data-delete="{{ $t->serie }}" data-code="{{ $t->letraTurma }}"
+                           data-delete="{{ $t->serie }}"
+                           data-code="{{ $t->letra_turma }}"
+                           data-ano="{{ $t->ano}}"
                            data-id="{{ $t->id }}">
-                            <span class="glyphicon glyphicon-trash"></span>
+                            <em class="fa fa-trash-o"></em> Excluir
                         </a>
                     </td>
                 </tr>
@@ -51,31 +63,9 @@
         </table>
     @else
         <h5 class="alert alert-info">Ainda não foram cadastradas turmas!</h5>
-        @endif
+    @endif
 
-                <!-- Modal Exclusão -->
-        <div class="modal fade" id="delete-log-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <form action="" method="post" id="formexcluir">
-                {{ method_field('delete') }}
-                {!! csrf_field() !!}
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Exclusão</h4>
-                        </div>
-                        <div class="modal-body">
-                            <h5></h5>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Confirmar</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <!-- Fim Modal Exclusão -->
+    @include('layout.delete-modal')
 
     @include('layout.show-modal')
 
@@ -89,16 +79,17 @@
 
     <script>
         $(function () {
-            var deleteLogModal = $('div#delete-log-modal');
+            var deleteLogModal = $('div#delete-modal');
 
             $("a[href='#modal']").click(function(event) {
                 event.preventDefault();
                 var id = $(this).data('id');
                 var serie = $(this).data('delete');
-                var letra_turma = $(this).data('delete');
+                var letra = $(this).data('code');
+                var ano = $(this).data('ano');
 
-                deleteLogModal.find('.modal-body h5').html(
-                        'Você tem certeza que deseja <span class="label label-danger">EXCLUIR</span> a turma <br><br><span class="label label-primary">' + serie + ' - ' + letra_turma + '</span> ?'
+                deleteLogModal.find('.modal-body p').html(
+                        'Você tem certeza que deseja excluir a turma ' + serie + ' - ' + letra + ' de ' + ano +' ?'
                 );
 
                 $('#formexcluir').attr("action", "turmas/remover/"+id);
@@ -144,7 +135,7 @@
             });
         });
 
-        $(document).ready(function () {
+        $(function () {
             $('#turmas').DataTable({
                 "stateSave": true,
                 "pagingType": "full_numbers",
@@ -155,7 +146,7 @@
                     "sInfoFiltered": "(Filtrados de _MAX_ registros)",
                     "sInfoPostFix": "",
                     "sInfoThousands": ".",
-                    "sLengthMenu": "_MENU_  resultados por página",
+                    "sLengthMenu": "_MENU_  Resultados por página",
                     "sLoadingRecords": "Carregando...",
                     "sProcessing": "Processando...",
                     "sZeroRecords": "Nenhum registro encontrado",

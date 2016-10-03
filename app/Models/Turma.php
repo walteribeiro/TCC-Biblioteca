@@ -13,11 +13,11 @@ class Turma extends Model
     public $timestamps = false;
 
     /**
-     *  Relacionamento 1 x N com publicação
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     *  Relacionamento N x N com alunos
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function alunos()
     {
-        return $this->hasMany(Aluno::class);
+        return $this->belongsToMany(Aluno::class, 'alunos_turmas');
     }
 }

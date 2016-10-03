@@ -38,8 +38,13 @@ class ForeignKeyTable extends Migration
             $table->foreign('recurso_id', 'salas_1_fk')->references('id')->on('recursos')->onUpdate('cascade')->onDelete('cascade');
         });
         Schema::table('reserva_recursos', function (Blueprint $table) {
-            $table->foreign('funcionario_id', 'reserva_recursos_1_fk')->references('id')->on('funcionarios')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('funcionario_id', 'reserva_recursos_1_fk')->references('user_id')->on('funcionarios')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('recurso_id', 'reserva_recursos_2_fk')->references('id')->on('recursos')->onUpdate('cascade')->onDelete('restrict');
+        });
+        Schema::table('alunos_turmas', function(Blueprint $table)
+        {
+            $table->foreign('aluno_id', 'aluno_turma_1_fk')->references('user_id')->on('alunos')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('turma_id', 'aluno_turma_2_fk')->references('id')->on('turmas')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 
@@ -78,6 +83,11 @@ class ForeignKeyTable extends Migration
         Schema::table('reserva_recursos', function (Blueprint $table) {
             $table->dropForeign('reserva_recursos_1_fk');
             $table->dropForeign('reserva_recursos_2_fk');
+        });
+        Schema::table('alunos_turmas', function(Blueprint $table)
+        {
+            $table->dropForeign('aluno_turma_1_fk');
+            $table->dropForeign('aluno_turma_2_fk');
         });
     }
 }

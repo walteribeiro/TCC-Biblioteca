@@ -76,7 +76,6 @@ Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeContro
 
     });
 
-
     Route::group(['prefix' => 'data-shows'], function(){
 
         Route::get('/',                ['as'=>'data-show.index',  'uses'=>'DataShowController@index']);
@@ -125,14 +124,17 @@ Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeContro
 
     Route::group(['prefix' => 'turmas'], function(){
 
-        Route::get('/',                ['as'=>'turma.index',  'uses'=>'TurmaController@index']);
-        Route::get('/eventos',         ['as'=>'turma.data',   'uses'=>'TurmaController@getData']);
-        Route::get('/novo',            ['as'=>'turma.create', 'uses'=>'TurmaController@create']);
-        Route::post('/gravar',         ['as'=>'turma.store',  'uses'=>'TurmaController@store']);
-        Route::get('/detalhes/{id}',   ['as'=>'turma.show',   'uses'=>'TurmaController@show']);
-        Route::get('/editar/{id}',     ['as'=>'turma.edit',   'uses'=>'TurmaController@edit']);
-        Route::put('/atualizar/{id}',  ['as'=>'turma.update', 'uses'=>'TurmaController@update']);
-        Route::delete('/remover/{id}', ['as'=>'turma.delete', 'uses'=>'TurmaController@destroy']);
+        Route::get('/',                        ['as'=>'turma.index',    'uses'=>'TurmaController@index']);
+        Route::get('/vincular-alunos/{id}',    ['as'=>'turma.vinculo',  'uses'=>'TurmaController@vinculo']);
+        Route::post('/vincular',               ['as'=>'turma.vincular', 'uses'=>'TurmaController@vincular']);
+        Route::get('/alunos-vinculados/{id}',  ['as'=>'turma.aluno',    'uses'=>'TurmaController@vinculados']);
+        Route::get('/novo',                    ['as'=>'turma.create',   'uses'=>'TurmaController@create']);
+        Route::post('/gravar',                 ['as'=>'turma.store',    'uses'=>'TurmaController@store']);
+        Route::get('/detalhes/{id}',           ['as'=>'turma.show',     'uses'=>'TurmaController@show']);
+        Route::get('/editar/{id}',             ['as'=>'turma.edit',     'uses'=>'TurmaController@edit']);
+        Route::put('/atualizar/{id}',          ['as'=>'turma.update',   'uses'=>'TurmaController@update']);
+        Route::delete('/remover/{id}',         ['as'=>'turma.delete',   'uses'=>'TurmaController@destroy']);
+        Route::delete('/remover-alunos/{id}',  ['as'=>'turma.remove',   'uses'=>'TurmaController@destroyVinculo']);
 
     });
 

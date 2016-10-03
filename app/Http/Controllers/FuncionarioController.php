@@ -25,12 +25,12 @@ class FuncionarioController extends Controller
     {
         //auth()->loginUsingId(7);
 
-        $this->authorize('show', new Funcionario());
-
-        if(Gate::denies('show', new Funcionario())){
-
-            return redirect('/');
-        }
+//        $this->authorize('show', new Funcionario());
+//
+//        if(Gate::denies('show', new Funcionario())){
+//
+//            return redirect('/');
+//        }
 
         $funcionarios = $this->repository->index();
         return view('funcionario.index', compact('funcionarios'));

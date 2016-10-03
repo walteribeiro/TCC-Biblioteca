@@ -12,7 +12,7 @@
 @endsection
 @section('conteudo')
 
-    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-6 col-lg-offset-3 col-sm-12">Edição de aluno</h3>
+    <h3 class="col-lg-6 col-lg-offset-3 col-sm-12 crud-title">Edição de aluno</h3>
 
     <form class="form-horizontal" action="{{ route('aluno.update', $aluno->user->id) }}" method="post">
 
@@ -21,7 +21,7 @@
 
         <div class="form-group">
             <div class="col-lg-5 col-lg-offset-3 col-sm-12">
-                <label for="nome">Nome do aluno</label>
+                <label for="nome">Nome</label>
                 <input type="text" class="form-control" id="nome" name="nome"
                        placeholder="Nome do aluno" autofocus value="{{ $aluno->user->nome }}">
             </div>
@@ -45,9 +45,9 @@
             </div>
 
             <div class="col-lg-2 col-sm-6">
-                <label for="telefone2">Telefone 2</label>
+                <label for="telefone2">Celular</label>
                 <input type="text" class="form-control" id="telefone2" name="telefone2"
-                       placeholder="Telefone 2" value="{{ $aluno->user->telefone2 }}" data-inputmask="'mask': '(99) 99999-9999'">
+                       placeholder="Celular" value="{{ $aluno->user->telefone2 }}" data-inputmask="'mask': '(99) 99999-9999'">
             </div>
 
             <div class="col-lg-2 col-sm-6">
@@ -72,7 +72,6 @@
                 </div>
             </div>
 
-        <div class="form-group">
             <div class="col-lg-2 col-lg-offset-3 col-sm-6">
                 <label for="usuario">Nome de usuário</label>
                 <input type="text" class="form-control" id="username" name="username"

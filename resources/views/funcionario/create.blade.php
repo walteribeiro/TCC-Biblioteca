@@ -36,7 +36,7 @@
             <div class="col-lg-2 col-lg-offset-3 col-sm-6">
                 <label for="telefone">Telefone</label>
                 <input type="text" class="form-control" id="telefone" name="telefone"
-                       placeholder="Telefone" value="{{ old('telefone') }}" data-inputmask="'mask': '(99) 99999-9999'">
+                       placeholder="Telefone" value="{{ old('telefone') }}" data-inputmask="'mask': '(99) 9999-9999'">
             </div>
 
             <div class="col-lg-2 col-sm-6">

@@ -33,7 +33,7 @@
             <div class="col-lg-2 col-sm-6">
                 <label for="origem">Origem</label>
                 <input type="text" class="form-control" id="origem" name="origem"
-                       placeholder="Origem" value="{{ $revista->origem }}">
+                       placeholder="Origem" value="{{ $revista->publicacao->origem }}">
             </div>
         </div>
 

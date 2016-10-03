@@ -44,11 +44,6 @@
                         <ul class="list-unstyled timeline">
                             <li>
                                 <div class="block">
-                                    <div class="tags">
-                                        <p class="tag">
-                                            <span>07/08/2016</span>
-                                        </p>
-                                    </div>
                                     <div class="block_content">
                                         <h2 class="title">
                                             <a>Adição do módulo de autenticação</a>
@@ -69,11 +64,6 @@
                             </li>
                             <li>
                                 <div class="block">
-                                    <div class="tags">
-                                        <p class="tag">
-                                            <span>07/08/2016</span>
-                                        </p>
-                                    </div>
                                     <div class="block_content">
                                         <h2 class="title">
                                             <a>Adição do módulo de mapas</a>

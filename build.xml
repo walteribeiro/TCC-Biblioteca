@@ -7,13 +7,7 @@
     </target>
 
     <target name="test">
-        <phpunit haltonerror="true" haltonfailure="true" codecoverage="true" pharlocation="phpunit-5.3.4.phar" bootstrap="bootstrap/autoload.php">
-            <batchtest>
-                <fileset dir=".">
-                    <include name="*Test.php"/>
-                </fileset>
-            </batchtest>
-        </phpunit>
+        <exec dir="vendor/bin" logoutput="true" command="phpunit --bootstrap /bootstrap/autoload.php -c ./phpunit.xml"/>
     </target>
 
     <target name="docs">
@@ -38,7 +32,13 @@
     <target name="build" depends="clean,prepare">
         <echo msg="Building ....... 0%"/>
         <echo msg="................ 20%"/>
-        <zip destfile="release.zip" basedir="."/>
+        <zip destfile="release.zip">
+            <fileset dir=".">
+                <exclude name="node_modules/"/>
+                <exclude name="vendor/"/>
+                <exclude name=".idea/"/>
+            </fileset>
+        </zip>
         <echo msg="............... 70%"/>
         <move file="release.zip" todir="../versao"/>
         <echo msg="................ 100%"/>

@@ -2,7 +2,7 @@
 
 @section('conteudo')
 
-    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-6 col-lg-offset-3 col-sm-12">Edição de turma</h3>
+    <h3 class="col-lg-6 col-lg-offset-3 col-sm-12 crud-title">Edição de turma</h3>
 
     <form class="form-horizontal" action="{{ route('turma.update', $turma->id) }}" method="post">
 
@@ -10,15 +10,13 @@
         {!! csrf_field() !!}
 
         <div class="form-group">
-            <div class="col-lg-6 col-lg-offset-3 col-sm-12">
+            <div class="col-lg-3 col-lg-offset-3 col-sm-12">
                 <label for="serie">Série</label>
                 <input type="text" class="form-control" id="serie" name="serie"
                        placeholder="Série" autofocus value="{{ $turma->serie }}">
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-lg-6 col-lg-offset-3 col-sm-12">
+            <div class="col-lg-3 col-sm-12">
                 <label for="turno">Turno</label>
                 <input type="text" class="form-control" id="turno" name="turno"
                        placeholder="Turno" value="{{ $turma->turno }}">
@@ -26,26 +24,22 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-6 col-lg-offset-3 col-sm-12">
+            <div class="col-lg-2 col-lg-offset-3 col-sm-12">
                 <label for="ano">Ano</label>
                 <input type="text" class="form-control" id="ano" name="ano"
                        placeholder="Ano" value="{{ $turma->ano }}">
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-lg-3 col-lg-offset-3">
+            <div class="col-lg-2">
                 <label for="ensino">Ensino</label>
                 <input type="text" class="form-control" id="ensino" name="ensino"
                        placeholder="Ensino" value="{{ $turma->ensino }}">
-
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-lg-2">
                 <label for="letraTurma">Letra</label>
                 <input type="text" class="form-control" id="letraTurma" name="letraTurma"
                        placeholder="Letra" value="{{ $turma->letra_turma }}">
-
             </div>
         </div>
 

@@ -2079,7 +2079,7 @@ a.btn-success, a.btn-primary, a.btn-warning, a.btn-danger {
   border: 1px solid #169F85; }
 
 .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
-  background: #169F85; }
+  background: #169F85 !important; }
 
 .btn-dark {
   color: #E9EDEF;
@@ -4129,4 +4129,11 @@ ul.notifications {
 .crud-title {
   border-bottom:2px solid silver;
   margin-bottom:10px
+}
+
+.btn.check em.fa {
+  opacity: 0;
+}
+.btn.check.active em.fa {
+  opacity: 1;
 }

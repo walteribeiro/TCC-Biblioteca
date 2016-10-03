@@ -12,7 +12,7 @@
 @endsection
 @section('conteudo')
 
-    <h3 style="border-bottom:2px solid silver;margin-bottom:10px" class="col-lg-6 col-lg-offset-3 col-sm-12">Cadastro de Aluno</h3>
+    <h3 class="col-lg-6 col-lg-offset-3 col-sm-12 crud-title">Cadastro de aluno</h3>
 
     <form class="form-horizontal" action="{{ route('aluno.store') }}" method="post">
 
@@ -20,7 +20,7 @@
 
         <div class="form-group">
             <div class="col-lg-5 col-lg-offset-3 col-sm-12">
-                <label for="nome">Nome do Aluno</label>
+                <label for="nome">Nome</label>
                 <input type="text" class="form-control" id="nome" name="nome"
                        placeholder="Nome do aluno" autofocus value="{{ old('nome') }}">
             </div>
@@ -36,13 +36,13 @@
             <div class="col-lg-2 col-lg-offset-3 col-sm-6">
                 <label for="telefone">Telefone</label>
                 <input type="text" class="form-control" id="telefone" name="telefone"
-                       placeholder="Telefone" value="{{ old('telefone') }}" data-inputmask="'mask': '(99) 99999-9999'">
+                       placeholder="Telefone" value="{{ old('telefone') }}" data-inputmask="'mask': '(99) 9999-9999'">
             </div>
 
             <div class="col-lg-2 col-sm-6">
-                <label for="telefone2">Telefone 2</label>
+                <label for="telefone2">Celular</label>
                 <input type="text" class="form-control" id="telefone2" name="telefone2"
-                       placeholder="Telefone 2" value="{{ old('telefone2') }}" data-inputmask="'mask': '(99) 99999-9999'">
+                       placeholder="Celular" value="{{ old('telefone2') }}" data-inputmask="'mask': '(99) 99999-9999'">
             </div>
 
             <div class="col-lg-2 col-sm-6">
@@ -59,7 +59,6 @@
                        placeholder="Email" value="{{ old('email') }}">
             </div>
 
-        <div class="form-group">
             <div class="col-lg-2 col-sm-6">
                 <label for="turma">Turma</label>
                 <input type="text" class="form-control" id="turma" name="turma"

@@ -7,9 +7,6 @@
 @endsection
 @section('conteudo')
 
-    <?php ini_set('display_errors', 1);
-    error_reporting(E_ALL); ?>
-
     <div class="row">
         <div class="col-md-12">
             <div class="x_panel">
@@ -59,6 +56,7 @@
                 doSubmitCreateForm();
             });
 
+            // Efetua a requisição do formulário de criação
             function doSubmitCreateForm(){
                 $("#calendar-create").modal('hide');
                 var nome = $('#recurso option:selected').text();
@@ -123,6 +121,7 @@
                 doSubmitEditForm();
             });
 
+            // Efetua a requisição do formulário de edição
             function doSubmitEditForm(){
                 $("#calendar-edit").modal('hide');
                 var identif = $("#edit-id").val();
@@ -204,6 +203,7 @@
                 doSubmitDeleteForm();
             });
 
+            // Efetua a requisição do formulário de deleção
             function doSubmitDeleteForm(){
                 $("#calendar-delete").modal('hide');
                 $("#calendar-edit").modal('hide');

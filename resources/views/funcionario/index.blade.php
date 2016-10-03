@@ -48,7 +48,13 @@
                         @endif
                     </td>
                     <td class="text-center">
-                        <a href="#show" class="btn btn-sm btn-success">
+                        <a href="#show" class="btn btn-sm btn-success"
+                           data-nome="{{ $f->user->nome }}"
+                           data-telefone="{{ $f->user->telefone }}"
+                           data-telefone2="{{ $f->user->telefone2 }}"
+                           data-email="{{ $f->user->email }}"
+                           data-registro="{{ $f->num_registro }}"
+                           data-ativo="{{ $f->user->ativo }}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
                         <a href="{{ route('funcionario.edit', $f->id)}}" class="btn btn-sm btn-warning">
@@ -95,6 +101,49 @@
 
                 $('#formexcluir').attr("action", "funcionarios/remover/"+id);
                 deleteLogModal.modal('show');
+            });
+        });
+
+        $(function (){
+            var showModal = $('div#show-modal');
+
+            $("a[href='#show']").click(function(event) {
+                event.preventDefault();
+                var nome = $(this).data('nome');
+                var telefone = $(this).data('telefone');
+                var telefone2 = $(this).data('telefone2');
+                var email = $(this).data('email');
+                var registro = $(this).data('registro');
+                var ativo = $(this).data('ativo');
+
+                showModal.find('.modal-body').html(
+                        '<div class="row">' +
+                        '<div class="col-md-2">Nome:</div>' +
+                        '<div class="col-md-10"><p>'+ nome + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Telefone:</div>' +
+                        '<div class="col-md-10"><p>'+ telefone + '</p></div>' +
+                        '</div>' +
+                        '<div class="row">' +
+                        '<div class="col-md-2">Celular:</div>' +
+                        '<div class="col-md-10"><p>'+ telefone2 + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Email:</div>' +
+                        '<div class="col-md-10"><p>'+ email + '</p></div>' +
+                        '</div>' +
+                        '<div class="row">' +
+                        '<div class="col-md-2">Nº Registro:</div>' +
+                        '<div class="col-md-10"><p>'+ registro + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Status:</div>' +
+                        '<div class="col-md-10"><p>'+ (ativo == 1 ? "Ativo" : "Inativo") + '</p></div>' +
+                        '</div>'
+                );
+
+                showModal.modal('show');
             });
         });
 

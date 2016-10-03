@@ -13,12 +13,12 @@ class FuncionarioRequest extends Request
      */
     public function authorize(User $user)
     {
-        dd($user);
-        if(isset($user)){
-            if($user->tipo_acesso != 0){
-                return false;
-            }
-        }
+//        dd($user);
+//        if(isset($user)){
+//            if($user->tipo_acesso != 0){
+//                return false;
+//            }
+//        }
         return true;
     }
 

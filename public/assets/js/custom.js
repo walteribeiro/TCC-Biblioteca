@@ -154,6 +154,7 @@ $(document).ready(function() {
 
 // iCheck
 $(document).ready(function() {
+    $('.action-cnt').html('0 Registro(s)');
     if ($("input.flat")[0]) {
         $(document).ready(function () {
             $('input.flat').iCheck({
@@ -209,12 +210,11 @@ function countChecked() {
     var checkCount = $(".bulk_action input[name='table_records']:checked").length;
 
     if (checkCount) {
-        $('.column-title').hide();
-        $('.bulk-actions').show();
-        $('.action-cnt').html(checkCount + ' Records Selected');
+        $('#btn-remove').removeClass('disabled');
+        $('.action-cnt').html(checkCount + ' Registro(s)');
     } else {
-        $('.column-title').show();
-        $('.bulk-actions').hide();
+        $('#btn-remove').addClass('disabled');
+        $('.action-cnt').html('0 Registro(s)');
     }
 }
 

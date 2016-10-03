@@ -140,15 +140,21 @@
                         '<div class="row">' +
                         '<div class="col-md-2">Origem:</div>' +
                         '<div class="col-md-2"><p>'+ origem + '</p></div>' +
-                        '<div class="col-md-1">Ano:</div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Ano:</div>' +
                         '<div class="col-md-2"><p>'+ ano + '</p></div>' +
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-2">ISBN:</div>' +
                         '<div class="col-md-2"><p>'+ isbn + '</p></div>' +
-                        '<div class="col-md-1">CDU:</div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">CDU:</div>' +
                         '<div class="col-md-2"><p>'+ cdu + '</p></div>' +
-                        '<div class="col-md-1">CDD:</div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">CDD:</div>' +
                         '<div class="col-md-2"><p>'+ cdd + '</p></div>' +
                         '</div>'
                 );

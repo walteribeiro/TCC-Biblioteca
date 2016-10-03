@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlunosTable extends Migration
+class CreateAlunosTurmasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,10 @@ class CreateAlunosTable extends Migration
      */
     public function up()
     {
-        Schema::create('alunos', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->primary();
-            $table->string('matricula')->unique()->nullable();
+        Schema::create('alunos_turmas', function (Blueprint $table) {
+            $table->unsignedBigInteger('aluno_id');
+            $table->unsignedBigInteger('turma_id');
+            $table->primary(array('aluno_id', 'turma_id'));
         });
     }
 
@@ -25,6 +26,6 @@ class CreateAlunosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('alunos');
+        Schema::drop('alunos_turmas');
     }
 }
