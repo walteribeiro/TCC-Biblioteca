@@ -48,7 +48,6 @@ class AlunoRepository
 
         //Persistindo dados da request no funcionário
         $this->aluno->matricula = $data['matricula'];
-        $this->aluno->turma = $data['turma'];
         $this->usuario->aluno()->save($this->aluno);
 
         return $this->usuario;

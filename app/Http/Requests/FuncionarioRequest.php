@@ -32,13 +32,13 @@ class FuncionarioRequest extends Request
         switch ($this->method()) {
             case 'POST': {
                 return [
-                    'username' => 'required|min:5|max:10|unique:pessoas',
+                    'username' => 'min:5|max:10|unique:pessoas',
                     'senha' => 'min:5|max:15|confirmed:senha_confirmation',
                     'nome' => 'required|min:5|max:255',
                     'telefone' => 'required|min:10|max:15',
                     'telefone2' => 'min:10|max:15',
-                    'email' => 'min:10|max:255|unique:pessoas',
-                    'numeroRegistro' => 'min:5|max:10|unique:funcionarios,num_registro',
+                    'email' => 'required|min:10|max:255|unique:pessoas',
+                    'numeroRegistro' => 'required|min:5|max:10|unique:funcionarios,num_registro',
                     'tipoFuncionario' => 'required',
                 ];
             }
@@ -46,13 +46,13 @@ class FuncionarioRequest extends Request
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'username' => 'required|min:5|max:10|unique:pessoas,username, ' . $this->id,
+                    'username' => 'min:5|max:10|unique:pessoas,username, ' . $this->id,
                     'senha' => 'min:5|max:15|confirmed:senha_confirmation',
                     'nome' => 'required|min:5|max:255',
                     'telefone' => 'required|min:10|max:15',
                     'telefone2' => 'min:10|max:15',
-                    'email' => 'min:10|max:255|unique:pessoas,email, ' . $this->id,
-                    'numeroRegistro' => 'max:10|unique:funcionarios,id,user_id',
+                    'email' => 'required|min:10|max:255|unique:pessoas,email, ' . $this->id,
+                    'numeroRegistro' => 'required|max:10|unique:funcionarios,id,user_id',
                     'tipoFuncionario' => 'required',
                 ];
             }

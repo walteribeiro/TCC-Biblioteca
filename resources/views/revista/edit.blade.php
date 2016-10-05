@@ -18,13 +18,13 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-1 col-lg-offset-3">
+            <div class="col-lg-2 col-lg-offset-3">
                 <label for="referencia">Referência</label>
                 <input type="text" class="form-control" id="referencia" name="referencia"
                        placeholder="Referência"  value="{{ $revista->referencia }}">
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-lg-2">
                 <label for="categoria">Categoria</label>
                 <input type="text" class="form-control" id="categoria" name="categoria"
                        placeholder="Categoria" value="{{ $revista->categoria }}">

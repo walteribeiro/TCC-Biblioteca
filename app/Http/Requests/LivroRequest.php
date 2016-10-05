@@ -25,7 +25,7 @@ class LivroRequest extends Request
             case 'POST': {
                 return [
                     'titulo' => 'required|max:255',
-                    'subtitulo' => 'required|max:255',
+                    'subtitulo' => 'max:255',
                     'edicao' => 'required|max:15',
                     'ano' => 'required|size:4',
                     'autor' => 'required',
@@ -37,7 +37,7 @@ class LivroRequest extends Request
             case 'PATCH': {
                 return [
                     'titulo' => 'required|max:255',
-                    'subtitulo' => 'required|max:255',
+                    'subtitulo' => 'max:255',
                     'edicao' => 'required|max:15',
                     'ano' => 'required|size:4',
                     'autor' => 'required',

@@ -15,7 +15,7 @@ class AutorRequest extends Request
             case 'POST': {
                 return [
                     'nome' => 'required|min:5|max:255|unique:autores',
-                    'sobrenome' => 'required|min:5|max:255'
+                    'sobrenome' => 'min:5|max:255'
                 ];
             }
 
@@ -23,7 +23,7 @@ class AutorRequest extends Request
             case 'PATCH': {
                 return [
                     'nome' => 'required|min:5|max:255|unique:autores,nome,' . $this->id,
-                    'sobrenome' => 'required|min:5|max:255'
+                    'sobrenome' => 'min:5|max:255'
                 ];
 
             }

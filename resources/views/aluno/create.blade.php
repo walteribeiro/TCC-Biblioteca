@@ -60,9 +60,6 @@
             </div>
 
             <div class="col-lg-2 col-sm-6">
-                <label for="turma">Turma</label>
-                <input type="text" class="form-control" id="turma" name="turma"
-                       placeholder="Turma" value="{{ old('turma') }}">
             </div>
         </div>
 
