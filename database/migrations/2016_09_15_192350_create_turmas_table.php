@@ -14,11 +14,11 @@ class CreateTurmasTable extends Migration
     {
         Schema::create('turmas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('serie');
-            $table->string('turno');
-            $table->string('ensino');
-            $table->string('letra_turma');
-            $table->integer('ano');
+            $table->string('serie')->nullable();
+            $table->string('turno')->nullable();
+            $table->string('ensino')->nullable();
+            $table->string('letra_turma')->nullable();
+            $table->integer('ano')->nullable();
             $table->timestamps();
         });
     }

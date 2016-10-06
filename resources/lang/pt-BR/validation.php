@@ -104,5 +104,6 @@ return [
     'attributes'           => [
         'username' => 'nome de usuário',
         'password' => 'senha',
+        'letraTurma' => 'letra'
     ],
 ];

@@ -154,7 +154,7 @@ $(document).ready(function() {
 
 // iCheck
 $(document).ready(function() {
-    $('.action-cnt').html('0 Registro(s)');
+    $('.action-cnt').html(' Excluir');
     if ($("input.flat")[0]) {
         $(document).ready(function () {
             $('input.flat').iCheck({
@@ -211,10 +211,10 @@ function countChecked() {
 
     if (checkCount) {
         $('#btn-remove').removeClass('disabled');
-        $('.action-cnt').html(checkCount + ' Registro(s)');
+        $('.action-cnt').html(' Excluir ('+checkCount+')');
     } else {
         $('#btn-remove').addClass('disabled');
-        $('.action-cnt').html('0 Registro(s)');
+        $('.action-cnt').html(' Excluir');
     }
 }
 

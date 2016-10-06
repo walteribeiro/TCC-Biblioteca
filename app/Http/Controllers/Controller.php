@@ -17,7 +17,8 @@ class Controller extends BaseController
     const INCLUSAO = 'Registro incluído com sucesso!';
     const EXCLUSAO = 'Registro removido com sucesso!';
     const ALTERACAO = 'Registro alterado com sucesso!';
-    const ERRO_REFERENCIAMENTO = 'Este registro não pode ser removido, pois está sendo referenciado!';
+    const ERRO_REFERENCIAMENTO = 'Este registro não pode ser removido, pois está sendo utilizado!';
+    const ERRO_EXCLUSAO_TURMA = 'Para excluir a turma é necessário primeiro excluir os alunos!';
 
 
     public static function getTipoSucesso()
@@ -48,5 +49,10 @@ class Controller extends BaseController
     public static function getMsgErroReferenciamento()
     {
         return self::ERRO_REFERENCIAMENTO;
+    }
+
+    public static function getMsgErroExclusaoTurma()
+    {
+        return self::ERRO_EXCLUSAO_TURMA;
     }
 }

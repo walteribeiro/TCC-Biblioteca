@@ -22,7 +22,7 @@
                         <table id="alunos-vinculados" class="table table-striped table-responsive">
                             <thead>
                             <tr>
-                                <th>#</th>
+                                <th>Matrícula</th>
                                 <th>Nome</th>
                                 <th>Telefone</th>
                                 <th>E-mail</th>
@@ -38,7 +38,7 @@
                             <tbody>
                             @foreach($turma->alunos as $a)
                                 <tr>
-                                    <td>{{$a->user->id}}</td>
+                                    <td>{{$a->matricula}}</td>
                                     <td>{{$a->user->nome}}</td>
                                     <td>{{$a->user->telefone}}</td>
                                     <td>{{$a->user->email}}</td>
@@ -48,7 +48,6 @@
                                             <input type="checkbox" name="records" autocomplete="off" value="{{ $a->user->id }}">
                                             <em class="fa fa-check"></em>
                                         </label>
-                                        {{--<input type="checkbox" class="bulk-action" name="table_records" value="{{ $a->user->id }}">--}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -141,21 +140,6 @@
                         }
                     });
                 }
-
-           /* $("label.action").click(function(){
-                var inputCheck = $(this).find('input');
-                if(!inputCheck.attr("checked")) {
-                    inputCheck.attr("checked", true);
-                    selected.push(inputCheck.val());
-                } else {
-                    inputCheck.attr("checked", false);
-                    $.each(selected, function(idx, vl){
-                       if(vl == inputCheck.val()){
-                           selected.splice(idx, 1);
-                       }
-                    });
-                }*/
-                console.log(selected);
                 countIds();
             });
 
@@ -164,23 +148,12 @@
                 console.log(checkCount);
                 if (checkCount) {
                     $('#btn-remove').removeClass('disabled');
-                    $('.action-cnt').html(checkCount + ' Registro(s)');
+                    $('.action-cnt').html(' Excluir ('+checkCount+')');
                 } else {
                     $('#btn-remove').addClass('disabled');
-                    $('.action-cnt').html('0 Registro(s)');
+                    $('.action-cnt').html(' Excluir');
                 }
             }
-
-//            $('#alunos-vinculados tbody').on('ifChecked', 'input', function () {
-//                var id = $(this).data('id');
-//                selected.push( id );
-//            });
-//
-//            $('#alunos-vinculados tbody').on('ifUnchecked', 'input', function () {
-//                var id = $(this).data('id');
-//                var index = $.inArray(id, selected);
-//                selected.splice( index, 1 );
-//            });
 
             var deleteLogModal = $('div#delete-modal');
 

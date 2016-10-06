@@ -1,5 +1,8 @@
 @extends('layout.main')
 
+@section('header')
+    <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
+@endsection
 @section('conteudo')
 
     <h3 class="col-lg-6 col-lg-offset-3 col-sm-12 crud-title">Edição de livro</h3>
@@ -36,7 +39,8 @@
         <div class="form-group">
             <div class="col-lg-3 col-lg-offset-3">
                 <label for="editora">Editora</label>
-                <select class="form-control" name="editora" id="editora">
+                <select class="form-control basic-select" name="editora" id="editora">
+                    <option value="">Selecione uma editora</option>
                     @foreach($listAutoresEditoras['editoras'] as $e)
                         @if($e->id == $livro->publicacao->editora->id)
                             <option value="{{ $e->id }}" selected>{{ $e->nome }}</option>
@@ -49,7 +53,8 @@
 
             <div class="col-lg-3">
                 <label for="autor">Autor</label>
-                <select class="form-control" name="autor" id="autor">
+                <select class="form-control basic-select" name="autor" id="autor">
+                    <option value="">Selecione um autor</option>
                     @foreach($listAutoresEditoras['autores'] as $a)
                         @if($a->id == $livro->autor->id)
                             <option value="{{ $a->id }}" selected>{{ $a->nome." ".$a->sobrenome }}</option>
@@ -76,7 +81,7 @@
 
             <div class="col-lg-1">
                 <label for="ano">Ano</label>
-                <input type="text" class="form-control" id="ano" name="ano"
+                <input type="number" class="form-control" id="ano" name="ano"
                        placeholder="Ano" value="{{ $livro->ano }}">
             </div>
         </div>
@@ -110,4 +115,14 @@
         </div>
     </form>
 
+@endsection
+@section('scripts')
+    <script src="{{asset('assets/js/select2.full.min.js')}}"></script>
+    <script src="{{asset('assets/js/pt-BR.js')}}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".basic-select").select2();
+        })
+    </script>
 @endsection

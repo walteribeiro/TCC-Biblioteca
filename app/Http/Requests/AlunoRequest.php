@@ -25,10 +25,10 @@ class AlunoRequest extends Request
             case 'POST': {
                 return [
                     'username' => 'min:5|max:10|unique:pessoas',
-                    'matricula' => 'required',
+                    'matricula' => 'required|unique:alunos',
                     'senha' => 'min:5|max:15|confirmed:senha_confirmation',
                     'nome' => 'required|min:5|max:255',
-                    'telefone' => 'required|min:10|max:15',
+                    'telefone' => 'min:10|max:15',
                     'telefone2' => 'min:10|max:15',
                     'email' => 'required| min:10|max:255|unique:pessoas',
                 ];
@@ -36,11 +36,13 @@ class AlunoRequest extends Request
 
             case 'PUT':
             case 'PATCH': {
+            //dd($this);
                 return [
                     'username' => 'min:5|max:10|unique:pessoas,username, ' . $this->id,
+                    'matricula' => 'required|unique:alunos,matricula,'.$this->id,
                     'senha' => 'min:5|max:15|confirmed:senha_confirmation',
                     'nome' => 'required|min:5|max:255',
-                    'telefone' => 'required|min:10|max:15',
+                    'telefone' => 'min:10|max:15',
                     'telefone2' => 'min:10|max:15',
                     'email' => 'min:10|max:255|unique:pessoas,email, ' . $this->id,
                 ];

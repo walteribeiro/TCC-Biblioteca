@@ -1,7 +1,9 @@
 @if( !empty(Session::has('erro')) )
     <script>
         var options = {
-            "closeButton": true
+            "closeButton": true,
+            "positionClass": "toast-top-center",
+            "timeOut": "2000"
         };
         toastr.error('{{Session::get('erro')}}', 'Erro!', options);
     </script>
@@ -9,7 +11,9 @@
 @if( !empty(Session::has('sucesso')) )
     <script>
         var options = {
-            "closeButton": true
+            "closeButton": true,
+            "positionClass": "toast-top-center",
+            "timeOut": "2000"
         };
         toastr.success('{{Session::get('sucesso')}}', 'Sucesso!', options);
     </script>

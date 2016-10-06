@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AlunoRequest;
 use App\Repositories\AlunoRepository;
-use Illuminate\Http\Request;
-
+use Illuminate\Database\QueryException;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Session;
 

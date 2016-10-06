@@ -25,14 +25,17 @@ class ReservaRecursoRequest extends Request
             case 'POST': {
                 return [
                     'recurso' => 'required',
-                    'funcionario' => 'required'
+                    'funcionario' => 'required',
+                    'aula' => 'required|unique:reserva_recursos,aula'
                 ];
             }
 
             case 'PUT':
             case 'PATCH': {
                 return [
-
+                    'recurso' => 'required',
+                    'funcionario' => 'required',
+                    'aula' => 'required|unique:reserva_recursos,aula,'.$this->id
                 ];
             }
 

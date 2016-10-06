@@ -32,11 +32,8 @@
                     <td>{{$t->ano}}</td>
                     <td>{{$t->ensino}}</td>
                     <td class="text-center">
-                        <a href="{{ route('turma.vinculo', $t->id) }}" class="btn btn-sm btn-dark">
-                            <em class="fa fa-file-text-o"></em> Vincular
-                        </a>
-                        <a href="{{ route('turma.aluno', $t->id) }}" class="btn btn-sm btn-primary">
-                            <em class="fa fa-graduation-cap"></em> Alunos <em class="badge">{{ $t->alunos->count() }}</em>
+                        <a href="{{ route('turma.vinculo', $t->id) }}" class="btn btn-sm btn-primary">
+                            <em class="fa fa-plus-circle"></em> Adicionar Alunos
                         </a>
                         <a href="#show" class="btn btn-sm btn-success"
                            data-serie="{{ $t->serie }}"
@@ -55,6 +52,9 @@
                            data-ano="{{ $t->ano}}"
                            data-id="{{ $t->id }}">
                             <em class="fa fa-trash-o"></em> Excluir
+                        </a>
+                        <a href="{{ route('turma.aluno', $t->id) }}" class="btn btn-sm btn-dark">
+                            <em class="fa fa-graduation-cap"></em> Remover Alunos <em class="badge">{{ $t->alunos->count() }}</em>
                         </a>
                     </td>
                 </tr>

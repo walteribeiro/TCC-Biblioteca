@@ -26,7 +26,7 @@
         <div class="form-group">
             <div class="col-lg-2 col-lg-offset-3 col-sm-12">
                 <label for="ano">Ano</label>
-                <input type="text" class="form-control" id="ano" name="ano"
+                <input type="number" class="form-control" id="ano" name="ano"
                        placeholder="Ano" value="{{ $turma->ano }}">
             </div>
 
@@ -52,4 +52,19 @@
         </div>
     </form>
 
+@endsection
+@section('scripts')
+    <script>
+        $(function () {
+            $('#letraTurma').keypress(function (e) {
+                var regex = new RegExp("^[a-zA-Z._\b]+$");
+                var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (regex.test(str)) {
+                    return true;
+                }
+                e.preventDefault();
+                return false;
+            });
+        });
+    </script>
 @endsection

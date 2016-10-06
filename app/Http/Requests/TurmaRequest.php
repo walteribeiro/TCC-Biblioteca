@@ -23,8 +23,30 @@ class TurmaRequest extends Request
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        switch ($this->method()) {
+            case 'POST': {
+                return [
+                    'serie' => 'required|max:10',
+                    'turno' => 'required',
+                    'ensino' => 'required',
+                    'letraTurma' => 'required|max:2',
+                    'ano' => 'required|digits:4'
+                ];
+            }
+            case 'PUT':
+            case 'PATCH': {
+                return [
+                    'serie' => 'required|max:10',
+                    'turno' => 'required',
+                    'ensino' => 'required',
+                    'letraTurma' => 'required|max:2',
+                    'ano' => 'required|digits:4'
+                ];
+
+            }
+            default: {
+                return [];
+            }
+        }
     }
 }

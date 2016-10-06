@@ -1,5 +1,8 @@
 @extends('layout.main')
 
+@section('header')
+    <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
+@endsection
 @section('conteudo')
 
     <h3 class="col-lg-6 col-lg-offset-3 col-sm-12 crud-title">Cadastro de livro</h3>
@@ -35,10 +38,12 @@
         <div class="form-group">
             <div class="col-lg-3 col-lg-offset-3">
                 <label for="editora">Editora</label>
-                <select class="form-control" name="editora" id="editora">
+                <select class="js-states form-control basic-select" name="editora" id="editora">
                     @if(count($livros['editoras']) > 0)
+                        <option value="" selected>Selecione uma editora</option>
                         @foreach($livros['editoras'] as $e)
-                            <option value="{{ $e->id }}" @if ( old('editora') == $e->id) selected="selected" @endif>{{ $e->nome }}</option>
+                            <option value="{{ $e->id }}"
+                                    @if ( old('editora') == $e->id) selected="selected" @endif>{{ $e->nome }}</option>
                         @endforeach
                     @else
                         <option value="" selected>Cadastre uma editora primeiro</option>
@@ -48,10 +53,12 @@
 
             <div class="col-lg-3">
                 <label for="autor">Autor</label>
-                <select class="form-control" name="autor" id="autor">
+                <select class="js-states form-control basic-select" name="autor" id="autor">
                     @if(count($livros['autores']) > 0)
+                        <option value="" selected>Selecione um autor</option>
                         @foreach($livros['autores'] as $a)
-                            <option value="{{ $a->id }}" @if ( old('autor') == $a->id) selected="selected" @endif>{{ $a->nome." ".$a->sobrenome }}</option>
+                            <option value="{{ $a->id }}"
+                                    @if ( old('autor') == $a->id) selected="selected" @endif>{{ $a->nome." ".$a->sobrenome }}</option>
                         @endforeach
                     @else
                         <option value="" selected>Cadastre um autor primeiro</option>
@@ -75,7 +82,7 @@
 
             <div class="col-lg-1">
                 <label for="ano">Ano</label>
-                <input type="text" class="form-control" id="ano" name="ano"
+                <input type="number" class="form-control" id="ano" name="ano"
                        placeholder="Ano" value="{{ old('ano') }}">
             </div>
         </div>
@@ -108,4 +115,14 @@
         </div>
     </form>
 
+@endsection
+@section('scripts')
+    <script src="{{asset('assets/js/select2.full.min.js')}}"></script>
+    <script src="{{asset('assets/js/pt-BR.js')}}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".basic-select").select2();
+        })
+    </script>
 @endsection

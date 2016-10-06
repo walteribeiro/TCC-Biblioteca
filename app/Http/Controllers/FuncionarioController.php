@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FuncionarioRequest;
 use App\Models\Funcionario;
 use App\Repositories\FuncionarioRepository;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;

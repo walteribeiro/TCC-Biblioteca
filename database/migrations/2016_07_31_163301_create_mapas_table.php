@@ -14,7 +14,7 @@ class CreateMapasTable extends Migration
     {
         Schema::create('mapas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('numero');
+            $table->integer('numero')->unique();
             $table->string('titulo', 60);
             $table->unsignedBigInteger('recurso_id')->index('recurso_2_idx');
         });

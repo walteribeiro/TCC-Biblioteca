@@ -102,7 +102,7 @@ class TurmaController extends Controller
             $this->gravarLog("Turma excluída!", "alerta");
             return redirect()->route('turma.index');
         }catch(QueryException $e){
-            Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
+            Session::flash(self::getTipoErro(), self::getMsgErroExclusaoTurma());
             return redirect()->back();
         }
     }
