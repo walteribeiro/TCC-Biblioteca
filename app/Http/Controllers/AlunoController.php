@@ -52,6 +52,11 @@ class AlunoController extends Controller
 
     public function update(AlunoRequest $alunoRequest, $id)
     {
+        $value = $this->repository->countAlunos($id, $alunoRequest->input('matricula'));
+        if($value > 0){
+            Session::flash(self::getTipoErro(), self::getMsgErroMatriculaDuplicada());
+            return redirect()->back();
+        }
 
         $retorno = $this->repository->update($alunoRequest, $id);
         if($retorno){

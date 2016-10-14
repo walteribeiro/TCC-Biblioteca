@@ -38,6 +38,7 @@ class RevistaRepository
     public function store($data)
     {
         // Persistindo dados da request na publicação
+        $this->publicacao->codigo = $data['codigo'];
         $this->publicacao->descricao = $data['descricao'];
         $this->publicacao->titulo = $data['titulo'];
         $this->publicacao->edicao = $data['edicao'];
@@ -65,6 +66,7 @@ class RevistaRepository
         $this->publicacao = $this->publicacao->find($id);
 
         // Atualizando dados da request na publicação
+        $this->publicacao->codigo = $data['codigo'];
         $this->publicacao->descricao = $data['descricao'];
         $this->publicacao->titulo = $data['titulo'];
         $this->publicacao->edicao = $data['edicao'];

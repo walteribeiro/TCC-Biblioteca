@@ -43,10 +43,10 @@ class AlunoRepository
         $this->usuario->telefone2 = $data['telefone2'];
         $this->usuario->email = $data['email'];
         $this->usuario->ativo = ($ativo != null ? true : false);
-        $this->usuario->tipo_acesso = 1; //Colaborador para todos tipos de Funcionários
+        $this->usuario->tipo_acesso = 2; //Padrão para todos alunos
         $this->usuario->save();
 
-        //Persistindo dados da request no funcionário
+        //Persistindo dados da request no aluno
         $this->aluno->matricula = $data['matricula'];
         $this->usuario->aluno()->save($this->aluno);
 
@@ -73,8 +73,7 @@ class AlunoRepository
 
         //Atualizando dados da request no aluno
         $this->usuario->aluno()->update([
-            'matricula' => $data['matricula'],
-            'turma' => $data['turma']
+            'matricula' => $data['matricula']
         ]);
 
         $this->usuario->save();
@@ -90,5 +89,9 @@ class AlunoRepository
     public function findById($id)
     {
         return $this->aluno->find($id);
+    }
+
+    public function countAlunos($id, $matricula){
+        return $this->aluno->where([['matricula', '=', $matricula], ['user_id', '<>', $id]])->count();
     }
 }

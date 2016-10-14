@@ -32,7 +32,7 @@ class LivroController extends Controller
 
     public function store(LivroRequest $livroRequest)
     {
-        $retorno = $this->repository->store($livroRequest->all());
+        $retorno = $this->repository->store($livroRequest);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
             return redirect()->route('livro.index');
@@ -54,7 +54,7 @@ class LivroController extends Controller
 
     public function update(LivroRequest $livroRequest, $id)
     {
-        $retorno = $this->repository->update($livroRequest->all(), $id);
+        $retorno = $this->repository->update($livroRequest, $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
             return redirect()->route('livro.index');

@@ -51,6 +51,11 @@ class MapaController extends Controller
 
     public function update(MapaRequest $mapaRequest, $id)
     {
+        $value = $this->repository->countMapas($id, $mapaRequest->input('numero'));
+        if($value > 0){
+            Session::flash(self::getTipoErro(), self::getMsgErroMapaDuplicado());
+            return redirect()->back();
+        }
         $retorno = $this->repository->update($mapaRequest->all() ,$id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());

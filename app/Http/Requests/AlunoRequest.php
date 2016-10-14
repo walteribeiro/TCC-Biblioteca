@@ -36,10 +36,11 @@ class AlunoRequest extends Request
 
             case 'PUT':
             case 'PATCH': {
-            //dd($this);
+
+            //dd($this->);
                 return [
                     'username' => 'min:5|max:10|unique:pessoas,username, ' . $this->id,
-                    'matricula' => 'required|unique:alunos,matricula,'.$this->id,
+                    'matricula' => 'required',
                     'senha' => 'min:5|max:15|confirmed:senha_confirmation',
                     'nome' => 'required|min:5|max:255',
                     'telefone' => 'min:10|max:15',

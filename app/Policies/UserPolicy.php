@@ -10,7 +10,7 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function show(User $user, Funcionario $func)
+    public function show(User $user, User $usuario)
     {
         return $user->tipo_acesso === 0;
     }

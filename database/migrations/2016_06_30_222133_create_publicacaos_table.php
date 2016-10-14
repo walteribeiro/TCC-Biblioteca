@@ -18,6 +18,8 @@ class CreatePublicacaosTable extends Migration
             $table->string('titulo');
             $table->string('edicao');
             $table->string('origem');
+            $table->string('codigo')->unique()->nullable();
+            $table->smallInteger('status')->default(0);
             $table->unsignedBigInteger('editora_id')->index('editora_idx');
             $table->timestamps();
         });

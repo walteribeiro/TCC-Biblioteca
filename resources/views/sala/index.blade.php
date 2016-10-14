@@ -24,7 +24,7 @@
             <tbody>
             @foreach($salas as $s)
                 <tr>
-                    <td>{{$s->id}}</td>
+                    <td>{{$s->recurso_id}}</td>
                     <td>{{$s->recurso->descricao}}</td>
                     <td>
                         @if($s->tipo == 0)
@@ -42,7 +42,7 @@
                            data-descricao="{{ $s->recurso->descricao }}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
-                        <a href="{{ route('sala.edit', $s->id)}}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('sala.edit', $s->recurso_id)}}" class="btn btn-sm btn-warning">
                             <em class="fa fa-pencil"></em> Alterar
                         </a>
                         <a href="#modal" class="btn btn-sm btn-danger"

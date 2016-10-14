@@ -13,10 +13,9 @@ class CreateRevistasTable extends Migration
     public function up()
     {
         Schema::create('revistas', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->unsignedBigInteger('publicacao_id')->primary();
             $table->string('referencia');
             $table->string('categoria');
-            $table->unsignedBigInteger('publicacao_id')->index('publicacao_idx1');
         });
     }
 

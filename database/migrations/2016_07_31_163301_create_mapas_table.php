@@ -13,10 +13,9 @@ class CreateMapasTable extends Migration
     public function up()
     {
         Schema::create('mapas', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->unsignedBigInteger('recurso_id')->primary();
             $table->integer('numero')->unique();
             $table->string('titulo', 60);
-            $table->unsignedBigInteger('recurso_id')->index('recurso_2_idx');
         });
     }
 

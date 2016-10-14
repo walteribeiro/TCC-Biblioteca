@@ -13,15 +13,13 @@ class CreateLivrosTable extends Migration
     public function up()
     {
         Schema::create('livros', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->unsignedBigInteger('publicacao_id')->primary();
             $table->string('subtitulo');
             $table->string('isbn');
             $table->string('cdu');
             $table->string('cdd');
             $table->integer('ano');
-            $table->unsignedBigInteger('publicacao_id')->index('publicacao_idx2');
             $table->unsignedBigInteger('autor_id')->index('autor_idx');
-
         });
     }
 

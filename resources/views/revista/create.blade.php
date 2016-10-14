@@ -17,7 +17,13 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-2 col-lg-offset-3">
+            <div class="col-lg-1 col-lg-offset-3">
+                <label for="codigo">Código</label>
+                <input type="text" class="form-control" id="codigo" name="codigo"
+                       placeholder="Código" value="{{ old('codigo') }}">
+            </div>
+
+            <div class="col-lg-1">
                 <label for="referencia">Referência</label>
                 <input type="text" class="form-control" id="referencia" name="referencia"
                        placeholder="Referência" value="{{ old('referencia') }}">

@@ -9,6 +9,8 @@ class Funcionario extends Model
 {
     protected $table = 'funcionarios';
 
+    public $primaryKey = 'user_id';
+
     protected $fillable = ['num_registro', 'tipo_funcionario'];
 
     public $timestamps = false;

@@ -20,17 +20,37 @@
                 <th>Subtitulo</th>
                 <th>Edição</th>
                 <th>Ano</th>
+                <th>Status</th>
                 <th data-orderable="false">Opções</th>
             </tr>
             </thead>
             <tbody>
             @foreach($livros as $l)
                 <tr>
-                    <td>{{$l->publicacao->id}}</td>
+                    <td>{{$l->publicacao->codigo}}</td>
                     <td>{{$l->publicacao->titulo}}</td>
                     <td>{{$l->subtitulo}}</td>
                     <td>{{$l->publicacao->edicao}}</td>
                     <td>{{$l->ano}}</td>
+                    <td>
+                        @if($l->publicacao->status == 0)
+                            <span class="label label-dark">
+                                Desativado
+                            </span>
+                        @elseif($l->publicacao->status == 1)
+                            <span class="label label-success">
+                                Disponível
+                            </span>
+                        @elseif($l->publicacao->status == 2)
+                            <span class="label label-primary">
+                                Emprestado
+                            </span>
+                        @else
+                            <span class="label label-warning">
+                                Reservado
+                            </span>
+                        @endif
+                    </td>
                     <td class="text-center">
                         <a href="#show" class="btn btn-sm btn-success"
                            data-titulo="{{ $l->publicacao->titulo }}"
@@ -46,7 +66,7 @@
                            data-cdd="{{ $l->cdd }}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
-                        <a href="{{ route('livro.edit', $l->id)}}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('livro.edit', $l->publicacao_id)}}" @if($l->publicacao->status != 0 && $l->publicacao->status != 1)disabled @endif class="btn btn-sm btn-warning">
                             <em class="fa fa-pencil"></em> Alterar
                         </a>
                         <a href="#modal" class="btn btn-sm btn-danger"

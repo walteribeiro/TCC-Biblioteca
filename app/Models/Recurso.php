@@ -12,17 +12,17 @@ class Recurso extends Model
 
     public function dataShow()
     {
-        return $this->hasOne(DataShow::class);
+        return $this->hasOne(DataShow::class, 'recurso_id');
     }
 
     public function mapa()
     {
-        return $this->hasOne(Mapa::class);
+        return $this->hasOne(Mapa::class, 'recurso_id');
     }
 
     public function sala()
     {
-        return $this->hasOne(Sala::class);
+        return $this->hasOne(Sala::class, 'recurso_id');
     }
 
     public function reservaRecurso(){

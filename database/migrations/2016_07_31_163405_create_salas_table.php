@@ -13,9 +13,8 @@ class CreateSalasTable extends Migration
     public function up()
     {
         Schema::create('salas', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->unsignedBigInteger('recurso_id')->primary();
             $table->tinyInteger('tipo');
-            $table->unsignedBigInteger('recurso_id')->index('recurso_3_idx');
         });
     }
 

@@ -9,10 +9,10 @@
     @if(isset($percents) && count($percents) > 0)
         <div class="row">
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-lg-offset-1">
-                <log-graph url="/TCC/TCC-Biblioteca/public/chart/sumarizacao"></log-graph>
+                <log-graph></log-graph>
             </div>
         </div>
-
+        <br><br><br>
         <div class="row">
             <div class="col-md-12">
                 <section class="box-body">
@@ -46,5 +46,6 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('assets/js/moment.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 @endsection

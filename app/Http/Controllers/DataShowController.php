@@ -52,6 +52,11 @@ class DataShowController extends Controller
 
     public function update(DataShowRequest $dataShowRequest, $id)
     {
+        $value = $this->repository->countDataShows($id, $dataShowRequest->input('codigo'));
+        if($value > 0){
+            Session::flash(self::getTipoErro(), self::getMsgErroCodigoDataShowDuplicado());
+            return redirect()->back();
+        }
         $retorno = $this->repository->update($dataShowRequest->all() ,$id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());

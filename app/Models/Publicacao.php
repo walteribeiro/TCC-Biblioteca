@@ -16,7 +16,7 @@ class Publicacao extends Model
      */
     public function livro()
     {
-        return $this->hasOne(Livro::class);
+        return $this->hasOne(Livro::class, 'publicacao_id');
     }
 
     /**
@@ -25,7 +25,7 @@ class Publicacao extends Model
      */
     public function revista()
     {
-        return $this->hasOne(Revista::class);
+        return $this->hasOne(Revista::class, 'publicacao_id');
     }
 
     /**

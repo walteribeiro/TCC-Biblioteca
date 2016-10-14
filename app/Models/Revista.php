@@ -8,6 +8,8 @@ class Revista extends Model
 {
     protected $table = 'revistas';
 
+    public $primaryKey = 'publicacao_id';
+
     protected $fillable = ['referencia','categoria'];
 
     public $timestamps = false;

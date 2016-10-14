@@ -25,7 +25,7 @@
             <tbody>
             @foreach($mapas as $m)
                 <tr>
-                    <td>{{$m->id}}</td>
+                    <td>{{$m->recurso_id}}</td>
                     <td>{{$m->recurso->descricao}}</td>
                     <td>{{$m->numero}}</td>
                     <td>{{$m->titulo}}</td>
@@ -35,7 +35,7 @@
                            data-codigo="{{ $m->numero }}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
-                        <a href="{{ route('mapa.edit', $m->id)}}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('mapa.edit', $m->recurso_id)}}" class="btn btn-sm btn-warning">
                             <em class="fa fa-pencil"></em> Alterar
                         </a>
                         <a href="#modal" class="btn btn-sm btn-danger"

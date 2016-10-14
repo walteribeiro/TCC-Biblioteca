@@ -11,14 +11,8 @@ class FuncionarioRequest extends Request
      *
      * @return bool
      */
-    public function authorize(User $user)
+    public function authorize()
     {
-//        dd($user);
-//        if(isset($user)){
-//            if($user->tipo_acesso != 0){
-//                return false;
-//            }
-//        }
         return true;
     }
 
@@ -52,7 +46,7 @@ class FuncionarioRequest extends Request
                     'telefone' => 'min:10|max:15',
                     'telefone2' => 'min:10|max:15',
                     'email' => 'required|min:10|max:255|unique:pessoas,email, ' . $this->id,
-                    'numeroRegistro' => 'required|max:10|unique:funcionarios,id,user_id',
+                    'numeroRegistro' => 'required|max:10', //TODO ajustar SQL count
                     'tipoFuncionario' => 'required',
                 ];
             }

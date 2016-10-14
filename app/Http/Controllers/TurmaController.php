@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\Repositories\TurmaRepository;
 use App\Traits\LogTrait;
 use Illuminate\Database\QueryException;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class TurmaController extends Controller
@@ -35,7 +36,7 @@ class TurmaController extends Controller
         return view('turma.vinculo', compact('turma', 'alunos'));
     }
 
-    public function vincular(TurmaRequest $turmaRequest)
+    public function vincular(Request $turmaRequest)
     {
         //dd($turmaRequest->all());
         $gravouAlunos = $this->repository->vincular($turmaRequest->all());
@@ -43,16 +44,16 @@ class TurmaController extends Controller
         //dd($gravouAlunos);
 
         if(!empty($gravouAlunos['attached'])){
+            Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
             return redirect()->route('turma.index');
         }
+        Session::flash(self::getTipoErroVincular(), self::getMsgErroAlunoDuplicadoTurma());
         return redirect()->back();
     }
 
     public function vinculados($id)
     {
         $turma = $this->repository->findById($id);
-
-        //dd($turma->alunos());
         return view('turma.show', compact('turma'));
     }
 

@@ -67,4 +67,8 @@ class DataShowRepository
     {
         return $this->dataShow->find($id);
     }
+
+    public function countDataShows($id, $codigo){
+        return $this->dataShow->where([['codigo', '=', $codigo], ['recurso_id', '<>', $id]])->count();
+    }
 }

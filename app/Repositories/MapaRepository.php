@@ -67,4 +67,8 @@ class MapaRepository
     {
         return $this->mapa->find($id);
     }
+
+    public function countMapas($id, $numero){
+        return $this->mapa->where([['numero', '=', $numero], ['recurso_id', '<>', $id]])->count();
+    }
 }

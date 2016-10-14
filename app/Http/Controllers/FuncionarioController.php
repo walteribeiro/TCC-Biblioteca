@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FuncionarioRequest;
 use App\Models\Funcionario;
 use App\Repositories\FuncionarioRepository;
+use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -24,17 +25,11 @@ class FuncionarioController extends Controller
 
     public function index()
     {
-        //auth()->loginUsingId(7);
-
-//        $this->authorize('show', new Funcionario());
-//
-//        if(Gate::denies('show', new Funcionario())){
-//
-//            return redirect('/');
-//        }
-
-        $funcionarios = $this->repository->index();
-        return view('funcionario.index', compact('funcionarios'));
+        if(auth()->user()->hasPermission()) {
+            $funcionarios = $this->repository->index();
+            return view('funcionario.index', compact('funcionarios'));
+        }
+        return $this->returnHomePage();
     }
 
     public function create()
@@ -42,9 +37,9 @@ class FuncionarioController extends Controller
         return view('funcionario.create');
     }
 
-    public function store(FuncionarioRequest $request)
+    public function store(FuncionarioRequest $funcionarioRequest)
     {
-        $retorno = $this->repository->store($request);
+        $retorno = $this->repository->store($funcionarioRequest);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
             return redirect()->route('funcionario.index');

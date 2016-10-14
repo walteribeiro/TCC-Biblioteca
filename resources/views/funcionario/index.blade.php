@@ -57,7 +57,7 @@
                            data-ativo="{{ $f->user->ativo }}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
-                        <a href="{{ route('funcionario.edit', $f->id)}}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('funcionario.edit', $f->user_id)}}" class="btn btn-sm btn-warning">
                             <em class="fa fa-pencil"></em> Alterar
                         </a>
                         <a href="#modal" class="btn btn-sm btn-danger"

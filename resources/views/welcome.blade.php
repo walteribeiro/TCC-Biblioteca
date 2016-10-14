@@ -225,5 +225,16 @@
             </div>
         </div>
     </div>
-
+@endsection
+@section('scripts')
+    @if( !empty(Session::has('alerta')) )
+        <script>
+            var options = {
+                "closeButton": true,
+                "positionClass": "toast-top-center",
+                "timeOut": "3000"
+            };
+            toastr.warning('{{Session::get('alerta')}}', 'Atenção!', options);
+        </script>
+    @endif
 @endsection

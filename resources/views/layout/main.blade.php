@@ -125,18 +125,27 @@
                                 </ul>
                             </li>
                             @endif
-                                    <!-- ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="javascript:;"> Perfil</a></li>
-                                <li>
-                                    <a href="javascript:;">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>Settings</span>
-                                    </a>
-                                </li>
-                                <li><a href="javascript:;">Help</a></li>
-                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                            </ul -->
-                        </li>
+
+                            <li role="presentation" class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="true">
+                                    <i class="fa fa-bell-o"></i>
+                                    <span class="badge bg-orange"></span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                    <li>
+                                        <a>
+                                        <span>
+                                            <span><strong>John Smith</strong></span>
+                                            <span class="time">10/08/2016</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
                     </ul>
                 </nav>
             </div>
@@ -174,6 +183,27 @@
 
 @yield('scripts')
 
+<script>
+    $(document).ready(function() {
+
+        $.ajax({
+            url: '{{route("emprestimo.efetuado")}}',
+            dataType: 'json',
+            type: 'get',
+            success: function(data) {
+                console.log(data);
+            },
+            error: function (xmlHttpRequest, textStatus, errorThrown) {
+               /* console.log(xmlHttpRequest);
+                console.log(textStatus);
+                console.log(errorThrown);*/
+            }
+        });
+
+    })
+</script>
+
 <script src="{{asset('assets/js/custom.js')}}"></script>
+
 </body>
 </html>

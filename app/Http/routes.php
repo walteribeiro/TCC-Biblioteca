@@ -159,4 +159,6 @@ Route::group(['prefix' => 'chart'], function(){
 
     Route::get('/sumarizacao', ['as'=>'chart.sumarizacao', 'uses'=>'ApiGraphController@sumarizarLogs']);
 
+    Route::get('/emprestimos-efetuados', ['as'=>'emprestimo.efetuado', 'uses'=>'ApiGraphController@emprestimosEfetuados']);
+
 });

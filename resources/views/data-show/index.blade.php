@@ -25,7 +25,7 @@
             <tbody>
             @foreach($dataShows as $d)
                 <tr>
-                    <td>{{$d->id}}</td>
+                    <td>{{$d->recurso_id}}</td>
                     <td>{{$d->recurso->descricao}}</td>
                     <td>{{$d->marca}}</td>
                     <td>{{$d->codigo}}</td>
@@ -35,7 +35,7 @@
                            data-codigo="{{ $d->codigo }}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
-                        <a href="{{ route('data-show.edit', $d->id)}}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('data-show.edit', $d->recurso_id)}}" class="btn btn-sm btn-warning">
                             <em class="fa fa-pencil"></em> Alterar
                         </a>
                         <a href="#modal" class="btn btn-sm btn-danger"

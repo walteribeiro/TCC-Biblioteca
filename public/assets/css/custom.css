@@ -4137,3 +4137,20 @@ ul.notifications {
 .btn.check.active em.fa {
   opacity: 1;
 }
+
+.label-success {
+  background: #26B99A;
+  border: 1px solid #169F85; }
+
+.label-success:hover, .label-success:focus, .label-success:active, .label-success.active, .open .dropdown-toggle.label-success {
+  background: #169F85 !important; }
+
+.label-dark {
+  color: #E9EDEF;
+  background-color: #4B5F71;
+  border-color: #364B5F; }
+
+.label-dark:hover, .label-dark:focus, .label-dark:active, .label-dark.active, .open .dropdown-toggle.label-dark {
+  color: #FFFFFF;
+  background-color: #394D5F;
+  border-color: #394D5F; }

@@ -13,10 +13,9 @@ class CreateDataShowsTable extends Migration
     public function up()
     {
         Schema::create('data_shows', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->unsignedBigInteger('recurso_id')->primary();
             $table->string('marca')->nullable();
             $table->integer('codigo')->unique();
-            $table->unsignedBigInteger('recurso_id')->index('recurso_1_idx');
         });
     }
 

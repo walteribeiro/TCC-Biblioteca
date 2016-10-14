@@ -28,7 +28,7 @@ class FuncionarioRepository
 
     public function store($data)
     {
-        $ativo = $data->input('ativo');
+        $ativo = $data['ativo'];
 
         // Persistindo dados da request no usuário
         if ($data['username'] == '') {

@@ -8,6 +8,8 @@ class Livro extends Model
 {
     protected $table = 'livros';
 
+    public $primaryKey = 'publicacao_id';
+
     protected $fillable = ['subtitulo', 'isbn', 'cdu', 'cdd', 'ano'];
 
     public $timestamps = false;

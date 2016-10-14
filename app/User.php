@@ -23,4 +23,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Aluno::class, 'user_id');
     }
+
+    public function hasPermission()
+    {
+        return $this->tipo_acesso === 0;
+    }
 }

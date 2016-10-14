@@ -26168,11 +26168,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
     template: '<div class="col-lg-10 col-lg-offset-1">' + '<canvas v-el:canvas></canvas>' + '</div>',
-
-    props: {
-        url: {}
-    },
-
     data: function data() {
         return {
             chart: ''
@@ -26192,81 +26187,67 @@ exports.default = {
             });
         },
         fetchData: function fetchData() {
-            return this.$http.get(this.url);
+            return this.$http.get("/TCC/TCC-Biblioteca/public/chart/sumarizacao");
         },
         render: function render(data) {
-            console.log(data);
-            console.log(Object.keys(data).map(function (key) {
-                return data[key];
-            }));
-            var conteudo = {
-                //                labels: [Object.keys(data)],
-                datasets: [{
-                    label: "Alerta",
-                    backgroundColor: "rgba(255,99,132,0.2)",
-                    borderColor: "rgba(255,99,132,1)",
-                    borderWidth: 1,
-                    hoverBackgroundColor: "rgba(255,99,132,0.4)",
-                    hoverBorderColor: "rgba(255,99,132,1)",
-                    data: Object.keys(data).map(function (key) {
-                        return data[key].alert;
-                    })
-                }, {
-                    label: "Informação",
-                    backgroundColor: "rgba(20, 94, 168,0.2)",
-                    borderColor: "rgba(20, 94, 168,1)",
-                    borderWidth: 1,
-                    hoverBackgroundColor: "rgba(20, 94, 168,0.4)",
-                    hoverBorderColor: "rgba(20, 94, 168,1)",
-                    data: Object.keys(data).map(function (key) {
-                        return data[key].info;
-                    })
-                }, {
-                    label: "Notícia",
-                    backgroundColor: "rgba(0,150,132,0.2)",
-                    borderColor: "rgba(0,150,132,1)",
-                    borderWidth: 1,
-                    hoverBackgroundColor: "rgba(0,150,132,0.4)",
-                    hoverBorderColor: "rgba(0,150,132,1)",
-                    data: Object.keys(data).map(function (key) {
-                        return data[key].notice;
-                    })
-                }, {
-                    label: "Aviso",
-                    backgroundColor: "rgba(255, 145, 0,0.2)",
-                    borderColor: "rgba(255, 145, 0,1)",
-                    borderWidth: 1,
-                    hoverBackgroundColor: "rgba(255, 145, 0,0.4)",
-                    hoverBorderColor: "rgba(255, 145, 0,1)",
-                    data: Object.keys(data).map(function (key) {
-                        return data[key].warning;
-                    })
-                }]
-            };
-
+            console.log(Object.keys(data));
             var contexto = this.$els.canvas.getContext('2d');
 
+            _chart2.default.defaults.global.responsive = true;
+            _chart2.default.defaults.global.scaleFontFamily = "'Source Sans Pro'";
+            _chart2.default.defaults.global.animationEasing = "easeOutQuart";
+
             new _chart2.default(contexto, {
-                type: 'bar',
-                data: conteudo,
-                options: {
-                    scales: {
-                        yAxes: [{
-                            display: true,
-                            ticks: {
-                                stacked: true,
-                                beginAtZero: true,
-                                min: 0
-                            }
-                        }],
-                        xAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                min: 0
-                            }
-                        }]
-                    }
-                }
+                type: 'line',
+                data: {
+                    labels: Object.keys(data),
+                    datasets: [{
+                        type: 'line',
+                        label: "Alerta",
+                        backgroundColor: "rgba(255,99,132,0.2)",
+                        borderColor: "rgba(255,99,132,1)",
+                        borderWidth: 1,
+                        hoverBackgroundColor: "rgba(255,99,132,0.4)",
+                        hoverBorderColor: "rgba(255,99,132,1)",
+                        data: Object.keys(data).map(function (key) {
+                            return data[key].alert;
+                        })
+                    }, {
+                        type: 'line',
+                        label: "Informação",
+                        backgroundColor: "rgba(20, 94, 168,0.2)",
+                        borderColor: "rgba(20, 94, 168,1)",
+                        borderWidth: 1,
+                        hoverBackgroundColor: "rgba(20, 94, 168,0.4)",
+                        hoverBorderColor: "rgba(20, 94, 168,1)",
+                        data: Object.keys(data).map(function (key) {
+                            return data[key].info;
+                        })
+                    }, {
+                        type: 'line',
+                        label: "Notícia",
+                        backgroundColor: "rgba(0,150,132,0.2)",
+                        borderColor: "rgba(0,150,132,1)",
+                        borderWidth: 1,
+                        hoverBackgroundColor: "rgba(0,150,132,0.4)",
+                        hoverBorderColor: "rgba(0,150,132,1)",
+                        data: Object.keys(data).map(function (key) {
+                            return data[key].notice;
+                        })
+                    }, {
+                        type: 'line',
+                        label: "Aviso",
+                        backgroundColor: "rgba(255, 145, 0,0.2)",
+                        borderColor: "rgba(255, 145, 0,1)",
+                        borderWidth: 1,
+                        hoverBackgroundColor: "rgba(255, 145, 0,0.4)",
+                        hoverBorderColor: "rgba(255, 145, 0,1)",
+                        data: Object.keys(data).map(function (key) {
+                            return data[key].warning;
+                        })
+                    }]
+                },
+                animationEasing: "easeOutQuart"
             });
         }
     }

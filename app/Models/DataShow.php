@@ -8,6 +8,8 @@ class DataShow extends Model
 {
     protected $table = 'data_shows';
 
+    public $primaryKey = 'recurso_id';
+
     protected $fillable = ['marca, codigo'];
 
     public $timestamps = false;
@@ -16,5 +18,4 @@ class DataShow extends Model
     {
         return $this->belongsTo(Recurso::class);
     }
-    //
 }

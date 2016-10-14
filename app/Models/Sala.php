@@ -8,6 +8,8 @@ class Sala extends Model
 {
     protected $table = 'salas';
 
+    public $primaryKey = 'recurso_id';
+
     protected $fillable = ['tipo'];
 
     public $timestamps = false;

@@ -33,6 +33,8 @@ $factory->define(App\Models\Publicacao::class, function (Faker\Generator $faker)
         'titulo' => $faker->sentence(3),
         'edicao' => str_random(4),
         'origem' => str_random(6),
+        'codigo' => $faker->unique()->sentence(1),
+        'status' => 0,
         'editora_id' => factory(\App\Models\Editora::class)->create()->id
     ];
 });

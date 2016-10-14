@@ -24,6 +24,7 @@ class LivroRequest extends Request
         switch ($this->method()) {
             case 'POST': {
                 return [
+                    'codigo' => 'required|max:255|min:3|unique:publicacoes',
                     'titulo' => 'required|max:255',
                     'subtitulo' => 'max:255',
                     'edicao' => 'required|max:15',
@@ -36,6 +37,7 @@ class LivroRequest extends Request
             case 'PUT':
             case 'PATCH': {
                 return [
+                    'codigo' => 'required|max:255|min:3|unique:publicacoes,codigo,'.$this->id,
                     'titulo' => 'required|max:255',
                     'subtitulo' => 'max:255',
                     'edicao' => 'required|max:15',

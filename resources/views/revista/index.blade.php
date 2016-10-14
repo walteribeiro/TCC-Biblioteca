@@ -19,16 +19,32 @@
                 <th>Título</th>
                 <th>Edição</th>
                 <th>Categoria</th>
+                <th>Status</th>
                 <th data-orderable="false">Opções</th>
             </tr>
             </thead>
             <tbody>
             @foreach($revistas as $l)
                 <tr>
-                    <td>{{$l->publicacao->id}}</td>
+                    <td>{{$l->publicacao->codigo}}</td>
                     <td>{{$l->publicacao->titulo}}</td>
                     <td>{{$l->publicacao->edicao}}</td>
                     <td>{{$l->categoria}}</td>
+                    <td>
+                        @if($l->publicacao->status == 0)
+                            <span class="label label-success">
+                                Disponível
+                            </span>
+                        @elseif($l->publicacao->status == 1)
+                            <span class="label label-danger">
+                                Indisponível
+                            </span>
+                        @else
+                            <span class="label label-dark">
+                                Desativado
+                            </span>
+                        @endif
+                    </td>
                     <td class="text-center">
                         <a href="#show" class="btn btn-sm btn-success"
                            data-titulo="{{ $l->publicacao->titulo }}"
@@ -40,7 +56,7 @@
                            data-edicao="{{ $l->publicacao->edicao }}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
-                        <a href="{{ route('revista.edit', $l->id)}}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('revista.edit', $l->publicacao_id)}}" class="btn btn-sm btn-warning">
                             <em class="fa fa-pencil"></em> Alterar
                         </a>
                         <a href="#modal" class="btn btn-sm btn-danger"

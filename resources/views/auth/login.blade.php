@@ -17,23 +17,39 @@
     <div class="animate form login_form">
         <section class="login_content">
 
-            <form method="POST" action="{{ url('/login') }}">
+            <form class="form-horizontal form-label-left" method="POST" action="{{ url('/login') }}">
                 {!! csrf_field() !!}
                 <h1>EEAC</h1>
-                <div>
-                    <label class="pull-left" for="username">Nome de Usuário</label>
-                    <input type="text" id="username" class="form-control" name="username" autofocus
-                           value="{{ old('username') }}">
+                <div class="form-group">
+
+
+                    <div>
+                        <label class="pull-left" for="username">Nome de Usuário</label>
+                        <br><br>
+                        <input type="text" id="username" class="form-control" name="username" autofocus value="{{ old('username') }}">
+                    </div>
                 </div>
-                <div>
-                    <label class="pull-left" for="password">Senha</label>
-                    <input id="password" type="password" class="form-control" name="password">
+
+                <div class="form-group">
+
+                    <div class="input-group">
+                        <label class="pull-left" for="password">Senha</label>
+                    </div>
+
+                    <div class="input-group">
+                        <input id="password" type="password" class="form-control" name="password">
+                        <span class="input-group-btn">
+                            <button id="ver" style="margin-top: -14px" type="button" class="btn btn-default">
+                                <em id="icone" class="fa fa-eye-slash"></em>
+                            </button>
+                        </span>
+                    </div>
                 </div>
+
                 <div>
                     <button type="submit" class="btn btn-dark submit btn-block">
                         <i class="fa fa-btn fa-sign-in"></i> Login
                     </button>
-
                 </div>
                 <br>
                 <div class="separator"></div>
@@ -44,6 +60,24 @@
 
 <script src="{{asset('assets/js/jquery.min.js')}}"></script>
 <script src="{{asset('assets/js/toastr.js')}}"></script>
+
+<script>
+    var senha = $('#password');
+    var olho = $("#ver");
+    var icone = $('#icone');
+
+    olho.mousedown(function() {
+        senha.attr("type", "text");
+        icone.removeClass('fa-eye-slash');
+        icone.addClass('fa-eye');
+    });
+
+    olho.mouseup(function() {
+        senha.attr("type", "password");
+        icone.removeClass('fa-eye');
+        icone.addClass('fa-eye-slash');
+    });
+</script>
 
 @if( isset($errors) && count($errors) > 0)
     <script type="text/javascript">

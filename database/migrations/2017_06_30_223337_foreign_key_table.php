@@ -43,8 +43,8 @@ class ForeignKeyTable extends Migration
         });
         Schema::table('alunos_turmas', function(Blueprint $table)
         {
-            $table->foreign('aluno_id', 'aluno_turma_1_fk')->references('user_id')->on('alunos')->onUpdate('cascade')->onDelete('restrict');
-            $table->foreign('turma_id', 'aluno_turma_2_fk')->references('id')->on('turmas')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('aluno_id', 'alunos_turmas_1_fk')->references('user_id')->on('alunos')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('turma_id', 'alunos_turmas_2_fk')->references('id')->on('turmas')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 
@@ -86,8 +86,8 @@ class ForeignKeyTable extends Migration
         });
         Schema::table('alunos_turmas', function(Blueprint $table)
         {
-            $table->dropForeign('aluno_turma_1_fk');
-            $table->dropForeign('aluno_turma_2_fk');
+            $table->dropForeign('alunos_turmas_1_fk');
+            $table->dropForeign('alunos_turmas_2_fk');
         });
     }
 }
