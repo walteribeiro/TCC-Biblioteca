@@ -27,9 +27,9 @@ class DatabaseSeeder extends Seeder
             'tipo_acesso' => 0
         ]);
 
-        //$this->call(EditoraSeeder::class);
-        //$this->call(AutorSeeder::class);
-        //$this->call(LivroSeeder::class);
-        //$this->call(FuncionarioSeeder::class);
+        $this->call(EditoraSeeder::class);
+        $this->call(AutorSeeder::class);
+        $this->call(LivroSeeder::class);
+        $this->call(FuncionarioSeeder::class);
     }
 }

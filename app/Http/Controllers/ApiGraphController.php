@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Livro;
-use App\Models\Publicacao;
+use App\Models\Emprestimo;
 use Arcanedev\LogViewer\LogViewer;
 use App\Http\Requests;
+use Carbon\Carbon;
 
 class ApiGraphController extends Controller
 {
     protected $logViewer;
-    protected $publicacao;
+    protected $emprestimo;
 
-    public function __construct(LogViewer $logViewer, Publicacao $publicacao)
+    public function __construct(LogViewer $logViewer, Emprestimo $emprestimo)
     {
         $this->logViewer = $logViewer;
-        $this->publicacao = $publicacao;
+        $this->emprestimo = $emprestimo;
     }
 
     public function sumarizarLogs()
@@ -23,8 +23,8 @@ class ApiGraphController extends Controller
         return $this->logViewer->stats();
     }
 
-    public function emprestimosEfetuados()
+    public function emprestimosAtrasados()
     {
-        return $this->publicacao->join('editoras', 'editoras.id', '=', 'publicacoes.editora_id')->where('status', 2)->get(['codigo', 'editoras.nome'])->toJson();
+        return $this->emprestimo->join('pessoas', 'pessoas.id', '=', 'emprestimos.user_id')->where([['data_devolucao', null], ['data_prevista', '<=', Carbon::today()]])->get(['pessoas.nome', 'emprestimos.data_emprestimo']);
     }
 }

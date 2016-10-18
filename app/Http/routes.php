@@ -138,6 +138,18 @@ Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeContro
 
     });
 
+    Route::group(['prefix' => 'emprestimos'], function(){
+
+        Route::get('/',                ['as'=>'emprestimo.index',  'uses'=>'EmprestimoController@index']);
+        Route::get('/novo',            ['as'=>'emprestimo.create', 'uses'=>'EmprestimoController@create']);
+        Route::post('/gravar',         ['as'=>'emprestimo.store',  'uses'=>'EmprestimoController@store']);
+        Route::get('/detalhes/{id}',   ['as'=>'emprestimo.show',   'uses'=>'EmprestimoController@show']);
+        Route::get('/editar/{id}',     ['as'=>'emprestimo.edit',   'uses'=>'EmprestimoController@edit']);
+        Route::put('/atualizar/{id}',  ['as'=>'emprestimo.update', 'uses'=>'EmprestimoController@update']);
+        Route::delete('/remover/{id}', ['as'=>'emprestimo.delete', 'uses'=>'EmprestimoController@destroy']);
+
+    });
+
     Route::group(['prefix' => 'logs'], function(){
 
         Route::get('/dashboard',       ['as'=>'log.index',     'uses'=>'LogController@index']);
@@ -159,6 +171,6 @@ Route::group(['prefix' => 'chart'], function(){
 
     Route::get('/sumarizacao', ['as'=>'chart.sumarizacao', 'uses'=>'ApiGraphController@sumarizarLogs']);
 
-    Route::get('/emprestimos-efetuados', ['as'=>'emprestimo.efetuado', 'uses'=>'ApiGraphController@emprestimosEfetuados']);
+    Route::get('/emprestimos-atrasados', ['as'=>'emprestimo.atrasado', 'uses'=>'ApiGraphController@emprestimosAtrasados']);
 
 });

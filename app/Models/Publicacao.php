@@ -36,4 +36,9 @@ class Publicacao extends Model
     {
         return $this->belongsTo(Editora::class);
     }
+
+    public function emprestimos()
+    {
+        return $this->belongsToMany(Emprestimo::class, 'emprestimos_publicacoes');
+    }
 }

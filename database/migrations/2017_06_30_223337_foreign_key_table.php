@@ -46,6 +46,15 @@ class ForeignKeyTable extends Migration
             $table->foreign('aluno_id', 'alunos_turmas_1_fk')->references('user_id')->on('alunos')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('turma_id', 'alunos_turmas_2_fk')->references('id')->on('turmas')->onUpdate('cascade')->onDelete('restrict');
         });
+        Schema::table('emprestimos', function(Blueprint $table)
+        {
+            $table->foreign('user_id', 'emprestimos_1_fk')->references('id')->on('pessoas')->onUpdate('cascade')->onDelete('restrict');
+        });
+        Schema::table('emprestimos_publicacoes', function(Blueprint $table)
+        {
+            $table->foreign('emprestimo_id', 'emprestimos_publicacoes_1_fk')->references('id')->on('emprestimos')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('publicacao_id', 'emprestimos_publicacoes_2_fk')->references('id')->on('publicacoes')->onUpdate('cascade')->onDelete('restrict');
+        });
     }
 
     /**
@@ -88,6 +97,15 @@ class ForeignKeyTable extends Migration
         {
             $table->dropForeign('alunos_turmas_1_fk');
             $table->dropForeign('alunos_turmas_2_fk');
+        });
+        Schema::table('emprestimos', function(Blueprint $table)
+        {
+            $table->dropForeign('emprestimos_1_fk');
+        });
+        Schema::table('emprestimos_publicacoes', function(Blueprint $table)
+        {
+            $table->dropForeign('emprestimos_publicacoes_1_fk');
+            $table->dropForeign('emprestimos_publicacoes_2_fk');
         });
     }
 }

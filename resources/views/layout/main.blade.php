@@ -48,12 +48,24 @@
                                         <li><a href="{{ route('sala.index') }}">Salas</a></li>
                                     </ul>
                                 </li>
+                                <li><a><i class="fa fa-wrench"></i> Gerenciar <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ route('emprestimo.index') }}">Empréstimos</a></li>
+                                        {{--<li><a href="#">Reservas</a></li>--}}
+                                        <li><a href="{{ route('reserva-recurso.index') }}">Reservas de Recursos</a></li>
+                                    </ul>
+                                </li>
+                                <li><a><i class="fa fa-file-pdf-o"></i> Relatórios <span class="fa fa-chevron-down"></span></a>
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{ route('reserva-recurso.index') }}">Alunos Novos</a></li>
+                                    </ul>
+                                </li>
                                 @if(Auth::user()->tipo_acesso == 0)
                                     <li><a><i class="fa fa-user"></i> Usuários <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="{{ route('aluno.index') }}">Alunos</a></li>
-                                            <li><a href="{{ route('turma.index') }}">Turmas</a></li>
                                             <li><a href="{{ route('funcionario.index') }}">Funcionários</a></li>
+                                            <li><a href="{{ route('turma.index') }}">Turmas</a></li>
                                         </ul>
                                     </li>
 
@@ -64,20 +76,7 @@
                                         </ul>
                                     </li>
                                 @endif
-
-                                <li><a><i class="fa fa-wrench"></i> Gerenciar <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        {{--<li><a href="#">Emprestimos</a></li>--}}
-                                        {{--<li><a href="#">Reservas</a></li>--}}
-                                        <li><a href="{{ route('reserva-recurso.index') }}">Reservas de Recursos</a></li>
-                                    </ul>
-                                </li>
                             @endif
-                                <li><a><i class="fa fa-file-pdf-o"></i> Relatórios <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="{{ route('reserva-recurso.index') }}">Alunos Novos</a></li>
-                                    </ul>
-                                </li>
                         </ul>
                     </div>
                 </div>
@@ -129,21 +128,9 @@
                             <li role="presentation" class="dropdown">
                                 <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="true">
                                     <i class="fa fa-bell-o"></i>
-                                    <span class="badge bg-orange"></span>
+                                    <span class="badge bg-danger"></span>
                                 </a>
-                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                    <li>
-                                        <a>
-                                        <span>
-                                            <span><strong>John Smith</strong></span>
-                                            <span class="time">10/08/2016</span>
-                                        </span>
-                                        <span class="message">
-                                            Film festivals used to be do-or-die moments for movie makers. They were where...
-                                        </span>
-                                        </a>
-                                    </li>
-
+                                <ul id="menu-notificacao" class="dropdown-menu list-unstyled msg_list" role="menu">
                                 </ul>
                             </li>
                     </ul>
@@ -187,10 +174,18 @@
     $(document).ready(function() {
 
         $.ajax({
-            url: '{{route("emprestimo.efetuado")}}',
+            url: '{{route("emprestimo.atrasado")}}',
             dataType: 'json',
             type: 'get',
             success: function(data) {
+                $(data).each(function() {
+                    $('#menu-notificacao').append(
+                            '<li><a><span><span><strong>' + $(this).attr('nome') + '</strong></span>' +
+                            '<span class="time">' + $(this).attr('data_emprestimo') + '</span></span>' +
+                            '<span class="message">Empréstimo Atrasado a 3 dias</span></a></li>'
+                    );
+                });
+                $('.badge.bg-danger').html(data.length);
                 console.log(data);
             },
             error: function (xmlHttpRequest, textStatus, errorThrown) {

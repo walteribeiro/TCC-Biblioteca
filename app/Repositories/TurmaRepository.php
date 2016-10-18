@@ -50,8 +50,6 @@ class TurmaRepository
             'letra_turma' => $data['letraTurma'],
         ]);
 
-        $this->turma->save();
-
         return $this->turma;
     }
 

@@ -4154,3 +4154,7 @@ ul.notifications {
   color: #FFFFFF;
   background-color: #394D5F;
   border-color: #394D5F; }
+
+.bg-danger {
+  background-color: #d9534f;
+}
