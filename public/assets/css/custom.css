@@ -2344,7 +2344,7 @@ ul.timeline li {
 
 .timeline .tag span {
   display: block;
-  overflow: hidden;
+  overflow: visible;
   width: 100%;
   white-space: nowrap;
   text-overflow: ellipsis; }
@@ -2474,7 +2474,7 @@ ul.social li {
   font-size: 18px; }
 
 .percent:after {
-  content: '%';
+  content: '';
   margin-left: 0.1em;
   font-size: .8em; }
 
@@ -4157,4 +4157,13 @@ ul.notifications {
 
 .bg-danger {
   background-color: #d9534f;
+}
+
+#gauge-text {
+  position: static;
+  font-size: 40px;
+  font-weight: bold;
+  color: black;
+  font-family: 'Amaranth', sans-serif;
+  margin-left: 45px;
 }
