@@ -20,13 +20,14 @@ class Controller extends BaseController
     const INCLUSAO = 'Registro incluído com sucesso!';
     const EXCLUSAO = 'Registro removido com sucesso!';
     const ALTERACAO = 'Registro alterado com sucesso!';
+    const DEVOLUCAO = 'Empréstimo devolvido com sucesso!';
     const ERRO_REFERENCIAMENTO = 'Este registro não pode ser removido, pois está sendo utilizado!';
     const ERRO_EXCLUSAO_TURMA = 'Para excluir a turma é necessário primeiro excluir os alunos!';
     const ERRO_MATRICULA_DUPLICADA = 'O número da matricula já se encontra utilizado!';
     const ERRO_DATA_SHOW_DUPLICADO = 'O código do data show já se encontra utilizado!';
     const ERRO_MAPA_DUPLICADO = 'O número do mapa já se encontra utilizado!';
     const ERRO_ALUNO_DUPLICADO_TURMA = 'Um ou mais dos alunos selecionados já se encontram na turma!';
-    const ALERTA_SEM_PERMISSAO = 'Você não possui permissão!';
+    const ALERTA_SEM_PERMISSAO = 'Você não possui permissão para acessar esta página!';
 
 
     public static function getTipoSucesso()
@@ -97,6 +98,11 @@ class Controller extends BaseController
     public static function getMsgSemPermission()
     {
         return self::ALERTA_SEM_PERMISSAO;
+    }
+
+    public static function getMsgDevolucao()
+    {
+        return self::DEVOLUCAO;
     }
 
     public function returnHomePage()

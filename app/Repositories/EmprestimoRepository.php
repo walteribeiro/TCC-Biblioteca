@@ -6,6 +6,8 @@ namespace App\Repositories;
 use App\Models\Emprestimo;
 use App\Models\Publicacao;
 use Carbon\Carbon;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\DB;
 
 class EmprestimoRepository
 {
@@ -51,22 +53,47 @@ class EmprestimoRepository
             'data_emprestimo' => Carbon::now(),
             'data_devolucao' => null,
             'data_prevista' => $data['data-prevista'],
-            'situacao' => 0,
-            'user_id' => $data['usuario']
+            'situacao' => 0
         ]);
-
-        //TODO alterar os livros
 
         return $this->emprestimo;
     }
 
     public function destroy($id)
     {
-        return $this->emprestimo->destroy([$id]);
+        $this->emprestimo = $this->findById($id);
+        foreach($this->emprestimo->publicacoes()->getRelatedIds() as $ident){
+            $pub = $this->publicacao->find($ident);
+            $pub->status = 1;
+            $pub->save();
+        }
+
+        return $this->emprestimo->destroy($id);
     }
 
     public function findById($id)
     {
         return $this->emprestimo->find($id);
+    }
+
+    public function devolver($id)
+    {
+        //Busca o emprestimo
+        $this->emprestimo = $this->findById($id);
+
+        //Atualiza a situacao do emprestimo para devolvido = !
+        $this->emprestimo->update([
+            'data_devolucao' => Carbon::now(),
+            'situacao' => 1
+        ]);
+
+        //Atualiza os status dos livros para disponíveis = 1
+        foreach($this->emprestimo->publicacoes()->getRelatedIds() as $id){
+            $pub = $this->publicacao->find($id);
+            $pub->status = 1;
+            $pub->save();
+        }
+
+        return $this->emprestimo;
     }
 }

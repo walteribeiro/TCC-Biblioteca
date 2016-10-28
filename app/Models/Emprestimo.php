@@ -22,11 +22,6 @@ class Emprestimo extends Model
         return $this->belongsToMany(Publicacao::class, 'emprestimos_publicacoes');
     }
 
-    public function getDataPrevistaAttribute($value)
-    {
-        return date('d/m/Y', strtotime($value));
-    }
-
     public function getDataDevolucaoAttribute($value)
     {
         if(is_null($value)){

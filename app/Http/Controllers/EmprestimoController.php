@@ -33,7 +33,11 @@ class EmprestimoController extends Controller
 
     public function create()
     {
-        $usuarios = User::leftJoin('emprestimos', 'pessoas.id', '=', 'emprestimos.user_id')->where('pessoas.tipo_acesso', '<>', 0)->whereNull('emprestimos.id')->get(['pessoas.id', 'pessoas.nome', 'pessoas.tipo_acesso']);
+        $usuarios = User::leftJoin('emprestimos', 'pessoas.id', '=', 'emprestimos.user_id')
+            ->where('pessoas.tipo_acesso', '<>', 0)
+            ->orWhere('emprestimos.situacao', '1')
+            ->get(['pessoas.id', 'pessoas.nome', 'pessoas.tipo_acesso']);
+
         $publicacoes = Publicacao::whereNotIn('status', [0, 2, 3])->get();
         $data_prevista = Carbon::today()->addDays(7)->format('Y-m-d');
         return view('emprestimo.create', compact('usuarios', 'publicacoes', 'data_prevista'));
@@ -52,12 +56,18 @@ class EmprestimoController extends Controller
 
     public function edit($id)
     {
-        //
+        $emprestimo = $this->repository->findById($id);
+        return view("emprestimo.edit", compact('emprestimo'));
     }
 
-    public function update(Request $request, $id)
+    public function update(EmprestimoRequest $emprestimoRequest, $id)
     {
-        //
+        $retorno = $this->repository->update($emprestimoRequest->all(), $id);
+        if($retorno){
+            Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
+            return redirect()->route('emprestimo.index');
+        }
+        return redirect()->back();
     }
 
     public function destroy($id)
@@ -71,5 +81,15 @@ class EmprestimoController extends Controller
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
             return redirect()->back();
         }
+    }
+
+    public function devolverEmprestimo($id)
+    {
+        $retorno = $this->repository->devolver($id);
+        if($retorno){
+            Session::flash(self::getTipoSucesso(), self::getMsgDevolucao());
+            return redirect()->route('emprestimo.index');
+        }
+        return redirect()->back();
     }
 }

@@ -32,16 +32,20 @@
                     <td>{{$l->categoria}}</td>
                     <td>
                         @if($l->publicacao->status == 0)
+                            <span class="label label-dark">
+                                Desativado
+                            </span>
+                        @elseif($l->publicacao->status == 1)
                             <span class="label label-success">
                                 Disponível
                             </span>
-                        @elseif($l->publicacao->status == 1)
-                            <span class="label label-danger">
-                                Indisponível
+                        @elseif($l->publicacao->status == 2)
+                            <span class="label label-primary">
+                                Emprestado
                             </span>
                         @else
-                            <span class="label label-dark">
-                                Desativado
+                            <span class="label label-warning">
+                                Reservado
                             </span>
                         @endif
                     </td>
@@ -56,9 +60,15 @@
                            data-edicao="{{ $l->publicacao->edicao }}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
-                        <a href="{{ route('revista.edit', $l->publicacao_id)}}" class="btn btn-sm btn-warning">
-                            <em class="fa fa-pencil"></em> Alterar
-                        </a>
+                        @if($l->publicacao->status != 0 && $l->publicacao->status != 1)
+                            <button disabled class="btn btn-sm btn-warning">
+                                <em class="fa fa-pencil"></em> Alterar
+                            </button>
+                        @else
+                            <a href="{{ route('revista.edit', $l->publicacao_id)}}" class="btn btn-sm btn-warning">
+                                <em class="fa fa-pencil"></em> Alterar
+                            </a>
+                        @endif
                         <a href="#modal" class="btn btn-sm btn-danger"
                            data-delete="{{ $l->publicacao->titulo }}"
                            data-id="{{ $l->publicacao->id }}">

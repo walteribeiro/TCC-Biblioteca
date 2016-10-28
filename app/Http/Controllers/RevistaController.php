@@ -32,7 +32,7 @@ class RevistaController extends Controller
 
     public function store(RevistaRequest $revistaRequest)
     {
-        $retorno = $this->repository->store($revistaRequest->all());
+        $retorno = $this->repository->store($revistaRequest);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
             return redirect()->route('revista.index');
@@ -54,7 +54,7 @@ class RevistaController extends Controller
 
     public function update(RevistaRequest $revistaRequest, $id)
     {
-        $retorno = $this->repository->update($revistaRequest->all(), $id);
+        $retorno = $this->repository->update($revistaRequest, $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
             return redirect()->route('revista.index');

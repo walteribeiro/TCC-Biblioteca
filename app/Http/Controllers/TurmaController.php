@@ -31,17 +31,13 @@ class TurmaController extends Controller
     {
         $turma = $this->repository->findById($id);
         $alunos = $this->repository->getAlunos();
-        //dd($alunos);
 
         return view('turma.vinculo', compact('turma', 'alunos'));
     }
 
     public function vincular(Request $turmaRequest)
     {
-        //dd($turmaRequest->all());
         $gravouAlunos = $this->repository->vincular($turmaRequest->all());
-
-        //dd($gravouAlunos);
 
         if(!empty($gravouAlunos['attached'])){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
@@ -71,11 +67,6 @@ class TurmaController extends Controller
             return redirect()->route('turma.index');
         }
         return redirect()->back();
-    }
-
-    public function show($id)
-    {
-        //TODO refazer após implementar no repository
     }
 
     public function edit($id)
@@ -110,7 +101,6 @@ class TurmaController extends Controller
 
     public function destroyVinculo(TurmaRequest $turmaRequest, $id)
     {
-        //dd($turmaRequest->all());
         $turma = $this->repository->findById($id);
         $idsAlunos = $turmaRequest->input('ids');
 

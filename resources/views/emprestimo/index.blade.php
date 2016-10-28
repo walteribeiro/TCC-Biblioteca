@@ -16,6 +16,7 @@
             <thead>
             <tr>
                 <th>#</th>
+                <th>Nome</th>
                 <th>Data Empréstimo</th>
                 <th>Data Devolução</th>
                 <th>Data Prevista</th>
@@ -27,37 +28,46 @@
             @foreach($emprestimos as $e)
                 <tr>
                     <td>{{$e->id}}</td>
+                    <td>{{$e->user->nome}}</td>
                     <td>{{$e->data_emprestimo}}</td>
                     <td>{{$e->data_devolucao}}</td>
-                    <td>{{$e->data_prevista}}</td>
+                    <td>{{date('d/m/Y', strtotime($e->data_prevista))}}</td>
                     <td>
                         @if($e->situacao == 0)
                             <span class="label label-success">
-                                Aberto
+                                Em Aberto
                             </span>
                         @else
-                            <span class="label label-danger">
-                                Fechado
+                            <span class="label label-primary">
+                                Devolvido
                             </span>
                         @endif
                     </td>
                     <td class="text-center">
-                        <a href="#fechar" class="btn btn-sm btn-primary">
-                            <em class="fa fa-ban"></em> Devolver
-                        </a>
+                        @if($e->situacao == 0)
+                            <a href="#devolver" class="btn btn-sm btn-primary"
+                               data-devolver="{{ $e->data_emprestimo }}"
+                               data-id="{{ $e->id }}">
+                                <em class="fa fa-ban"></em> Devolver
+                            </a>
+                        @endif
                         <a href="#show" class="btn btn-sm btn-success"
-                           data-nome="{{ $e->data_devolucao }}"
-                           data-sobrenome="{{ $e->data_prevista }}">
+                           data-situacao="{{ $e->situacao}}"
+                           data-data_emprestimo="{{ $e->data_emprestimo}}"
+                           data-data_devolucao="{{ $e->data_devolucao }}"
+                           data-data_prevista="{{ $e->data_prevista }}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
-                        <a href="{{ route('emprestimo.edit', $e->id)}}" class="btn btn-sm btn-warning">
-                            <em class="fa fa-pencil"></em> Alterar
-                        </a>
-                        <a href="#modal" class="btn btn-sm btn-danger"
-                           data-delete="{{ $e->data_emprestimo }}"
-                           data-id="{{ $e->id }}">
-                            <em class="fa fa-trash-o"></em> Excluir
-                        </a>
+                            @if($e->situacao == 0)
+                                <a href="{{ route('emprestimo.edit', $e->id)}}" class="btn btn-sm btn-warning">
+                                    <em class="fa fa-pencil"></em> Alterar
+                                </a>
+                                <a href="#modal" class="btn btn-sm btn-danger"
+                                   data-delete="{{ $e->data_emprestimo }}"
+                                   data-id="{{ $e->id }}">
+                                    <em class="fa fa-trash-o"></em> Excluir
+                                </a>
+                            @endif
                     </td>
                 </tr>
             @endforeach
@@ -70,6 +80,33 @@
     @include('layout.delete-modal')
 
     @include('layout.show-modal')
+
+    <div class="modal fade" id="devolver-modal" role="dialog" data-backdrop="static">
+        <form action="" id="formdevolver" method="post">
+            {{ method_field('put') }}
+            {!! csrf_field() !!}
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Devolução</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            <em class="fa fa-undo"></em> Voltar
+                        </button>
+                        <button type="submit" class="btn btn-dark">
+                            <em class="fa fa-ban"></em> Devolver
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 
 @endsection
 @section('scripts')
@@ -102,14 +139,48 @@
 
             $("a[href='#show']").click(function(event) {
                 event.preventDefault();
-                var nome = $(this).data('nome');
-                var sobrenome = $(this).data('sobrenome');
+                var situacao = $(this).data('situacao');
+                var data_emprestimo = $(this).data('data_emprestimo');
+                var data_prevista = moment($(this).data('data_prevista'), 'YYYY-MM-DD HH:mm:ss').format('DD/MM/YYYY');
+                var data_devolucao = $(this).data('data_devolucao');
 
                 showModal.find('.modal-body').html(
-                        'Nome: ' + nome + ' ' + sobrenome
+                        '<div class="row">' +
+                        '<div class="col-md-3">Data empréstimo:</div>' +
+                        '<div class="col-md-9"><p>'+ data_emprestimo + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-3">Data prevista:</div>' +
+                        '<div class="col-md-9"><p>'+ data_prevista + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-3">Data devolução:</div>' +
+                        '<div class="col-md-9"><p>'+ (data_devolucao == null ? "" : data_devolucao) + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-3">Situação:</div>' +
+                        '<div class="col-md-9"><p>'+ (situacao == 0 ? "Em Aberto" : "Devolvido") + '</p></div>' +
+                        '</div>'
                 );
 
                 showModal.modal('show');
+            });
+        });
+
+        $(function () {
+            var devolverModal = $('div#devolver-modal');
+
+            $("a[href='#devolver']").click(function(event) {
+                event.preventDefault();
+                var id = $(this).data('id');
+                var data = $(this).data('devolver');
+
+                devolverModal.find('.modal-body p').html(
+                        'Você tem certeza que deseja devolver o empréstimo do dia ' + data + ' ?'
+                );
+
+                $('#formdevolver').attr("action", "emprestimos/devolver/"+id);
+                devolverModal.modal('show');
             });
         });
 

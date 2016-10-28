@@ -40,11 +40,6 @@ class LivroController extends Controller
         return redirect()->back();
     }
 
-    public function show($id)
-    {
-        //TODO refazer após implementar no repository
-    }
-
     public function edit($id)
     {
         $livro = $this->repository->findById($id);

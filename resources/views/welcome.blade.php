@@ -3,27 +3,111 @@
 @section('conteudo')
 
     <br><br>
+    <div class="row">
+        <div class="col-md-2 col-md-offset-2 col-sm-4 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Total de Autores</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right">
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content text-center">
+                    <canvas id="canvas-autores" width="150" height="80" class="" style="width: 160px; height: 100px;"></canvas>
+                    <div class="goal-wrapper">
+                        <span id="autores" class="gauge-value gauge-text text-center"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- top tiles -->
-    <div class="row tile_count">
-        <div class="col-md-2 col-sm-3 col-xs-6 col-md-offset-2 tile_stats_count">
-            <span class="count_top"><i class="fa fa-book"></i> Total de Livros</span>
-            <div class="count blue">{{$livros}}</div>
+        <div class="col-md-2 col-sm-4 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Total de Editoras</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right">
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content text-center">
+                    <canvas id="canvas-editoras" width="150" height="80" class="" style="width: 160px; height: 100px;"></canvas>
+                    <div class="goal-wrapper">
+                        <span id="editoras" class="gauge-value gauge-text text-center"></span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-2 col-sm-3 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-book"></i> Total de Revistas</span>
-            <div class="count blue">{{$revistas}}</div>
+
+        <div class="col-md-2 col-sm-4 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Total de Revistas</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right">
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content text-center">
+                    <canvas id="canvas-revistas" width="150" height="80" class="" style="width: 160px; height: 100px;"></canvas>
+                    <div class="goal-wrapper">
+                        <span id="revistas" class="gauge-value gauge-text text-center"></span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-2 col-sm-3 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-users"></i> Total de Autores</span>
-            <div class="count blue">{{$autores}}</div>
-        </div>
-        <div class="col-md-2 col-sm-3 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-users"></i> Total de Editoras</span>
-            <div class="count blue">{{$editoras}}</div>
+
+        <div class="col-md-2 col-sm-4 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Total de Livros</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right">
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content text-center">
+                    <canvas id="canvas-livros" width="150" height="80" class="" style="width: 160px; height: 100px;"></canvas>
+                    <div class="goal-wrapper">
+                        <span id="livros" class="gauge-value gauge-text text-center"></span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- /top tiles -->
+
+    <br>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-4 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Total de Empréstimos</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right">
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content text-center">
+                    <canvas id="canvas-emprestimos" width="150" height="80" class="" style="width: 160px; height: 100px;"></canvas>
+                    <div class="goal-wrapper">
+                        <span id="emprestimos" class="gauge-value gauge-text text-center"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <br>
     <div class="row">
@@ -237,4 +321,59 @@
             toastr.warning('{{Session::get('alerta')}}', 'Atenção!', options);
         </script>
     @endif
+    <script src="{{asset('assets/js/gauge.min.js')}}"></script>
+    <script>
+        var opts = {
+            lines: 12,
+            angle: 0,
+            lineWidth: 0.4,
+            pointer: {
+                length: 0.80,
+                strokeWidth: 0.060,
+                color: '#1D212A'
+            },
+            limitMax: 'false',
+            colorStart: '#1ABC9C',
+            colorStop: '#1ABC9C',
+            strokeColor: '#F0F3F3',
+            generateGradient: true
+        };
+
+        var autores = document.getElementById('canvas-autores');
+        var editoras = document.getElementById('canvas-editoras');
+        var revistas = document.getElementById('canvas-revistas');
+        var livros = document.getElementById('canvas-livros');
+        var emprestimos = document.getElementById('canvas-emprestimos');
+
+        var gaugeAutor = new Gauge(autores).setOptions(opts);
+        var gaugeEditora = new Gauge(editoras).setOptions(opts);
+        var gaugeRevista = new Gauge(revistas).setOptions(opts);
+        var gaugeLivro = new Gauge(livros).setOptions(opts);
+        var gaugeEmprestimo = new Gauge(emprestimos).setOptions(opts);
+
+        gaugeAutor.maxValue = 1000;
+        gaugeAutor.animationSpeed = 40;
+        gaugeAutor.set({{$autores}});
+        gaugeAutor.setTextField(document.getElementById("autores"));
+
+        gaugeEditora.maxValue = 1000;
+        gaugeEditora.animationSpeed = 40;
+        gaugeEditora.set({{$editoras}});
+        gaugeEditora.setTextField(document.getElementById("editoras"));
+
+        gaugeRevista.maxValue = 1000;
+        gaugeRevista.animationSpeed = 40;
+        gaugeRevista.set({{$revistas}});
+        gaugeRevista.setTextField(document.getElementById("revistas"));
+
+        gaugeLivro.maxValue = 1000;
+        gaugeLivro.animationSpeed = 40;
+        gaugeLivro.set({{$livros}});
+        gaugeLivro.setTextField(document.getElementById("livros"));
+
+        gaugeEmprestimo.maxValue = 1000;
+        gaugeEmprestimo.animationSpeed = 40;
+        gaugeEmprestimo.set({{$emprestimos}});
+        gaugeEmprestimo.setTextField(document.getElementById("emprestimos"));
+    </script>
 @endsection

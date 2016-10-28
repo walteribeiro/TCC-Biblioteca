@@ -38,11 +38,6 @@ class AutorController extends Controller
         return redirect()->back();
     }
 
-    public function show($id)
-    {
-        //TODO refazer após implementar no repository
-    }
-
     public function edit($id)
     {
         $autor = $this->repository->findById($id);

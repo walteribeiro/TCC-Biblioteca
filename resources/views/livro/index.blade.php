@@ -66,9 +66,15 @@
                            data-cdd="{{ $l->cdd }}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
-                        <a href="{{ route('livro.edit', $l->publicacao_id)}}" @if($l->publicacao->status != 0 && $l->publicacao->status != 1)disabled @endif class="btn btn-sm btn-warning">
-                            <em class="fa fa-pencil"></em> Alterar
-                        </a>
+                        @if($l->publicacao->status != 0 && $l->publicacao->status != 1)
+                            <button disabled class="btn btn-sm btn-warning">
+                                <em class="fa fa-pencil"></em> Alterar
+                            </button>
+                        @else
+                            <a href="{{ route('livro.edit', $l->publicacao_id)}}" class="btn btn-sm btn-warning">
+                                <em class="fa fa-pencil"></em> Alterar
+                            </a>
+                        @endif
                         <a href="#modal" class="btn btn-sm btn-danger"
                            data-delete="{{ $l->publicacao->titulo }}"
                            data-code="{{ $l->subtitulo }}"

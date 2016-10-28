@@ -47,11 +47,6 @@ class FuncionarioController extends Controller
         return redirect()->back();
     }
 
-    public function show($id)
-    {
-        //TODO refazer após implementar no repository
-    }
-
     public function edit($id)
     {
         $funcionario = $this->repository->findById($id);

@@ -6,6 +6,7 @@ use App\Repositories\IEditoraRepository;
 use App\Repositories\IPublicacaoRepository;
 use App\Repositories\EditoraRepository;
 use App\Repositories\PublicacaoRepository;
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Carbon::setLocale('pt_BR');
     }
 
     /**

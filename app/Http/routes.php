@@ -140,13 +140,14 @@ Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeContro
 
     Route::group(['prefix' => 'emprestimos'], function(){
 
-        Route::get('/',                ['as'=>'emprestimo.index',  'uses'=>'EmprestimoController@index']);
-        Route::get('/novo',            ['as'=>'emprestimo.create', 'uses'=>'EmprestimoController@create']);
-        Route::post('/gravar',         ['as'=>'emprestimo.store',  'uses'=>'EmprestimoController@store']);
-        Route::get('/detalhes/{id}',   ['as'=>'emprestimo.show',   'uses'=>'EmprestimoController@show']);
-        Route::get('/editar/{id}',     ['as'=>'emprestimo.edit',   'uses'=>'EmprestimoController@edit']);
-        Route::put('/atualizar/{id}',  ['as'=>'emprestimo.update', 'uses'=>'EmprestimoController@update']);
-        Route::delete('/remover/{id}', ['as'=>'emprestimo.delete', 'uses'=>'EmprestimoController@destroy']);
+        Route::get('/',                ['as'=>'emprestimo.index',    'uses'=>'EmprestimoController@index']);
+        Route::get('/novo',            ['as'=>'emprestimo.create',   'uses'=>'EmprestimoController@create']);
+        Route::post('/gravar',         ['as'=>'emprestimo.store',    'uses'=>'EmprestimoController@store']);
+        Route::get('/detalhes/{id}',   ['as'=>'emprestimo.show',     'uses'=>'EmprestimoController@show']);
+        Route::get('/editar/{id}',     ['as'=>'emprestimo.edit',     'uses'=>'EmprestimoController@edit']);
+        Route::put('/atualizar/{id}',  ['as'=>'emprestimo.update',   'uses'=>'EmprestimoController@update']);
+        Route::delete('/remover/{id}', ['as'=>'emprestimo.delete',   'uses'=>'EmprestimoController@destroy']);
+        Route::put('/devolver/{id}',   ['as'=>'emprestimo.devolver', 'uses'=>'EmprestimoController@devolverEmprestimo']);
 
     });
 
@@ -158,6 +159,16 @@ Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeContro
         Route::get('/download/{date}', ['as'=>'log.download',  'uses'=>'LogController@download']);
         Route::get('/{date}/{level}',  ['as'=>'log.filter',    'uses'=>'LogController@showByLevel']);
         Route::delete('/delete',       ['as'=>'log.delete',    'uses'=>'LogController@delete']);
+    });
+
+    Route::group(['prefix' => 'relatorios'], function(){
+
+        Route::get('/alunos-pendentes',         ['as'=>'aluno.pendente',         'uses'=>'RelatorioController@alunosPendentes']);
+        Route::get('/funcionarios-pendentes',   ['as'=>'funcionario.pendente',   'uses'=>'RelatorioController@funcionariosPendentes']);
+        Route::get('/publicacoes-emprestadas',  ['as'=>'publicacao.emprestada',  'uses'=>'RelatorioController@livrosMaisEmprestados']);
+        Route::get('/alunos-emprestimos',       ['as'=>'aluno.emprestimo',       'uses'=>'RelatorioController@alunosComMaisEmprestimos']);
+        Route::get('/funcionarios-emprestimos', ['as'=>'funcionario.emprestimo', 'uses'=>'RelatorioController@funcionariosComMaisEmprestimos']);
+
     });
 });
 

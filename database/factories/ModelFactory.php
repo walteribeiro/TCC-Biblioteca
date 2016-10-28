@@ -164,3 +164,18 @@ $factory->define(App\Models\ReservaRecurso::class, function (Faker\Generator $fa
         'aula' => $faker->numberBetween(0, 3),
     ];
 });
+
+/*
+|--------------------------------------------------------------------------
+| Factory de Empréstimos
+|--------------------------------------------------------------------------
+*/
+$factory->define(App\Models\Emprestimo::class, function (Faker\Generator $faker) {
+    return [
+        'data_devolucao' => null,
+        'data_prevista' => $faker->dateTime,
+        'data_emprestimo' => $faker->dateTime,
+        'situacao' => 0,
+        'user_id' => factory(\App\User::class)->create()->id
+    ];
+});

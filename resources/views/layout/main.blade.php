@@ -57,7 +57,11 @@
                                 </li>
                                 <li><a><i class="fa fa-file-pdf-o"></i> Relatórios <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="{{ route('reserva-recurso.index') }}">Alunos Novos</a></li>
+                                        <li><a href="{{ route('aluno.pendente') }}">Alunos Pendentes</a></li>
+                                        <li><a href="{{ route('funcionario.pendente') }}">Funcionários Pendentes</a></li>
+                                        <li><a href="{{ route('publicacao.emprestada') }}">Publicações mais Emprestadas</a></li>
+                                        <li><a href="{{ route('aluno.emprestimo') }}">Alunos com mais Empréstimos</a></li>
+                                        <li><a href="{{ route('funcionario.emprestimo') }}">Funcionários com mais Empréstimos</a></li>
                                     </ul>
                                 </li>
                                 @if(Auth::user()->tipo_acesso == 0)
@@ -165,6 +169,8 @@
 <script src="{{asset('assets/js/fastclick.js')}}"></script>
 <script src="{{asset('assets/js/nprogress.js')}}"></script>
 <script src="{{asset('assets/js/toastr.js')}}"></script>
+<script src="{{asset('assets/js/moment/moment.min.js')}}"></script>
+<script src="{{asset('assets/js/moment/pt-br.js')}}"></script>
 
 @include('layout.includes.validate-request')
 
@@ -172,33 +178,31 @@
 
 <script>
     $(document).ready(function() {
-
         $.ajax({
             url: '{{route("emprestimo.atrasado")}}',
             dataType: 'json',
             type: 'get',
             success: function(data) {
                 $(data).each(function() {
+                    var dataPrevista = moment.duration(moment().diff(moment($(this).attr('data_prevista'), 'YYYY-MM-DD HH:mm:ss'))).humanize();
+
                     $('#menu-notificacao').append(
                             '<li><a><span><span><strong>' + $(this).attr('nome') + '</strong></span>' +
                             '<span class="time">' + $(this).attr('data_emprestimo') + '</span></span>' +
-                            '<span class="message">Empréstimo Atrasado a 3 dias</span></a></li>'
+                            '<span class="message">Empréstimo Atrasado: '+ dataPrevista +'</span></a></li>'
                     );
                 });
                 $('.badge.bg-danger').html(data.length);
-                console.log(data);
             },
             error: function (xmlHttpRequest, textStatus, errorThrown) {
-               /* console.log(xmlHttpRequest);
+                console.log(xmlHttpRequest);
                 console.log(textStatus);
-                console.log(errorThrown);*/
+                console.log(errorThrown);
             }
         });
-
     })
 </script>
 
 <script src="{{asset('assets/js/custom.js')}}"></script>
-
 </body>
 </html>

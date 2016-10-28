@@ -4159,11 +4159,7 @@ ul.notifications {
   background-color: #d9534f;
 }
 
-#gauge-text {
-  position: static;
-  font-size: 40px;
-  font-weight: bold;
-  color: black;
+.gauge-text {
+  font-size: 25px;
   font-family: 'Amaranth', sans-serif;
-  margin-left: 45px;
 }

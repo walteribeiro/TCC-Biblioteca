@@ -4,7 +4,7 @@
     @include('log-viewer::_template.style')
 @endsection
 @section('conteudo')
-    <h3 class="page-header">Dashboard</h3>
+    <h3 class="page-header">Sumarização</h3>
 
     @if(isset($percents) && count($percents) > 0)
         <div class="row">
@@ -46,6 +46,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets/js/moment.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
 @endsection

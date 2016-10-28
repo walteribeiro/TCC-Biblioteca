@@ -36,8 +36,6 @@
 
 @endsection
 @section('scripts')
-
-    <script src="{{asset('assets/js/moment.min.js')}}"></script>
     <script src="{{asset('assets/js/fullcalendar.min.js')}}"></script>
     <script src="{{asset('assets/js/fullcalendar-pt-br.js')}}"></script>
     <script src="{{asset('assets/js/select2.full.min.js')}}"></script>
@@ -94,7 +92,9 @@
                         $('#calendar').fullCalendar('unselect');
 
                         var options = {
-                            "closeButton": true
+                            "closeButton": true,
+                            "positionClass": "toast-top-center",
+                            "timeOut": "2000"
                         };
                         toastr.success("Registro incluído com sucesso!", 'Sucesso!', options);
                     },
@@ -103,7 +103,9 @@
                         var errors = e.responseJSON;
                         var li = "";
                         var options = {
-                            "closeButton": true
+                            "closeButton": true,
+                            "positionClass": "toast-top-center",
+                            "timeOut": "2000"
                         };
 
                         $.each(errors, function(index, value) {
@@ -162,7 +164,9 @@
                         $('#calendar').fullCalendar('refetchEvents');
 
                         var options = {
-                            "closeButton": true
+                            "closeButton": true,
+                            "positionClass": "toast-top-center",
+                            "timeOut": "2000"
                         };
                         toastr.success("Registro alterado com sucesso!", 'Sucesso!', options);
                     },
@@ -171,7 +175,9 @@
                         var errors = e.responseJSON;
                         var li = "";
                         var options = {
-                            "closeButton": true
+                            "closeButton": true,
+                            "positionClass": "toast-top-center",
+                            "timeOut": "2000"
                         };
 
                         $.each(errors, function(index, value) {
@@ -224,7 +230,9 @@
                         $('#calendar').fullCalendar('removeEvents', [ identif ]);
 
                         var options = {
-                            "closeButton": true
+                            "closeButton": true,
+                            "positionClass": "toast-top-center",
+                            "timeOut": "2000"
                         };
                         toastr.success(response.mensagem, 'Sucesso!', options);
                     },
@@ -233,7 +241,9 @@
                         var errors = e.responseJSON;
                         var li = "";
                         var options = {
-                            "closeButton": true
+                            "closeButton": true,
+                            "positionClass": "toast-top-center",
+                            "timeOut": "2000"
                         };
 
                         $.each(errors, function(index, value) {

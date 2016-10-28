@@ -25,6 +25,9 @@ class ApiGraphController extends Controller
 
     public function emprestimosAtrasados()
     {
-        return $this->emprestimo->join('pessoas', 'pessoas.id', '=', 'emprestimos.user_id')->where([['data_devolucao', null], ['data_prevista', '<=', Carbon::today()]])->get(['pessoas.nome', 'emprestimos.data_emprestimo']);
+        return $this->emprestimo
+            ->join('pessoas', 'pessoas.id', '=', 'emprestimos.user_id')
+            ->where([['data_devolucao', null], ['data_prevista', '<', Carbon::now()]])
+            ->get(['pessoas.nome', 'emprestimos.data_emprestimo', 'emprestimos.data_prevista']);
     }
 }
