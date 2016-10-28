@@ -1,11 +1,12 @@
 <?php
 
 use App\User;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class TestEditora extends TestCase{
+class EditoraTest extends TestCase{
 
-    use DatabaseTransactions;
+    use DatabaseTransactions, DatabaseMigrations;
 
     public function test_listar_editoras()
     {
