@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class TestEmprestimo extends TestCase{
+class EmprestimoTest extends TestCase{
 
     use DatabaseTransactions, DatabaseMigrations;
 
