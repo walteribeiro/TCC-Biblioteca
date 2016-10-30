@@ -10,7 +10,7 @@ class EmprestimoTest extends TestCase{
 
     use DatabaseTransactions, DatabaseMigrations;
 
-    public function test_verificar_status_livro_apos_efetuar_emprestimo()
+    public function test_verificar_status_publicacao_apos_efetuar_emprestimo()
     {
         $repo = $this->app->make("App\\Repositories\\EmprestimoRepository");
         $user = factory(User::class, 1)->create();
@@ -30,7 +30,7 @@ class EmprestimoTest extends TestCase{
         $this->assertEquals(1, $repo->index()->count());
     }
 
-    public function test_verificar_status_livro_apos_devolver_emprestimo()
+    public function test_verificar_status_publicacao_apos_devolver_emprestimo()
     {
         $repo = $this->app->make("App\\Repositories\\EmprestimoRepository");
         $user = factory(User::class, 1)->create();
@@ -49,6 +49,28 @@ class EmprestimoTest extends TestCase{
         $this->seeInDatabase('publicacoes', ['titulo'=> 'Teste livro', 'status'=> 2]);
         $repo->devolver($repo->index()->first()->id);
         //Após a devolução o status do livro deve voltar a ser 1
+        $this->seeInDatabase('publicacoes', ['titulo'=> 'Teste livro', 'status'=> 1]);
+    }
+
+    public function test_verificar_status_publicacao_apos_excluir_emprestimo()
+    {
+        $repo = $this->app->make("App\\Repositories\\EmprestimoRepository");
+        $user = factory(User::class, 1)->create();
+        $publicacao = factory(Publicacao::class, 1)->create(['titulo'=> 'Teste livro']);
+
+        $this->seeInDatabase('publicacoes', ['titulo'=> 'Teste livro', 'status'=> 1]);
+
+        $emprestimo = [
+            'data-prevista' => Carbon::now(),
+            'usuario' => $user->id,
+            'publicacoes' => [$publicacao->id]
+        ];
+
+        $repo->store($emprestimo);
+        //Após o emprestimo o status do livro deve ser 2
+        $this->seeInDatabase('publicacoes', ['titulo'=> 'Teste livro', 'status'=> 2]);
+        $repo->destroy($repo->index()->first()->id);
+        //Após a exclusão o status do livro deve voltar a ser 1
         $this->seeInDatabase('publicacoes', ['titulo'=> 'Teste livro', 'status'=> 1]);
     }
 }

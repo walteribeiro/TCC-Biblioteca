@@ -50,6 +50,10 @@
                                data-id="{{ $e->id }}">
                                 <em class="fa fa-ban"></em> Devolver
                             </a>
+                        @else
+                            <button disabled class="btn btn-sm btn-primary">
+                                <em class="fa fa-ban"></em> Devolver
+                            </button>
                         @endif
                         <a href="#show" class="btn btn-sm btn-success"
                            data-situacao="{{ $e->situacao}}"
@@ -67,6 +71,13 @@
                                    data-id="{{ $e->id }}">
                                     <em class="fa fa-trash-o"></em> Excluir
                                 </a>
+                            @else
+                                <button disabled class="btn btn-sm btn-warning">
+                                    <em class="fa fa-pencil"></em> Alterar
+                                </button>
+                                <button disabled class="btn btn-sm btn-danger">
+                                    <em class="fa fa-trash-o"></em> Excluir
+                                </button>
                             @endif
                     </td>
                 </tr>

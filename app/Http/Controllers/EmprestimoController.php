@@ -33,10 +33,13 @@ class EmprestimoController extends Controller
 
     public function create()
     {
-        $usuarios = User::leftJoin('emprestimos', 'pessoas.id', '=', 'emprestimos.user_id')
-            ->where('pessoas.tipo_acesso', '<>', 0)
-            ->orWhere('emprestimos.situacao', '1')
-            ->get(['pessoas.id', 'pessoas.nome', 'pessoas.tipo_acesso']);
+        $usuarios = User::whereNotIn('id', function($query){
+            $query->select('pessoas.id')
+                ->from('pessoas')
+                ->join('emprestimos', 'pessoas.id', '=', 'emprestimos.user_id')
+                ->where('emprestimos.situacao', '0');
+        })->where([['tipo_acesso', '<>', 0], ['ativo', '=', '1']])
+            ->get(['id', 'nome', 'tipo_acesso']);
 
         $publicacoes = Publicacao::whereNotIn('status', [0, 2, 3])->get();
         $data_prevista = Carbon::today()->addDays(7)->format('Y-m-d');
