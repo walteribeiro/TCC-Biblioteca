@@ -151,6 +151,18 @@ Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeContro
 
     });
 
+    Route::group(['prefix' => 'reservas'], function(){
+
+        Route::get('/',                ['as'=>'reserva.index',    'uses'=>'ReservaController@index']);
+        Route::get('/novo',            ['as'=>'reserva.create',   'uses'=>'ReservaController@create']);
+        Route::post('/gravar',         ['as'=>'reserva.store',    'uses'=>'ReservaController@store']);
+        Route::get('/detalhes/{id}',   ['as'=>'reserva.show',     'uses'=>'ReservaController@show']);
+        Route::get('/editar/{id}',     ['as'=>'reserva.edit',     'uses'=>'ReservaController@edit']);
+        Route::put('/atualizar/{id}',  ['as'=>'reserva.update',   'uses'=>'ReservaController@update']);
+        Route::delete('/remover/{id}', ['as'=>'reserva.delete',   'uses'=>'ReservaController@destroy']);
+
+    });
+
     Route::group(['prefix' => 'logs'], function(){
 
         Route::get('/dashboard',       ['as'=>'log.index',     'uses'=>'LogController@index']);
@@ -159,15 +171,30 @@ Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeContro
         Route::get('/download/{date}', ['as'=>'log.download',  'uses'=>'LogController@download']);
         Route::get('/{date}/{level}',  ['as'=>'log.filter',    'uses'=>'LogController@showByLevel']);
         Route::delete('/delete',       ['as'=>'log.delete',    'uses'=>'LogController@delete']);
+
     });
 
     Route::group(['prefix' => 'relatorios'], function(){
 
-        Route::get('/alunos-pendentes',         ['as'=>'aluno.pendente',         'uses'=>'RelatorioController@alunosPendentes']);
-        Route::get('/funcionarios-pendentes',   ['as'=>'funcionario.pendente',   'uses'=>'RelatorioController@funcionariosPendentes']);
-        Route::get('/publicacoes-emprestadas',  ['as'=>'publicacao.emprestada',  'uses'=>'RelatorioController@livrosMaisEmprestados']);
-        Route::get('/alunos-emprestimos',       ['as'=>'aluno.emprestimo',       'uses'=>'RelatorioController@alunosComMaisEmprestimos']);
-        Route::get('/funcionarios-emprestimos', ['as'=>'funcionario.emprestimo', 'uses'=>'RelatorioController@funcionariosComMaisEmprestimos']);
+        Route::get('/alunos-pendentes',                     ['as'=>'aluno.pendente',                'uses'=>'RelatorioController@alunosPendentes']);
+        Route::get('/pdf-alunos-pendentes',                 ['as'=>'aluno.pendente.pdf',            'uses'=>'RelatorioController@gerarPDFAlunosPendentes']);
+        Route::get('/baixar-alunos-pendentes',              ['as'=>'aluno.pendente.baixar',         'uses'=>'RelatorioController@baixarPDFAlunosPendentes']);
+
+        Route::get('/funcionarios-pendentes',               ['as'=>'funcionario.pendente',          'uses'=>'RelatorioController@funcionariosPendentes']);
+        Route::get('/pdf-funcionarios-pendentes',           ['as'=>'funcionario.pendente.pdf',      'uses'=>'RelatorioController@gerarPDFFuncionariosPendentes']);
+        Route::get('/baixar-funcionarios-pendentes',        ['as'=>'funcionario.pendente.baixar',   'uses'=>'RelatorioController@baixarPDFFuncionariosPendentes']);
+
+        Route::get('/publicacoes-emprestadas',              ['as'=>'publicacao.emprestada',         'uses'=>'RelatorioController@publicacoesMaisEmprestadas']);
+        Route::get('/pdf-publicacoes-mais-emprestadas',     ['as'=>'publicacao.emprestada.pdf',     'uses'=>'RelatorioController@gerarPDFPublicacoesMaisEmprestadas']);
+        Route::get('/baixar-publicacoes-mais-emprestadas',  ['as'=>'publicacao.emprestada.baixar',  'uses'=>'RelatorioController@baixarPDFPublicacoesMaisEmprestadas']);
+
+        Route::get('/alunos-emprestimos',                   ['as'=>'aluno.emprestimo',              'uses'=>'RelatorioController@alunosComMaisEmprestimos']);
+        Route::get('/pdf-alunos-mais-emprestimos',          ['as'=>'aluno.emprestimo.pdf',          'uses'=>'RelatorioController@gerarPDFAlunosComMaisEmprestimos']);
+        Route::get('/baixar-alunos-mais-emprestimos',       ['as'=>'aluno.emprestimo.baixar',       'uses'=>'RelatorioController@baixarPDFAlunosComMaisEmprestimos']);
+
+        Route::get('/funcionarios-emprestimos',             ['as'=>'funcionario.emprestimo',        'uses'=>'RelatorioController@funcionariosComMaisEmprestimos']);
+        Route::get('/pdf-funcionarios-mais-emprestimos',    ['as'=>'funcionario.emprestimo.pdf',    'uses'=>'RelatorioController@gerarPDFFuncionariosComMaisEmprestimos']);
+        Route::get('/baixar-funcionarios-mais-emprestimos', ['as'=>'funcionario.emprestimo.baixar', 'uses'=>'RelatorioController@baixarPDFFuncionariosComMaisEmprestimos']);
 
     });
 });

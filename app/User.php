@@ -5,6 +5,7 @@ namespace App;
 use App\Models\Aluno;
 use App\Models\Emprestimo;
 use App\Models\Funcionario;
+use App\Models\Reserva;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -29,9 +30,8 @@ class User extends Authenticatable
         return $this->hasMany(Emprestimo::class);
     }
 
-    //TODO Criar Model de Reserva
     public function reservas(){
-        return $this->hasMany(Emprestimo::class);
+        return $this->hasMany(Reserva::class);
     }
 
     public function hasPermission()

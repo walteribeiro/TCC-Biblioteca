@@ -1,0 +1,34 @@
+{{--<table width="697" border="0" cellspacing="0" cellpadding="0">--}}
+    {{--<tr id="titulo">--}}
+        {{--<td width="150">&nbsp;</td>--}}
+        {{--<td width="400" align="center"><h2>RELATÓRIO DE ALUNOS PENDENTES</h2></td>--}}
+        {{--<td width="150">&nbsp;</td>--}}
+    {{--</tr>--}}
+{{--</table>--}}
+{{--<hr>--}}
+<div class="datagrid" border="0">
+    <table>
+        <thead>
+        <tr>
+            <th style="width: 190px">Nome</th>
+            <th>Matricula</th>
+            <th>Telefone</th>
+            <th>Celular</th>
+            <th>Email</th>
+            <th>Dias/Horas de Atraso</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($dados as $a)
+            <tr>
+                <td>{{$a->nome}}</td>
+                <td class="alinhar-centro">{{$a->matricula}}</td>
+                <td class="alinhar-centro">{{$a->telefone}}</td>
+                <td class="alinhar-centro">{{$a->telefone2}}</td>
+                <td class="alinhar-centro">{{$a->email}}</td>
+                <td class="alinhar-centro">{{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $a->data_prevista)->diffForHumans()}}</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+</div>

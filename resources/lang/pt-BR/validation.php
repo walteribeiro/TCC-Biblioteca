@@ -105,6 +105,7 @@ return [
         'username' => 'nome de usuário',
         'password' => 'senha',
         'letraTurma' => 'letra',
-        'data-prevista' => 'data prevista'
+        'data-prevista' => 'data prevista',
+        'data-limite' => 'data limite'
     ],
 ];

@@ -51,7 +51,7 @@
                                 <li><a><i class="fa fa-wrench"></i> Gerenciar <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('emprestimo.index') }}">Empréstimos</a></li>
-                                        {{--<li><a href="#">Reservas</a></li>--}}
+                                        <li><a href="{{ route('reserva.index') }}">Reservas</a></li>
                                         <li><a href="{{ route('reserva-recurso.index') }}">Reservas de Recursos</a></li>
                                     </ul>
                                 </li>

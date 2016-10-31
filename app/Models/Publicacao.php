@@ -41,4 +41,9 @@ class Publicacao extends Model
     {
         return $this->belongsToMany(Emprestimo::class, 'emprestimos_publicacoes');
     }
+
+    public function reserva()
+    {
+        return $this->hasMany(Reserva::class);
+    }
 }

@@ -70,8 +70,8 @@
                         <!-- this row will not appear when printing -->
                         <div class="row no-print">
                             <div class="col-xs-12">
-                                <button class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Gerar PDF</button>
-                                <button class="btn btn-dark pull-right" style="margin-right: 5px;" onclick="window.print();"><i class="fa fa-print"></i> Imprimir</button>
+                                <a target="_blank" href="{{ route('funcionario.emprestimo.pdf') }}" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-print"></i> Gerar PDF</a>
+                                <a href="{{ route('funcionario.emprestimo.baixar') }}" class="btn btn-dark pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Baixar PDF</a>
                             </div>
                         </div>
                     </section>

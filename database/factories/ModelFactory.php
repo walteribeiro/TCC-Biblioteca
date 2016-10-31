@@ -179,3 +179,18 @@ $factory->define(App\Models\Emprestimo::class, function (Faker\Generator $faker)
         'user_id' => factory(\App\User::class)->create()->id
     ];
 });
+
+/*
+|--------------------------------------------------------------------------
+| Factory de Reservas
+|--------------------------------------------------------------------------
+*/
+$factory->define(App\Models\Reserva::class, function (Faker\Generator $faker) {
+    return [
+        'data_devolucao' => null,
+        'data_prevista' => $faker->dateTime,
+        'data_emprestimo' => $faker->dateTime,
+        'situacao' => 0,
+        'user_id' => factory(\App\User::class)->create()->id
+    ];
+});
