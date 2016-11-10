@@ -26,8 +26,6 @@ class FuncionarioRequest extends Request
         switch ($this->method()) {
             case 'POST': {
                 return [
-                    'username' => 'min:5|max:10|unique:pessoas',
-                    'senha' => 'min:5|max:15|confirmed:senha_confirmation',
                     'nome' => 'required|min:5|max:255',
                     'telefone' => 'min:10|max:15',
                     'telefone2' => 'min:10|max:15',
@@ -40,13 +38,11 @@ class FuncionarioRequest extends Request
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'username' => 'min:5|max:10|unique:pessoas,username, ' . $this->id,
-                    'senha' => 'min:5|max:15|confirmed:senha_confirmation',
                     'nome' => 'required|min:5|max:255',
                     'telefone' => 'min:10|max:15',
                     'telefone2' => 'min:10|max:15',
                     'email' => 'required|min:10|max:255|unique:pessoas,email, ' . $this->id,
-                    'numeroRegistro' => 'required|max:10', //TODO ajustar SQL count
+                    'numeroRegistro' => 'required|max:10',
                     'tipoFuncionario' => 'required',
                 ];
             }

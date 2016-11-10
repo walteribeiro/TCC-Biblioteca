@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LivroRequest;
 use App\Repositories\LivroRepository;
 use App\Http\Requests;
+use App\Traits\LogTrait;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
 
 class LivroController extends Controller
 {
+    use LogTrait;
 
     protected $repository;
 
@@ -35,6 +37,7 @@ class LivroController extends Controller
         $retorno = $this->repository->store($livroRequest);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+            $this->gravarLog("Livro adicionado!", "informacao", ["Livro" => $retorno->titulo]);
             return redirect()->route('livro.index');
         }
         return redirect()->back();
@@ -52,6 +55,7 @@ class LivroController extends Controller
         $retorno = $this->repository->update($livroRequest, $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
+            $this->gravarLog("Livro alterado!", "atencao", ["Livro" => $retorno->titulo]);
             return redirect()->route('livro.index');
         }
         return redirect()->back();
@@ -62,6 +66,7 @@ class LivroController extends Controller
         try{
             $this->repository->destroy($id);
             Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
+            $this->gravarLog("Livro excluído!", "alerta");
             return redirect()->route('livro.index');
         }catch(QueryException $e){
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());

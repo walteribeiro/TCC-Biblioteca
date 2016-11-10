@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\FuncionarioRequest;
 use App\Models\Funcionario;
 use App\Repositories\FuncionarioRepository;
+use App\Traits\LogTrait;
 use App\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Session;
 
 class FuncionarioController extends Controller
 {
+    use LogTrait;
+
     protected $repository;
 
     public function __construct(FuncionarioRepository $funcionarioRepository)
@@ -25,11 +28,10 @@ class FuncionarioController extends Controller
 
     public function index()
     {
-        if(auth()->user()->hasPermission()) {
+        //if(auth()->user()->hasPermission()) {
             $funcionarios = $this->repository->index();
             return view('funcionario.index', compact('funcionarios'));
-        }
-        return $this->returnHomePage();
+        //return $this->returnHomePage();
     }
 
     public function create()
@@ -42,6 +44,7 @@ class FuncionarioController extends Controller
         $retorno = $this->repository->store($funcionarioRequest);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+            $this->gravarLog("Funcionário adicionado!", "informacao", ["Funcionário" => $retorno->nome]);
             return redirect()->route('funcionario.index');
         }
         return redirect()->back();
@@ -59,6 +62,7 @@ class FuncionarioController extends Controller
         $retorno = $this->repository->update($funcionarioRequest, $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
+            $this->gravarLog("Funcionário alterado!", "atencao", ["Funcionário" => $retorno->nome]);
             return redirect()->route('funcionario.index');
         }
         return redirect()->back();
@@ -69,6 +73,7 @@ class FuncionarioController extends Controller
         try{
             $this->repository->destroy($id);
             Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
+            $this->gravarLog("Funcionário excluído!", "alerta");
             return redirect()->route('funcionario.index');
         }catch(QueryException $e){
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());

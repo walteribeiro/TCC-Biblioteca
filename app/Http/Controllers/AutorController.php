@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AutorRequest;
 use App\Repositories\AutorRepository;
 use App\Http\Requests;
+use App\Traits\LogTrait;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
 
 class AutorController extends Controller
 {
+    use LogTrait;
+
     protected $repository;
 
     public function __construct(AutorRepository $autorRepository)
@@ -33,6 +36,7 @@ class AutorController extends Controller
         $retorno = $this->repository->store($autorRequest->all());
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+            $this->gravarLog("Autor adicionado!", "informacao", ["Autor" => $retorno->nome]);
             return redirect()->route('autor.index');
         }
         return redirect()->back();
@@ -49,6 +53,7 @@ class AutorController extends Controller
         $retorno = $this->repository->update($autorRequest->all(), $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
+            $this->gravarLog("Autor alterado!", "atencao", ["Autor" => $retorno->nome]);
             return redirect()->route('autor.index');
         }
         return redirect()->back();
@@ -59,6 +64,7 @@ class AutorController extends Controller
         try{
             $this->repository->destroy($id);
             Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
+            $this->gravarLog("Autor excluído!", "alerta");
             return redirect()->route('autor.index');
         }catch(QueryException $e){
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());

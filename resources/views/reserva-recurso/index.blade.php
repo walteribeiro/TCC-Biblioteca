@@ -154,7 +154,7 @@
                 $.ajax({
                     url: '{{ route("reserva-recurso.update") }}',
                     data: dataObj,
-                    type: 'put',
+                    type: 'post',
                     dataType: 'json',
                     success: function(response){
                         console.log(response);

@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RevistaRequest;
 use App\Http\Requests;
 use App\Repositories\RevistaRepository;
+use App\Traits\LogTrait;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
 
 class RevistaController extends Controller
 {
+    use LogTrait;
 
     protected $repository;
 
@@ -35,6 +37,7 @@ class RevistaController extends Controller
         $retorno = $this->repository->store($revistaRequest);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+            $this->gravarLog("Revista adicionada!", "informacao", ["Revista" => $retorno->titulo]);
             return redirect()->route('revista.index');
         }
         return redirect()->back();
@@ -57,6 +60,7 @@ class RevistaController extends Controller
         $retorno = $this->repository->update($revistaRequest, $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
+            $this->gravarLog("Revista alterada!", "atencao", ["Revista" => $retorno->titulo]);
             return redirect()->route('revista.index');
         }
         return redirect()->back();
@@ -67,6 +71,7 @@ class RevistaController extends Controller
         try{
             $this->repository->destroy($id);
             Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
+            $this->gravarLog("Revista excluída!", "alerta");
             return redirect()->route('revista.index');
         }catch(QueryException $e){
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());

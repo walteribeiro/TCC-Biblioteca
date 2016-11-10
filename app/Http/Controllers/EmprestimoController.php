@@ -52,6 +52,7 @@ class EmprestimoController extends Controller
 
         if(!empty($gravouEmprestimo['attached'])){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+            $this->gravarLog("Empréstimo adicionado!", "informacao", ["Data" => Carbon::today()->format('d/m/Y')]);
             return redirect()->route('emprestimo.index');
         }
         return redirect()->back();
@@ -68,6 +69,7 @@ class EmprestimoController extends Controller
         $retorno = $this->repository->update($emprestimoRequest->all(), $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
+            $this->gravarLog("Empréstimo alterado!", "atencao", ["Data" => Carbon::today()->format('d/m/Y')]);
             return redirect()->route('emprestimo.index');
         }
         return redirect()->back();
@@ -78,7 +80,7 @@ class EmprestimoController extends Controller
         try{
             $this->repository->destroy($id);
             Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
-            $this->gravarLog("Empréstimo excluído!", "alerta");
+            $this->gravarLog("Empréstimo excluído!", "alerta", ["Data" => Carbon::today()->format('d/m/Y')]);
             return redirect()->route('emprestimo.index');
         }catch(QueryException $e){
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
@@ -91,6 +93,7 @@ class EmprestimoController extends Controller
         $retorno = $this->repository->devolver($id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgDevolucao());
+            $this->gravarLog("Empréstimo devolvido!", "alerta", ["Data" => Carbon::today()->format('d/m/Y')]);
             return redirect()->route('emprestimo.index');
         }
         return redirect()->back();

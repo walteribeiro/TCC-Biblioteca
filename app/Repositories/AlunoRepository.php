@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Aluno;
 use App\User;
+use Carbon\Carbon;
 
 class AlunoRepository
 {
@@ -21,23 +22,13 @@ class AlunoRepository
         return $this->aluno->all();
     }
 
-    public function show($id)
-    {
-        // TODO: Implement show() method.
-    }
-
     public function store($data)
     {
         $ativo = $data->input('ativo');
 
         // Persistindo dados da request no usuário
-
-        if ($data['username'] == '') {
-            $this->usuario->username = null;
-        } else {
-            $this->usuario->username = $data['username'];
-        }
-        $this->usuario->password = bcrypt($data['senha']);
+        $this->usuario->username = preg_replace('/\s+/', '', $data['nome'] . Carbon::today()->format('dmY')); //usuario padrão para aluno
+        $this->usuario->password = bcrypt($data['matricula']); //senha padrão para aluno
         $this->usuario->nome = $data['nome'];
         $this->usuario->telefone = $data['telefone'];
         $this->usuario->telefone2 = $data['telefone2'];
@@ -59,12 +50,6 @@ class AlunoRepository
         $ativo = $data['ativo'];
 
         // Atualizando dados da request no usuário
-        if ($data['username'] == '') {
-            $this->usuario->username = null;
-        } else {
-            $this->usuario->username = $data['username'];
-        }
-        $this->usuario->password = bcrypt($data['senha']);
         $this->usuario->nome = $data['nome'];
         $this->usuario->telefone = $data['telefone'];
         $this->usuario->telefone2 = $data['telefone2'];

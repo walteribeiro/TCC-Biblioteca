@@ -95,7 +95,7 @@
                 var id = $(this).data('id');
                 var nome = $(this).data('delete');
 
-                deleteLogModal.find('.modal-body h5').html(
+                deleteLogModal.find('.modal-body p').html(
                         'Você tem certeza que deseja excluir o funcionário ' + nome.toUpperCase() + ' ?'
                 );
 

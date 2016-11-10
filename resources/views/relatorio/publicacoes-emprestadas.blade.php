@@ -64,8 +64,13 @@
                         <!-- this row will not appear when printing -->
                         <div class="row no-print">
                             <div class="col-xs-12">
+                                @if(isset($publicacoes) && count($publicacoes) > 0)
                                 <a target="_blank" href="{{ route('publicacao.emprestada.pdf') }}" class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-print"></i> Gerar PDF</a>
                                 <a href="{{ route('publicacao.emprestada.baixar') }}" class="btn btn-dark pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Baixar PDF</a>
+                                @else
+                                    <a href="#" disabled class="btn btn-primary pull-right" style="margin-right: 5px;"><i class="fa fa-print"></i> Gerar PDF</a>
+                                    <a href="#" disabled class="btn btn-dark pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Baixar PDF</a>
+                                @endif
                             </div>
                         </div>
                     </section>

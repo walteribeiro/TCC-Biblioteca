@@ -42,11 +42,6 @@ class EditoraController extends Controller
         return redirect()->back();
     }
 
-    public function show($id)
-    {
-        //TODO refazer após implementar no repository
-    }
-
     public function edit($id)
     {
         $editora = $this->repository->findById($id);

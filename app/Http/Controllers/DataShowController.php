@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DataShowRequest;
 use App\Repositories\DataShowRepository;
 use App\Http\Requests;
+use App\Traits\LogTrait;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
 
 class DataShowController extends Controller
 {
+    use LogTrait;
 
     protected $repository;
 
@@ -34,14 +36,10 @@ class DataShowController extends Controller
         $retorno = $this->repository->store($dataShowRequest->all());
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+            $this->gravarLog("Data show adicionado!", "informacao", ["Data show" => $retorno->descricao]);
             return redirect()->route('data-show.index');
         }
         return redirect()->back();
-    }
-
-    public function show($id)
-    {
-        //TODO refazer após implementar no repository
     }
 
     public function edit($id)
@@ -60,6 +58,7 @@ class DataShowController extends Controller
         $retorno = $this->repository->update($dataShowRequest->all() ,$id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
+            $this->gravarLog("Data show alterado!", "atencao", ["Data show" => $retorno->descricao]);
             return redirect()->route('data-show.index');
         }
         return redirect()->back();
@@ -70,6 +69,7 @@ class DataShowController extends Controller
         try{
             $this->repository->destroy($id);
             Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
+            $this->gravarLog("Data show excluído!", "alerta");
             return redirect()->route('data-show.index');
         }catch(QueryException $e){
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());

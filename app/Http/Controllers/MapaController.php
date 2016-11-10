@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\MapaRequest;
 use App\Repositories\MapaRepository;
 use App\Http\Requests;
+use App\Traits\LogTrait;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
 
 class MapaController extends Controller
 {
+    use LogTrait;
+
     protected $repository;
 
     public function __construct(MapaRepository $mapaRepository)
@@ -33,14 +36,10 @@ class MapaController extends Controller
         $retorno = $this->repository->store($mapaRequest->all());
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+            $this->gravarLog("Mapa adicionado!", "informacao", ["Mapa" => $retorno->descricao]);
             return redirect()->route('mapa.index');
         }
         return redirect()->back();
-    }
-
-    public function show($id)
-    {
-        //TODO refazer após implementar no repository
     }
 
     public function edit($id)
@@ -59,6 +58,7 @@ class MapaController extends Controller
         $retorno = $this->repository->update($mapaRequest->all() ,$id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
+            $this->gravarLog("Mapa alterado!", "atencao", ["Mapa" => $retorno->descricao]);
             return redirect()->route('mapa.index');
         }
         return redirect()->back();
@@ -69,6 +69,7 @@ class MapaController extends Controller
         try{
             $this->repository->destroy($id);
             Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
+            $this->gravarLog("Mapa excluído!", "alerta");
             return redirect()->route('mapa.index');
         }catch(QueryException $e){
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());

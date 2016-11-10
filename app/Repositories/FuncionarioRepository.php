@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Funcionario;
 use App\User;
+use Carbon\Carbon;
 
 class FuncionarioRepository
 {
@@ -30,13 +31,8 @@ class FuncionarioRepository
     {
         $ativo = $data['ativo'];
 
-        // Persistindo dados da request no usuário
-        if ($data['username'] == '') {
-            $this->usuario->username = null;
-        } else {
-            $this->usuario->username = $data['username'];
-        }
-        $this->usuario->password = bcrypt($data['senha']);
+        $this->usuario->username = preg_replace('/\s+/', '', $data['nome'] . Carbon::today()->format('dmY')); //username padrão para funcionários
+        $this->usuario->password = bcrypt($data['numeroRegistro']); //senha padrão para funcionários
         $this->usuario->nome = $data['nome'];
         $this->usuario->telefone = $data['telefone'];
         $this->usuario->telefone2 = $data['telefone2'];
@@ -59,12 +55,6 @@ class FuncionarioRepository
         $ativo = $data['ativo'];
 
         // Atualizando dados da request no usuário
-        if ($data['username'] == '') {
-            $this->usuario->username = null;
-        } else {
-            $this->usuario->username = $data['username'];
-        }
-        $this->usuario->password = bcrypt($data['senha']);
         $this->usuario->nome = $data['nome'];
         $this->usuario->telefone = $data['telefone'];
         $this->usuario->telefone2 = $data['telefone2'];

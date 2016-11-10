@@ -41,6 +41,7 @@ class TurmaController extends Controller
 
         if(!empty($gravouAlunos['attached'])){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+            $this->gravarLog("Alunos vinculados a turma!", "informacao");
             return redirect()->route('turma.index');
         }
         Session::flash(self::getTipoErroVincular(), self::getMsgErroAlunoDuplicadoTurma());
@@ -107,7 +108,7 @@ class TurmaController extends Controller
         $arrayIds = explode(',', $idsAlunos);
 
         $retorno = $turma->alunos()->detach($arrayIds);
-
+        $this->gravarLog("Alunos removidos da turma!", "alerta");
         return redirect()->route('turma.index');
     }
 

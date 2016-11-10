@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ReservaRecursoRequest;
 use App\Repositories\ReservaRecursoRepository;
+use App\Traits\LogTrait;
+use Carbon\Carbon;
 use Faker\Provider\DateTime;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Session;
 
 class ReservaRecursoController extends Controller
 {
+    use LogTrait;
+
     protected $repository;
 
     public function __construct(ReservaRecursoRepository $reservaRecursoRepository)
@@ -36,6 +40,7 @@ class ReservaRecursoController extends Controller
     {
         $retorno = $this->repository->store($reservaRecursoRequest->all());
         if($retorno){
+            $this->gravarLog("Reserva de recurso adicionada!", "informacao", ["Data" => Carbon::today()->format('d/m/Y')]);
             return json_encode($retorno);
         }
         return response()->json([
@@ -48,6 +53,7 @@ class ReservaRecursoController extends Controller
     {
         $retorno = $this->repository->update($reservaRecursoRequest->all());
         if($retorno){
+            $this->gravarLog("Reserva de recurso alterada!", "atencao", ["Data" => Carbon::today()->format('d/m/Y')]);
             return json_encode($retorno);
         }
         return response()->json([
@@ -61,6 +67,7 @@ class ReservaRecursoController extends Controller
         try{
             $this->repository->destroy($id);
             Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
+            $this->gravarLog("Reserva de recurso excluída!", "alerta", ["Data" => Carbon::today()->format('d/m/Y')]);
             return response()->json([
                 'tipo' => self::getTipoSucesso(),
                 'mensagem' => self::getMsgExclusao()

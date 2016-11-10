@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AlunoRequest;
 use App\Repositories\AlunoRepository;
+use App\Traits\LogTrait;
 use Illuminate\Database\QueryException;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Session;
 
 class AlunoController extends Controller
 {
+    use LogTrait;
+
     protected $repository;
 
     public function __construct(AlunoRepository $alunoRepository)
@@ -34,14 +37,10 @@ class AlunoController extends Controller
         $retorno = $this->repository->store($request);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+            $this->gravarLog("Aluno adicionado!", "informacao", ["Aluno" => $retorno->nome]);
             return redirect()->route('aluno.index');
         }
         return redirect()->back();
-    }
-
-    public function show($id)
-    {
-        //TODO refazer após implementar no repository
     }
 
     public function edit($id)
@@ -61,6 +60,7 @@ class AlunoController extends Controller
         $retorno = $this->repository->update($alunoRequest, $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
+            $this->gravarLog("Aluno alterado!", "atencao", ["Aluno" => $retorno->nome]);
             return redirect()->route('aluno.index');
         }
         return redirect()->back();
@@ -71,6 +71,7 @@ class AlunoController extends Controller
         try{
             $this->repository->destroy($id);
             Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
+            $this->gravarLog("Aluno excluído!", "alerta");
             return redirect()->route('aluno.index');
         }catch(QueryException $e){
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
