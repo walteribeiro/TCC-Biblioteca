@@ -29,6 +29,6 @@ class CreateEmprestimosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('emprestimos');
+        Schema::dropIfExists('emprestimos');
     }
 }
