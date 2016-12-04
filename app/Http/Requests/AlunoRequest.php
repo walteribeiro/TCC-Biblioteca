@@ -28,7 +28,7 @@ class AlunoRequest extends Request
                     'nome' => 'required|min:5|max:255',
                     'telefone' => 'min:10|max:15',
                     'telefone2' => 'min:10|max:15',
-                    'email' => 'required| min:10|max:255|unique:pessoas',
+                    'email' => 'min:10|max:255|unique:pessoas',
                 ];
             }
 
@@ -39,7 +39,7 @@ class AlunoRequest extends Request
                     'nome' => 'required|min:5|max:255',
                     'telefone' => 'min:10|max:15',
                     'telefone2' => 'min:10|max:15',
-                    'email' => 'min:10|max:255|unique:pessoas,email, ' . $this->id,
+                    'email' => 'min:10|max:255|unique:pessoas,email,' . $this->id,
                 ];
             }
 

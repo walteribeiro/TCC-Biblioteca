@@ -22,7 +22,9 @@
 
         <div class="form-group">
             <div class="col-lg-5 col-lg-offset-3 col-sm-12">
-                <label for="titulo">Titulo</label>
+                <label for="titulo">Titulo
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="titulo" name="titulo"
                        placeholder="Titulo" autofocus value="{{ $revista->publicacao->titulo }}">
             </div>
@@ -39,19 +41,25 @@
 
         <div class="form-group">
             <div class="col-lg-1 col-lg-offset-3">
-                <label for="codigo">Código</label>
+                <label for="codigo">Código
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="codigo" name="codigo"
                        placeholder="Código" value="{{ $revista->publicacao->codigo }}">
             </div>
 
             <div class="col-lg-1">
-                <label for="referencia">Referência</label>
+                <label for="referencia">Referência
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="referencia" name="referencia"
                        placeholder="Referência"  value="{{ $revista->referencia }}">
             </div>
 
             <div class="col-lg-2">
-                <label for="categoria">Categoria</label>
+                <label for="categoria">Categoria
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="categoria" name="categoria"
                        placeholder="Categoria" value="{{ $revista->categoria }}">
             </div>
@@ -73,7 +81,9 @@
 
         <div class="form-group">
             <div class="col-lg-3 col-lg-offset-3">
-                <label for="editora">Editora</label>
+                <label for="editora">Editora
+                    <span class="required">*</span>
+                </label>
                 <select class="form-control basic-select" name="editora" id="editora">
                     <option value="">Selecione uma editora</option>
                     @foreach($listEditoras['editoras'] as $e)

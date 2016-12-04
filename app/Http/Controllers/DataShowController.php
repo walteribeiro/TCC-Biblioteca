@@ -52,7 +52,7 @@ class DataShowController extends Controller
     {
         $value = $this->repository->countDataShows($id, $dataShowRequest->input('codigo'));
         if($value > 0){
-            Session::flash(self::getTipoErro(), self::getMsgErroCodigoDataShowDuplicado());
+            Session::flash(self::getTipoErroDuplicado(), self::getMsgErroCodigoDataShowDuplicado());
             return redirect()->back();
         }
         $retorno = $this->repository->update($dataShowRequest->all() ,$id);

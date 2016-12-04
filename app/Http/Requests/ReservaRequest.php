@@ -25,13 +25,13 @@ class ReservaRequest extends Request
             case 'POST': {
                 return [
                     'usuario' => 'required',
-                    'data-limite' => 'required'
+                    'data-limite' => 'required',
+                    'publicacao' => 'required',
                 ];
             }
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'usuario' => 'required',
                     'data-limite' => 'required'
                 ];
             }

@@ -10,7 +10,9 @@
 
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
-                <label for="descricao">Descrição</label>
+                <label for="descricao">Descrição
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="descricao" name="descricao"
                        placeholder="Descrição do mapa" autofocus value="{{ old('descricao') }}">
             </div>
@@ -23,8 +25,10 @@
             </div>
 
             <div class="col-lg-2 col-sm-12">
-                <label for="numero">Número</label>
-                <input type="text" class="form-control" id="numero" name="numero"
+                <label for="numero">Número
+                    <span class="required">*</span>
+                </label>
+                <input type="text" class="form-control" id="numero" name="numero" data-inputmask="'mask': '999'"
                        placeholder="Número" value="{{ old('numero') }}">
             </div>
         </div>
@@ -37,4 +41,12 @@
         </div>
     </form>
 
+@endsection
+@section('scripts')
+    <script src="{{ asset("assets/js/jquery.inputmask.bundle.min.js")}}"></script>
+    <script>
+        $(document).ready(function () {
+            $(":input").inputmask();
+        })
+    </script>
 @endsection

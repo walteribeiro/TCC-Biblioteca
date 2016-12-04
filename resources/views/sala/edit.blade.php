@@ -11,7 +11,9 @@
 
         <div class="form-group">
             <div class="col-lg-4 col-lg-offset-3 col-sm-12">
-                <label for="descricao">Descrição</label>
+                <label for="descricao">Descrição
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="descricao" name="descricao"
                        placeholder="Descrição da sala" autofocus value="{{ $sala->recurso->descricao }}">
             </div>

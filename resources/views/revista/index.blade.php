@@ -64,16 +64,21 @@
                             <button disabled class="btn btn-sm btn-warning">
                                 <em class="fa fa-pencil"></em> Alterar
                             </button>
+
+                            <button disabled class="btn btn-sm btn-danger">
+                                <em class="fa fa-trash-o"></em> Excluir
+                            </button>
                         @else
                             <a href="{{ route('revista.edit', $l->publicacao_id)}}" class="btn btn-sm btn-warning">
                                 <em class="fa fa-pencil"></em> Alterar
                             </a>
+
+                            <a href="#modal" class="btn btn-sm btn-danger"
+                               data-delete="{{ $l->publicacao->titulo }}"
+                               data-id="{{ $l->publicacao->id }}">
+                                <em class="fa fa-trash-o"></em> Excluir
+                            </a>
                         @endif
-                        <a href="#modal" class="btn btn-sm btn-danger"
-                           data-delete="{{ $l->publicacao->titulo }}"
-                           data-id="{{ $l->publicacao->id }}">
-                            <em class="fa fa-trash-o"></em> Excluir
-                        </a>
                     </td>
                 </tr>
             @endforeach
@@ -104,7 +109,7 @@
                 var titulo = $(this).data('delete');
 
                 deleteLogModal.find('.modal-body p').html(
-                        'Você tem certeza que deseja excluir a revista ' + titulo.toUpperCase() + ' ?'
+                        'Você tem certeza que deseja excluir a revista ' + titulo + ' ?'
                 );
 
                 $('#formexcluir').attr("action", "revistas/remover/"+id);
@@ -124,8 +129,7 @@
                 var descricao = $(this).data('descricao');
                 var editora = $(this).data('editora');
                 var edicao = $(this).data('edicao');
-
-                console.log(origem);
+                referencia = referencia.substring(0,2) + "/" + referencia.substring(2);
 
                 showModal.find('.modal-body').html(
                         '<div class="row">' +
@@ -142,11 +146,11 @@
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-2">Origem:</div>' +
-                        '<div class="col-md-10"><p>'+ (origem == "" ? "&nbsp;" : origem) + '</p></div>' +
+                        '<div class="col-md-10"><p>'+ (origem ? origem : "&nbsp") + '</p></div>' +
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-2">Descrição:</div>' +
-                        '<div class="col-md-10"><p>'+ descricao + '</p></div>' +
+                        '<div class="col-md-10"><p>'+ (descricao ? descricao : "&nbsp") + '</p></div>' +
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-2">Editora:</div>' +
@@ -154,7 +158,7 @@
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-2">Edição:</div>' +
-                        '<div class="col-md-10"><p>'+ edicao + '</p></div>' +
+                        '<div class="col-md-10"><p>'+ (edicao ? edicao : "&nbsp") + '</p></div>' +
                         '</div>'
                 );
 

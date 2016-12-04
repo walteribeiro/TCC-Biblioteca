@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('nome');
             $table->string('telefone', 15);
             $table->string('telefone2', 15);
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->boolean('ativo')->default(true);
             $table->tinyInteger('tipo_acesso')->default(2);
             $table->rememberToken();

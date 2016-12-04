@@ -6,8 +6,9 @@ use App\Models\Publicacao;
 use App\Traits\LogTrait;
 use App\User;
 use Carbon\Carbon;
-use App\Http\Requests;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use mPDF;
 
 class RelatorioController extends Controller
@@ -30,11 +31,24 @@ class RelatorioController extends Controller
     }
     
     // Alunos Pendentes
-    public function alunosPendentes()
+    public function alunosPendentes(Request $request)
     {
-        $alunos = $this->getAlunosPendentes();
+        $dtInicialRel = $request->input('dtInicial');
+        $dtFinalRel = $request->input('dtFinal');
+
+        if($dtInicialRel && $dtFinalRel){
+            if($dtInicialRel > $dtFinalRel){
+                Session::flash(self::getTipoSemPermission(), 'Data inicial não pode ser maior que a data final!');
+                return redirect()->back();
+            }
+        }
+
+        $alunos = $this->getAlunosPendentes($dtInicialRel, $dtFinalRel);
         $dataEmissao = $this->getDataEmissao();
-        return view('relatorio.alunos-pendentes', compact('alunos', 'dataEmissao'));
+        $dtInicial = $this->getDataInicial("Y-m-d");
+        $dtFinal = $this->getDataFinal("Y-m-d");
+        $rota = "aluno.pendente";
+        return view('relatorio.alunos-pendentes', compact('alunos', 'dataEmissao', 'dtInicial', 'dtFinal', 'rota'));
     }
 
     public function gerarPDFAlunosPendentes()
@@ -172,13 +186,33 @@ class RelatorioController extends Controller
         return Carbon::now()->format($fmt);
     }
 
+    private function getDataInicial($fmt = 'd/m/Y')
+    {
+        return Carbon::now()->startOfMonth()->format($fmt);
+    }
+
+    private function getDataFinal($fmt = 'd/m/Y')
+    {
+        return Carbon::now()->endOfMonth()->format($fmt);
+    }
+
     private function getHeader($titulo)
     {
         return view('relatorio.layout.cabecalho-padrao')->with('dataEmissao', $this->getDataEmissao())->with('titulo', $titulo);
     }
     
-    private function getAlunosPendentes()
+    private function getAlunosPendentes($dtInicial = null, $dtFinal = null)
     {
+        if($dtInicial){
+            return $this->user
+                ->join('alunos', 'alunos.user_id', '=', 'pessoas.id')
+                ->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
+                ->where([['emprestimos.data_devolucao', null], ['emprestimos.data_prevista', '<', Carbon::now()]])
+                ->whereBetween('emprestimos.data_prevista', array($dtInicial, $dtFinal))
+                ->orderBy('emprestimos.data_prevista')
+                ->get(['alunos.matricula', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', 'emprestimos.data_prevista']);
+        }
+
         return $this->user
             ->join('alunos', 'alunos.user_id', '=', 'pessoas.id')
             ->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')

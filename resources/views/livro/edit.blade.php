@@ -22,7 +22,9 @@
 
         <div class="form-group">
             <div class="col-lg-5 col-lg-offset-3 col-sm-12">
-                <label for="titulo">Titulo</label>
+                <label for="titulo">Titulo
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="titulo" name="titulo"
                        placeholder="Titulo" autofocus value="{{ $livro->publicacao->titulo }}">
             </div>
@@ -56,7 +58,9 @@
 
         <div class="form-group">
             <div class="col-lg-3 col-lg-offset-3">
-                <label for="editora">Editora</label>
+                <label for="editora">Editora
+                    <span class="required">*</span>
+                </label>
                 <select class="form-control basic-select" name="editora" id="editora">
                     <option value="">Selecione uma editora</option>
                     @foreach($listAutoresEditoras['editoras'] as $e)
@@ -70,7 +74,9 @@
             </div>
 
             <div class="col-lg-3">
-                <label for="autor">Autor</label>
+                <label for="autor">Autor
+                    <span class="required">*</span>
+                </label>
                 <select class="form-control basic-select" name="autor" id="autor">
                     <option value="">Selecione um autor</option>
                     @foreach($listAutoresEditoras['autores'] as $a)
@@ -86,13 +92,17 @@
 
         <div class="form-group">
             <div class="col-lg-1 col-lg-offset-3 col-sm-6">
-                <label for="codigo">Código</label>
+                <label for="codigo">Código
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="codigo" name="codigo"
                        placeholder="Código" value="{{ $livro->publicacao->codigo }}">
             </div>
 
             <div class="col-lg-2 col-sm-6">
-                <label for="edicao">Edição</label>
+                <label for="edicao">Edição
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="edicao" name="edicao"
                        placeholder="Edição" value="{{ $livro->publicacao->edicao }}">
             </div>
@@ -104,7 +114,9 @@
             </div>
 
             <div class="col-lg-1">
-                <label for="ano">Ano</label>
+                <label for="ano">Ano
+                    <span class="required">*</span>
+                </label>
                 <input type="number" class="form-control" id="ano" name="ano"
                        placeholder="Ano" value="{{ $livro->ano }}">
             </div>

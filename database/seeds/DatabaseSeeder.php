@@ -27,6 +27,13 @@ class DatabaseSeeder extends Seeder
             'tipo_acesso' => 0
         ]);
 
+        factory(User::class, 1)->create([
+            'nome' => 'José Omar',
+            'username' => 'joseomar',
+            'password' => bcrypt('joseomar'),
+            'tipo_acesso' => 0
+        ]);
+
         $this->call(EditoraSeeder::class);
         $this->call(AutorSeeder::class);
         $this->call(LivroSeeder::class);

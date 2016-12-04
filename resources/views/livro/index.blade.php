@@ -16,7 +16,7 @@
             <thead>
             <tr>
                 <th>Código</th>
-                <th>Título</th>
+                <th style="width: 30%">Título</th>
                 <th>Subtitulo</th>
                 <th>Edição</th>
                 <th>Ano</th>
@@ -70,17 +70,22 @@
                             <button disabled class="btn btn-sm btn-warning">
                                 <em class="fa fa-pencil"></em> Alterar
                             </button>
+
+                            <button disabled class="btn btn-sm btn-danger">
+                                <em class="fa fa-trash-o"></em> Excluir
+                            </button>
                         @else
                             <a href="{{ route('livro.edit', $l->publicacao_id)}}" class="btn btn-sm btn-warning">
                                 <em class="fa fa-pencil"></em> Alterar
                             </a>
+
+                            <a href="#modal" class="btn btn-sm btn-danger"
+                               data-delete="{{ $l->publicacao->titulo }}"
+                               data-code="{{ $l->subtitulo }}"
+                               data-id="{{ $l->publicacao->id }}">
+                                <em class="fa fa-trash-o"></em> Excluir
+                            </a>
                         @endif
-                        <a href="#modal" class="btn btn-sm btn-danger"
-                           data-delete="{{ $l->publicacao->titulo }}"
-                           data-code="{{ $l->subtitulo }}"
-                           data-id="{{ $l->publicacao->id }}">
-                            <em class="fa fa-trash-o"></em> Excluir
-                        </a>
                     </td>
                 </tr>
             @endforeach
@@ -88,7 +93,7 @@
         </table>
     @else
         <h5 class="alert alert-info">Ainda não foram cadastrados livros!</h5>
-        @endif
+    @endif
 
     @include('layout.delete-modal')
 
@@ -110,10 +115,9 @@
                 event.preventDefault();
                 var id = $(this).data('id');
                 var titulo = $(this).data('delete');
-                var subtitulo = $(this).data('code');
 
                 deleteLogModal.find('.modal-body p').html(
-                        'Você tem certeza que deseja excluir o livro ' + titulo.toUpperCase() + ' - ' + subtitulo.toUpperCase() + ' ?'
+                        'Você tem certeza que deseja excluir o livro ' + titulo + ' ?'
                 );
 
                 $('#formexcluir').attr("action", "livros/remover/"+id);
@@ -145,11 +149,11 @@
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-2">Subtitulo:</div>' +
-                        '<div class="col-md-10"><p>'+ subtitulo + '</p></div>' +
+                        '<div class="col-md-10"><p>'+ (subtitulo ? subtitulo : "&nbsp") + '</p></div>' +
                         '</div>' +
                         '<div class="row">' +
                         '<div class="col-md-2">Descrição:</div>' +
-                        '<div class="col-md-10"><p>'+ descricao + '</p></div>' +
+                        '<div class="col-md-10"><p>'+ (descricao ? descricao : "&nbsp") + '</p></div>' +
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-2">Editora:</div>' +
@@ -165,7 +169,7 @@
                         '</div>' +
                         '<div class="row">' +
                         '<div class="col-md-2">Origem:</div>' +
-                        '<div class="col-md-2"><p>'+ origem + '</p></div>' +
+                        '<div class="col-md-2"><p>'+ (origem ? origem : "&nbsp") + '</p></div>' +
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-2">Ano:</div>' +
@@ -173,15 +177,15 @@
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-2">ISBN:</div>' +
-                        '<div class="col-md-2"><p>'+ isbn + '</p></div>' +
+                        '<div class="col-md-2"><p>'+ (isbn ? isbn : "&nbsp") + '</p></div>' +
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-2">CDU:</div>' +
-                        '<div class="col-md-2"><p>'+ cdu + '</p></div>' +
+                        '<div class="col-md-2"><p>'+ (cdu ? cdu : "&nbsp") + '</p></div>' +
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-2">CDD:</div>' +
-                        '<div class="col-md-2"><p>'+ cdd + '</p></div>' +
+                        '<div class="col-md-2"><p>'+ (cdd ? cdd : "&nbsp") + '</p></div>' +
                         '</div>'
                 );
 

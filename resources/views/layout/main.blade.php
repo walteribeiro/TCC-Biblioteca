@@ -51,7 +51,7 @@
                                 <li><a><i class="fa fa-wrench"></i> Gerenciar <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('emprestimo.index') }}">Empréstimos</a></li>
-                                        {{--<li><a href="{{ route('reserva.index') }}">Reservas</a></li>--}}
+                                        <li><a href="{{ route('reserva.index') }}">Reservas</a></li>
                                         <li><a href="{{ route('reserva-recurso.index') }}">Reservas de Recursos</a></li>
                                     </ul>
                                 </li>
@@ -64,7 +64,7 @@
                                         <li><a href="{{ route('funcionario.emprestimo') }}">Funcionários com mais Empréstimos</a></li>
                                     </ul>
                                 </li>
-                                @if(Auth::user()->tipo_acesso == 0)
+                                @if(Auth::user()->tipo_acesso != 2)
                                     <li><a><i class="fa fa-user"></i> Usuários <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="{{ route('aluno.index') }}">Alunos</a></li>
@@ -72,7 +72,8 @@
                                             <li><a href="{{ route('turma.index') }}">Turmas</a></li>
                                         </ul>
                                     </li>
-
+                                @endif
+                                @if(Auth::user()->tipo_acesso == 0)
                                     <li><a><i class="fa fa-low-vision"></i> Transações <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="{{ route('log.index') }}"><i class="fa fa-dashboard"></i> Sumarização</a></li>
@@ -84,24 +85,6 @@
                         </ul>
                     </div>
                 </div>
-                <!-- /sidebar menu -->
-
-                <!-- /menu footer buttons
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
-                 /menu footer buttons -->
             </div>
         </div>
 

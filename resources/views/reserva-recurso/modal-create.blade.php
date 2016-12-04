@@ -18,7 +18,9 @@
 
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <label for="funcionario">Professor</label>
+                            <label for="funcionario">Professor
+                                <span class="required">*</span>
+                            </label>
                             <select class="js-states form-control basic-select" style="width: 100%"
                                     name="funcionario" id="funcionario" autofocus>
                                 @if(count($reservaRecurso['funcionarios']) > 0)
@@ -34,7 +36,9 @@
 
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <label for="recurso">Recurso</label>
+                            <label for="recurso">Recurso
+                                <span class="required">*</span>
+                            </label>
                             <select class="js-states form-control basic-select" style="width: 100%"
                                     name="recurso" id="recurso">
                                 <optgroup label="Recursos">
@@ -52,7 +56,9 @@
 
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <label for="aula">Horário</label>
+                            <label for="aula">Horário
+                                <span class="required">*</span>
+                            </label>
                             <select class="js-states form-control basic-select-no-search" style="width: 100%" name="aula" id="aula">
                                 <optgroup label="Manhã">
                                     <option value="1">1 M</option>

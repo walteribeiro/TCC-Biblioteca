@@ -15,7 +15,7 @@
         <table id="funcionarios" class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th>#</th>
+                <th>Nº Registro</th>
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Email</th>
@@ -27,7 +27,7 @@
             <tbody>
             @foreach($funcionarios as $f)
                 <tr>
-                    <td>{{$f->user->id}}</td>
+                    <td>{{$f->num_registro}}</td>
                     <td>{{$f->user->nome}}</td>
                     <td>{{$f->user->telefone}}</td>
                     <td>{{$f->user->email}}</td>
@@ -65,6 +65,18 @@
                            data-id="{{ $f->user->id }}">
                             <em class="fa fa-trash-o"></em> Excluir
                         </a>
+                        @if(Auth::check())
+                            @if(Auth::user()->tipo_acesso == 0)
+                                <a href="#pass" class="btn btn-sm btn-dark"
+                                   data-id="{{ $f->user->id }}">
+                                    <em class="fa fa-unlock"></em> Alterar Senha
+                                </a>
+                                @else
+                                <a href="#" disabled class="btn btn-sm btn-dark">
+                                    <em class="fa fa-unlock"></em> Alterar Senha
+                                </a>
+                            @endif
+                        @endif
                     </td>
                 </tr>
             @endforeach
@@ -77,6 +89,8 @@
     @include('layout.delete-modal')
 
     @include('layout.show-modal')
+
+    @include('layout.change-password-modal')
 
 @endsection
 @section('scripts')
@@ -96,7 +110,7 @@
                 var nome = $(this).data('delete');
 
                 deleteLogModal.find('.modal-body p').html(
-                        'Você tem certeza que deseja excluir o funcionário ' + nome.toUpperCase() + ' ?'
+                        'Você tem certeza que deseja excluir o funcionário ' + nome + ' ?'
                 );
 
                 $('#formexcluir').attr("action", "funcionarios/remover/"+id);
@@ -123,15 +137,15 @@
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-2">Telefone:</div>' +
-                        '<div class="col-md-10"><p>'+ telefone + '</p></div>' +
+                        '<div class="col-md-10"><p>'+ (telefone ? telefone : "&nbsp") + '</p></div>' +
                         '</div>' +
                         '<div class="row">' +
                         '<div class="col-md-2">Celular:</div>' +
-                        '<div class="col-md-10"><p>'+ telefone2 + '</p></div>' +
+                        '<div class="col-md-10"><p>'+ (telefone2 ? telefone2 : "&nbsp") + '</p></div>' +
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-2">Email:</div>' +
-                        '<div class="col-md-10"><p>'+ email + '</p></div>' +
+                        '<div class="col-md-10"><p>'+ (email ? email : "&nbsp") + '</p></div>' +
                         '</div>' +
                         '<div class="row">' +
                         '<div class="col-md-2">Nº Registro:</div>' +
@@ -144,6 +158,20 @@
                 );
 
                 showModal.modal('show');
+            });
+        });
+
+        $(function () {
+            var passwordModal = $('div#change-password-modal');
+
+            $("a[href='#pass']").click(function(event) {
+                event.preventDefault();
+                var id = $(this).data('id');
+
+                passwordModal.find('.modal-body p').html(
+                        '<input type="hidden" value="'+id+'" name="user-id">'
+                );
+                passwordModal.modal('show');
             });
         });
 

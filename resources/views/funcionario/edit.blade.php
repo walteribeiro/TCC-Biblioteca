@@ -21,7 +21,9 @@
 
         <div class="form-group">
             <div class="col-lg-5 col-lg-offset-3 col-sm-12">
-                <label for="nome">Nome</label>
+                <label for="nome">Nome
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="nome" name="nome"
                        placeholder="Nome do funcionário" autofocus value="{{ $funcionario->user->nome }}">
             </div>
@@ -51,7 +53,9 @@
             </div>
 
             <div class="col-lg-2 col-sm-6">
-                <label for="numRegistro">Nº registro</label>
+                <label for="numRegistro">Nº registro
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="numeroRegistro" name="numeroRegistro"
                        placeholder="Nº registro" value="{{ $funcionario->num_registro }}">
             </div>
@@ -83,26 +87,6 @@
                 </select>
             </div>
         </div>
-
-        {{--<div class="form-group">--}}
-            {{--<div class="col-lg-2 col-lg-offset-3 col-sm-6">--}}
-                {{--<label for="usuario">Nome de usuário</label>--}}
-                {{--<input type="text" class="form-control" id="username" name="username"--}}
-                       {{--placeholder="Nome de usuário" value="{{ $funcionario->user->username }}">--}}
-            {{--</div>--}}
-
-            {{--<div class="col-lg-2 col-sm-6">--}}
-                {{--<label for="senha">Senha</label>--}}
-                {{--<input type="password" class="form-control" id="senha" name="senha"--}}
-                       {{--placeholder="Senha">--}}
-            {{--</div>--}}
-
-            {{--<div class="col-lg-2 col-sm-6">--}}
-                {{--<label for="confirmarSenha">Confirmar Senha</label>--}}
-                {{--<input type="password" class="form-control" id="senha_confirmation" name="senha_confirmation"--}}
-                       {{--placeholder="Confirma senha">--}}
-            {{--</div>--}}
-        {{--</div>--}}
 
         <br>
         <div class="form-group">

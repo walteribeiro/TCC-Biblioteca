@@ -16,11 +16,13 @@ class Controller extends BaseController
     const SUCESSO = 'sucesso';
     const ERRO = 'erro';
     const ERRO_VINCULAR = 'erro_vincular';
+    const ERRO_DUPLICADO = 'erro_duplicado';
     const ALERTA = 'alerta';
     const INCLUSAO = 'Registro incluído com sucesso!';
     const EXCLUSAO = 'Registro removido com sucesso!';
     const ALTERACAO = 'Registro alterado com sucesso!';
     const DEVOLUCAO = 'Empréstimo devolvido com sucesso!';
+    const ERRO_RESERVA_EMPRESTIMO = 'O usuário selecionado já possui empréstimo em aberto!';
     const ERRO_REFERENCIAMENTO = 'Este registro não pode ser removido, pois está sendo utilizado!';
     const ERRO_EXCLUSAO_TURMA = 'Para excluir a turma é necessário primeiro excluir os alunos!';
     const ERRO_MATRICULA_DUPLICADA = 'O número da matricula já se encontra utilizado!';
@@ -43,6 +45,11 @@ class Controller extends BaseController
     public static function getTipoErroVincular()
     {
         return self::ERRO_VINCULAR;
+    }
+
+    public static function getTipoErroDuplicado()
+    {
+        return self::ERRO_DUPLICADO;
     }
 
     public static function getMsgInclusao()
@@ -103,6 +110,11 @@ class Controller extends BaseController
     public static function getMsgDevolucao()
     {
         return self::DEVOLUCAO;
+    }
+
+    public static function getMsgErroEmprestimo()
+    {
+        return self::ERRO_RESERVA_EMPRESTIMO;
     }
 
     public function returnHomePage()

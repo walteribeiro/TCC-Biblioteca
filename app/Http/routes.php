@@ -1,5 +1,7 @@
 <?php
 
+Route::post('alterar-senha', 'Auth\PasswordController@alterarSenha');
+
 Route::group(['middleware' => ['auth']], function(){
 
 Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeController@index']);
@@ -160,6 +162,7 @@ Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeContro
         Route::get('/editar/{id}',     ['as'=>'reserva.edit',     'uses'=>'ReservaController@edit']);
         Route::put('/atualizar/{id}',  ['as'=>'reserva.update',   'uses'=>'ReservaController@update']);
         Route::delete('/remover/{id}', ['as'=>'reserva.delete',   'uses'=>'ReservaController@destroy']);
+        Route::put('/emprestar/{id}',  ['as'=>'reserva.emprestar', 'uses'=>'ReservaController@efetuarEmprestimo']);
 
     });
 

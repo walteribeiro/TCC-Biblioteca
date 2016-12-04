@@ -27,11 +27,6 @@ class LivroRepository
         return $this->livro->all();
     }
 
-    public function show($id)
-    {
-        // TODO: Implement show() method.
-    }
-
     public function create(){
         return [
             'autores'=> $this->autor->all(),

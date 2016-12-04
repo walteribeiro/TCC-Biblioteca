@@ -50,7 +50,6 @@
 
             $('#submit-create-form').on('click', function(e){
                 e.preventDefault();
-
                 doSubmitCreateForm();
             });
 
@@ -115,11 +114,11 @@
                         toastr.error(li, 'Erro!', options);
                     }
                 });
+                cleanForms();
             }
 
             $('#submit-edit-form').on('click', function(e){
                 e.preventDefault();
-
                 doSubmitEditForm();
             });
 
@@ -205,7 +204,6 @@
             // Submit modal de delete
             $('#submit-delete-form').on('click', function(e){
                 e.preventDefault();
-
                 doSubmitDeleteForm();
             });
 
@@ -339,7 +337,9 @@
             }
 
             function cleanForms(){
-
+                $('select#recurso option:selected').removeAttr("selected").trigger("change");
+                $('select#funcionario option:selected').removeAttr("selected").trigger("change");
+                $('select#aula option:selected').removeAttr("selected").trigger("change");
             }
         })
     </script>

@@ -26,7 +26,7 @@ class RevistaRequest extends Request
                 return [
                     'codigo' => 'required|max:255|min:3|unique:publicacoes',
                     'titulo' => 'required|max:255',
-                    'referencia' => 'required|size:6',
+                    'referencia' => 'required|size:7',
                     'edicao' => 'max:15',
                     'categoria' => 'required|max:255',
                     'editora' => 'required'
@@ -38,7 +38,7 @@ class RevistaRequest extends Request
                 return [
                     'codigo' => 'required|max:255|min:3|unique:publicacoes,codigo,'.$this->id,
                     'titulo' => 'required|max:255',
-                    'referencia' => 'required|size:6',
+                    'referencia' => 'required|size:7',
                     'edicao' => 'max:15',
                     'categoria' => 'required|max:255',
                     'editora' => 'required'

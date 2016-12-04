@@ -15,23 +15,22 @@
         <table id="data-shows" class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th>#</th>
+                <th>Código</th>
                 <th>Descrição</th>
                 <th>Marca</th>
-                <th>Código</th>
                 <th data-orderable="false">Opções</th>
             </tr>
             </thead>
             <tbody>
             @foreach($dataShows as $d)
                 <tr>
-                    <td>{{$d->recurso_id}}</td>
+                    <td>{{$d->codigo}}</td>
                     <td>{{$d->recurso->descricao}}</td>
                     <td>{{$d->marca}}</td>
-                    <td>{{$d->codigo}}</td>
                     <td class="text-center">
                         <a href="#show" class="btn btn-sm btn-success"
                            data-descricao="{{ $d->recurso->descricao }}"
+                           data-marca="{{ $d->marca}}"
                            data-codigo="{{ $d->codigo }}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
@@ -76,7 +75,7 @@
                 var codigo = $(this).data('code');
 
                 deleteLogModal.find('.modal-body p').html(
-                        'Você tem certeza que deseja excluir o data show ' + codigo + ' - ' + descricao.toUpperCase() + ' ?'
+                        'Você tem certeza que deseja excluir o data show ' + codigo + ' - ' + descricao + ' ?'
                 );
 
                 $('#formexcluir').attr("action", "data-shows/remover/"+id);
@@ -90,10 +89,22 @@
             $("a[href='#show']").click(function(event) {
                 event.preventDefault();
                 var descricao = $(this).data('descricao');
+                var marca = $(this).data('marca');
                 var codigo = $(this).data('codigo');
 
                 showModal.find('.modal-body').html(
-                        'Data show: ' + codigo + ' - ' + descricao.toUpperCase()
+                        '<div class="row">' +
+                        '<div class="col-md-2">Código:</div>' +
+                        '<div class="col-md-10"><p>'+ codigo + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Marca:</div>' +
+                        '<div class="col-md-10"><p>'+ (marca ? marca : "&nbsp") + '</p></div>' +
+                        '</div>' +
+                        '<div class="row">' +
+                        '<div class="col-md-2">Descrição:</div>' +
+                        '<div class="col-md-10"><p>'+ descricao + '</p></div>' +
+                        '</div>'
                 );
 
                 showModal.modal('show');

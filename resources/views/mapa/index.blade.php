@@ -15,9 +15,8 @@
         <table id="mapas" class="table table-bordered table-hover">
             <thead>
             <tr>
-                <th>#</th>
-                <th>Descrição</th>
                 <th>Número</th>
+                <th>Descrição</th>
                 <th>Título</th>
                 <th data-orderable="false">Opções</th>
             </tr>
@@ -25,14 +24,14 @@
             <tbody>
             @foreach($mapas as $m)
                 <tr>
-                    <td>{{$m->recurso_id}}</td>
-                    <td>{{$m->recurso->descricao}}</td>
                     <td>{{$m->numero}}</td>
+                    <td>{{$m->recurso->descricao}}</td>
                     <td>{{$m->titulo}}</td>
                     <td class="text-center">
                         <a href="#show" class="btn btn-sm btn-success"
                            data-descricao="{{ $m->recurso->descricao }}"
-                           data-codigo="{{ $m->numero }}">
+                           data-titulo="{{ $m->titulo }}"
+                           data-numero="{{ $m->numero }}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
                         <a href="{{ route('mapa.edit', $m->recurso_id)}}" class="btn btn-sm btn-warning">
@@ -51,7 +50,7 @@
         </table>
     @else
         <h5 class="alert alert-info">Ainda não foram cadastrados mapas!</h5>
-        @endif
+    @endif
 
     @include('layout.delete-modal')
 
@@ -76,7 +75,7 @@
                 var codigo = $(this).data('code');
 
                 deleteLogModal.find('.modal-body p').html(
-                        'Você tem certeza que deseja excluir o mapa ' + codigo + ' - ' + descricao.toUpperCase() + ' ?'
+                        'Você tem certeza que deseja excluir o mapa ' + codigo + ' - ' + descricao + ' ?'
                 );
 
                 $('#formexcluir').attr("action", "mapas/remover/"+id);
@@ -90,10 +89,22 @@
             $("a[href='#show']").click(function(event) {
                 event.preventDefault();
                 var descricao = $(this).data('descricao');
-                var codigo = $(this).data('codigo');
+                var titulo = $(this).data('titulo');
+                var numero = $(this).data('numero');
 
                 showModal.find('.modal-body').html(
-                        'Mapa: ' + codigo + ' - ' + descricao.toUpperCase()
+                        '<div class="row">' +
+                        '<div class="col-md-2">Número:</div>' +
+                        '<div class="col-md-10"><p>'+ numero + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Título:</div>' +
+                        '<div class="col-md-10"><p>'+ (titulo ? titulo : "&nbsp") + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Descrição:</div>' +
+                        '<div class="col-md-10"><p>'+ descricao + '</p></div>' +
+                        '</div>'
                 );
 
                 showModal.modal('show');

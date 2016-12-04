@@ -15,8 +15,7 @@
                     <div class="form-group">
                         <div class="col-lg-8 col-lg-offset-2">
                             <label class="pull-left" for="username">Nome de Usuário</label>
-                            <input type="text" id="username" class="form-control" name="username" autofocus
-                                   value="{{ old('username') }}">
+                            <input type="text" id="username" class="form-control" name="username" autofocus>
                         </div>
                     </div>
 

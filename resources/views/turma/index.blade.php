@@ -28,9 +28,25 @@
                 <tr>
                     <td>{{$t->serie}}</td>
                     <td>{{$t->letra_turma}}</td>
-                    <td>{{$t->turno}}</td>
+                    <td>
+                        @if($t->turno == 0)
+                            Manhã
+                        @elseif($t->turno == 1)
+                            Tarde
+                        @elseif($t->turno == 2)
+                            Noite
+                        @endif
+                    </td>
                     <td>{{$t->ano}}</td>
-                    <td>{{$t->ensino}}</td>
+                    <td>
+                        @if($t->ensino == 0)
+                            Fundamental
+                        @elseif($t->ensino == 1)
+                            Médio
+                        @elseif($t->ensino == 2)
+                            Superior
+                        @endif
+                    </td>
                     <td class="text-center">
                         <a href="{{ route('turma.vinculo', $t->id) }}" class="btn btn-sm btn-primary">
                             <em class="fa fa-plus-circle"></em> Adicionar Alunos
@@ -108,6 +124,31 @@
                 var ano = $(this).data('ano');
                 var ensino = $(this).data('ensino');
 
+                var descricaoTurno = '';
+                var descricaoEnsino = '';
+                switch (turno){
+                    case 0:
+                        descricaoTurno = 'Manhã';
+                        break;
+                    case 1:
+                        descricaoTurno = 'Tarde';
+                        break;
+                    case 2:
+                        descricaoTurno = 'Noite';
+                        break;
+                }
+
+                switch (ensino){
+                    case 0:
+                        descricaoEnsino = 'Fundamental';
+                        break;
+                    case 1:
+                        descricaoEnsino = 'Médio';
+                        break;
+                    case 2:
+                        descricaoEnsino = 'Superior';
+                        break;
+                }
 
                 showModal.find('.modal-body').html(
                         '<div class="row">' +
@@ -120,7 +161,7 @@
                         '</div>' +
                         '<div class="row">' +
                         '<div class="col-md-2">Turno:</div>' +
-                        '<div class="col-md-10"><p>'+ turno + '</p></div>' +
+                        '<div class="col-md-10"><p>'+ descricaoTurno + '</p></div>' +
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-2">Ano:</div>' +
@@ -128,7 +169,7 @@
                         '</div>' +
                         '<div class="row">' +
                         '<div class="col-md-2">Ensino:</div>' +
-                        '<div class="col-md-10"><p>'+ ensino + '</p></div>'
+                        '<div class="col-md-10"><p>'+ descricaoEnsino + '</p></div>'
                 );
 
                 showModal.modal('show');

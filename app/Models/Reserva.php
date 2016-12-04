@@ -17,16 +17,8 @@ class Reserva extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function publicacao(){
-        return $this->belongsTo(Publicacao::class);
-    }
-
-    public function getDataLimiteAttribute($value)
-    {
-        if(is_null($value)){
-            return "";
-        }
-        return date('d/m/Y', strtotime($value));
+    public function publicacoes(){
+        return $this->belongsToMany(Publicacao::class, 'reservas_publicacoes');
     }
 
     public function getDataReservaAttribute($value)

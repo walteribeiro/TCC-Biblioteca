@@ -69,7 +69,7 @@
                 var nome = $(this).data('delete');
 
                 deleteLogModal.find('.modal-body p').html(
-                        'Você tem certeza que deseja excluir a editora ' + nome.toUpperCase() + ' ?'
+                        'Você tem certeza que deseja excluir a editora ' + nome + ' ?'
                 );
 
                 $('#formexcluir').attr("action", "editoras/remover/"+id);
@@ -85,7 +85,10 @@
                 var nome = $(this).data('nome');
 
                 showModal.find('.modal-body').html(
-                        'Nome: ' + nome.toUpperCase()
+                        '<div class="row">' +
+                        '<div class="col-md-2">Nome:</div>' +
+                        '<div class="col-md-10"><p>'+ nome + '</p></div>' +
+                        '</div>'
                 );
 
                 showModal.modal('show');

@@ -39,7 +39,7 @@ class ReservaController extends Controller
         })->where([['tipo_acesso', '<>', 0], ['ativo', '=', '1']])
             ->get(['id', 'nome']);
 
-        $publicacoes = Publicacao::whereNotIn('status', [0, 3])->get();
+        $publicacoes = Publicacao::whereNotIn('status', [0, 2, 3])->get();
         $data_limite = Carbon::today()->addDays(7)->format('Y-m-d');
         return view('reserva.create', compact('usuarios', 'publicacoes', 'data_limite'));
     }
@@ -48,8 +48,9 @@ class ReservaController extends Controller
     {
         $gravouReserva = $this->repository->store($reservaRequest->all());
 
-        if(!empty($gravouReserva)){
+        if(!empty($gravouReserva['attached'])){
             Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+            $this->gravarLog("Reserva adicionada!", "informacao", ["Data" => Carbon::today()->format('d/m/Y')]);
             return redirect()->route('reserva.index');
         }
         return redirect()->back();
@@ -63,7 +64,13 @@ class ReservaController extends Controller
 
     public function update(ReservaRequest $reservaRequest, $id)
     {
-        //
+        $retorno = $this->repository->update($reservaRequest->all(), $id);
+        if($retorno){
+            Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
+            $this->gravarLog("Reserva alterada!", "atencao", ["Data" => Carbon::today()->format('d/m/Y')]);
+            return redirect()->route('reserva.index');
+        }
+        return redirect()->back();
     }
 
     public function destroy($id)
@@ -72,10 +79,26 @@ class ReservaController extends Controller
             $this->repository->destroy($id);
             Session::flash(self::getTipoSucesso(), self::getMsgExclusao());
             $this->gravarLog("Empréstimo excluído!", "alerta");
-            return redirect()->route('emprestimo.index');
+            return redirect()->route('reserva.index');
         }catch(QueryException $e){
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
             return redirect()->back();
         }
+    }
+
+    public function efetuarEmprestimo($id)
+    {
+        $naoPossuiEmprestimo = $this->repository->verificarUsuarioEmprestimo($id);
+
+        if($naoPossuiEmprestimo) {
+            $retorno = $this->repository->emprestar($id);
+            if ($retorno) {
+                Session::flash(self::getTipoSucesso(), self::getMsgInclusao());
+                $this->gravarLog("Reserva emprestada!", "alerta", ["Data" => Carbon::today()->format('d/m/Y')]);
+                return redirect()->route('reserva.index');
+            }
+        }
+        Session::flash(self::getTipoErro(), self::getMsgErroEmprestimo());
+        return redirect()->back();
     }
 }

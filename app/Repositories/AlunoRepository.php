@@ -32,7 +32,7 @@ class AlunoRepository
         $this->usuario->nome = $data['nome'];
         $this->usuario->telefone = $data['telefone'];
         $this->usuario->telefone2 = $data['telefone2'];
-        $this->usuario->email = $data['email'];
+        $this->usuario->email = ($data['email'] ? $data['email'] : null);
         $this->usuario->ativo = ($ativo != null ? true : false);
         $this->usuario->tipo_acesso = 2; //Padrão para todos alunos
         $this->usuario->save();
@@ -53,7 +53,7 @@ class AlunoRepository
         $this->usuario->nome = $data['nome'];
         $this->usuario->telefone = $data['telefone'];
         $this->usuario->telefone2 = $data['telefone2'];
-        $this->usuario->email = $data['email'];
+        $this->usuario->email = ($data['email'] ? $data['email'] : null);
         $this->usuario->ativo = ($ativo != null ? true : false);
 
         //Atualizando dados da request no aluno

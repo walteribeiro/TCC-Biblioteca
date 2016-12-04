@@ -39,7 +39,8 @@
                     </td>
                     <td class="text-center">
                         <a href="#show" class="btn btn-sm btn-success"
-                           data-descricao="{{ $s->recurso->descricao }}">
+                           data-descricao="{{ $s->recurso->descricao }}"
+                           data-tipo="{{ $s->tipo}}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
                         <a href="{{ route('sala.edit', $s->recurso_id)}}" class="btn btn-sm btn-warning">
@@ -81,7 +82,7 @@
                 var descricao = $(this).data('delete');
 
                 deleteLogModal.find('.modal-body p').html(
-                        'Você tem certeza que deseja excluir a sala ' + descricao.toUpperCase() + ' ?'
+                        'Você tem certeza que deseja excluir a sala ' + descricao + ' ?'
                 );
 
                 $('#formexcluir').attr("action", "salas/remover/"+id);
@@ -95,9 +96,34 @@
             $("a[href='#show']").click(function(event) {
                 event.preventDefault();
                 var descricao = $(this).data('descricao');
+                var tipo = $(this).data('tipo');
 
-                showModal.find('.modal-body').html(
-                        'Sala: ' + descricao.toUpperCase()
+                var tipoSala = "";
+                switch (tipo){
+                    case 0:
+                        tipoSala = "Vídeo";
+                        break;
+                    case 1:
+                        tipoSala = "Recreação";
+                        break;
+                    case 2:
+                        tipoSala = "Auditório";
+                        break;
+                    case 3:
+                        tipoSala = "Informática";
+                        break;
+                    default: tipoSala = "&nbsp";
+                }
+
+        showModal.find('.modal-body').html(
+                '<div class="row">' +
+                '<div class="col-md-2">Descrição:</div>' +
+                '<div class="col-md-10"><p>'+ descricao + '</p></div>' +
+                '</div>'+
+                '<div class="row">' +
+                '<div class="col-md-2">Tipo:</div>' +
+                '<div class="col-md-10"><p>'+ tipoSala + '</p></div>' +
+                '</div>'
                 );
 
                 showModal.modal('show');

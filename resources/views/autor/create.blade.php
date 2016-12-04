@@ -11,7 +11,9 @@
 
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
-                <label for="nome">Nome</label>
+                <label for="nome">Nome
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="nome" name="nome"
                        placeholder="Nome do autor" autofocus value="{{ old('nome') }}">
             </div>

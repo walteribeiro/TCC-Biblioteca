@@ -52,7 +52,7 @@ class MapaController extends Controller
     {
         $value = $this->repository->countMapas($id, $mapaRequest->input('numero'));
         if($value > 0){
-            Session::flash(self::getTipoErro(), self::getMsgErroMapaDuplicado());
+            Session::flash(self::getTipoErroDuplicado(), self::getMsgErroMapaDuplicado());
             return redirect()->back();
         }
         $retorno = $this->repository->update($mapaRequest->all() ,$id);

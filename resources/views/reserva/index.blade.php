@@ -29,7 +29,7 @@
                     <td>{{$e->id}}</td>
                     <td>{{$e->user->nome}}</td>
                     <td>{{$e->data_reserva}}</td>
-                    <td>{{$e->data_limite}}</td>
+                    <td>{{date('d/m/Y', strtotime($e->data_limite))}}</td>
                     <td>
                         @if($e->situacao == 0)
                             <span class="label label-success">
@@ -42,28 +42,46 @@
                         @endif
                     </td>
                     <td class="text-center">
-                        <a href="#emprestar" class="btn btn-sm btn-primary"
-                           data-id="{{ $e->id }}">
-                            <em class="fa fa-book"></em> Emprestar
-                        </a>
+                        @if($e->situacao == 1)
+                            <button class="btn btn-sm btn-primary" disabled>
+                                <em class="fa fa-book"></em> Emprestar
+                            </button>
 
-                        <a href="#show" class="btn btn-sm btn-success"
-                           data-situacao="{{ $e->situacao}}"
-                           data-data_reserva="{{ $e->data_reserva}}"
-                           data-data_limite="{{ $e->data_limite}}"
-                           data-usuario="{{ $e->user->nome}}">
-                            <em class="fa fa-search"></em> Visualizar
-                        </a>
+                            <button class="btn btn-sm btn-success" disabled="">
+                                <em class="fa fa-search"></em> Visualizar
+                            </button>
 
-                        <a href="{{ route('reserva.edit', $e->id)}}" class="btn btn-sm btn-warning">
-                            <em class="fa fa-pencil"></em> Alterar
-                        </a>
+                            <button class="btn btn-sm btn-warning" disabled>
+                                <em class="fa fa-pencil"></em> Alterar
+                            </button>
 
-                        <a href="#modal" class="btn btn-sm btn-danger"
-                           data-delete="{{ $e->data_reserva }}"
-                           data-id="{{ $e->id }}">
-                            <em class="fa fa-trash-o"></em> Excluir
-                        </a>
+                            <button class="btn btn-sm btn-danger" disabled>
+                                <em class="fa fa-trash-o"></em> Excluir
+                            </button>
+                        @else
+                            <a href="#emprestar" class="btn btn-sm btn-primary"
+                               data-id="{{ $e->id }}">
+                                <em class="fa fa-book"></em> Emprestar
+                            </a>
+
+                            <a href="#show" class="btn btn-sm btn-success"
+                               data-situacao="{{ $e->situacao}}"
+                               data-data_reserva="{{ $e->data_reserva}}"
+                               data-data_limite="{{ $e->data_limite}}"
+                               data-usuario="{{ $e->user->nome}}">
+                                <em class="fa fa-search"></em> Visualizar
+                            </a>
+
+                            <a href="{{ route('reserva.edit', $e->id)}}" class="btn btn-sm btn-warning">
+                                <em class="fa fa-pencil"></em> Alterar
+                            </a>
+
+                            <a href="#modal" class="btn btn-sm btn-danger"
+                               data-delete="{{ $e->data_reserva }}"
+                               data-id="{{ $e->id }}">
+                                <em class="fa fa-trash-o"></em> Excluir
+                            </a>
+                        @endif
                     </td>
                 </tr>
             @endforeach
@@ -77,8 +95,8 @@
 
     @include('layout.show-modal')
 
-    <div class="modal fade" id="emprestar-modal" role="dialog" data-backdrop="static">
-        <form action="" id="formemprestar" method="post">
+    <div class="modal fade" id="reservar-modal" role="dialog" data-backdrop="static">
+        <form action="" id="formreservar" method="post">
             {{ method_field('put') }}
             {!! csrf_field() !!}
             <div class="modal-dialog" role="document">
@@ -86,7 +104,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Empréstimo</h4>
+                        <h4 class="modal-title" id="myModalLabel">Reserva</h4>
                     </div>
                     <div class="modal-body">
                         <p></p>
@@ -164,18 +182,18 @@
         });
 
         $(function () {
-            var emprestarModal = $('div#emprestar-modal');
+            var reservarModal = $('div#reservar-modal');
 
             $("a[href='#emprestar']").click(function(event) {
                 event.preventDefault();
                 var id = $(this).data('id');
 
-                emprestarModal.find('.modal-body p').html(
-                        'Você tem certeza que deseja devolver o empréstimo do dia ?'
+                reservarModal.find('.modal-body p').html(
+                        'Você tem certeza que deseja efetuar o empréstimo para esta reserva ?'
                 );
 
-                $('#formdevolver').attr("action", "reservas/emprestar/"+id);
-                emprestarModal.modal('show');
+                $('#formreservar').attr("action", "reservas/emprestar/"+id);
+                reservarModal.modal('show');
             });
         });
 

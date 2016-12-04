@@ -26,7 +26,8 @@
 
             <div class="col-lg-2">
                 <label for="turno">Turno</label>
-                <input type="text" class="form-control" disabled id="turno" name="turno" value="{{$turma->turno}}">
+                <input type="text" class="form-control" disabled id="turno" name="turno"
+                       value="@if($turma->turno == 0) Manhã @elseif($turma->turno == 1) Tarde @elseif($turma->turno == 2) Noite @endif">
             </div>
 
             <div class="col-lg-1">
@@ -37,7 +38,9 @@
 
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3">
-                <label for="alunos">Alunos</label>
+                <label for="alunos">Alunos
+                    <span class="required">*</span>
+                </label>
                 <select id="alunos" name="aluno[]" class="form-control" multiple="multiple" required autofocus>
                     @foreach($alunos as $a)
                         <option value="{{ $a->user_id }}">{{ $a->matricula . ' - ' . $a->user->nome }}</option>

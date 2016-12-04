@@ -11,7 +11,9 @@
 
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
-                <label for="descricao">Descrição</label>
+                <label for="descricao">Descrição
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="descricao" name="descricao"
                        placeholder="Descrição do data show" autofocus value="{{ $dataShow->recurso->descricao }}">
             </div>
@@ -24,7 +26,9 @@
             </div>
 
             <div class="col-lg-2  col-sm-12">
-                <label for="codigo">Código</label>
+                <label for="codigo">Código
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="codigo" name="codigo"
                        placeholder="Código" value="{{ $dataShow->codigo }}">
             </div>

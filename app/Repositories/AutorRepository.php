@@ -18,11 +18,6 @@ class AutorRepository
         return $this->autor->all();
     }
 
-    public function show($id)
-    {
-        // TODO: Implement show() method.
-    }
-
     public function store($data)
     {
         return $this->autor->create($data);

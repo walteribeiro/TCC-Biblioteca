@@ -2,36 +2,39 @@
 
 @section('conteudo')
 
-    <h3 class="col-lg-6 col-lg-offset-3 col-sm-12 crud-title">Alterar empréstimo</h3>
+    <h3 class="col-lg-6 col-lg-offset-3 col-sm-12 crud-title">Alterar reserva</h3>
 
     <div class="row">
-    <form class="form-horizontal" action="{{ route('emprestimo.update', $emprestimo->id) }}" method="post">
+    <form class="form-horizontal" action="{{ route('reserva.update', $reserva->id) }}" method="post">
 
         {{method_field('put')}}
         {!! csrf_field() !!}
 
         <div class="form-group">
             <div class="col-lg-2 col-lg-offset-3 col-sm-12">
-                <label for="data-prevista">Previsão de entrega</label>
-                <input type="date" class="form-control" id="data-prevista" name="data-prevista"
-                       placeholder="Data prevista" autofocus value="{{date('Y-m-d', strtotime($emprestimo->data_prevista))}}">
+                <label for="data-limite">Data limite para buscar
+                    <span class="required">*</span>
+                </label>
+                <input type="date" class="form-control" id="data-limite" name="data-limite"
+                       placeholder="Data limite para buscar" autofocus value="{{date('Y-m-d', strtotime($reserva->data_limite))}}"
+                       min="{{\Carbon\Carbon::today()->format('Y-m-d')}}">
             </div>
 
             <div class="col-lg-4">
                 <label for="usuario">Usuário</label>
-                <input type="text" class="form-control" disabled value="{{$emprestimo->user->nome}}">
+                <input type="text" class="form-control" disabled value="{{$reserva->user->nome}}">
             </div>
         </div>
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
                 <label for="publicacoes">Publicações</label>
                 <ul class="list-unstyled timeline">
-                    @foreach($emprestimo->publicacoes as $p)
+                    @foreach($reserva->publicacoes as $p)
                         <li>
                             <div class="block">
                                 <div class="tags">
                                     <a class="tag">
-                                        <span>{{ $emprestimo->data_emprestimo }}</span>
+                                        <span>{{ $reserva->data_reserva }}</span>
                                     </a>
                                 </div>
                                 <div class="block_content">
@@ -50,7 +53,7 @@
         <div class="form-group">
             <div class="col-lg-3 col-lg-offset-3">
                 <button type="submit" class="btn btn-primary"><em class="fa fa-save"></em> Gravar</button>
-                <a href="{{ route('emprestimo.index') }}" class="btn btn-default"><em class="fa fa-undo"></em> Voltar</a>
+                <a href="{{ route('reserva.index') }}" class="btn btn-default"><em class="fa fa-undo"></em> Voltar</a>
             </div>
         </div>
     </form>

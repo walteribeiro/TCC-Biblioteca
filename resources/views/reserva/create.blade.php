@@ -14,13 +14,17 @@
 
         <div class="form-group">
             <div class="col-lg-2 col-lg-offset-3 col-sm-12">
-                <label for="data-limite">Data limite para buscar</label>
+                <label for="data-limite">Data limite para buscar
+                    <span class="required">*</span>
+                </label>
                 <input type="date" class="form-control" id="data-limite" name="data-limite"
-                       placeholder="Data limite" autofocus value="{{$data_limite}}">
+                       placeholder="Data limite" autofocus value="{{$data_limite}}" min="{{\Carbon\Carbon::today()->format('Y-m-d')}}">
             </div>
 
             <div class="col-lg-4">
-                <label for="usuario">Usuário</label>
+                <label for="usuario">Usuário
+                    <span class="required">*</span>
+                </label>
                 <select class="js-states form-control basic-select" name="usuario" id="usuario">
                     @if(count($usuarios) > 0)
                         <option value="" selected>Selecione um usuário</option>
@@ -35,9 +39,11 @@
         </div>
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
-                <label for="publicacao">Publicação</label>
+                <label for="publicacao">Publicação
+                    <span class="required">*</span>
+                </label>
                 <div class="divider"></div>
-                <select class="js-states form-control basic-select" required id="publicacao" name="publicacao">
+                <select class="js-states form-control basic-select" id="publicacao" name="publicacao">
                     @if(count($publicacoes) > 0)
                         <option value="" selected>Selecione uma publicacao</option>
                         @foreach($publicacoes as $p)

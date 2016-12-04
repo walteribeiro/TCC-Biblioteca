@@ -45,6 +45,24 @@ class EmprestimoRepository
         return $this->emprestimo->publicacoes()->sync($publicacoes_id, false);
     }
 
+    public function storeReservaEmprestimo($data)
+    {
+        $this->emprestimo->data_emprestimo = Carbon::now();
+        $this->emprestimo->data_devolucao = null;
+        $this->emprestimo->data_prevista = $data['data-prevista'];
+        $this->emprestimo->situacao = 0;
+        $this->emprestimo->user_id= $data['usuario'];
+        $this->emprestimo->save();
+
+        $publicacao_id = $data['publicacao'];
+
+        $pub = $this->publicacao->find($publicacao_id);
+        $pub->status = 2;
+        $pub->save();
+
+        return $this->emprestimo->publicacoes()->sync([$publicacao_id], false);
+    }
+
     public function update($data, $id)
     {
         $this->emprestimo = $this->findById($id);

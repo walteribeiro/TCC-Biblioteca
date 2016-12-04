@@ -19,7 +19,9 @@
 
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <label for="funcionario">Professor</label>
+                            <label for="funcionario">Professor
+                                <span class="required">*</span>
+                            </label>
                             <select class="js-states form-control basic-select" style="width: 100%" name="funcionario" id="edit-funcionario" autofocus>
                                 @if(count($reservaRecurso['funcionarios']) > 0)
                                     @foreach($reservaRecurso['funcionarios'] as $r)
@@ -34,7 +36,9 @@
 
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <label for="recurso">Recurso</label>
+                            <label for="recurso">Recurso
+                                <span class="required">*</span>
+                            </label>
                             <select class="js-states form-control basic-select" style="width: 100%" name="recurso" id="edit-recurso">
                                 <optgroup label="Recursos">
                                     @if(count($reservaRecurso['recursos']) > 0)
@@ -51,7 +55,9 @@
 
                     <div class="form-group">
                         <div class="col-lg-12">
-                            <label for="aula">Horário</label>
+                            <label for="edit-aula">Horário
+                                <span class="required">*</span>
+                            </label>
                             <select class="js-states form-control basic-select-no-search" style="width: 100%" name="aula" id="edit-aula">
                                 <optgroup label="Manhã">
                                     <option value="1">1 M</option>

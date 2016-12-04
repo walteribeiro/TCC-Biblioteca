@@ -12,9 +12,12 @@
 
         <div class="form-group">
             <div class="col-lg-2 col-lg-offset-3 col-sm-12">
-                <label for="data-prevista">Previsão de entrega</label>
+                <label for="data-prevista">Previsão de entrega
+                    <span class="required">*</span>
+                </label>
                 <input type="date" class="form-control" id="data-prevista" name="data-prevista"
-                       placeholder="Data prevista" autofocus value="{{date('Y-m-d', strtotime($emprestimo->data_prevista))}}">
+                       placeholder="Data prevista" autofocus value="{{date('Y-m-d', strtotime($emprestimo->data_prevista))}}"
+                       min="{{\Carbon\Carbon::today()->format('Y-m-d')}}">
             </div>
 
             <div class="col-lg-4">

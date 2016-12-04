@@ -11,35 +11,47 @@
 
         <div class="form-group">
             <div class="col-lg-3 col-lg-offset-3 col-sm-12">
-                <label for="serie">Série</label>
+                <label for="serie">Série
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="serie" name="serie"
                        placeholder="Série" autofocus value="{{ $turma->serie }}">
             </div>
 
             <div class="col-lg-3 col-sm-12">
                 <label for="turno">Turno</label>
-                <input type="text" class="form-control" id="turno" name="turno"
-                       placeholder="Turno" value="{{ $turma->turno }}">
+                <select class="form-control" name="turno" id="turno">
+                    <option value="0" {{$turma->turno == 0 ? 'selected' : ''}}>Manhã</option>
+                    <option value="1" {{$turma->turno == 1 ? 'selected' : ''}}>Tarde</option>
+                    <option value="2" {{$turma->turno == 2 ? 'selected' : ''}}>Noite</option>
+                </select>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-lg-2 col-lg-offset-3 col-sm-12">
-                <label for="ano">Ano</label>
+                <label for="ano">Ano
+                    <span class="required">*</span>
+                </label>
                 <input type="number" class="form-control" id="ano" name="ano"
-                       placeholder="Ano" value="{{ $turma->ano }}">
+                       placeholder="Ano" value="{{ $turma->ano }}" data-inputmask="'mask': '9999'">
             </div>
 
             <div class="col-lg-2">
                 <label for="ensino">Ensino</label>
-                <input type="text" class="form-control" id="ensino" name="ensino"
-                       placeholder="Ensino" value="{{ $turma->ensino }}">
+                <select class="form-control" name="ensino" id="ensino">
+                    <option value="0" {{$turma->ensino == 0 ? 'selected' : ''}}>Fundamental</option>
+                    <option value="1" {{$turma->ensino == 1 ? 'selected' : ''}}>Médio</option>
+                    <option value="2" {{$turma->ensino == 2 ? 'selected' : ''}}>Superior</option>
+                </select>
             </div>
 
             <div class="col-lg-2">
-                <label for="letraTurma">Letra</label>
+                <label for="letraTurma">Letra
+                    <span class="required">*</span>
+                </label>
                 <input type="text" class="form-control" id="letraTurma" name="letraTurma"
-                       placeholder="Letra" value="{{ $turma->letra_turma }}">
+                       placeholder="Letra" value="{{ $turma->letra_turma }}" data-inputmask="'mask': 'a'">
             </div>
         </div>
 
@@ -54,17 +66,10 @@
 
 @endsection
 @section('scripts')
+    <script src="{{ asset("assets/js/jquery.inputmask.bundle.min.js")}}"></script>
     <script>
-        $(function () {
-            $('#letraTurma').keypress(function (e) {
-                var regex = new RegExp("^[a-zA-Z._\b]+$");
-                var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
-                if (regex.test(str)) {
-                    return true;
-                }
-                e.preventDefault();
-                return false;
-            });
-        });
+        $(document).ready(function () {
+            $(":input").inputmask();
+        })
     </script>
 @endsection

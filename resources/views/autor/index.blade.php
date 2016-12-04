@@ -72,7 +72,7 @@
                 var nome = $(this).data('delete');
 
                 deleteLogModal.find('.modal-body p').html(
-                        'Você tem certeza que deseja excluir o autor ' + nome.toUpperCase() + ' ?'
+                        'Você tem certeza que deseja excluir o autor ' + nome + ' ?'
                 );
 
                 $('#formexcluir').attr("action", "autores/remover/"+id);
@@ -89,7 +89,14 @@
                 var sobrenome = $(this).data('sobrenome');
 
                 showModal.find('.modal-body').html(
-                        'Nome: ' + nome + ' ' + sobrenome
+                        '<div class="row">' +
+                        '<div class="col-md-2">Nome:</div>' +
+                        '<div class="col-md-10"><p>'+ nome + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-2">Sobrenome:</div>' +
+                        '<div class="col-md-10"><p>'+ sobrenome + '</p></div>' +
+                        '</div>'
                 );
 
                 showModal.modal('show');

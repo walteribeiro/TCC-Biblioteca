@@ -15,7 +15,6 @@ class CreateReservasTable extends Migration
         Schema::create('reservas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->index('reserva_1_idx');
-            $table->unsignedBigInteger('publicacao_id')->index('reserva_2_idx');
             $table->dateTime('data_reserva')->nullable();
             $table->dateTime('data_limite');
             $table->boolean('situacao');

@@ -4,67 +4,8 @@
 
     <br><br>
     <div class="row">
-        <div class="col-md-2 col-md-offset-2 col-sm-4 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>Total de Autores</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li class="pull-right">
-                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content text-center">
-                    <canvas id="canvas-autores" width="150" height="80" class="" style="width: 160px; height: 100px;"></canvas>
-                    <div class="goal-wrapper">
-                        <span id="autores" class="gauge-value gauge-text text-center"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-md-2 col-sm-4 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>Total de Editoras</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li class="pull-right">
-                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content text-center">
-                    <canvas id="canvas-editoras" width="150" height="80" class="" style="width: 160px; height: 100px;"></canvas>
-                    <div class="goal-wrapper">
-                        <span id="editoras" class="gauge-value gauge-text text-center"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2 col-sm-4 col-xs-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>Total de Revistas</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li class="pull-right">
-                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content text-center">
-                    <canvas id="canvas-revistas" width="150" height="80" class="" style="width: 160px; height: 100px;"></canvas>
-                    <div class="goal-wrapper">
-                        <span id="revistas" class="gauge-value gauge-text text-center"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2 col-sm-4 col-xs-12">
+        <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Total de Livros</h2>
@@ -83,11 +24,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <br>
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4 col-sm-4 col-xs-12">
+        <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Total de Empréstimos</h2>
@@ -107,14 +45,98 @@
             </div>
         </div>
 
-    </div>
-
-    <br>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2 col-sm-10 col-xs-12 col-sm-offset-1">
+        <div class="col-md-4 col-sm-4 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Atividades Recentes</h2>
+                    <h2>Total de Revistas</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right">
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content text-center">
+                    <canvas id="canvas-revistas" width="150" height="80" class="" style="width: 160px; height: 100px;"></canvas>
+                    <div class="goal-wrapper">
+                        <span id="revistas" class="gauge-value gauge-text text-center"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Total de Alunos</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right">
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content text-center">
+                    <canvas id="canvas-alunos" width="150" height="80" class="" style="width: 160px; height: 100px;"></canvas>
+                    <div class="goal-wrapper">
+                        <span id="alunos" class="gauge-value gauge-text text-center"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Total de Reservas de Recursos</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right">
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content text-center">
+                    <canvas id="canvas-reserva-recursos" width="150" height="80" class="" style="width: 160px; height: 100px;"></canvas>
+                    <div class="goal-wrapper">
+                        <span id="reserva-recursos" class="gauge-value gauge-text text-center"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Total de Reservas</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right">
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content text-center">
+                    <canvas id="canvas-reservas" width="150" height="80" class="" style="width: 160px; height: 100px;"></canvas>
+                    <div class="goal-wrapper">
+                        <span id="reservas" class="gauge-value gauge-text text-center"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Livros mais lidos</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li class="pull-right">
                             <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -123,204 +145,87 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <div class="dashboard-widget-content">
-
-                        <ul class="list-unstyled timeline">
-                            <li>
-                                <div class="block">
-                                    <div class="block_content">
-                                        <h2 class="title">
-                                            <a>Adição do módulo de autenticação</a>
-                                        </h2>
-                                        <div class="byline">
-                                            <span>07/08/2016</span> por <a>Walter Ribeiro</a>
-                                        </div>
-                                        <p class="excerpt">Módulo de autenticação adicionado para testes, é necessário
-                                            que o usuário
-                                            se autentique para acessar o sistema e realizar as alterações de acordo com
-                                            seu nível
-                                            de permissão. Caso o usuário deixe de utilizar o sistema o mesmo deve sair
-                                            para que o
-                                            próximo usuário possa acessar com seu nome de usuário e senha.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="block">
-                                    <div class="block_content">
-                                        <h2 class="title">
-                                            <a>Adição do módulo de mapas</a>
-                                        </h2>
-                                        <div class="byline">
-                                            <span>07/08/2016</span> por <a>Mateus Fernandes</a>
-                                        </div>
-                                        <p class="excerpt">Módulo de mapas adicionado para testes, com ele é
-                                            possível
-                                            adicionar novos mapas, bem como fazer sua alteração, busca e exclusão.
-                                            É
-                                            necessário preencher o campo descrição para diferenciar um mapa do
-                                            outro, facilitando a identificação no momento da reserva.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="block">
-                                    <div class="block_content">
-                                        <h2 class="title">
-                                            <a>Adição do módulo de salas</a>
-                                        </h2>
-                                        <div class="byline">
-                                            <span>07/08/2016</span> por <a>Walter Ribeiro</a>
-                                        </div>
-                                        <p class="excerpt">Módulo de salas adicionado para testes, com ele é
-                                            possível
-                                            adicionar novas salas, bem como fazer sua alteração, busca e exclusão.
-                                            É
-                                            necessário preencher o campo descrição para diferenciar uma sala da
-                                            outra, facilitando a identificação no momento da reserva.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="block">
-                                    <div class="block_content">
-                                        <h2 class="title">
-                                            <a>Adição do módulo de data-show</a>
-                                        </h2>
-                                        <div class="byline">
-                                            <span>07/08/2016</span> por <a>Mateus Fernandes</a>
-                                        </div>
-                                        <p class="excerpt">Módulo de data shows adicionado para testes, com ele é
-                                            possível
-                                            adicionar novos data shows, bem como fazer sua alteração, busca e exclusão.
-                                            É
-                                            necessário preencher o campo descrição para diferenciar um data show do
-                                            outro.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="block">
-                                    <div class="block_content">
-                                        <h2 class="title">
-                                            <a>Adição do módulo de funcionários</a>
-                                        </h2>
-                                        <div class="byline">
-                                            <span>07/08/2016</span> por <a>Walter Ribeiro</a>
-                                        </div>
-                                        <p class="excerpt">Módulo de funcionário adicionado para testes, com ele é
-                                            possível
-                                            adicionar novos funcionários que também terão permissões para acessar o
-                                            sistema caso
-                                            necessário. Para adicionar privilégios de usuário a um funcionário basta
-                                            preencher os
-                                            campos "nome de usuário" e "senha".
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="block">
-                                    <div class="block_content">
-                                        <h2 class="title">
-                                            <a>Adição do módulo de livros</a>
-                                        </h2>
-                                        <div class="byline">
-                                            <span>07/07/2016</span> por <a>Mateus Fernandes</a>
-                                        </div>
-                                        <p class="excerpt">Módulo de livros adicionado para testes, com ele é possível
-                                            adicionar novos livros,
-                                            listar os já existentes, excluir e alterar os dados caso seja necessário. É
-                                            importante ressaltar que o
-                                            sistema divide os livros das revistas, portanto é necessário se assegurar de
-                                            que cada exemplar está
-                                            sendo cadastrado no local correto.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="block">
-                                    <div class="block_content">
-                                        <h2 class="title">
-                                            <a>Adição do módulo de editoras</a>
-                                        </h2>
-                                        <div class="byline">
-                                            <span>07/07/2016</span> por <a>Walter Ribeiro</a>
-                                        </div>
-                                        <p class="excerpt">Módulo de editoras adicionado para testes, nesta primeira
-                                            versão é necessário acessar a
-                                            tela de editoras para realizar seu cadastro antes de cadastrar o livro ou
-                                            revista, após a adição da editora
-                                            a mesma poderá ser selecionada na tela de cadastro de livros ou de revistas.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="block">
-                                    <div class="block_content">
-                                        <h2 class="title">
-                                            <a>Adição do módulo de revistas</a>
-                                        </h2>
-                                        <div class="byline">
-                                            <span>07/07/2016</span> por <a>Mateus Fernandes</a>
-                                        </div>
-                                        <p class="excerpt">Módulo de revistas adicionado para testes, com ele é possível
-                                            adicionar novas revistas,
-                                            listar as já existentes, excluir e alterar os dados caso seja necessário. É
-                                            importante ressaltar que o
-                                            sistema divide os livros das revistas, portanto é necessário se assegurar de
-                                            que cada exemplar está
-                                            sendo cadastrado no local correto.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="block">
-                                    <div class="block_content">
-                                        <h2 class="title">
-                                            <a>Adição do módulo de autores</a>
-                                        </h2>
-                                        <div class="byline">
-                                            <span>07/07/2016</span> por <a>Walter Ribeiro</a>
-                                        </div>
-                                        <p class="excerpt">Módulo de autores adicionado para testes, nesta primeira
-                                            versão é necessário acessar a
-                                            tela de autores para realizar seu cadastro antes de cadastrar o livro, após
-                                            a adição do autor
-                                            o mesmo poderá ser selecionado na tela de cadastro de livros.
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    @foreach($publicacoes as $p)
+                        <article class="media event">
+                            <a class="pull-left" style="font-size: 30px">
+                                <i class="fa fa-book blue"></i>
+                            </a>
+                            <div class="media-body">
+                                <p class="title"><strong>{{ $p->codigo }}</strong></p>
+                                <p>{{ $p->titulo }}</p>
+                            </div>
+                        </article>
+                    @endforeach
                 </div>
             </div>
         </div>
+
+        <div class="col-md-4">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Pessoas que mais leêm</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right">
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    @foreach($pessoas as $p)
+                        <article class="media event">
+                            <a class="pull-left" style="font-size: 30px">
+                                <i class="fa fa-user blue"></i>
+                            </a>
+                            <div class="media-body">
+                                <p class="title"><strong>{{ $p->nome }}</strong></p>
+                                <p>{{ $p->email }}</p>
+                            </div>
+                        </article>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel tile fixed_height_320">
+                <div class="x_title">
+                    <h2>Recursos mais reservados</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li class="pull-right">
+                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    @foreach($recursos as $r)
+                        <div class="widget_summary">
+                            <div class="w_left w_40">
+                                <span>{{ str_limit($r->descricao, 20) }}</span>
+                            </div>
+                            <div class="w_center w_55">
+                                <div class="progress">
+                                    <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="{{ $r->percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $r->percentage }}%;">
+                                        <span class="sr-only">60% Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w_right w_10">
+                                <span>{{ $r->total }}</span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+
     </div>
+
+
 @endsection
 @section('scripts')
-    @if( !empty(Session::has('alerta')) )
-        <script>
-            var options = {
-                "closeButton": true,
-                "positionClass": "toast-top-center",
-                "timeOut": "3000"
-            };
-            toastr.warning('{{Session::get('alerta')}}', 'Atenção!', options);
-        </script>
-    @endif
     <script src="{{asset('assets/js/gauge.min.js')}}"></script>
     <script>
         var opts = {
@@ -333,47 +238,54 @@
                 color: '#1D212A'
             },
             limitMax: 'false',
-            colorStart: '#1ABC9C',
-            colorStop: '#1ABC9C',
+            colorStart: '#3498DB',
+            colorStop: '#3498DB',
             strokeColor: '#F0F3F3',
             generateGradient: true
         };
 
-        var autores = document.getElementById('canvas-autores');
-        var editoras = document.getElementById('canvas-editoras');
-        var revistas = document.getElementById('canvas-revistas');
         var livros = document.getElementById('canvas-livros');
         var emprestimos = document.getElementById('canvas-emprestimos');
+        var reservaRecursos = document.getElementById('canvas-reserva-recursos');
+        var alunos = document.getElementById('canvas-alunos');
+        var revistas = document.getElementById('canvas-revistas');
+        var reservas = document.getElementById('canvas-reservas');
 
-        var gaugeAutor = new Gauge(autores).setOptions(opts);
-        var gaugeEditora = new Gauge(editoras).setOptions(opts);
-        var gaugeRevista = new Gauge(revistas).setOptions(opts);
         var gaugeLivro = new Gauge(livros).setOptions(opts);
         var gaugeEmprestimo = new Gauge(emprestimos).setOptions(opts);
+        var gaugeReservaRecurso = new Gauge(reservaRecursos).setOptions(opts);
+        var gaugeAluno = new Gauge(alunos).setOptions(opts);
+        var gaugeRevistas = new Gauge(revistas).setOptions(opts);
+        var gaugeReservas = new Gauge(reservas).setOptions(opts);
 
-        gaugeAutor.maxValue = 1000;
-        gaugeAutor.animationSpeed = 40;
-        gaugeAutor.set({{$autores}});
-        gaugeAutor.setTextField(document.getElementById("autores"));
-
-        gaugeEditora.maxValue = 1000;
-        gaugeEditora.animationSpeed = 40;
-        gaugeEditora.set({{$editoras}});
-        gaugeEditora.setTextField(document.getElementById("editoras"));
-
-        gaugeRevista.maxValue = 1000;
-        gaugeRevista.animationSpeed = 40;
-        gaugeRevista.set({{$revistas}});
-        gaugeRevista.setTextField(document.getElementById("revistas"));
-
-        gaugeLivro.maxValue = 1000;
+        gaugeLivro.maxValue = {{$livros + 200}};
         gaugeLivro.animationSpeed = 40;
-        gaugeLivro.set({{$livros}});
+        gaugeLivro.set({{$livros ? $livros : 0}});
         gaugeLivro.setTextField(document.getElementById("livros"));
 
-        gaugeEmprestimo.maxValue = 1000;
+        gaugeEmprestimo.maxValue = {{$emprestimos + 200}};
         gaugeEmprestimo.animationSpeed = 40;
-        gaugeEmprestimo.set({{$emprestimos}});
+        gaugeEmprestimo.set({{$emprestimos ? $emprestimos : 0}});
         gaugeEmprestimo.setTextField(document.getElementById("emprestimos"));
+
+        gaugeReservaRecurso.maxValue = {{$reservaRecurso + 200}};
+        gaugeReservaRecurso.animationSpeed = 40;
+        gaugeReservaRecurso.set({{$reservaRecurso ? $reservaRecurso : 0}});
+        gaugeReservaRecurso.setTextField(document.getElementById("reserva-recursos"));
+
+        gaugeAluno.maxValue = {{$alunos + 200}};
+        gaugeAluno.animationSpeed = 40;
+        gaugeAluno.set({{$alunos ? $alunos : 0}});
+        gaugeAluno.setTextField(document.getElementById("alunos"));
+
+        gaugeRevistas.maxValue = {{$revistas + 200}};
+        gaugeRevistas.animationSpeed = 40;
+        gaugeRevistas.set({{$revistas ? $revistas : 0}});
+        gaugeRevistas.setTextField(document.getElementById("revistas"));
+
+        gaugeReservas.maxValue = {{$reservas + 200}};
+        gaugeReservas.animationSpeed = 40;
+        gaugeReservas.set({{$reservas ? $reservas : 0}});
+        gaugeReservas.setTextField(document.getElementById("reservas"));
     </script>
 @endsection

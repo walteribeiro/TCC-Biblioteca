@@ -58,7 +58,11 @@ class ForeignKeyTable extends Migration
         Schema::table('reservas', function(Blueprint $table)
         {
             $table->foreign('user_id', 'reservas_1_fk')->references('id')->on('pessoas')->onUpdate('cascade')->onDelete('restrict');
-            $table->foreign('publicacao_id', 'reservas_2_fk')->references('id')->on('publicacoes')->onUpdate('cascade')->onDelete('restrict');
+        });
+        Schema::table('reservas_publicacoes', function(Blueprint $table)
+        {
+            $table->foreign('reserva_id', 'reservas_publicacoes_1_fk')->references('id')->on('reservas')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('publicacao_id', 'reservas_publicacoes_2_fk')->references('id')->on('publicacoes')->onUpdate('cascade')->onDelete('restrict');
         });
     }
 
@@ -115,7 +119,11 @@ class ForeignKeyTable extends Migration
         Schema::table('reservas', function(Blueprint $table)
         {
             $table->dropForeign('reservas_1_fk');
-            $table->dropForeign('reservas_2_fk');
+        });
+        Schema::table('reservas_publicacoes', function(Blueprint $table)
+        {
+            $table->dropForeign('reservas_publicacoes_1_fk');
+            $table->dropForeign('reservas_publicacoes_2_fk');
         });
     }
 }

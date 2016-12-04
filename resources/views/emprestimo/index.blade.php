@@ -166,7 +166,7 @@
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-3">Data devolução:</div>' +
-                        '<div class="col-md-9"><p>'+ (data_devolucao == null ? "" : data_devolucao) + '</p></div>' +
+                        '<div class="col-md-9"><p>'+ (data_devolucao ? data_devolucao : "&nbsp") + '</p></div>' +
                         '</div>'+
                         '<div class="row">' +
                         '<div class="col-md-3">Situação:</div>' +

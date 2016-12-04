@@ -14,13 +14,17 @@
 
         <div class="form-group">
             <div class="col-lg-2 col-lg-offset-3 col-sm-12">
-                <label for="data-prevista">Previsão de entrega</label>
+                <label for="data-prevista">Previsão de entrega
+                    <span class="required">*</span>
+                </label>
                 <input type="date" class="form-control" id="data-prevista" name="data-prevista"
-                       placeholder="Data prevista" autofocus value="{{$data_prevista}}">
+                       placeholder="Data prevista" autofocus value="{{$data_prevista}}" min="{{\Carbon\Carbon::today()->format('Y-m-d')}}">
             </div>
 
             <div class="col-lg-4">
-                <label for="usuario">Usuário</label>
+                <label for="usuario">Usuário
+                    <span class="required">*</span>
+                </label>
                 <select class="js-states form-control basic-select" name="usuario" id="usuario">
                     @if(count($usuarios) > 0)
                         <option value="" selected>Selecione um usuário</option>
@@ -35,9 +39,11 @@
         </div>
         <div class="form-group">
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
-                <label for="publicacoes">Publicações</label>
+                <label for="publicacoes">Publicações
+                    <span class="required">*</span>
+                </label>
                 <div class="divider"></div>
-                <select id="publicacoes" name="publicacoes[]" disabled class="form-control" multiple="multiple" required autofocus>
+                <select id="publicacoes" name="publicacoes[]" disabled class="form-control" multiple="multiple">
                     @foreach($publicacoes as $p)
                         <option value="{{ $p->id }}">{{ $p->codigo . ' - ' . $p->titulo }}</option>
                     @endforeach

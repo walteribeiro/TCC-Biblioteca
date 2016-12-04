@@ -15,15 +15,15 @@ class EmprestimoRequest extends Request
             case 'POST': {
                 return [
                     'usuario' => 'required',
-                    'data-prevista' => 'required'
+                    'data-prevista' => 'required',
+                    'publicacoes' => 'required'
                 ];
             }
             case 'PUT':
             case 'PATCH': {
                 return [
-
+                    'data-prevista' => 'required',
                 ];
-
             }
             default: {
                 return [];

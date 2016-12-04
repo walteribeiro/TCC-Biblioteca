@@ -4,17 +4,20 @@ namespace App\Repositories;
 
 use App\Models\Publicacao;
 use App\Models\Reserva;
+use App\User;
 use Carbon\Carbon;
 
 class ReservaRepository
 {
     protected $reserva;
     protected $publicacao;
+    protected $emprestimoRepository;
 
-    public function __construct(Reserva $reserva, Publicacao $publicacao)
+    public function __construct(Reserva $reserva, Publicacao $publicacao, EmprestimoRepository $emprestimoRepository)
     {
         $this->reserva = $reserva;
         $this->publicacao = $publicacao;
+        $this->emprestimoRepository = $emprestimoRepository;
     }
 
     public function index()
@@ -28,7 +31,6 @@ class ReservaRepository
         $this->reserva->data_limite = $data['data-limite'];
         $this->reserva->situacao = 0;
         $this->reserva->user_id = $data['usuario'];
-        $this->reserva->publicacao_id = $data['publicacao'];
         $this->reserva->save();
 
         $publicacao_id = $data['publicacao'];
@@ -37,7 +39,7 @@ class ReservaRepository
         $pub->status = 3;
         $pub->save();
 
-        return $this->reserva;
+        return $this->reserva->publicacoes()->sync([$publicacao_id], false);
     }
 
     public function update($data, $id)
@@ -46,8 +48,7 @@ class ReservaRepository
 
         $this->reserva->update([
             'data_reserva' => Carbon::now(),
-            'data_devolucao' => null,
-            'data_prevista' => $data['data-prevista'],
+            'data_limite' => $data['data-limite'],
             'situacao' => 0
         ]);
 
@@ -57,10 +58,11 @@ class ReservaRepository
     public function destroy($id)
     {
         $this->reserva = $this->findById($id);
-
-        $pub = $this->publicacao;
-        $pub->status = 1;
-        $pub->save();
+        foreach($this->reserva->publicacoes()->getRelatedIds() as $ident){
+            $pub = $this->publicacao->find($ident);
+            $pub->status = 1;
+            $pub->save();
+        }
 
         return $this->reserva->destroy($id);
     }
@@ -70,24 +72,39 @@ class ReservaRepository
         return $this->reserva->find($id);
     }
 
-    public function devolver($id)
+    public function emprestar($id)
     {
-        //Busca o reserva
+        //Busca a reserva
         $this->reserva = $this->findById($id);
 
-        //Atualiza a situacao do reserva para devolvido = !
+        //Atualiza a situacao da reserva para fechada!
         $this->reserva->update([
-            'data_devolucao' => Carbon::now(),
             'situacao' => 1
         ]);
 
-        //Atualiza os status dos livros para disponíveis = 1
-        foreach($this->reserva->publicacoes()->getRelatedIds() as $id){
-            $pub = $this->publicacao->find($id);
-            $pub->status = 1;
-            $pub->save();
-        }
+        //Gera um emprestimo
+        $emprestimo = [
+            'data-prevista' => Carbon::now()->addDays(7),
+            'usuario' => $this->reserva->user_id,
+            'publicacao' => $this->reserva->publicacoes()->first()->id
+        ];
 
-        return $this->reserva;
+        $gravouEmprestimo = $this->emprestimoRepository->storeReservaEmprestimo($emprestimo);
+
+        return !empty($gravouEmprestimo['attached']);
+    }
+
+    public function verificarUsuarioEmprestimo($id)
+    {
+        //Busca a reserva
+        $this->reserva = $this->findById($id);
+
+        $usuario = User::join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
+            ->where([['emprestimos.situacao', '0'], ['emprestimos.user_id', $this->reserva->user_id]])
+            ->get(['pessoas.nome']);
+
+        //dd($usuario);
+
+        return count($usuario) > 0 ? false : true;
     }
 }
