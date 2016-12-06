@@ -13,14 +13,14 @@
                 <div class="modal-body">
                     {!! csrf_field() !!}
                     <div class="form-group">
-                        <div class="col-lg-8 col-lg-offset-2">
+                        <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                             <label class="pull-left" for="username">Nome de Usuário</label>
                             <input type="text" id="username" class="form-control" name="username" autofocus>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-lg-8 col-lg-offset-2">
+                        <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                             <label class="pull-left" for="password">Senha</label>
                             <input id="password" type="password" class="form-control" name="password">
                         </div>

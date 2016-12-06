@@ -18,11 +18,6 @@ class EditoraRepository
         return $this->editora->all();
     }
 
-    public function show($id)
-    {
-        // TODO: Implement show() method.
-    }
-
     public function store($data)
     {
         return $this->editora->create($data);

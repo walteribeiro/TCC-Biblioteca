@@ -21,11 +21,6 @@ class TurmaRepository
         return $this->turma->all();
     }
 
-    public function show($id)
-    {
-        // TODO: Implement show() method.
-    }
-
     public function store($data)
     {
         $this->turma->serie = $data['serie'];

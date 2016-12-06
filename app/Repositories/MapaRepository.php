@@ -21,11 +21,6 @@ class MapaRepository
         return $this->mapa->all();
     }
 
-    public function show($id)
-    {
-        // TODO: Implement show() method.
-    }
-
     public function store($data)
     {
         // Persistindo dados da request no recurso

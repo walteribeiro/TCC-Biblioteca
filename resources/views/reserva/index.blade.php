@@ -68,7 +68,8 @@
                                data-situacao="{{ $e->situacao}}"
                                data-data_reserva="{{ $e->data_reserva}}"
                                data-data_limite="{{ $e->data_limite}}"
-                               data-usuario="{{ $e->user->nome}}">
+                               data-usuario="{{ $e->user->nome}}"
+                               data-publicacao="{{ $e->publicacoes }}">
                                 <em class="fa fa-search"></em> Visualizar
                             </a>
 
@@ -155,8 +156,9 @@
                 event.preventDefault();
                 var situacao = $(this).data('situacao');
                 var data_reserva = $(this).data('data_reserva');
-                var data_limite = $(this).data('data_limite');
+                var data_limite = moment($(this).data('data_limite'), 'YYYY-MM-DD HH:mm:ss').format('DD/MM/YYYY');
                 var usuario = $(this).data('usuario');
+                var publicacao = $(this).data('publicacao');
 
                 showModal.find('.modal-body').html(
                         '<div class="row">' +
@@ -174,6 +176,10 @@
                         '<div class="row">' +
                         '<div class="col-md-3">Situação:</div>' +
                         '<div class="col-md-9"><p>'+ (situacao == 0 ? "Aberta" : "Fechada") + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-3">Publicação:</div>' +
+                        '<div class="col-md-9"><p>'+ publicacao[0].codigo + ' - ' + publicacao[0].titulo + '</p></div>' +
                         '</div>'
                 );
 

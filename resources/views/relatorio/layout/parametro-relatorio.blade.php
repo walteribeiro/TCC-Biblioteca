@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-offset-3 col-md-6">
+    <div class="col-lg-offset-3 col-md-6 col-sm-12 col-sm-offset-3">
         <div class="x_panel">
             <div class="x_title">
                 <h2>Parâmetros do Relatório</h2>

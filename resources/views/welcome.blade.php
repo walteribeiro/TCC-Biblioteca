@@ -133,7 +133,7 @@
 
     <div class="row">
 
-        <div class="col-md-4 col-sm-4 col-xs-12">
+        <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Livros mais lidos</h2>
@@ -145,22 +145,26 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    @foreach($publicacoes as $p)
-                        <article class="media event">
-                            <a class="pull-left" style="font-size: 30px">
-                                <i class="fa fa-book blue"></i>
-                            </a>
-                            <div class="media-body">
-                                <p class="title"><strong>{{ $p->codigo }}</strong></p>
-                                <p>{{ $p->titulo }}</p>
-                            </div>
-                        </article>
-                    @endforeach
+                    @if(isset($publicacoes) && count($publicacoes) > 0)
+                        @foreach($publicacoes as $p)
+                            <article class="media event">
+                                <a class="pull-left" style="font-size: 30px">
+                                    <i class="fa fa-book blue"></i>
+                                </a>
+                                <div class="media-body">
+                                    <p class="title"><strong>{{ $p->codigo }}</strong></p>
+                                    <p>{{ $p->titulo }}</p>
+                                </div>
+                            </article>
+                        @endforeach
+                    @else
+                        <p>O sistema ainda não possui nenhuma publicação emprestada!</p>
+                    @endif
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Pessoas que mais leêm</h2>
@@ -172,23 +176,27 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    @foreach($pessoas as $p)
-                        <article class="media event">
-                            <a class="pull-left" style="font-size: 30px">
-                                <i class="fa fa-user blue"></i>
-                            </a>
-                            <div class="media-body">
-                                <p class="title"><strong>{{ $p->nome }}</strong></p>
-                                <p>{{ $p->email }}</p>
-                            </div>
-                        </article>
-                    @endforeach
+                    @if(isset($pessoas) && count($pessoas) > 0)
+                        @foreach($pessoas as $p)
+                            <article class="media event">
+                                <a class="pull-left" style="font-size: 30px">
+                                    <i class="fa fa-user blue"></i>
+                                </a>
+                                <div class="media-body">
+                                    <p class="title"><strong>{{ $p->nome }}</strong></p>
+                                    <p>{{ $p->email }}</p>
+                                </div>
+                            </article>
+                        @endforeach
+                    @else
+                        <p>O sistema ainda não possui nenhum empréstimo relacionado!</p>
+                    @endif
                 </div>
             </div>
         </div>
 
         <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="x_panel tile fixed_height_320">
+            <div class="x_panel tile">
                 <div class="x_title">
                     <h2>Recursos mais reservados</h2>
                     <ul class="nav navbar-right panel_toolbox">
@@ -199,24 +207,28 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    @foreach($recursos as $r)
-                        <div class="widget_summary">
-                            <div class="w_left w_40">
-                                <span>{{ str_limit($r->descricao, 20) }}</span>
-                            </div>
-                            <div class="w_center w_55">
-                                <div class="progress">
-                                    <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="{{ $r->percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $r->percentage }}%;">
-                                        <span class="sr-only">60% Complete</span>
+                    @if(isset($recursos) && count($recursos) > 0)
+                        @foreach($recursos as $r)
+                            <div class="widget_summary">
+                                <div class="w_left w_40">
+                                    <span>{{ str_limit($r->descricao, 20) }}</span>
+                                </div>
+                                <div class="w_center w_55">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-blue" role="progressbar" aria-valuenow="{{ $r->percentage }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $r->percentage }}%;">
+                                            <span class="sr-only">60% Complete</span>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="w_right w_10">
+                                    <span>{{ $r->total }}</span>
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="w_right w_10">
-                                <span>{{ $r->total }}</span>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @else
+                        <p>O sistema ainda não possui recursos reservados!</p>
+                    @endif
                 </div>
             </div>
         </div>

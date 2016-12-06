@@ -20,7 +20,7 @@
         {!! csrf_field() !!}
 
         <div class="form-group">
-            <div class="col-lg-5 col-lg-offset-3 col-sm-12">
+            <div class="col-lg-5 col-lg-offset-3 col-sm-10">
                 <label for="nome">Nome
                     <span class="required">*</span>
                 </label>
@@ -40,19 +40,19 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-2 col-lg-offset-3 col-sm-6">
+            <div class="col-lg-2 col-lg-offset-3 col-sm-4">
                 <label for="telefone">Telefone</label>
                 <input type="text" class="form-control" id="telefone" name="telefone"
                        placeholder="Telefone" value="{{ $funcionario->user->telefone }}" data-inputmask="'mask': '(99) 9999-9999'">
             </div>
 
-            <div class="col-lg-2 col-sm-6">
+            <div class="col-lg-2 col-sm-4">
                 <label for="telefone2">Celular</label>
                 <input type="text" class="form-control" id="telefone2" name="telefone2"
                        placeholder="Celular" value="{{ $funcionario->user->telefone2 }}" data-inputmask="'mask': '(99) 99999-9999'">
             </div>
 
-            <div class="col-lg-2 col-sm-6">
+            <div class="col-lg-2 col-sm-4">
                 <label for="numRegistro">Nº registro
                     <span class="required">*</span>
                 </label>
@@ -62,13 +62,13 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-4 col-lg-offset-3 col-sm-6">
+            <div class="col-lg-4 col-lg-offset-3 col-sm-8">
                 <label for="email">Email</label>
                 <input type="text" class="form-control" id="email" name="email"
                        placeholder="Email" value="{{ $funcionario->user->email }}">
             </div>
 
-            <div class="col-lg-2 col-sm-6">
+            <div class="col-lg-2 col-sm-4">
                 <label for="tipoFuncionario">Tipo de funcionário</label>
                 <select class="form-control" name="tipoFuncionario" id="tipoFuncionario">
                     @if($funcionario->tipo_funcionario == 0)

@@ -11,7 +11,7 @@ class SalaSeeder extends Seeder
 
     public function run()
     {
-        factory(Recurso::class, 150)->create()->each(function($u){
+        factory(Recurso::class, 10)->create()->each(function($u){
             $u->sala()->save(factory(Sala::class)->make());
             $this->gravarLog("Teste de carga", "debug", ['sala' => $u->descricao]);
         });

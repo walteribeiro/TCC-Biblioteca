@@ -9,7 +9,7 @@
         {!! csrf_field() !!}
 
         <div class="form-group">
-            <div class="col-lg-3 col-lg-offset-3 col-sm-12">
+            <div class="col-lg-3 col-lg-offset-3 col-sm-6">
                 <label for="serie">Série
                     <span class="required">*</span>
                 </label>
@@ -17,7 +17,7 @@
                        placeholder="Série" autofocus value="{{ old('serie') }}">
             </div>
 
-            <div class="col-lg-3 col-sm-12">
+            <div class="col-lg-3 col-sm-6">
                 <label for="turno">Turno</label>
                 <select class="form-control" name="turno" id="turno">
                     <option value="0">Manhã</option>
@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-2 col-lg-offset-3 col-sm-12">
+            <div class="col-lg-2 col-lg-offset-3 col-sm-4">
                 <label for="ano">Ano
                     <span class="required">*</span>
                 </label>
@@ -36,7 +36,7 @@
                        placeholder="Ano" value="{{ old('ano') }}" data-inputmask="'mask': '9999'">
             </div>
 
-            <div class="col-lg-2">
+            <div class="col-lg-2 col-sm-4">
                 <label for="ensino">Ensino</label>
                 <select class="form-control" name="ensino" id="ensino">
                     <option value="0">Fundamental</option>
@@ -45,7 +45,7 @@
                 </select>
             </div>
 
-            <div class="col-lg-2">
+            <div class="col-lg-2 col-sm-4">
                 <label for="letraTurma">Letra
                     <span class="required">*</span>
                 </label>

@@ -67,11 +67,24 @@ class RelatorioController extends Controller
     // Fim
 
     // Funcionários Pendentes
-    public function funcionariosPendentes()
+    public function funcionariosPendentes(Request $request)
     {
-        $funcionarios = $this->getFuncionariosPendentes();
+        $dtInicialRel = $request->input('dtInicial');
+        $dtFinalRel = $request->input('dtFinal');
+
+        if($dtInicialRel && $dtFinalRel){
+            if($dtInicialRel > $dtFinalRel){
+                Session::flash(self::getTipoSemPermission(), 'Data inicial não pode ser maior que a data final!');
+                return redirect()->back();
+            }
+        }
+
+        $funcionarios = $this->getFuncionariosPendentes($dtInicialRel, $dtFinalRel);
         $dataEmissao = $this->getDataEmissao();
-        return view('relatorio.funcionarios-pendentes', compact('funcionarios', 'dataEmissao'));
+        $dtInicial = $this->getDataInicial("Y-m-d");
+        $dtFinal = $this->getDataFinal("Y-m-d");
+        $rota = "funcionario.pendente";
+        return view('relatorio.funcionarios-pendentes', compact('funcionarios', 'dataEmissao', 'dtInicial', 'dtFinal', 'rota'));
     }
 
     public function gerarPDFFuncionariosPendentes()
@@ -212,7 +225,6 @@ class RelatorioController extends Controller
                 ->orderBy('emprestimos.data_prevista')
                 ->get(['alunos.matricula', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', 'emprestimos.data_prevista']);
         }
-
         return $this->user
             ->join('alunos', 'alunos.user_id', '=', 'pessoas.id')
             ->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
@@ -221,8 +233,17 @@ class RelatorioController extends Controller
             ->get(['alunos.matricula', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', 'emprestimos.data_prevista']);
     }
 
-    private function getFuncionariosPendentes()
+    private function getFuncionariosPendentes($dtInicial = null, $dtFinal = null)
     {
+        if($dtInicial) {
+            return $this->user
+                ->join('funcionarios', 'funcionarios.user_id', '=', 'pessoas.id')
+                ->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
+                ->where([['emprestimos.data_devolucao', null], ['emprestimos.data_prevista', '<', Carbon::now()]])
+                ->whereBetween('emprestimos.data_prevista', array($dtInicial, $dtFinal))
+                ->orderBy('emprestimos.data_prevista')
+                ->get(['funcionarios.num_registro', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', 'emprestimos.data_prevista']);
+        }
         return $this->user
             ->join('funcionarios', 'funcionarios.user_id', '=', 'pessoas.id')
             ->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')

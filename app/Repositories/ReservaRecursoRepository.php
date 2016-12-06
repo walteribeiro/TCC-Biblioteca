@@ -53,11 +53,6 @@ class ReservaRecursoRepository
         return json_encode($retorno);
     }
 
-    public function show($id)
-    {
-        // TODO: Implement show() method.
-    }
-
     public function create()
     {
         return [

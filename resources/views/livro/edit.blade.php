@@ -21,7 +21,7 @@
         {!! csrf_field() !!}
 
         <div class="form-group">
-            <div class="col-lg-5 col-lg-offset-3 col-sm-12">
+            <div class="col-lg-5 col-lg-offset-3 col-sm-9">
                 <label for="titulo">Titulo
                     <span class="required">*</span>
                 </label>
@@ -29,7 +29,7 @@
                        placeholder="Titulo" autofocus value="{{ $livro->publicacao->titulo }}">
             </div>
 
-            <div class="col-lg-2 col-sm-2">
+            <div class="col-lg-2 col-sm-3">
                 <label>
                     @if($livro->publicacao->status == 0)
                         <input type="checkbox" class="switch" checked value="true" name="status" id="desativo"/> Desativar livro
@@ -57,7 +57,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-3 col-lg-offset-3">
+            <div class="col-lg-3 col-lg-offset-3 col-sm-6">
                 <label for="editora">Editora
                     <span class="required">*</span>
                 </label>
@@ -73,7 +73,7 @@
                 </select>
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-sm-6">
                 <label for="autor">Autor
                     <span class="required">*</span>
                 </label>
@@ -107,13 +107,13 @@
                        placeholder="Edição" value="{{ $livro->publicacao->edicao }}">
             </div>
 
-            <div class="col-lg-2 col-sm-6">
+            <div class="col-lg-2 col-sm-8">
                 <label for="origem">Origem</label>
                 <input type="text" class="form-control" id="origem" name="origem"
                        placeholder="Origem" value="{{ $livro->publicacao->origem }}">
             </div>
 
-            <div class="col-lg-1">
+            <div class="col-lg-1 col-sm-4">
                 <label for="ano">Ano
                     <span class="required">*</span>
                 </label>
@@ -123,19 +123,19 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-2 col-lg-offset-3">
+            <div class="col-lg-2 col-lg-offset-3 col-sm-4">
                 <label for="isbn">ISBN</label>
                 <input type="text" class="form-control" id="isbn" name="isbn"
                        placeholder="ISBN" value="{{ $livro->isbn }}">
             </div>
 
-            <div class="col-lg-2">
+            <div class="col-lg-2 col-sm-4">
                 <label for="cdu">CDU</label>
                 <input type="text" class="form-control" id="cdu" name="cdu"
                        placeholder="CDU" value="{{ $livro->cdu }}">
             </div>
 
-            <div class="col-lg-2">
+            <div class="col-lg-2 col-sm-4">
                 <label for="cdd">CDD</label>
                 <input type="text" class="form-control" id="cdd" name="cdd"
                        placeholder="CDD" value="{{ $livro->cdd }}">

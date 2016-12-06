@@ -24,11 +24,6 @@ class RevistaRepository
         return $this->revista->all();
     }
 
-    public function show($id)
-    {
-        // TODO: Implement show() method.
-    }
-
     public function create(){
         return [
             'editoras'=> $this->editora->all()

@@ -17,9 +17,11 @@
                         @if ($key == 'date')
                             <span class="label label-info">{{ $header }}</span>
                         @else
-                            <span class="level level-{{ $key }}">
-                                {!! log_styler()->icon($key) . ' ' . $header !!}
-                            </span>
+                            @if($key == 'alert' || $key == 'warning' || $key == 'notice' || $key == 'info')
+                                <span class="level level-{{ $key }}">
+                                    {!! log_styler()->icon($key) . ' ' . $header !!}
+                                </span>
+                            @endif
                         @endif
                     </th>
                     @endforeach
@@ -33,12 +35,14 @@
                     <td class="{{ $key == 'date' ? 'text-left' : 'text-center' }}">
                         @if ($key == 'date')
                             <span class="label label-primary">{{ $value }}</span>
-                        @elseif ($value == 0)
+                        @elseif ($value == 0 && ($key == 'alert' || $key == 'warning' || $key == 'notice' || $key == 'info'))
                             <span class="level level-empty">{{ $value }}</span>
                         @else
-                            <a href="{{ route('log.filter', [$date, $key]) }}">
-                                <span class="level level-{{ $key }}">{{ $value }}</span>
-                            </a>
+                            @if($key == 'alert' || $key == 'warning' || $key == 'notice' || $key == 'info')
+                                <a href="{{ route('log.filter', [$date, $key]) }}">
+                                    <span class="level level-{{ $key }}">{{ $value }}</span>
+                                </a>
+                            @endif
                         @endif
                     </td>
                     @endforeach

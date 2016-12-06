@@ -14,30 +14,30 @@
         <input type="hidden" name="id_turma" value="{{$turma->id}}">
 
         <div class="form-group">
-            <div class="col-lg-2 col-lg-offset-3">
+            <div class="col-lg-2 col-lg-offset-3 col-sm-4">
                 <label for="serie">Série</label>
                 <input type="text" class="form-control" disabled id="serie" name="serie" value="{{$turma->serie}}">
             </div>
 
-            <div class="col-lg-1">
+            <div class="col-lg-1 col-sm-2">
                 <label for="letra">Letra</label>
                 <input type="text" class="form-control" disabled id="letra" name="letra" value="{{$turma->letra_turma}}">
             </div>
 
-            <div class="col-lg-2">
+            <div class="col-lg-2 col-sm-4">
                 <label for="turno">Turno</label>
                 <input type="text" class="form-control" disabled id="turno" name="turno"
                        value="@if($turma->turno == 0) Manhã @elseif($turma->turno == 1) Tarde @elseif($turma->turno == 2) Noite @endif">
             </div>
 
-            <div class="col-lg-1">
+            <div class="col-lg-1 col-sm-2">
                 <label for="ano">Ano</label>
                 <input type="text" class="form-control" disabled id="ano" name="ano" value="{{$turma->ano}}">
             </div>
         </div>
 
         <div class="form-group">
-            <div class="col-lg-6 col-lg-offset-3">
+            <div class="col-lg-6 col-lg-offset-3 col-sm-12">
                 <label for="alunos">Alunos
                     <span class="required">*</span>
                 </label>

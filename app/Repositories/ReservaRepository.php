@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Emprestimo;
 use App\Models\Publicacao;
 use App\Models\Reserva;
 use App\User;
@@ -100,6 +101,18 @@ class ReservaRepository
         $this->reserva = $this->findById($id);
 
         $usuario = User::join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
+            ->where([['emprestimos.situacao', '0'], ['emprestimos.user_id', $this->reserva->user_id]])
+            ->get(['pessoas.nome']);
+
+        return count($usuario) > 0 ? false : true;
+    }
+
+    public function verificarPublicacaoEmprestada($id)
+    {
+        //Busca a reserva
+        $this->reserva = $this->findById($id);
+
+        $usuario = Publicacao::select('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
             ->where([['emprestimos.situacao', '0'], ['emprestimos.user_id', $this->reserva->user_id]])
             ->get(['pessoas.nome']);
 

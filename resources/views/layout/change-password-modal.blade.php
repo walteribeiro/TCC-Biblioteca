@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <p></p>
                     <div class="form-group">
-                        <div class="col-lg-8 col-lg-offset-2">
+                        <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                             <label class="pull-left" for="username">Nome de Usuário
                                 <span class="required">*</span>
                             </label>
@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-lg-8 col-lg-offset-2">
+                        <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                             <label class="pull-left" for="password">Senha
                                 <span class="required">*</span>
                             </label>
@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="col-lg-8 col-lg-offset-2">
+                        <div class="col-lg-8 col-lg-offset-2 col-sm-12">
                             <label class="pull-left" for="password">Confirmação da senha
                                 <span class="required">*</span>
                             </label>

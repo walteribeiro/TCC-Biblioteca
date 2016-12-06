@@ -21,11 +21,6 @@ class SalaRepository
         return $this->sala->all();
     }
 
-    public function show($id)
-    {
-        // TODO: Implement show() method.
-    }
-
     public function store($data)
     {
         // Persistindo dados da request no recurso

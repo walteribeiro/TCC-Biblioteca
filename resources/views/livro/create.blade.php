@@ -20,7 +20,7 @@
         {!! csrf_field() !!}
 
         <div class="form-group">
-            <div class="col-lg-5 col-lg-offset-3 col-sm-12">
+            <div class="col-lg-5 col-lg-offset-3 col-sm-9">
                 <label for="titulo">Título
                     <span class="required">*</span>
                 </label>
@@ -28,7 +28,7 @@
                        placeholder="Titulo" autofocus value="{{ old('titulo') }}">
             </div>
 
-            <div class="col-lg-2 col-sm-2">
+            <div class="col-lg-2 col-sm-3">
                 <label>
                     <input type="checkbox" class="switch" value="true" name="status" id="status"/> Desativar livro
                 </label>
@@ -52,7 +52,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-3 col-lg-offset-3">
+            <div class="col-lg-3 col-lg-offset-3 col-sm-6">
                 <label for="editora">Editora
                     <span class="required">*</span>
                 </label>
@@ -69,7 +69,7 @@
                 </select>
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-sm-6">
                 <label for="autor">Autor
                     <span class="required">*</span>
                 </label>
@@ -104,13 +104,13 @@
                        placeholder="Edição" value="{{ old('edicao') }}">
             </div>
 
-            <div class="col-lg-2 col-sm-6">
+            <div class="col-lg-2 col-sm-8">
                 <label for="origem">Origem</label>
                 <input type="text" class="form-control" id="origem" name="origem"
                        placeholder="Origem" value="{{ old('origem') }}">
             </div>
 
-            <div class="col-lg-1">
+            <div class="col-lg-1 col-sm-4">
                 <label for="ano">Ano
                     <span class="required">*</span>
                 </label>
@@ -120,19 +120,19 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-2 col-lg-offset-3">
+            <div class="col-lg-2 col-lg-offset-3 col-sm-4">
                 <label for="isbn">ISBN</label>
                 <input type="text" class="form-control" id="isbn" name="isbn"
                        placeholder="ISBN" value="{{ old('isbn') }}">
             </div>
 
-            <div class="col-lg-2">
+            <div class="col-lg-2 col-sm-4">
                 <label for="cdu">CDU</label>
                 <input type="text" class="form-control" id="cdu" name="cdu"
                        placeholder="CDU" value="{{ old('cdu') }}">
             </div>
 
-            <div class="col-lg-2">
+            <div class="col-lg-2 col-sm-4">
                 <label for="cdd">CDD</label>
                 <input type="text" class="form-control" id="cdd" name="cdd"
                        placeholder="CDD" value="{{ old('cdd') }}">

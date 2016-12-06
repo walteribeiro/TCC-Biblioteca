@@ -11,7 +11,7 @@
         {!! csrf_field() !!}
 
         <div class="form-group">
-            <div class="col-lg-2 col-lg-offset-3 col-sm-12">
+            <div class="col-lg-2 col-lg-offset-3 col-sm-4">
                 <label for="data-prevista">Previsão de entrega
                     <span class="required">*</span>
                 </label>
@@ -20,7 +20,7 @@
                        min="{{\Carbon\Carbon::today()->format('Y-m-d')}}">
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-sm-8">
                 <label for="usuario">Usuário</label>
                 <input type="text" class="form-control" disabled value="{{$emprestimo->user->nome}}">
             </div>

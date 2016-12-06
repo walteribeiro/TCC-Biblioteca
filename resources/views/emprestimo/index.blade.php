@@ -59,7 +59,8 @@
                            data-situacao="{{ $e->situacao}}"
                            data-data_emprestimo="{{ $e->data_emprestimo}}"
                            data-data_devolucao="{{ $e->data_devolucao }}"
-                           data-data_prevista="{{ $e->data_prevista }}">
+                           data-data_prevista="{{ $e->data_prevista }}"
+                           data-publicacao="{{ $e->publicacoes }}">
                             <em class="fa fa-search"></em> Visualizar
                         </a>
                             @if($e->situacao == 0)
@@ -154,6 +155,7 @@
                 var data_emprestimo = $(this).data('data_emprestimo');
                 var data_prevista = moment($(this).data('data_prevista'), 'YYYY-MM-DD HH:mm:ss').format('DD/MM/YYYY');
                 var data_devolucao = $(this).data('data_devolucao');
+                var publicacao = $(this).data('publicacao');
 
                 showModal.find('.modal-body').html(
                         '<div class="row">' +
@@ -171,6 +173,10 @@
                         '<div class="row">' +
                         '<div class="col-md-3">Situação:</div>' +
                         '<div class="col-md-9"><p>'+ (situacao == 0 ? "Em Aberto" : "Devolvido") + '</p></div>' +
+                        '</div>'+
+                        '<div class="row">' +
+                        '<div class="col-md-3">Publicação:</div>' +
+                        '<div class="col-md-9"><p>'+ publicacao[0].codigo + ' - ' + publicacao[0].titulo + '</p></div>' +
                         '</div>'
                 );
 

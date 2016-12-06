@@ -11,7 +11,7 @@ class MapaSeeder extends Seeder
 
     public function run()
     {
-        factory(Recurso::class, 150)->create()->each(function($u){
+        factory(Recurso::class, 10)->create()->each(function($u){
             $u->mapa()->save(factory(Mapa::class)->make());
             $this->gravarLog("Teste de carga", "debug", ['mapa' => $u->descricao]);
         });

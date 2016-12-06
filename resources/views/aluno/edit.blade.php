@@ -20,7 +20,7 @@
         {!! csrf_field() !!}
 
         <div class="form-group">
-            <div class="col-lg-5 col-lg-offset-3 col-sm-12">
+            <div class="col-lg-5 col-lg-offset-3 col-sm-10">
                 <label for="nome">Nome
                     <span class="required">*</span>
                 </label>
@@ -40,19 +40,19 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-2 col-lg-offset-3 col-sm-6">
+            <div class="col-lg-2 col-lg-offset-3 col-sm-4">
                 <label for="telefone">Telefone</label>
                 <input type="text" class="form-control" id="telefone" name="telefone"
                        placeholder="Telefone" value="{{ $aluno->user->telefone }}" data-inputmask="'mask': '(99) 9999-9999'">
             </div>
 
-            <div class="col-lg-2 col-sm-6">
+            <div class="col-lg-2 col-sm-4">
                 <label for="telefone2">Celular</label>
                 <input type="text" class="form-control" id="telefone2" name="telefone2"
                        placeholder="Celular" value="{{ $aluno->user->telefone2 }}" data-inputmask="'mask': '(99) 99999-9999'">
             </div>
 
-            <div class="col-lg-2 col-sm-6">
+            <div class="col-lg-2 col-sm-4">
                 <label for="matricula">Matrícula
                     <span class="required">*</span>
                 </label>
@@ -62,7 +62,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-6 col-lg-offset-3 col-sm-6">
+            <div class="col-lg-6 col-lg-offset-3 col-sm-12">
                 <label for="email">Email</label>
                 <input type="text" class="form-control" id="email" name="email"
                        placeholder="Email" value="{{ $aluno->user->email }}">

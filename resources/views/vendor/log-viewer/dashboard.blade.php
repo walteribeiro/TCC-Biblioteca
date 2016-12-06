@@ -8,7 +8,7 @@
 
     @if(isset($percents) && count($percents) > 0)
         <div class="row">
-            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-lg-offset-1">
+            <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
                 <log-graph></log-graph>
             </div>
         </div>
@@ -18,7 +18,8 @@
                 <section class="box-body">
                     <div class="row">
                         @foreach($percents as $level => $item)
-                            <div class="col-lg-4 col-md-3 col-sm-10 col-xs-12">
+                            @if($level == 'alert' || $level == 'warning' || $level == 'notice' || $level == 'info')
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <div class="info-box level level-{{ $level }} {{ $item['count'] === 0 ? 'level-empty' : '' }}">
                                 <span class="info-box-icon">
                                     {!! log_styler()->icon($level) !!}
@@ -35,6 +36,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                         @endforeach
                     </div>
                 </section>

@@ -20,14 +20,15 @@
         {!! csrf_field() !!}
 
         <div class="form-group">
-            <div class="col-lg-5 col-lg-offset-3 col-sm-12">
+            <div class="col-lg-5 col-lg-offset-3 col-sm-9">
                 <label for="titulo">Titulo
                     <span class="required">*</span>
                 </label>
                 <input type="text" class="form-control" id="titulo" name="titulo"
                        placeholder="Titulo" value="{{ old('titulo') }}" autofocus>
             </div>
-            <div class="col-lg-2 col-sm-2">
+
+            <div class="col-lg-2 col-sm-3">
                 <label>
                     <input type="checkbox" class="switch" value="true" name="status" id="status"/> Desativar revista
                 </label>
@@ -35,7 +36,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-1 col-lg-offset-3">
+            <div class="col-lg-1 col-lg-offset-3 col-sm-3">
                 <label for="codigo">Código
                     <span class="required">*</span>
                 </label>
@@ -43,7 +44,7 @@
                        placeholder="Código" value="{{ old('codigo') }}">
             </div>
 
-            <div class="col-lg-1">
+            <div class="col-lg-1 col-sm-3">
                 <label for="referencia">Referência
                     <span class="required">*</span>
                 </label>
@@ -51,7 +52,7 @@
                        placeholder="Referência" value="{{ old('referencia') }}" data-inputmask="'mask': '99/9999'">
             </div>
 
-            <div class="col-lg-2">
+            <div class="col-lg-2 col-sm-3">
                 <label for="categoria">Categoria
                     <span class="required">*</span>
                 </label>
@@ -59,7 +60,7 @@
                        placeholder="Categoria" value="{{ old('categoria') }}">
             </div>
 
-            <div class="col-lg-2 col-sm-6">
+            <div class="col-lg-2 col-sm-3">
                 <label for="origem">Origem</label>
                 <input type="text" class="form-control" id="origem" name="origem"
                        placeholder="Origem" value="{{ old('origem') }}">
@@ -75,7 +76,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-lg-3 col-lg-offset-3">
+            <div class="col-lg-3 col-lg-offset-3 col-sm-6">
                 <label for="editora">Editora
                     <span class="required">*</span>
                 </label>
@@ -92,7 +93,7 @@
                 </select>
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-sm-6">
                 <label for="edicao">Edição</label>
                 <input type="text" class="form-control" id="edicao" name="edicao"
                        placeholder="Edição" value="{{ old('edicao') }}">
