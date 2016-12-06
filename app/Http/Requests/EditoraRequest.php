@@ -14,13 +14,13 @@ class EditoraRequest extends Request
         switch ($this->method()) {
             case 'POST': {
                 return [
-                    'nome' => 'required|min:5|max:255|unique:editoras'
+                    'nome' => 'required|min:1|max:255|unique:editoras'
                 ];
             }
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'nome' => 'required|min:5|max:255|unique:editoras,nome,' . $this->id,
+                    'nome' => 'required|min:1|max:255|unique:editoras,nome,' . $this->id,
                 ];
 
             }

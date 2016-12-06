@@ -14,16 +14,16 @@ class AutorRequest extends Request
         switch ($this->method()) {
             case 'POST': {
                 return [
-                    'nome' => 'required|min:5|max:255|unique:autores',
-                    'sobrenome' => 'min:5|max:255'
+                    'nome' => 'required|min:1|max:255|unique:autores',
+                    'sobrenome' => 'min:1|max:255'
                 ];
             }
 
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'nome' => 'required|min:5|max:255|unique:autores,nome,' . $this->id,
-                    'sobrenome' => 'min:5|max:255'
+                    'nome' => 'required|min:1|max:255|unique:autores,nome,' . $this->id,
+                    'sobrenome' => 'min:1|max:255'
                 ];
 
             }
