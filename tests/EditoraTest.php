@@ -45,15 +45,6 @@ class EditoraTest extends TestCase{
             ->see("O campo nome é obrigatório.");
     }
 
-    public function test_nova_editora_campo_nome_tamanho_minimo()
-    {
-        $this->be(factory(User::class)->create());
-        $this->visit("/editoras/novo")
-            ->type("tes", "nome")
-            ->press("Gravar")
-            ->see("O campo nome deverá conter no mínimo 5 caracteres.");
-    }
-
     public function test_nova_editora_redirecionar_tela_editoras()
     {
         $this->be(factory(User::class)->create());
