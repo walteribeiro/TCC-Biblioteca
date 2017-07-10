@@ -253,7 +253,8 @@
             colorStart: '#3498DB',
             colorStop: '#3498DB',
             strokeColor: '#F0F3F3',
-            generateGradient: true
+            generateGradient: true,
+            animationSpeed: 40
         };
 
         var livros = document.getElementById('canvas-livros');
@@ -270,33 +271,27 @@
         var gaugeRevistas = new Gauge(revistas).setOptions(opts);
         var gaugeReservas = new Gauge(reservas).setOptions(opts);
 
-        gaugeLivro.maxValue = {{$livros + 200}};
-        gaugeLivro.animationSpeed = 40;
+        gaugeLivro.maxValue = {{$livros > 3000 ? $livros + 500 : $livros + 120}};
         gaugeLivro.set({{$livros ? $livros : 0}});
         gaugeLivro.setTextField(document.getElementById("livros"));
 
-        gaugeEmprestimo.maxValue = {{$emprestimos + 200}};
-        gaugeEmprestimo.animationSpeed = 40;
+        gaugeEmprestimo.maxValue = {{$emprestimos + 120}};
         gaugeEmprestimo.set({{$emprestimos ? $emprestimos : 0}});
         gaugeEmprestimo.setTextField(document.getElementById("emprestimos"));
 
-        gaugeReservaRecurso.maxValue = {{$reservaRecurso + 200}};
-        gaugeReservaRecurso.animationSpeed = 40;
+        gaugeReservaRecurso.maxValue = {{$reservaRecurso + 120}};
         gaugeReservaRecurso.set({{$reservaRecurso ? $reservaRecurso : 0}});
         gaugeReservaRecurso.setTextField(document.getElementById("reserva-recursos"));
 
-        gaugeAluno.maxValue = {{$alunos + 200}};
-        gaugeAluno.animationSpeed = 40;
+        gaugeAluno.maxValue = {{$alunos + 120}};
         gaugeAluno.set({{$alunos ? $alunos : 0}});
         gaugeAluno.setTextField(document.getElementById("alunos"));
 
-        gaugeRevistas.maxValue = {{$revistas + 200}};
-        gaugeRevistas.animationSpeed = 40;
+        gaugeRevistas.maxValue = {{$revistas + 120}};
         gaugeRevistas.set({{$revistas ? $revistas : 0}});
         gaugeRevistas.setTextField(document.getElementById("revistas"));
 
-        gaugeReservas.maxValue = {{$reservas + 200}};
-        gaugeReservas.animationSpeed = 40;
+        gaugeReservas.maxValue = {{$reservas + 120}};
         gaugeReservas.set({{$reservas ? $reservas : 0}});
         gaugeReservas.setTextField(document.getElementById("reservas"));
     </script>

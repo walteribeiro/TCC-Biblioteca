@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Traits\LogTrait;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
+use Yajra\Datatables\Datatables;
 
 class AutorController extends Controller
 {
@@ -22,8 +23,7 @@ class AutorController extends Controller
 
     public function index()
     {
-        $autores = $this->repository->index();
-        return view('autor.index', compact('autores'));
+        return view('autor.index');
     }
 
     public function create()
@@ -70,5 +70,20 @@ class AutorController extends Controller
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
             return redirect()->back();
         }
+    }
+
+    public function getAll()
+    {
+        $autores = $this->repository->index();
+
+        return Datatables::of($autores)
+            ->addColumn('action', function ($autor) {
+                $html = '<a href="#show" class="btn btn-sm btn-success" data-nome="'. $autor->nome .'" data-sobrenome="'. $autor->sobrenome .'"><em class="fa fa-search"></em> Visualizar</a>';
+                $html .= '<a href="' . route("autor.edit", $autor->id) . '" class="btn btn-sm btn-warning"><em class="fa fa-pencil"></em> Alterar</a>';
+                $html .= '<a href="#modal" class="btn btn-sm btn-danger" data-delete="'. $autor->nome .'" data-id="'. $autor->id.'"><em class="fa fa-trash-o"></em> Excluir</a>';
+
+                return $html;
+            })
+            ->make(true);
     }
 }

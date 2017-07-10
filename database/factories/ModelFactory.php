@@ -77,8 +77,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'username' => $faker->userName,
         'password' => bcrypt(str_random(10)),
         'nome' => $faker->name,
-        'telefone' => $faker->phoneNumber,
-        'telefone2' => $faker->phoneNumber,
+        'telefone' => $faker->randomNumber(8),
+        'telefone2' => $faker->randomNumber(8),
         'email' => $faker->safeEmail,
         'remember_token' => str_random(10),
     ];
@@ -91,7 +91,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 */
 $factory->define(App\Models\Funcionario::class, function (Faker\Generator $faker) {
     return [
-        'num_registro' => $faker->unique()->bankAccountNumber,
+        'num_registro' => $faker->unique()->randomNumber(6),
         'tipo_funcionario' => random_int(0, 2),
     ];
 });

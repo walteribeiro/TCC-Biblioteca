@@ -16,6 +16,7 @@ Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeContro
         Route::put('/atualizar/{id}',  ['as'=>'editora.update', 'uses'=>'EditoraController@update']);
         Route::delete('/remover/{id}', ['as'=>'editora.delete', 'uses'=>'EditoraController@destroy']);
 
+        Route::post('/all',            ['as'=>'editora.getAll', 'uses'=>'EditoraController@getAll']);
     });
 
     Route::group(['prefix' => 'livros'], function(){
@@ -28,6 +29,7 @@ Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeContro
         Route::put('/atualizar/{id}',  ['as'=>'livro.update', 'uses'=>'LivroController@update']);
         Route::delete('/remover/{id}', ['as'=>'livro.delete', 'uses'=>'LivroController@destroy']);
 
+        Route::post('/all',            ['as'=>'livro.getAll', 'uses'=>'LivroController@getAll']);
     });
 
     Route::group(['prefix' => 'revistas'], function(){
@@ -52,6 +54,7 @@ Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeContro
         Route::put('/atualizar/{id}',  ['as'=>'autor.update', 'uses'=>'AutorController@update']);
         Route::delete('/remover/{id}', ['as'=>'autor.delete', 'uses'=>'AutorController@destroy']);
 
+        Route::post('/all',            ['as'=>'autor.getAll', 'uses'=>'AutorController@getAll']);
     });
 
     Route::group(['prefix' => 'funcionarios'], function(){

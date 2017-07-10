@@ -4176,3 +4176,17 @@ ul.notifications {
 .red-tooltip + .tooltip > .tooltip-arrow {
     border-bottom-color:#d9534f;
 }
+
+.dataTables_wrapper .dataTables_processing {
+    position: absolute;
+    top: 30% !important;
+    left: 50%;
+    height: 40px !important;
+    width: 250px !important;
+    margin-left: -125px !important;
+    color: #fff;
+    font-size: 1.2em !important;
+    font-weight: bold;
+    background-color: #4B5F71;
+    padding: 0.5em 0 !important;
+}

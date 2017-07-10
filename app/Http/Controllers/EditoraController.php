@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EditoraRequest;
 use App\Repositories\EditoraRepository;
-use App\Http\Requests;
 use App\Traits\LogTrait;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Session;
+use Yajra\Datatables\Datatables;
 
 class EditoraController extends Controller
 {
@@ -22,8 +22,7 @@ class EditoraController extends Controller
 
     public function index()
     {
-        $editoras = $this->repository->index();
-        return view('editora.index', compact('editoras'));
+        return view('editora.index');
     }
 
     public function create()
@@ -70,5 +69,20 @@ class EditoraController extends Controller
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
             return redirect()->back();
         }
+    }
+
+    public function getAll()
+    {
+        $editoras = $this->repository->index();
+
+        return Datatables::of($editoras)
+            ->addColumn('action', function ($editora) {
+                $html = '<a href="#show" class="btn btn-sm btn-success" data-nome="'. $editora->nome .'"><em class="fa fa-search"></em> Visualizar</a>';
+                $html .= '<a href="' . route("editora.edit", $editora->id) . '" class="btn btn-sm btn-warning"><em class="fa fa-pencil"></em> Alterar</a>';
+                $html .= '<a href="#modal" class="btn btn-sm btn-danger" data-delete="'. $editora->nome .'" data-id="'. $editora->id.'"><em class="fa fa-trash-o"></em> Excluir</a>';
+
+                return $html;
+            })
+            ->make(true);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Models\Aluno;
 use App\Models\Emprestimo;
 use App\Models\Livro;
@@ -10,7 +9,6 @@ use App\Models\Publicacao;
 use App\Models\Reserva;
 use App\Models\ReservaRecurso;
 use App\Models\Revista;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -63,7 +61,7 @@ class HomeController extends Controller
     {
         return $this->emprestimo
             ->join('pessoas', 'pessoas.id', '=', 'emprestimos.user_id')
-            ->groupBy('emprestimos.user_id')
+            ->groupBy(['emprestimos.user_id', 'pessoas.nome', 'pessoas.email'])
             ->orderBy('total', 'desc')
             ->limit(5)
             ->get(['pessoas.nome', 'pessoas.email', DB::raw('count(emprestimos.user_id) as total')]);
@@ -74,7 +72,7 @@ class HomeController extends Controller
         $totalReservaRecurso = $this->reservaRecurso->all()->count();
         return $this->reservaRecurso
             ->join('recursos', 'recursos.id', '=', 'reserva_recursos.recurso_id')
-            ->groupBy('reserva_recursos.recurso_id')
+            ->groupBy(['reserva_recursos.recurso_id', 'recursos.descricao'])
             ->orderBy('total', 'desc')
             ->limit(5)
             ->get(['recursos.descricao', DB::raw('count(reserva_recursos.recurso_id) as total'), DB::raw('(count(reserva_recursos.recurso_id) * 100) / '. $totalReservaRecurso .'  as percentage')]);

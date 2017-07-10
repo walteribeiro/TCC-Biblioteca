@@ -11,89 +11,18 @@
         </a>
     </h3>
 
-    @if(isset($livros) && count($livros) > 0)
-        <table id="livros" class="table table-bordered table-hover">
-            <thead>
-            <tr>
-                <th>Código</th>
-                <th style="width: 30%">Título</th>
-                <th>Subtitulo</th>
-                <th>Edição</th>
-                <th>Ano</th>
-                <th>Status</th>
-                <th data-orderable="false">Opções</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($livros as $l)
-                <tr>
-                    <td>{{$l->publicacao->codigo}}</td>
-                    <td>{{$l->publicacao->titulo}}</td>
-                    <td>{{$l->subtitulo}}</td>
-                    <td>{{$l->publicacao->edicao}}</td>
-                    <td>{{$l->ano}}</td>
-                    <td>
-                        @if($l->publicacao->status == 0)
-                            <span class="label label-dark">
-                                Desativado
-                            </span>
-                        @elseif($l->publicacao->status == 1)
-                            <span class="label label-success">
-                                Disponível
-                            </span>
-                        @elseif($l->publicacao->status == 2)
-                            <span class="label label-primary">
-                                Emprestado
-                            </span>
-                        @else
-                            <span class="label label-warning">
-                                Reservado
-                            </span>
-                        @endif
-                    </td>
-                    <td class="text-center">
-                        <a href="#show" class="btn btn-sm btn-success"
-                           data-titulo="{{ $l->publicacao->titulo }}"
-                           data-subtitulo="{{ $l->subtitulo }}"
-                           data-descricao="{{ $l->publicacao->descricao }}"
-                           data-editora="{{ $l->publicacao->editora->nome }}"
-                           data-autor="{{ $l->autor->nome }}"
-                           data-edicao="{{ $l->publicacao->edicao }}"
-                           data-origem="{{ $l->publicacao->origem }}"
-                           data-ano="{{ $l->ano }}"
-                           data-isbn="{{ $l->isbn }}"
-                           data-cdu="{{ $l->cdu }}"
-                           data-cdd="{{ $l->cdd }}">
-                            <em class="fa fa-search"></em> Visualizar
-                        </a>
-                        @if($l->publicacao->status != 0 && $l->publicacao->status != 1)
-                            <button disabled class="btn btn-sm btn-warning">
-                                <em class="fa fa-pencil"></em> Alterar
-                            </button>
-
-                            <button disabled class="btn btn-sm btn-danger">
-                                <em class="fa fa-trash-o"></em> Excluir
-                            </button>
-                        @else
-                            <a href="{{ route('livro.edit', $l->publicacao_id)}}" class="btn btn-sm btn-warning">
-                                <em class="fa fa-pencil"></em> Alterar
-                            </a>
-
-                            <a href="#modal" class="btn btn-sm btn-danger"
-                               data-delete="{{ $l->publicacao->titulo }}"
-                               data-code="{{ $l->subtitulo }}"
-                               data-id="{{ $l->publicacao->id }}">
-                                <em class="fa fa-trash-o"></em> Excluir
-                            </a>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    @else
-        <h5 class="alert alert-info">Ainda não foram cadastrados livros!</h5>
-    @endif
+    <table id="livros-table" class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Código</th>
+            <th>Título</th>
+            <th>Edição</th>
+            <th>Ano</th>
+            <th>Status</th>
+            <th>Opções</th>
+        </tr>
+        </thead>
+    </table>
 
     @include('layout.delete-modal')
 
@@ -111,7 +40,7 @@
         $(function () {
             var deleteLogModal = $('div#delete-modal');
 
-            $("a[href='#modal']").click(function(event) {
+            $('#livros-table').on('click', 'a[href="#modal"]', function (event) {
                 event.preventDefault();
                 var id = $(this).data('id');
                 var titulo = $(this).data('delete');
@@ -128,7 +57,7 @@
         $(function (){
             var showModal = $('div#show-modal');
 
-            $("a[href='#show']").click(function(event) {
+            $('#livros-table').on('click', 'a[href="#show"]', function (event) {
                 event.preventDefault();
                 var titulo = $(this).data('titulo');
                 var subtitulo = $(this).data('subtitulo');
@@ -194,31 +123,52 @@
         });
 
         $(function () {
-            $('#livros').DataTable({
-                "stateSave": true,
-                "pagingType": "full_numbers",
-                "language": {
-                    "sEmptyTable": "Nenhum registro encontrado",
-                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-                    "sInfoPostFix": "",
-                    "sInfoThousands": ".",
-                    "sLengthMenu": "_MENU_  Resultados por página",
-                    "sLoadingRecords": "Carregando...",
-                    "sProcessing": "Processando...",
-                    "sZeroRecords": "Nenhum registro encontrado",
-                    "sSearch": "Pesquisar ",
-                    "oPaginate": {
-                        "sNext": ">",
-                        "sPrevious": "<",
-                        "sFirst": "Primeiro",
-                        "sLast": "Último"
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $('#livros-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    type: 'POST',
+                    url: '{!! route('livro.getAll') !!}'
+                },
+                pagingType: "full_numbers",
+                language: {
+                    sEmptyTable: "Nenhum registro encontrado",
+                    sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
+                    sInfoFiltered: "(Filtrados de _MAX_ registros)",
+                    sInfoPostFix: "",
+                    sInfoThousands: ".",
+                    sLengthMenu: "_MENU_  Resultados por página",
+                    sLoadingRecords: "Carregando...",
+                    sProcessing: '<div class="progress" style="height: 38px;width: 250px;margin-top: -8px;border-radius: 3px;"><div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" style="width: 100%;line-height: 36px;"><span>Processando ...</span></div></div>',
+                    sZeroRecords: "Nenhum registro encontrado",
+                    sSearch: "Pesquisar ",
+                    oPaginate: {
+                        sNext: ">",
+                        sPrevious: "<",
+                        sFirst: "Primeiro",
+                        sLast: "Último"
                     },
-                    "oAria": {
-                        "sSortAscending": ": Ordenar colunas de forma ascendente",
-                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    oAria: {
+                        sSortAscending: ": Ordenar colunas de forma ascendente",
+                        sSortDescending: ": Ordenar colunas de forma descendente"
                     }
+                },
+                columns: [
+                    {data: 'codigo', name: 'codigo'},
+                    {data: 'titulo', name: 'titulo', width: '30%'},
+                    {data: 'edicao', name: 'edicao'},
+                    {data: 'ano', name: 'ano'},
+                    {data: 'status', name: 'status'},
+                    {data: 'action', name: 'action', width: '30%', orderable: false, searchable: false}
+                ],
+                createdRow: function ( row, data, index ) {
+                    $('td', row).eq(5).addClass('text-center');
                 }
             });
         });

@@ -30,6 +30,7 @@ $(document).ready(function() {
         contentHeight -= $NAV_MENU.height() + footerHeight;
 
         $RIGHT_COL.css('min-height', contentHeight);
+        $RIGHT_COL.css('padding-bottom', 30);
     };
 
     $SIDEBAR_MENU.find('a').on('click', function(ev) {
