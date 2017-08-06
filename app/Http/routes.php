@@ -67,6 +67,7 @@ Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeContro
         Route::put('/atualizar/{id}',  ['as'=>'funcionario.update', 'uses'=>'FuncionarioController@update']);
         Route::delete('/remover/{id}', ['as'=>'funcionario.delete', 'uses'=>'FuncionarioController@destroy']);
 
+        Route::post('/all',            ['as'=>'funcionario.getAll', 'uses'=>'FuncionarioController@getAll']);
     });
 
     Route::group(['prefix' => 'alunos'], function(){
@@ -79,6 +80,7 @@ Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeContro
         Route::put('/atualizar/{id}',  ['as'=>'aluno.update', 'uses'=>'AlunoController@update']);
         Route::delete('/remover/{id}', ['as'=>'aluno.delete', 'uses'=>'AlunoController@destroy']);
 
+        Route::post('/all',            ['as'=>'aluno.getAll', 'uses'=>'AlunoController@getAll']);
     });
 
     Route::group(['prefix' => 'data-shows'], function(){
@@ -154,6 +156,7 @@ Route::get('/',                        ['as'=>'home.index',  'uses'=>'HomeContro
         Route::delete('/remover/{id}', ['as'=>'emprestimo.delete',   'uses'=>'EmprestimoController@destroy']);
         Route::put('/devolver/{id}',   ['as'=>'emprestimo.devolver', 'uses'=>'EmprestimoController@devolverEmprestimo']);
 
+        Route::post('/all',            ['as'=>'emprestimo.getAll', 'uses'=>'EmprestimoController@getAll']);
     });
 
     Route::group(['prefix' => 'reservas'], function(){

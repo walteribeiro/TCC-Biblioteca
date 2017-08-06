@@ -22,12 +22,6 @@ class ForeignKeyTable extends Migration
         Schema::table('revistas', function (Blueprint $table) {
             $table->foreign('publicacao_id', 'revistas_1_fk')->references('id')->on('publicacoes')->onUpdate('cascade')->onDelete('cascade');
         });
-        Schema::table('funcionarios', function (Blueprint $table) {
-            $table->foreign('user_id', 'funcionarios_1_fk')->references('id')->on('pessoas')->onUpdate('cascade')->onDelete('cascade');
-        });
-        Schema::table('alunos', function (Blueprint $table) {
-            $table->foreign('user_id', 'alunos_1_fk')->references('id')->on('pessoas')->onUpdate('cascade')->onDelete('cascade');
-        });
         Schema::table('data_shows', function (Blueprint $table) {
             $table->foreign('recurso_id', 'data_shows_1_fk')->references('id')->on('recursos')->onUpdate('cascade')->onDelete('cascade');
         });
@@ -38,12 +32,12 @@ class ForeignKeyTable extends Migration
             $table->foreign('recurso_id', 'salas_1_fk')->references('id')->on('recursos')->onUpdate('cascade')->onDelete('cascade');
         });
         Schema::table('reserva_recursos', function (Blueprint $table) {
-            $table->foreign('funcionario_id', 'reserva_recursos_1_fk')->references('user_id')->on('funcionarios')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('user_id', 'reserva_recursos_1_fk')->references('id')->on('pessoas')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('recurso_id', 'reserva_recursos_2_fk')->references('id')->on('recursos')->onUpdate('cascade')->onDelete('restrict');
         });
         Schema::table('alunos_turmas', function(Blueprint $table)
         {
-            $table->foreign('aluno_id', 'alunos_turmas_1_fk')->references('user_id')->on('alunos')->onUpdate('cascade')->onDelete('restrict');
+            $table->foreign('user_id', 'alunos_turmas_1_fk')->references('id')->on('pessoas')->onUpdate('cascade')->onDelete('restrict');
             $table->foreign('turma_id', 'alunos_turmas_2_fk')->references('id')->on('turmas')->onUpdate('cascade')->onDelete('restrict');
         });
         Schema::table('emprestimos', function(Blueprint $table)
@@ -83,11 +77,8 @@ class ForeignKeyTable extends Migration
         Schema::table('revistas', function (Blueprint $table) {
             $table->dropForeign('revistas_1_fk');
         });
-        Schema::table('funcionarios', function (Blueprint $table) {
-            $table->dropForeign('funcionarios_1_fk');
-        });
-        Schema::table('alunos', function (Blueprint $table) {
-            $table->dropForeign('alunos_1_fk');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign('users_1_fk');
         });
         Schema::table('data_shows', function (Blueprint $table) {
             $table->dropForeign('data_shows_1_fk');

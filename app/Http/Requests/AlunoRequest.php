@@ -24,7 +24,7 @@ class AlunoRequest extends Request
         switch ($this->method()) {
             case 'POST': {
                 return [
-                    'matricula' => 'required|unique:alunos',
+                    'matricula' => 'required|min:2|max:20|unique:pessoas,matricula',
                     'nome' => 'required|min:5|max:255',
                     'telefone' => 'min:10|max:15',
                     'telefone2' => 'min:10|max:15',
@@ -35,7 +35,7 @@ class AlunoRequest extends Request
             case 'PUT':
             case 'PATCH': {
                 return [
-                    'matricula' => 'required',
+                    'matricula' => 'required|min:2|max:20|unique:pessoas,matricula, ' . $this->id,
                     'nome' => 'required|min:5|max:255',
                     'telefone' => 'min:10|max:15',
                     'telefone2' => 'min:10|max:15',

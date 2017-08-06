@@ -30,7 +30,7 @@ class FuncionarioRequest extends Request
                     'telefone' => 'min:10|max:15',
                     'telefone2' => 'min:10|max:15',
                     'email' => 'min:10|max:255|unique:pessoas',
-                    'numeroRegistro' => 'required|min:5|max:10|unique:funcionarios,num_registro',
+                    'numeroRegistro' => 'required|min:2|max:20|unique:pessoas,matricula',
                     'tipoFuncionario' => 'required',
                 ];
             }
@@ -42,7 +42,7 @@ class FuncionarioRequest extends Request
                     'telefone' => 'min:10|max:15',
                     'telefone2' => 'min:10|max:15',
                     'email' => 'min:10|max:255|unique:pessoas,email, ' . $this->id,
-                    'numeroRegistro' => 'required|max:10',
+                    'numeroRegistro' => 'required|min:2|max:20|unique:pessoas,matricula, ' . $this->id,
                     'tipoFuncionario' => 'required',
                 ];
             }

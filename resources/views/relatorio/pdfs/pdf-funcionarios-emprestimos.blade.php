@@ -14,7 +14,7 @@
         @foreach($dados as $a)
             <tr>
                 <td>{{$a->nome}}</td>
-                <td class="alinhar-centro">{{$a->num_registro}}</td>
+                <td class="alinhar-centro">{{$a->matricula}}</td>
                 <td class="alinhar-centro">{{$a->telefone}}</td>
                 <td class="alinhar-centro">{{$a->telefone2}}</td>
                 <td class="alinhar-centro">{{$a->email}}</td>

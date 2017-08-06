@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Turma extends Model
@@ -18,6 +19,6 @@ class Turma extends Model
      */
     public function alunos()
     {
-        return $this->belongsToMany(Aluno::class, 'alunos_turmas');
+        return $this->belongsToMany(User::class, 'alunos_turmas');
     }
 }

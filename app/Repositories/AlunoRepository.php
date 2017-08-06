@@ -2,24 +2,21 @@
 
 namespace App\Repositories;
 
-use App\Models\Aluno;
 use App\User;
 use Carbon\Carbon;
 
 class AlunoRepository
 {
-    protected $aluno;
     protected $usuario;
 
-    public function __construct(Aluno $aluno, User $usuario)
+    public function __construct(User $usuario)
     {
-        $this->aluno = $aluno;
         $this->usuario = $usuario;
     }
 
     public function index()
     {
-        return $this->aluno->all();
+        return $this->usuario->all();
     }
 
     public function store($data)
@@ -34,12 +31,9 @@ class AlunoRepository
         $this->usuario->telefone2 = $data['telefone2'];
         $this->usuario->email = ($data['email'] ? $data['email'] : null);
         $this->usuario->ativo = ($ativo != null ? true : false);
-        $this->usuario->tipo_acesso = 2; //Padrão para todos alunos
+        $this->usuario->tipo_pessoa = 3; //Padrão para todos alunos
+        $this->usuario->matricula = $data['matricula'];
         $this->usuario->save();
-
-        //Persistindo dados da request no aluno
-        $this->aluno->matricula = $data['matricula'];
-        $this->usuario->aluno()->save($this->aluno);
 
         return $this->usuario;
     }
@@ -55,12 +49,7 @@ class AlunoRepository
         $this->usuario->telefone2 = $data['telefone2'];
         $this->usuario->email = ($data['email'] ? $data['email'] : null);
         $this->usuario->ativo = ($ativo != null ? true : false);
-
-        //Atualizando dados da request no aluno
-        $this->usuario->aluno()->update([
-            'matricula' => $data['matricula']
-        ]);
-
+        $this->usuario->matricula = $data['matricula'];
         $this->usuario->save();
 
         return $this->usuario;
@@ -73,10 +62,6 @@ class AlunoRepository
 
     public function findById($id)
     {
-        return $this->aluno->find($id);
-    }
-
-    public function countAlunos($id, $matricula){
-        return $this->aluno->where([['matricula', '=', $matricula], ['user_id', '<>', $id]])->count();
+        return $this->usuario->find($id);
     }
 }

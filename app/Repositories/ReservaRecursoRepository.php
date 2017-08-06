@@ -2,10 +2,9 @@
 
 namespace App\Repositories;
 
-
-use App\Models\Funcionario;
 use App\Models\Recurso;
 use App\Models\ReservaRecurso;
+use App\User;
 
 class ReservaRecursoRepository
 {
@@ -13,7 +12,7 @@ class ReservaRecursoRepository
     protected $funcionario;
     protected $recurso;
 
-    public function __construct(ReservaRecurso $reservaRecurso, Funcionario $funcionario, Recurso $recurso)
+    public function __construct(ReservaRecurso $reservaRecurso, User $funcionario, Recurso $recurso)
     {
         $this->reservaRecurso = $reservaRecurso;
         $this->funcionario = $funcionario;
@@ -23,7 +22,7 @@ class ReservaRecursoRepository
     public function index()
     {
         return [
-            'funcionarios'=> $this->funcionario->all(),
+            'funcionarios'=> $this->funcionario->where('tipo_pessoa', 1)->get(),
             'recursos'=> $this->recurso->all()
         ];
     }
@@ -43,7 +42,7 @@ class ReservaRecursoRepository
             $e['title'] = $value->recurso->descricao . " - " . $this->getAula($value['aula']);
             $e['start'] = $value['data_reserva'];
             $e['end'] = $value['data_reserva'];
-            $e['professor'] = $value['funcionario_id'];
+            $e['professor'] = $value['user_id'];
             $e['recurso'] = $value['recurso_id'];
             $e['aula'] = $value['aula'];
 
@@ -56,7 +55,7 @@ class ReservaRecursoRepository
     public function create()
     {
         return [
-            'funcionarios' => $this->funcionario->where('tipo_funcionario', 1)->get(),
+            'funcionarios' => $this->funcionario->where('tipo_pessoa', 1)->get(),
             'recursos' => $this->recurso->all()
         ];
     }
@@ -66,7 +65,7 @@ class ReservaRecursoRepository
         //Persistindo dados da request no reservaRecurso
         $this->reservaRecurso->data_reserva = $data['start'];
         $this->reservaRecurso->aula = $data['aula'];
-        $this->reservaRecurso->funcionario_id = $data['funcionario'];
+        $this->reservaRecurso->user_id = $data['funcionario'];
         $this->reservaRecurso->recurso_id = $data['recurso'];
         $this->reservaRecurso->save();
 
@@ -76,7 +75,7 @@ class ReservaRecursoRepository
     public function edit()
     {
         return [
-            'funcionarios' => $this->funcionario->all(),
+            'funcionarios' => $this->funcionario->where('tipo_pessoa', 1)->get(),
             'recursos' => $this->recurso->all()
         ];
     }
@@ -88,7 +87,7 @@ class ReservaRecursoRepository
         //Atualizando dados da request no reservaRecurso
         $this->reservaRecurso->data_reserva = $data['start'];
         $this->reservaRecurso->aula = $data['aula'];
-        $this->reservaRecurso->funcionario_id = $data['funcionario'];
+        $this->reservaRecurso->user_id = $data['funcionario'];
         $this->reservaRecurso->recurso_id = $data['recurso'];
         $this->reservaRecurso->save();
 

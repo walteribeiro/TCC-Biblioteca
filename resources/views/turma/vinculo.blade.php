@@ -43,7 +43,7 @@
                 </label>
                 <select id="alunos" name="aluno[]" class="form-control" multiple="multiple" required autofocus>
                     @foreach($alunos as $a)
-                        <option value="{{ $a->user_id }}">{{ $a->matricula . ' - ' . $a->user->nome }}</option>
+                        <option value="{{ $a->id }}">{{ $a->matricula . ' - ' . $a->nome }}</option>
                     @endforeach
                 </select>
             </div>

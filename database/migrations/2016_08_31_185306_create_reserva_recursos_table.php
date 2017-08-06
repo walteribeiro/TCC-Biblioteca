@@ -16,7 +16,7 @@ class CreateReservaRecursosTable extends Migration
             $table->bigIncrements('id');
             $table->date('data_reserva');
             $table->integer('aula');
-            $table->unsignedBigInteger('funcionario_id')->index('funcionario_idx');
+            $table->unsignedBigInteger('user_id')->index('user_idx');
             $table->unsignedBigInteger('recurso_id')->index('recurso_idx');
             //$table->unique(['recurso_id','aula']);
             $table->timestamps();

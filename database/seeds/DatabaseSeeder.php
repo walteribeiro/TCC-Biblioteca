@@ -17,21 +17,21 @@ class DatabaseSeeder extends Seeder
             'nome' => 'EEAC',
             'username' => 'Administrador',
             'password' => bcrypt('admeeac2016'),
-            'tipo_acesso' => 0
+            'tipo_pessoa' => 4
         ]);
 
         factory(User::class, 1)->create([
             'nome' => 'EEAC demonstração',
             'username' => 'teste',
             'password' => bcrypt('teste'),
-            'tipo_acesso' => 0
+            'tipo_pessoa' => 4
         ]);
 
         factory(User::class, 1)->create([
             'nome' => 'José Omar',
             'username' => 'joseomar',
             'password' => bcrypt('joseomar'),
-            'tipo_acesso' => 0
+            'tipo_pessoa' => 4
         ]);
 
 //        $this->call(EditoraSeeder::class);

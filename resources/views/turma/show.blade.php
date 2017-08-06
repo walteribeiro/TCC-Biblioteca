@@ -39,13 +39,13 @@
                             @foreach($turma->alunos as $a)
                                 <tr>
                                     <td>{{$a->matricula}}</td>
-                                    <td>{{$a->user->nome}}</td>
-                                    <td>{{$a->user->telefone}}</td>
-                                    <td>{{$a->user->email}}</td>
-                                    <td>@if($a->user->ativo == 1) Ativo @else Inativo @endif</td>
+                                    <td>{{$a->nome}}</td>
+                                    <td>{{$a->telefone}}</td>
+                                    <td>{{$a->email}}</td>
+                                    <td>@if($a->ativo == 1) Ativo @else Inativo @endif</td>
                                     <td class="a-center" data-toggle="buttons">
                                         <label class="btn btn-xs btn-success action check">
-                                            <input type="checkbox" name="records" autocomplete="off" value="{{ $a->user->id }}">
+                                            <input type="checkbox" name="records" autocomplete="off" value="{{ $a->id }}">
                                             <em class="fa fa-check"></em>
                                         </label>
                                     </td>

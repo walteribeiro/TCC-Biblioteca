@@ -14,7 +14,7 @@
 
     <h3 class="col-lg-6 col-lg-offset-3 col-sm-12 crud-title">Edição de aluno</h3>
 
-    <form class="form-horizontal" action="{{ route('aluno.update', $aluno->user->id) }}" method="post">
+    <form class="form-horizontal" action="{{ route('aluno.update', $aluno->id) }}" method="post">
 
         {{ method_field('put') }}
         {!! csrf_field() !!}
@@ -25,12 +25,12 @@
                     <span class="required">*</span>
                 </label>
                 <input type="text" class="form-control" id="nome" name="nome"
-                       placeholder="Nome do aluno" autofocus value="{{ $aluno->user->nome }}">
+                       placeholder="Nome do aluno" autofocus value="{{ $aluno->nome }}">
             </div>
 
             <div class="col-lg-2 col-sm-2">
                 <label>
-                    @if($aluno->user->ativo == 1)
+                    @if($aluno->ativo == 1)
                         <input type="checkbox" class="switch" checked value="true" name="ativo" id="ativo"/> Ativo
                     @else
                         <input type="checkbox" class="switch" value="false" name="ativo" id="ativo"/> Ativo
@@ -43,13 +43,13 @@
             <div class="col-lg-2 col-lg-offset-3 col-sm-4">
                 <label for="telefone">Telefone</label>
                 <input type="text" class="form-control" id="telefone" name="telefone"
-                       placeholder="Telefone" value="{{ $aluno->user->telefone }}" data-inputmask="'mask': '(99) 9999-9999'">
+                       placeholder="Telefone" value="{{ $aluno->telefone }}" data-inputmask="'mask': '(99) 9999-9999'">
             </div>
 
             <div class="col-lg-2 col-sm-4">
                 <label for="telefone2">Celular</label>
                 <input type="text" class="form-control" id="telefone2" name="telefone2"
-                       placeholder="Celular" value="{{ $aluno->user->telefone2 }}" data-inputmask="'mask': '(99) 99999-9999'">
+                       placeholder="Celular" value="{{ $aluno->telefone2 }}" data-inputmask="'mask': '(99) 99999-9999'">
             </div>
 
             <div class="col-lg-2 col-sm-4">
@@ -65,7 +65,7 @@
             <div class="col-lg-6 col-lg-offset-3 col-sm-12">
                 <label for="email">Email</label>
                 <input type="text" class="form-control" id="email" name="email"
-                       placeholder="Email" value="{{ $aluno->user->email }}">
+                       placeholder="Email" value="{{ $aluno->email }}">
             </div>
         </div>
 

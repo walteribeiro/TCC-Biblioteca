@@ -1,5 +1,5 @@
-var elixir = require('laravel-elixir');
+const elixir = require('laravel-elixir');
 
 elixir(function(mix) {
-    mix.browserify('main.js', 'public/assets/js/main.js');
+    mix.script('main.js', 'public/assets/js/main.js');
 });

@@ -8,18 +8,16 @@ use Carbon\Carbon;
 
 class FuncionarioRepository
 {
-    protected $funcionario;
     protected $usuario;
 
-    public function __construct(Funcionario $funcionario, User $usuario)
+    public function __construct(User $usuario)
     {
-        $this->funcionario = $funcionario;
         $this->usuario = $usuario;
     }
 
     public function index()
     {
-        return $this->funcionario->all();
+        return $this->usuario->all();
     }
 
     public function store($data)
@@ -34,13 +32,9 @@ class FuncionarioRepository
         $this->usuario->telefone2 = $data['telefone2'];
         $this->usuario->email = ($data['email'] ? $data['email'] : null);
         $this->usuario->ativo = ($ativo != null ? true : false);
-        $this->usuario->tipo_acesso = ($tipoFuncionario == 0 ? 2 : 1); //Colaborador somente para Funcionários do tipo bibliotecário
+        $this->usuario->tipo_pessoa = ($tipoFuncionario ?: 0); //Colaborador somente para Funcionários do tipo bibliotecário
+        $this->usuario->matricula = $data['numeroRegistro'];
         $this->usuario->save();
-
-        //Persistindo dados da request no funcionário
-        $this->funcionario->num_registro = $data['numeroRegistro'];
-        $this->funcionario->tipo_funcionario = $tipoFuncionario;
-        $this->usuario->funcionario()->save($this->funcionario);
 
         return $this->usuario;
     }
@@ -57,14 +51,8 @@ class FuncionarioRepository
         $this->usuario->telefone2 = $data['telefone2'];
         $this->usuario->email = ($data['email'] ? $data['email'] : null);
         $this->usuario->ativo = ($ativo != null ? true : false);
-        $this->usuario->tipo_acesso = ($tipoFuncionario == 0 ? 2 : 1);
-
-        //Atualizando dados da request no funcionario
-        $this->usuario->funcionario()->update([
-            'num_registro' => $data['numeroRegistro'],
-            'tipo_funcionario' => $tipoFuncionario
-        ]);
-
+        $this->usuario->tipo_pessoa = ($tipoFuncionario ?: 0);
+        $this->usuario->matricula = $data['numeroRegistro'];
         $this->usuario->save();
 
         return $this->usuario;
@@ -77,6 +65,6 @@ class FuncionarioRepository
 
     public function findById($id)
     {
-        return $this->funcionario->find($id);
+        return $this->usuario->find($id);
     }
 }

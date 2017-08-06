@@ -4,13 +4,14 @@ namespace App\Repositories;
 
 use App\Models\Aluno;
 use App\Models\Turma;
+use App\User;
 
 class TurmaRepository
 {
     protected $turma;
     protected $aluno;
 
-    public function __construct(Turma $turma, Aluno $aluno)
+    public function __construct(Turma $turma, User $aluno)
     {
         $this->turma = $turma;
         $this->aluno = $aluno;
@@ -70,6 +71,6 @@ class TurmaRepository
 
     public function getAlunos()
     {
-        return $this->aluno->all();
+        return $this->aluno->where('tipo_pessoa', 3)->get();
     }
 }

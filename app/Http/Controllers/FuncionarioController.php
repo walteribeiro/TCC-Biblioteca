@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
+use Yajra\Datatables\Datatables;
 
 class FuncionarioController extends Controller
 {
@@ -28,10 +29,7 @@ class FuncionarioController extends Controller
 
     public function index()
     {
-        //if(auth()->user()->hasPermission()) {
-            $funcionarios = $this->repository->index();
-            return view('funcionario.index', compact('funcionarios'));
-        //return $this->returnHomePage();
+        return view('funcionario.index');
     }
 
     public function create()
@@ -79,5 +77,50 @@ class FuncionarioController extends Controller
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
             return redirect()->back();
         }
+    }
+
+    public function getAll()
+    {
+        $funcionarios = User::whereIn('tipo_pessoa', [0, 1, 2])->get();
+
+        return Datatables::of($funcionarios)
+            ->addColumn('tipo', function ($funcionario) {
+                if ($funcionario->tipo_pessoa == 0){
+                    $html = 'Geral';
+                }else if ($funcionario->tipo_pessoa == 1){
+                    $html = 'Professor';
+                }else{
+                    $html = 'Bibliotecário';
+                }
+                return $html;
+            })
+            ->addColumn('status', function ($funcionario) {
+                if ($funcionario->ativo){
+                    $html = '<span class="label label-success">Ativo</span>';
+                }else {
+                    $html = '<span class="label label-dark">Inativo</span>';
+                }
+                return $html;
+            })
+            ->addColumn('action', function ($funcionario) {
+                $html = '<a href="#show" class="btn btn-sm btn-success" 
+                            data-nome="'. $funcionario->nome .'"
+                            data-telefone="'. $funcionario->telefone .'"
+                            data-telefone2="'. $funcionario->telefone2 .'"
+                            data-email="'. $funcionario->email .'"
+                            data-registro="'. $funcionario->matricula .'"
+                            data-ativo="'. $funcionario->ativo .'"><em class="fa fa-search"></em> Visualizar</a>';
+                $html .= '<a href="' . route("funcionario.edit", $funcionario->id) . '" class="btn btn-sm btn-warning"><em class="fa fa-pencil"></em> Alterar</a>';
+                $html .= '<a href="#modal" class="btn btn-sm btn-danger" data-delete="'. $funcionario->nome .'" data-id="'. $funcionario->id.'"><em class="fa fa-trash-o"></em> Excluir</a>';
+
+                if (auth()->user()->tipo_pessoa == 4) {
+                    $html .= '<a href="#pass" class="btn btn-sm btn-dark" data-id="'. $funcionario->id .'"><em class="fa fa-unlock"></em> Alterar Senha</a>';
+                }else{
+                    $html .= '<a href="#" disabled class="btn btn-sm btn-dark"><em class="fa fa-unlock"></em> Alterar Senha</a>';
+                }
+
+                return $html;
+            })
+            ->make(true);
     }
 }

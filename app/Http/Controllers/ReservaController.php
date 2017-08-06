@@ -36,7 +36,7 @@ class ReservaController extends Controller
                 ->from('pessoas')
                 ->join('reservas', 'pessoas.id', '=', 'reservas.user_id')
                 ->where('reservas.situacao', '0');
-        })->where([['tipo_acesso', '<>', 0], ['ativo', '=', '1']])
+        })->where([['tipo_pessoa', '<>', 4], ['ativo', '=', '1']])
             ->get(['id', 'nome']);
 
         $publicacoes = Publicacao::whereNotIn('status', [0, 2, 3])->get();

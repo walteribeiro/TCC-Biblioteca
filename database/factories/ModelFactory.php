@@ -80,30 +80,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'telefone' => $faker->randomNumber(8),
         'telefone2' => $faker->randomNumber(8),
         'email' => $faker->safeEmail,
-        'remember_token' => str_random(10),
-    ];
-});
-
-/*
-|--------------------------------------------------------------------------
-| Factory de Funcionários
-|--------------------------------------------------------------------------
-*/
-$factory->define(App\Models\Funcionario::class, function (Faker\Generator $faker) {
-    return [
-        'num_registro' => $faker->unique()->randomNumber(6),
-        'tipo_funcionario' => random_int(0, 2),
-    ];
-});
-
-/*
-|--------------------------------------------------------------------------
-| Factory de Alunos
-|--------------------------------------------------------------------------
-*/
-$factory->define(App\Models\Aluno::class, function (Faker\Generator $faker) {
-    return [
         'matricula' => $faker->unique()->randomNumber(6),
+        'remember_token' => str_random(10),
     ];
 });
 

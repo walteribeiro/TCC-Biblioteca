@@ -13,21 +13,24 @@ class CreateUsersTable extends Migration
     public function up()
     {
         /**
-         * Tipos de acesso:
-         *  0 - Administrador
-         *  1 - Colaborador
-         *  2 - Padrão
+         * Tipos de Funcionário:
+         *  0 - Geral
+         *  1 - Professor
+         *  2 - Bibliotecário
+         *  3 - Aluno
+         *  4 - Administrador
          */
         Schema::create('pessoas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('username')->unique()->nullable();
+            $table->string('username')->nullable();
             $table->string('password')->nullable();
             $table->string('nome');
-            $table->string('telefone', 15);
-            $table->string('telefone2', 15);
-            $table->string('email')->unique()->nullable();
+            $table->string('telefone', 15)->nullable();
+            $table->string('telefone2', 15)->nullable();
+            $table->string('email')->nullable();
+            $table->string('matricula')->unique()->nullable();
             $table->boolean('ativo')->default(true);
-            $table->tinyInteger('tipo_acesso')->default(2);
+            $table->tinyInteger('tipo_pessoa')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

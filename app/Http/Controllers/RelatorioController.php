@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use mPDF;
 
 class RelatorioController extends Controller
@@ -180,14 +181,14 @@ class RelatorioController extends Controller
 
     private function getInstancePDF($titlePDF = 'Relatorio', $name = 'Relatorio', $isDownload = false, $htmlToRender, $titulo)
     {
-        $css = file_get_contents(asset('assets/css/relatorio.css'));
+        //$css = Storage::get(storage_path('app\\public\\relatorio.css'));
 
         $mpdf = new Mpdf();
         $mpdf->SetDisplayMode('fullpage');
         $mpdf->SetHTMLHeader($this->getHeader($titulo));
         $mpdf->SetFooter('{PAGENO}');
         $mpdf->AddPage('', '', '', '', '', 10, 10, 30);
-        $mpdf->WriteHTML($css, 1);
+        $mpdf->WriteHTML('body, td, th { font-size: 12px; }', 1);
         $mpdf->WriteHTML($htmlToRender);
         $mpdf->title = $titlePDF;
 
@@ -217,39 +218,31 @@ class RelatorioController extends Controller
     private function getAlunosPendentes($dtInicial = null, $dtFinal = null)
     {
         if($dtInicial){
-            return $this->user
-                ->join('alunos', 'alunos.user_id', '=', 'pessoas.id')
-                ->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
+            return $this->user->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
                 ->where([['emprestimos.data_devolucao', null], ['emprestimos.data_prevista', '<', Carbon::now()]])
                 ->whereBetween('emprestimos.data_prevista', array($dtInicial, $dtFinal))
                 ->orderBy('emprestimos.data_prevista')
-                ->get(['alunos.matricula', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', 'emprestimos.data_prevista']);
+                ->get(['pessoas.matricula', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', 'emprestimos.data_prevista']);
         }
-        return $this->user
-            ->join('alunos', 'alunos.user_id', '=', 'pessoas.id')
-            ->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
+        return $this->user->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
             ->where([['emprestimos.data_devolucao', null], ['emprestimos.data_prevista', '<', Carbon::now()]])
             ->orderBy('emprestimos.data_prevista')
-            ->get(['alunos.matricula', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', 'emprestimos.data_prevista']);
+            ->get(['pessoas.matricula', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', 'emprestimos.data_prevista']);
     }
 
     private function getFuncionariosPendentes($dtInicial = null, $dtFinal = null)
     {
         if($dtInicial) {
-            return $this->user
-                ->join('funcionarios', 'funcionarios.user_id', '=', 'pessoas.id')
-                ->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
+            return $this->user->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
                 ->where([['emprestimos.data_devolucao', null], ['emprestimos.data_prevista', '<', Carbon::now()]])
                 ->whereBetween('emprestimos.data_prevista', array($dtInicial, $dtFinal))
                 ->orderBy('emprestimos.data_prevista')
-                ->get(['funcionarios.num_registro', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', 'emprestimos.data_prevista']);
+                ->get(['pessoas.matricula', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', 'emprestimos.data_prevista']);
         }
-        return $this->user
-            ->join('funcionarios', 'funcionarios.user_id', '=', 'pessoas.id')
-            ->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
+        return $this->user->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
             ->where([['emprestimos.data_devolucao', null], ['emprestimos.data_prevista', '<', Carbon::now()]])
             ->orderBy('emprestimos.data_prevista')
-            ->get(['funcionarios.num_registro', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', 'emprestimos.data_prevista']);
+            ->get(['pessoas.matricula', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', 'emprestimos.data_prevista']);
     }
 
     private function getPublicacoesMaisEmprestadas()
@@ -263,23 +256,19 @@ class RelatorioController extends Controller
 
     private function getAlunosComMaisEmprestimos()
     {
-        return $this->user
-            ->join('alunos', 'alunos.user_id', '=', 'pessoas.id')
-            ->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
+        return $this->user->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
             ->groupBy('emprestimos.user_id')
             ->orderBy('total', 'desc')
             ->orderBy('pessoas.nome', 'asc')
-            ->get(['alunos.matricula', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', DB::raw('count(emprestimos.user_id) as total')]);
+            ->get(['pessoas.matricula', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', DB::raw('count(emprestimos.user_id) as total')]);
     }
 
     private function getFuncionariosComMaisEmprestimos()
     {
-        return $this->user
-            ->join('funcionarios', 'funcionarios.user_id', '=', 'pessoas.id')
-            ->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
+        return $this->user->join('emprestimos', 'emprestimos.user_id', '=', 'pessoas.id')
             ->groupBy('emprestimos.user_id')
             ->orderBy('total', 'desc')
             ->orderBy('pessoas.nome', 'asc')
-            ->get(['funcionarios.num_registro', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', DB::raw('count(emprestimos.user_id) as total')]);
+            ->get(['pessoas.matricula', 'pessoas.nome', 'pessoas.telefone', 'pessoas.telefone2', 'pessoas.email', DB::raw('count(emprestimos.user_id) as total')]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Funcionario;
 use App\Models\Recurso;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class ReservaRecurso extends Model
@@ -13,7 +14,7 @@ class ReservaRecurso extends Model
     protected $fillable = ['aula', 'data_reserva'];
 
     public function funcionario(){
-        return $this -> belongsTo(Funcionario::class);
+        return $this -> belongsTo(User::class);
     }
     public function recurso(){
         return $this -> belongsTo(Recurso::class);

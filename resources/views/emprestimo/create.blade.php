@@ -29,7 +29,7 @@
                     @if(count($usuarios) > 0)
                         <option value="" selected>Selecione um usuário</option>
                         @foreach($usuarios as $u)
-                            <option data-acesso="{{ $u->tipo_acesso }}" value="{{ $u->id }}" @if( old('usuario') == $u->id) selected="selected" @endif >{{ $u->nome }}</option>
+                            <option data-acesso="{{ $u->tipo_pessoa }}" value="{{ $u->id }}" @if( old('usuario') == $u->id) selected="selected" @endif >{{ $u->nome }}</option>
                         @endforeach
                     @else
                         <option value="" selected>Cadastre um usuário primeiro</option>
@@ -77,11 +77,11 @@
 
             $(".basic-select").on("select2:select", function (e) {
                 var x = $('option:selected').data('acesso');
-                if(x == 1){
+                if(x == 3){
                     publicacoes.prop("disabled", false);
                     $('#publicacoes').select2({maximumSelectionLength: 2});
                     $("#publicacoes").select2('val', 'All');
-                }else if(x == 2){
+                }else if(x == 2 || x == 1 || x == 0){
                     publicacoes.prop("disabled", false);
                     $('#publicacoes').select2({maximumSelectionLength: 1});
                     $("#publicacoes").select2('val', 'All');

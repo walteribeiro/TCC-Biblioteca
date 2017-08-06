@@ -52,7 +52,7 @@
                                     <tbody>
                                     @foreach($funcionarios as $f)
                                         <tr>
-                                            <td>{{ $f->num_registro }}</td>
+                                            <td>{{ $f->matricula }}</td>
                                             <td>{{ $f->nome }}</td>
                                             <td>{{ $f->telefone }}</td>
                                             <td>{{ $f->telefone2 }}</td>

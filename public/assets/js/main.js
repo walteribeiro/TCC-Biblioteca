@@ -26187,7 +26187,7 @@ exports.default = {
             });
         },
         fetchData: function fetchData() {
-            return this.$http.get("/TCC/TCC-Biblioteca/public/chart/sumarizacao");
+            return this.$http.get("/chart/sumarizacao");
         },
         render: function render(data) {
             console.log(Object.keys(data));

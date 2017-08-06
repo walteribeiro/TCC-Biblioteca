@@ -28,7 +28,7 @@
                 <label for="numero">Número
                     <span class="required">*</span>
                 </label>
-                <input type="text" class="form-control" id="numero" name="numero" data-inputmask="'mask': '999'"
+                <input type="number" class="form-control" id="numero" name="numero"
                        placeholder="Número" value="{{ old('numero') }}">
             </div>
         </div>
@@ -41,12 +41,4 @@
         </div>
     </form>
 
-@endsection
-@section('scripts')
-    <script src="{{ asset("assets/js/jquery.inputmask.bundle.min.js")}}"></script>
-    <script>
-        $(document).ready(function () {
-            $(":input").inputmask();
-        })
-    </script>
 @endsection

@@ -9,6 +9,7 @@ use App\Models\Publicacao;
 use App\Models\Reserva;
 use App\Models\ReservaRecurso;
 use App\Models\Revista;
+use App\User;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -21,7 +22,7 @@ class HomeController extends Controller
     protected $revista;
     protected $reserva;
 
-    public function __construct(Livro $livro, Emprestimo $emprestimo, ReservaRecurso $reservaRecurso, Aluno $aluno,
+    public function __construct(Livro $livro, Emprestimo $emprestimo, ReservaRecurso $reservaRecurso, User $aluno,
                                 Publicacao $publicacao, Revista $revista, Reserva $reserva)
     {
         $this->livro = $livro;
@@ -38,7 +39,7 @@ class HomeController extends Controller
         $livros = $this->livro->all()->count();
         $emprestimos = $this->emprestimo->all()->count();
         $reservaRecurso = $this->reservaRecurso->all()->count();
-        $alunos = $this->aluno->all()->count();
+        $alunos = $this->aluno->where('tipo_pessoa', 3)->get()->count();
         $revistas = $this->revista->all()->count();
         $reservas = $this->reserva->all()->count();
         $publicacoes = $this->getPublicacoes();

@@ -1,11 +1,3 @@
-{{--<table width="697" border="0" cellspacing="0" cellpadding="0">--}}
-    {{--<tr id="titulo">--}}
-        {{--<td width="150">&nbsp;</td>--}}
-        {{--<td width="400" align="center"><h2>RELATÓRIO DE ALUNOS PENDENTES</h2></td>--}}
-        {{--<td width="150">&nbsp;</td>--}}
-    {{--</tr>--}}
-{{--</table>--}}
-{{--<hr>--}}
 <div class="datagrid" border="0">
     <table>
         <thead>

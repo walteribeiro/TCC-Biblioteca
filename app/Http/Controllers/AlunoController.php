@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AlunoRequest;
+use App\Models\Aluno;
 use App\Repositories\AlunoRepository;
 use App\Traits\LogTrait;
+use App\User;
 use Illuminate\Database\QueryException;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Session;
+use Yajra\Datatables\Datatables;
 
 class AlunoController extends Controller
 {
@@ -23,8 +26,7 @@ class AlunoController extends Controller
 
     public function index()
     {
-        $alunos = $this->repository->index();
-        return view('aluno.index', compact('alunos'));
+        return view('aluno.index');
     }
 
     public function create()
@@ -51,12 +53,6 @@ class AlunoController extends Controller
 
     public function update(AlunoRequest $alunoRequest, $id)
     {
-        $value = $this->repository->countAlunos($id, $alunoRequest->input('matricula'));
-        if($value > 0){
-            Session::flash(self::getTipoErro(), self::getMsgErroMatriculaDuplicada());
-            return redirect()->back();
-        }
-
         $retorno = $this->repository->update($alunoRequest, $id);
         if($retorno){
             Session::flash(self::getTipoSucesso(), self::getMsgAlteracao());
@@ -77,5 +73,40 @@ class AlunoController extends Controller
             Session::flash(self::getTipoErro(), self::getMsgErroReferenciamento());
             return redirect()->back();
         }
+    }
+
+    public function getAll()
+    {
+        $alunos = User::where('tipo_pessoa', 3)->get();
+
+        return Datatables::of($alunos)
+            ->addColumn('status', function ($aluno) {
+                if ($aluno->ativo){
+                    $html = '<span class="label label-success">Ativo</span>';
+                }else {
+                    $html = '<span class="label label-dark">Inativo</span>';
+                }
+                return $html;
+            })
+            ->addColumn('action', function ($aluno) {
+                $html = '<a href="#show" class="btn btn-sm btn-success"
+                            data-nome="'. $aluno->nome .'"
+                            data-telefone="'. $aluno->telefone .'"
+                            data-telefone2="'. $aluno->telefone2 .'"
+                            data-email="'. $aluno->email .'"
+                            data-registro="'. $aluno->matricula .'"
+                            data-ativo="'. $aluno->ativo .'"><em class="fa fa-search"></em> Visualizar</a>';
+                $html .= '<a href="' . route("aluno.edit", $aluno->id) . '" class="btn btn-sm btn-warning"><em class="fa fa-pencil"></em> Alterar</a>';
+                $html .= '<a href="#modal" class="btn btn-sm btn-danger" data-delete="'. $aluno->nome .'" data-id="'. $aluno->id.'"><em class="fa fa-trash-o"></em> Excluir</a>';
+
+                if (auth()->user()->tipo_pessoa == 4) {
+                    $html .= '<a href="#pass" class="btn btn-sm btn-dark" data-id="'. $aluno->id .'"><em class="fa fa-unlock"></em> Alterar Senha</a>';
+                }else{
+                    $html .= '<a href="#" disabled class="btn btn-sm btn-dark"><em class="fa fa-unlock"></em> Alterar Senha</a>';
+                }
+
+                return $html;
+            })
+            ->make(true);
     }
 }
